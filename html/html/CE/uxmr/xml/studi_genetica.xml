@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Genetica" titolo="Genetica" table="GENETICA"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="1"
+	field_tb_show="D_TEST_GEN"
+	tb_header="Test genetici"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+<field>
+	<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Studio di genetica</b></td>]]></txt_value>
+	</field>
+	
+  <field cols="1" type="radio" var="TEST_GEN" send="obbligatorio">
+    	<txt_value><![CDATA[Sono previsti test genetici?:]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+    <field cols="1"  name="T1" hide="yes" condition="TEST_GEN" condition_value="1">
+	<txt_value><![CDATA[<td colspan="2"   align=left><b> Basi razionali dello studio di genetica</b></td>]]></txt_value>
+	</field>
+  <field cols="1" type="textarea" var="CONOSCENZE_LET" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio" hide="yes" condition="TEST_GEN" condition_value="1">
+    	<txt_value><![CDATA[Quali sono le conoscenze gia' disponibili in letteratura sull'argomento oggetto dello studio?]]></txt_value>
+  </field> 
+  <field cols="1"  name="T2" hide="yes" condition="TEST_GEN" condition_value="1">
+	<txt_value><![CDATA[<td colspan="2"   align=left><b> Rilevanza clinica dello studio di genetica</b></td>]]></txt_value>
+	</field>
+  <field cols="1" type="textarea" var="DIMOSTRARE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio" hide="yes" condition="TEST_GEN" condition_value="1">
+    	<txt_value><![CDATA[Che cosa lo studio si propone di dimostrare?]]></txt_value>
+  </field> 
+  
+  <field cols="1" type="textarea" var="DIS_METODI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Disegno dello studio e metodiche che si intendono utilizzare (gene candidato, analisi di linkage, genome wide scan, ecc.)]]></txt_value>
+  </field> 
+  <field cols="1" type="textarea" var="DNA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Sequenze di DNA che si intendono indagare (geni, SNPs, Microsatelliti, VNRT, ecc.)]]></txt_value>
+  </field> 
+  <field cols="1" type="textarea" var="METODI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Stima dei metodi impiegati (numerosita' del campione, controlli, valutazione statistica, odds ratio, RR, ecc.)]]></txt_value>
+  </field> 
+   <field cols="1" type="textarea" var="ESPERIENZA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Esperienza maturata nel campo specifico dello sperimentatore]]></txt_value>
+  </field> 
+   <field cols="1" type="textarea" var="ATTREZZATURE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Attrezzature disponibili per eseguire lo studio]]></txt_value>
+  </field> 
+  <field cols="1" type="textarea" var="ARCHIVIO" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Criteri adottati per l'archiviazione e la conservazione del DNA, a garanzia dell'anonimato dei campioni di DNA (tipo di codifica adottata per l'anonimato, destino dei campioni a studio terminato, durata della conservazione, ecc.)]]></txt_value>
+  </field> 
+  
+  
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

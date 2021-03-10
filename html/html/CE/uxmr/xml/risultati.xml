@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Risultati" titolo="Risultati" table="RISULTATI"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="3"
+	field_tb_show="D_CENTRO||' '||RISULTATO_DT"
+	tb_header="Centro - Data risultato"
+	f_to_call="action_risultati"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+<!-- 
+		<field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3">
+			<txt_value>First Name </txt_value>
+  		</field>
+ -->
+ <field cols="3">
+	<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Risultati dello studio</b></td>]]></txt_value>
+	</field>
+	
+	
+	<field type="select" var="REGISTRATIVI" cols="3" show_selected="yes">
+					<txt_value> I risultati dello studio verranno utilizzati a fini registrativi?</txt_value>
+					<value val="1"> Si'</value>
+					<value val="2"> No</value>
+					<value val="3"> Non noto </value>
+		</field>
+	
+	
+	<field type="select" var="SPEC_REGISTRATIVI" cols="3" condition="REGISTRATIVI" condition_value="1" hide="yes" show_selected="yes">
+					<txt_value> Se si', </txt_value>
+					<value val="1"> Procedura comunitaria: centralizzata</value>
+					<value val="2"> Procedura comunitaria di mutuo riconoscimento</value>
+					<value val="3"> Procedura nazionale</value>
+		</field>
+		
+		 
+		<field cols="3" type="textarea" var="SCHEMA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" >
+    	<txt_value><![CDATA[  Schema sintetico dei risultati:]]></txt_value>
+  </field> 
+  
+  <field type="data" var="RISULTATO_DT" cols="3" >
+			<txt_value><![CDATA[Data del risultato (gg/mm/yyyy)]]></txt_value>
+  		</field>
+	
+	<field cols="3"
+    type="file_cme" 
+    var="RISULTATO_FILE"
+    THREAD="File del risultato" 
+    TOPIC="File del risultato"
+    xmlTypeDefinition="cme/risultati.xml" 
+    auto_approve="yes"
+  >
+    <txt_value>File del risultato</txt_value>
+   </field>
+		
+		<field type="select" var="PUBBLICATI" cols="3" show_selected="yes">
+					<txt_value> I risultati dello studio sono stati pubblicati?</txt_value>
+					<value val="1"> Si'</value>
+					<value val="2"> No</value>
+		</field>
+		
+		<field cols="3" type="textarea" var="PUBL_SPEC" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" condition="PUBBLICATI" condition_value="1" hide="yes">
+    	<txt_value><![CDATA[  Se si', specificare i riferimenti della pubblicazione:]]></txt_value>
+  </field> 
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

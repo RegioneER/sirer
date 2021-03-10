@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<form fname="Presenza studi" titolo="Presenza studi" table="PRES_STUDI"  
+	link_to="index.php?CENTER=[CENTER]|and|ID_SED=[ID_SED]|and|VISITNUM=[VISITNUM]|and|exams=visite_exams.xml" 
+	cols="1"
+	f_to_call="link_parere_odg_verbale"
+	>
+		<field type="hidden" var="ID_SED" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+
+		<field type="hidden" var="CENTER" var_type="number" />
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+
+		<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
+		
+		<field>
+			<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Selezione studi/emendamenti effettivamente valutati</b></td>]]></txt_value>
+		</field>
+		
+		<field 	type="multicheck_check_hide" var="STUDI_SOSPESI" bytb="VIEW_STUDI_ALL" bytbcode="CODE" bytbdecode="replace(DECODE,'Relatori:','')" bytbwhere="CODE IN (SELECT * FROM TABLE (CAST (explode('|', (Select STUDI_SOSPESI from GSE_SEL_STUDI where ID_SED=[ID_SED])) AS listtable)))" bytborderby="TIPO_SPER,PARERE_UNICO">
+			<txt_value><![CDATA[<b>Conferma studi sospesi</b><br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'STUDI_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		
+		<field 	type="multicheck_check_hide" var="STUDI_SOSPESI" bytb="VIEW_STUDI_ALL" bytbcode="CODE" bytbdecode="replace(DECODE,'Relatori:','')" bytbwhere="CODE IN (SELECT * FROM TABLE (CAST (explode('|', (Select STUDI from GSE_SEL_STUDI where ID_SED=[ID_SED])) AS listtable)))" bytborderby="TIPO_SPER,PARERE_UNICO">
+			<txt_value><![CDATA[<b>Conferma nuovi studi</b><br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'STUDI_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		
+		<field 	type="multicheck_check_hide" var="STUDI_EMENDAMENTI" bytb="VIEW_EME_ALL" bytbcode="CODE" bytbdecode="replace(DECODE,'Relatori:','')" bytbwhere="CODE IN (SELECT * FROM TABLE (CAST (explode('|', (Select STUDI_EMENDAMENTI from GSE_SEL_STUDI where ID_SED=[ID_SED])) AS listtable)))" bytborderby="IDE_CODICE">
+			<txt_value><![CDATA[<b>Conferma nuovi emendamenti</b><br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'STUDI_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		
+		
+		<field 	type="multicheck_check_hide" var="STUDI_EME_SOSP" bytb="VIEW_EME_ALL" bytbcode="CODE" bytbdecode="replace(DECODE,'Relatori:','')" bytbwhere="CODE IN (SELECT * FROM TABLE (CAST (explode('|', (Select STUDI_EME_SOSP from GSE_SEL_STUDI where ID_SED=[ID_SED])) AS listtable)))" bytborderby="IDE_CODICE">
+			<txt_value><![CDATA[<b>Conferma emendamenti da integrare/modificare</b><br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'STUDI_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		
+	<enable>
+	</enable>
+
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>
+
+

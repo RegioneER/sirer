@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<study>
+	<dir_base>/http/servizi/siss-bundle-01/sirer-ctms.sissprep.cineca.it/html/CE/uxmr</dir_base>
+	<configuration>
+		<field_lib>/http/servizi/siss-bundle-01/sirer-ctms.sissprep.cineca.it/html/CE/uxmr/fields/</field_lib>
+		<entry-point>
+			<esam>0</esam>
+		</entry-point>
+		<prefix>CE</prefix>
+		<pk_seq>PK_SEQ</pk_seq>
+		<pk_service>ID_STUD</pk_service>
+		<labels>
+			<menu_paziente>Menu studio</menu_paziente>
+			<lista_schede>Schede dello studio</lista_schede>
+			<patients_list>Lista studi</patients_list>
+			<torna_lista_schede>Torna alle schede dello studio</torna_lista_schede>
+		</labels>
+	</configuration>
+	<center_view>
+		SELECT 
+			id_ce  AS center,
+    		azienda_ente AS denom,
+    		userid AS userid_resp
+  		FROM ana_utenti_2 where profilo='SGR'
+	</center_view>
+	<workflow>
+		<nome>CE WF 1</nome>
+		<attori>
+			<attore>
+				<id>1</id>
+				<nome>Unita di ricerca</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='URC'
+				</query>
+			</attore>
+			<attore>
+				<id>2</id>
+				<nome>Segreteria CE</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='SGR'
+				</query>
+			</attore>
+			<attore>
+				<id>3</id>
+				<nome>Componente CE</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='CMP'
+				</query>
+			</attore>
+			<attore>
+				<id>4</id>
+				<nome>Principal Investigator</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='PRI'
+				</query>
+			</attore>
+			<attore>
+				<id>5</id>
+				<nome>Direzione Amministrativa</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='AMM'
+				</query>
+			</attore>
+		</attori>
+		<stati>
+			<stato>
+				<id>1</id>
+				<nome>In corso di compilazione</nome>
+				<actid>1</actid>
+			</stato>
+			<stato>
+				<id>2</id>
+				<nome>Inviata</nome>
+				<actid>2</actid>
+			</stato>
+		</stati>
+		<rami>
+			<ramo>
+				<orig>1</orig>
+				<dest>2</dest>
+				<condition>Inviata</condition>
+			</ramo>
+		</rami>
+	</workflow>
+	<substudies/>
+</study>

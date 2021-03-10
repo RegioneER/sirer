@@ -1,0 +1,25 @@
+<page titolo="CE Online">
+	<blocco titolo="Studi">
+	
+		<link>
+			<testo><![CDATA[</a><b>Lista studi</b>]]></testo>
+		</link>
+		<link script="index.php" param="list=patients_list.xml" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where R.CENTER=:center and L.ID_STUD=R.ID_STUD">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lista studi]]></testo>
+		</link>
+		
+		<!--link script="index.php" param="search=proc">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerca studi]]></testo>
+		</link-->
+		<link>
+			<testo><![CDATA[</a><b>Ricerca</b>]]></testo>
+		</link>
+		<link script="index.php" param="SEARCH=1&amp;FORM=1">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerca studi per info <u>studio</u> specifiche]]></testo>
+		</link>
+		<link script="index.php" param="SEARCH=1&amp;FORM=2">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerca studi per info <u>centro</u> specifiche]]></testo>
+		</link>
+		
+	</blocco>
+</page>

@@ -1,0 +1,11 @@
+<page titolo="CE Online">
+	<blocco titolo="Procedure">
+		<link script="index.php" param="list=proc_all_uff">
+		<testo>Lista procedure</testo>
+		</link>
+		<link script="index.php" param="search=proc">
+		<testo>Cerca procedure</testo>
+		</link>
+	</blocco>
+	
+</page>

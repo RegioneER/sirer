@@ -1,0 +1,287 @@
+.jstree-proton {
+    overflow: auto;
+    width: 100%;
+}
+
+.modal-dialog {
+    width: 700px;
+}
+
+.navbar-brand {
+    height: 45px;
+}
+@media only screen and (min-width: 320px) {
+	.navbar .navbar-header.pull-left {
+	    display: inline !important;
+	}
+}
+
+.select2-container {
+    width: 150px;
+}
+
+.popover {
+    z-index: 1030;
+}
+
+.breadcrumb > li + li::before {
+    content: "| ";
+}
+
+.sidebar::before {
+    width: 250px;
+}
+
+.sidebar {
+    width: 250px;
+}
+	    
+.sidebar + .main-content {
+    margin-left: 250px;
+}
+
+.breadcrumbs.fixed, .breadcrumbs.breadcrumbs-fixed {
+    left: 250px;
+}
+
+@media only screen and (max-width: 460px) {
+	.navbar-fixed-top + .main-container {
+    	padding-top: 88px !important;
+	}	
+}
+	    
+.main-content {
+  	margin-left: 0px;
+}
+
+.navbar-fixed-top + .main-container {
+    padding-top: 45px;
+}
+
+.breadcrumbs-fixed + .page-content{
+	margin-top:40px;
+}
+
+#folder-content {
+	overflow:auto
+}
+
+.footer{
+	border-top: 2px solid #dddddd;
+    bottom: 22px;
+    box-shadow: 0 -2px 2px #dddddd;
+    padding-top: 13px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
+#folder-content-inner > div{
+	text-align: center;
+}
+
+#folder-content-inner > div > div > i{
+	font-size: 60px;
+    margin-left: 5px;
+    margin-top: 25px;
+}
+
+
+.download{
+	
+}
+
+.file_box.row h4{
+	font-size:14px;
+	text-align:left;
+	font-weight:bold;
+	cursor:pointer;
+	margin-bottom: 0px !important;
+    margin-top: 0px !important;
+}
+
+.file_box.row{
+	border-bottom:1px solid #dddddd;
+	padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.file_box.row i.file-icon{
+	font-size:22px !important;
+	margin-top: 0px !important;
+}
+
+.rowHeaders{
+	font-size:16px;
+	font-weight:bold;
+	color:#666;
+}
+ 
+.file_box_inner:hover .overlay{
+	height: 30px;
+	transition: height 0.3s linear;
+}
+
+.overlay {
+	height: 30px;
+    overflow: hidden;
+    position: absolute;
+    top: -1px;
+    left:18px;
+    z-index: 10;
+}
+
+.overlay li {
+    background: #3A87AD none repeat scroll 0 0;
+    border-radius: 0 0 5px 5px;
+    color: white;
+    display: inline-block;
+    max-width: 20px;
+    min-width: 20px;
+    width: 20px;
+}
+
+.file_box{
+	
+}
+
+.file-spec{
+	background: #3a87ad none repeat scroll 0 0;
+    bottom: -20px;
+    color: white;
+    height: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.file-spec h4{
+	margin: 0;
+    overflow: hidden;
+    padding-left: 9px;
+    padding-top: 11px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    cursor:pointer;
+}
+
+.file-spec .createdOnBlock{
+	text-align: right;
+}
+
+.file-add-ons{
+	list-style: outside none none;
+}
+
+
+.overlay li a, .overlay li a:hover, .overlay li a:visited{
+	color:white;
+}
+
+.file_box_inner{
+	background: #f5f5f5 none repeat scroll 0 0;
+    border: 1px solid #cccccc;
+    box-shadow: 4px 4px 6px #cccccc;
+    height: 160px;
+    margin-bottom: 15px;
+}
+
+.file_box_inner span.createdBy{
+	position: absolute;
+    right: 16px;
+    text-align: right;
+    top: 96px;
+    max-width: 70%;
+}
+
+.file_box_inner span.createdBy-content{
+	display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+#folder-content-bar{
+	background-color: #f5f5f5;
+    height: 30px;
+    left: 232px;
+    padding-left: 14px;
+    padding-top: 3px;
+    position: fixed;
+    top: 86px;
+    width: 100%;
+}
+
+#folder-content-bar li{
+	display: inline;
+    list-style: outside none none;
+    margin-left: 15px;
+    white-space: nowrap;
+}
+
+#folder-content-bar a{
+	font-size: 16px;
+}
+
+.hi-filename{
+	
+}
+
+.hi-ver{
+	display:block;
+}
+
+.hi-author{
+	display:block;
+}
+
+.hi-dt{
+	display:block;
+}
+
+
+#startForm{
+	margin-right: 9px;
+    margin-top: 5px;
+}
+
+.reportChart{	
+	
+}
+
+.reportTable{
+	text-align: center;
+}
+
+.breadcrumbs.fixed, .breadcrumbs.breadcrumbs-fixed {
+    left: 0;
+}
+
+.main-content {
+    margin-top: 33px;
+}
+
+.breadcrumbs.fixed, .breadcrumbs.breadcrumbs-fixed {
+    left: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.breadcrumbs button{
+	margin-right: 5px;
+}
+
+h2 {
+    margin-left: 30px;
+}
+
+div.reportTable table.google-visualization-table-table tbody tr td.google-visualization-table-td:first-child{
+	text-align: left;	
+}
+
+.google-visualization-table .gradient {
+    background:none !important;
+    background-color: #6fb3e0 !important;
+}

@@ -1,0 +1,1069 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PROJECTS LANG="ENG">
+ <SECTIONS NAME="SECT_REP" DESC="SEZIONI DEI REPORTS">
+  <SECTION NAME="REPORTS" ID="1"/>
+ </SECTIONS>
+<VISIONS> 
+    <VISION NAME="AIFA" PROFILE="AIFA - Direzione Generale" ID="********" TYPE="GLOBAL">
+       </VISION> 
+       <VISION NAME="FARM" PROFILE="Azienda farmaceutica" ID="00******" TYPE="GLOBAL">
+    <COND FIELD="AZIENDA" DESCR="">
+ at_forum.userid_ins='[[USERID]]'
+   </COND>
+     </VISION> 
+    <VISION NAME="AIFA" PROFILE="AIFA - Direzione Generale" ID="########" TYPE="GLOBAL">
+     <COND FIELD="CENTER" DESCR="">
+	center is not null
+    </COND>
+   </VISION>  
+ </VISIONS>            
+<HEADER NAME="HTML" DESC="HTML PREDEFINITO">
+<VAR NAME="HEAD_1" DESC="INTESTAZIONE HTML">
+<![CDATA[
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>NEAT</title>
+<meta http-equiv="Content-Type" target="_top" content="text/html; charset=iso-8859-1">
+    [[REFMETA]]
+<!--link href="/css/hyperstudy_v01_report.css" type=text/css rel=STYLESHEET-->
+ <script language="JavaScript">
+    function pCond(){
+    var frm = null;
+    if (document.forms.length == 0) return false;
+    if (arguments.length == 0){
+	frm = document.forms[0];
+    } else if (arguments.length == 1) {
+	frm = document.forms[0];
+	if (frm.elements['COND']) frm.elements['COND'].value = arguments[0];
+    } else {
+	for (i=0; i < document.forms.length; i++){
+	    if (document.forms[i].name == arguments[1]){
+		frm = document.forms[i];
+                if (frm.elements['COND']) frm.elements['COND'].value = arguments[0];
+		break;
+	    }
+	}
+    }
+    if (!frm) return false;
+    frm.submit();
+}
+    </script>
+      <style type ="text/css">
+BODY {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; background-color: white; margin-top: 1px; margin-left: 1px}
+P, BR, LI {  font-family: Verdana, Arial, Helvetica, sans-serif}
+TD {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt; vertical-align: top;	border-color:#FFFFFF; }
+TH {font-family: Verdana, Arial, Helvetica, sans-serif; text-align: center; font-size: 8pt; font-weight: bold;	border-color:#FFFFFF;}
+A {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10pt }
+a:link {  color: 398CBE; text-decoration: none}
+a:visited { color: 398CBE; text-decoration: none}
+a:hover {  color: 398CBE; text-decoration: underline}
+a:active { color: 398CBE; text-decoration: underline; font-size: 9pt; font-weight: bold}
+a.esterno:link { color: 398CBE; text-decoration: underline}
+B {font-weight: bold}
+H1 {font-family: Verdana, Arial, Helvetica, sans-serif; color:black; font-weight: bold; text-align: center; font-size: 24pt}
+H2 {font-family: Verdana, Arial; color:navy; font-weight: bold; text-align: center; font-size: 18pt}
+EM {font-family: Verdana, Arial; color:black; font-weight: bold; text-align: left; font-size: 10pt}
+H6 {font-family: Verdana, Arial; font-size: 8pt}
+STRONG {Verdana; color:red; font-weight: bold; text-align: center}
+INPUT {font-family: Verdana, Courier, mono; font-size: 8pt; BORDER-RIGHT: #CCCCCC 1px solid; BORDER-TOP: #CCCCCC 1px solid; BORDER-LEFT: #CCCCCC 1px solid; BORDER-BOTTOM: #CCCCCC 1px solid; text-transform: uppercase;}
+TEXTAREA {  font-family: Verdana, Courier, mono; font-size: 8pt; BORDER-RIGHT: #CCCCCC 1px solid; BORDER-TOP: #CCCCCC 1px solid; BORDER-LEFT: #CCCCCC 1px solid; BORDER-BOTTOM: #CCCCCC 1px solid}
+FORM TABLE {border-collapse: collapse; font-size: 90%; padding:3px}
+FIELDSET TABLE {border-collapse: collapse; font-size: 90%; padding:4px}
+TABLE {border-collapse: collapse; bordercolor: #000000;}
+TABLE_REP {border:2; cellspacing:3; cellpadding:3;bordercolor: #FFFFFF;}
+LEGEND {Arial; color:red; padding:3px; font-weight: bold; font-size: 12pt;  BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; BORDER-LEFT: red 1px solid; BORDER-BOTTOM: red 1px solid}
+SELECT {font-family: Verdana, Courier, mono; font-size: 8pt; BORDER-RIGHT: #CCCCCC 1px solid; BORDER-TOP: #CCCCCC 1px solid; BORDER-LEFT: #CCCCCC 1px solid; BORDER-BOTTOM: #CCCCCC 1px solid; BACKGROUND: #FFFFFF; }
+FIELDSET {padding:3px; border-color: #83FF00;  BORDER-RIGHT: #83FF00 4px solid; BORDER-TOP: #83FF00 4px solid; BORDER-LEFT: #83FF00 4px solid; BORDER-BOTTOM: #83FF00 4px solid}
+FORM FIELDSET {padding: 3px; border-color: navy;  BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; BORDER-LEFT: red 1px solid; BORDER-BOTTOM: red 1px solid}
+FIELDSET FIELDSET {padding: 3px; border-color: navy;  BORDER-RIGHT: red 1px solid; BORDER-TOP: red 1px solid; BORDER-LEFT: red 1px solid; BORDER-BOTTOM: red 1px solid}
+FORM TD {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 8pt}
+.complete {vertical-align: middle;}
+.req {background: #FFFF00}
+.done {background: #00FF00}
+.Area {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 15pt; font-style: normal; font-weight: bold; color: darkseagreen}
+.TitleRep {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14pt; font-style: normal; font-weight: bold; color: royalblue}
+.SubTitleRep {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12pt; font-style: normal; font-weight: bold; color: royalblue}
+.subArea {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12pt; font-style: normal; font-weight: bold}
+.descArea {  color: #339933}
+.descsubArea {  font-weight: normal; font-family: Arial; font-size: 10pt}
+.big {font-family: Verdana, Arial; color:navy; font-weight: bold; font-size: 14pt; vertical-align: middle; text-align: center}
+.small {font-family: Verdana, Arial; font-size: 8pt}
+.lab {font-family: Verdana, Courier, mono; font-size: 8pt}
+.title {font-family: Verdana, Arial, Helvetica, sans-serif; color:black; font-weight: bold; text-align: center; font-size: 24pt}
+.eQueryLogo {font-family: Impact; color:black; font-weight: bold; font-style: italic}
+.selectedOption {font-family: Verdana, Courier, mono; font-size: 10pt; font-style: normal;}
+.unselectedOption {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9pt; font-style: normal; color: #999999}
+.textfield {padding:1px; font-family: Verdana, Courier, mono; font-size: 8pt; BORDER-RIGHT: #CCCCCC 1px solid; BORDER-TOP: #CCCCCC 1px solid; BORDER-LEFT: #CCCCCC 1px solid; BORDER-BOTTOM: #CCCCCC 1px solid}
+.whiteLink {font-weight: bold; color: white}
+.barra_visita {font-family: Verdana, Arial, Helvetica, sans-serif; font-weight: bold; color: navy}
+.barra_esame {font-family: Verdana, Arial, Helvetica, sans-serif; font-size: xx-small;}
+.sdv {
+        FONT-FAMILY: Verdana, Courier, mono; BORDER-RIGHT: #000 1px solid; BORDER-TOP: #000 1px solid; BACKGROUND: orange; BORDER-LEFT: #000 1px solid; BORDER-BOTTOM: #000 1px solid
+}
+.blgtbl {border-collapse: collapse; font-size: 90%; padding:0px}
+.normalSubmit {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	text-transform: none;
+	color: #FFFFFF;
+	background-color: #0000FF;
+	text-align: center;
+	border: thin solid #000000;
+	cursor: hand;
+}
+.ContinueSubmit {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-style: normal;
+	line-height: normal;
+	font-weight: bold;
+	font-variant: normal;
+	text-transform: none;
+	color: #FFFFFF;
+	background-color: #FF0000;
+	text-align: center;
+	border: thin solid #000000;
+	cursor: hand;
+}
+.HomePageItem {
+	float : left; 
+	width : 300;
+	height : 100;
+	background-color:aliceblue;
+	top : 0 px;
+	left : 0 px; 
+}
+
+.AreaLink {
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: 16pt; 
+	COLOR: #e19efa; 
+	FONT-STYLE: normal; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	text-decoration: none;
+}
+
+
+TR#tot {
+	color:darkred;
+	font-weight: bold;
+	font-size: 10pt%; 
+	
+}
+
+th {
+border:2px solid white;
+	font-weight: bold;
+	padding: 5px 5px 5px 5px;
+	font-size: 8pt; 
+		
+}
+
+td#rep {
+border:2px solid white;
+padding: 4px 4px 4px 4px;
+	font-size: 8pt; 
+	background-color: #EEECEF; 
+	
+}
+TABLE#rep {
+	border:2px solid white;
+	cellspacing:3;
+	cellpadding:5;
+	text-align: LEFT;
+	font-size: 8pt;
+	width: 80% 
+}
+
+</style>
+
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="[[BGCOLOR]]">
+]]>
+</VAR>
+<!--
+<VAR NAME="HEAD_2" DESC="PREPARE BODY">
+<![CDATA[
+<table height="100" width="100%"  border="0" align="center" >
+ <tr  valign=top>
+  <td class="bglight" align="left" rowspan=2 colspan=2  >
+   <a href="/WCA/index.php">
+   <img src="/img_rep/banner1.jpg" alt=""  border="0" >
+   </a>
+  
+  </td>
+ </tr>
+ <tr></tr>
+  <tr>
+<td  bgcolor="white" align="center">
+	<font size="5" color="398CBE"  align="center"><b> Reports<BR></font> <font size=-1 COLOR=SILVER>
+</font></b></font>
+</td>
+<td width="100" align="center" valign="down" style="padding: 3px" bgcolor="white">
+<a href="/WCA/index.php" target="_top"><img src="/img_rep/home_page.gif" width="30" height="30" border="0"></a><br>
+ <font color=398CBE  size=2>Home page</font>
+</td>
+</tr>
+      </table>
+ <br>
+ ]]>
+</VAR>
+
+<VAR NAME="HEAD_REPORT" DESC="PREPARE BODY">
+<![CDATA[
+<table height="100" width="100%"  border="0" align="center" >
+ <tr  valign=top>
+  <td class="bglight" align="left" rowspan=2 colspan=2  >
+  <a href="/WCA/index.php">
+   <img src="/img_rep/banner1.jpg" alt=""  border="0">
+   </a>
+  </td>
+ </tr>
+ <tr></tr>
+  <tr>
+<td  bgcolor="white" align="center">
+	<font size="5" color=398CBE ><b> Reports </font><BR><font size=-1 color=silver>
+</font></b>
+	<br><font size=1><b>
+	 [[DATE_UPDATED]]
+			  </b>
+</td>
+<td  align="center" bgcolor="white"><FONT color=silver SIZE=2>
+	<a href="" onClick="[[PRINT_CALL]]"  alt="salva/stampa il report" title="salva/stampa il report">
+<img src="/img_rep/graph.jpg" width="30" height="30" border="0"></a><br>salva/stampa<br>il report</FONT></b>
+</td>
+<td align="center" bgcolor="white">
+<a href="/WCA/index.php" target="_top"><img src="/img_rep/home_page.gif" width="30" height="30" border="0"></a><br>
+<font color=silver  size=2>Home page</font>
+</td>
+</tr>
+
+
+      </table><br>
+ ]]>
+</VAR>-->
+<VAR NAME="HEAD_PRINT" DESC="PREPARE BODY FOR PRINTING REPORT">
+<![CDATA[
+<table height="120" border="0" align="center" >
+ <tr  valign=top>
+  <td class="bglight" align="left" rowspan=2 colspan=2  >
+     <a href="/WCA/index.php">
+   <img src="/img_rep/banner1.gif" alt=""  border="0" width="30%">
+   </a>
+  </td>
+ </tr>
+ <tr></tr>
+  <tr>
+<td  bgcolor="white" align="center" width="100%">
+	<font size="5" color=398CBE ><b> Reports </font><BR></b>
+	<br><font size=1><b>
+			 [[DATE_UPDATED]]
+			  </b>
+</td>
+<td align=center  bgcolor="white">
+<a href="javascript: void window.print();" alt="Stampa il report" title="Stampa il report">
+<img src="/img_rep/print.bmp" width="30" height="30" border="0">
+</a><br></td>		
+<td  align=center bgcolor="white">
+<span class="class">
+<a href="" onClick="[[PDF_CALL]]"  alt="Report pdf" title="Report pdf">
+ <img src="/img_rep/pdf.jpg" width="30" height="30" border="0"></a>
+<br>
+ </td>
+<td align="center" bgcolor="white">
+<a href="/WCA/index.php" target="_top" alt="Home page" title="Home page">
+<img src="/img_rep/home_page.gif" width="30" height="30" border="0"></a>
+<br>
+</td>
+</tr>
+
+
+      </table><br>
+ ]]>
+</VAR>
+<VAR NAME="HEAD_PDF" DESC="PREPARE BODY FOR PRINTING REPORT">
+<![CDATA[
+<table height="120" width="100%"  border="0" align="center" >
+ <tr  valign=top>
+  <td class="bglight" align="left" rowspan=2 colspan=2  >
+     <a href="/WCA/index.php">
+   <img src="/img_rep/banner1.jpg" alt=""  border="0" width="30%">
+   </a>
+  </td>
+ </tr>
+ <tr></tr>
+  <tr>
+			 <TD bgcolor="white" ALIGN="left"><font size=1><b>
+		 [[DATE_UPDATED]]
+			  </b></TD>           
+                       </tr>
+ 
+
+      </table>
+      
+  
+  <br>
+ ]]>
+</VAR>
+<!--
+<VAR NAME="RL_INIT" DESC="REPORT LIST INITIALS">
+ <![CDATA[
+  <div id="T_reports" class=""> 
+        <table width="290" border="0" cellpadding="2" cellspacing="0" bordercolor="#000000" background="/img_rep/barra3.gif" >
+<tr rowspan=2><td align="right" colspan=2 > 
+  
+  </td></tr>
+  <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+   <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+          <tr> 
+            <td class="TitleRep" nowrap ><font color=398CBE >INDEX</font><br><br></td>
+          </tr> 
+ ]]>
+</VAR>
+<VAR NAME="RL_LIST" DESC="REPORT LIST FRAGMENT">
+ <![CDATA[
+  <div id="T_reports" class=""> 
+        <table width="290" border="0" cellpadding="2" cellspacing="0" bordercolor="#000000">
+
+          <tr> 
+            <td width="15"><img src="/img_rep/blueball.gif" width="15" height="15" border="0"></td>
+            <td><span class="SubTitleRep"> [[REPORT_ITEMS]]:</span><br><br>
+
+<table  width=70% >
+<tr><td>
+  [[REPORT_LIST_ITEMS]] <br>
+</td></tr>
+</table>
+  </td>
+ </tr>
+     </table>
+   </div>
+ ]]>
+</VAR> -->
+<VAR NAME="REFRESH" DESC="REFRESH PAGE">
+<![CDATA[
+
+<br><br><br><br>
+<center>
+  <table>
+</table>
+</center>
+<center>
+<table> 
+  <tr>
+    <td align=left><font size=4 color=darkseagreen><b>Attendere....</b></font></td> 
+     <td align=left>  <img src="/img_rep/clessidra.gif"  border=0></H2>
+     <td align=left><font size=4 color=darkseagreen ><b>... il report sta per essere visualizzato!  </b></td></H2>
+   </tr>
+</table>
+</center>
+]]>
+</VAR>
+<VAR NAME="ERR_NO_QUAL" DESC="NO QUALIFIED">
+<![CDATA[
+
+<br><br><br><br>
+<center>
+  <table>
+</table>
+</center>
+<center>
+<table> 
+  <tr>
+    <td align=left><font size=4 color=darkseagreen><b>I'm Sorry, &nbsp;&nbsp;</b></font></td> 
+     <td align=left>  <img src="/img_rep/divieto.gif"  border=0 width=20 height=20></H2>
+     <td align=left><font size=4 color=darkseagreen ><b>&nbsp;&nbsp; you are not allowed to browse reports!!!  </b></td></H2>
+   </tr>
+</table>
+</center>
+]]>
+</VAR>
+<VAR NAME="BOT" DESC="HTML BOT">
+<![CDATA[
+<br>
+<!--hr width="90%" align="center"-->             
+</body>
+</html>
+ ]]>
+</VAR>
+</HEADER>
+<PROJECT SECTION="REPORTS" AIFA="" UFF1="UFFICIO" UFF2="UFFICIO">
+<NAME>R1</NAME>
+<DESC> Meetings and Events</DESC>
+<P_CRON>
+<ACTION NAME="SQLREPORT"> 
+ <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+   Meetings and Events
+         ]]>
+     </VAR> 
+      <VAR NAME="SQLQUERY" ID="Q2" TYPE="FORM">
+   <![CDATA[
+ SELECT B
+   FROM(
+   SELECT '1' A,' 'C,'
+   <form name="anno"  action="[[CGIFILE]]" method="GET">
+      <input name="fase" type="hidden" value="1">
+      <input name="nome_progetto" type="hidden" value="R1_1">
+      <SELECT NAME="COND"  SIZE="1" onchange="anno.submit()">
+       <OPTION SELECTED>Year of Meetings' B
+from riunioni
+where from_dt is not null
+	   UNION 
+ SELECT   distinct '2' A,to_char(from_dt,'YYYY') C,'<OPTION VALUE="ANNO ='||to_char(from_dt,'YYYY')||'" >'||
+to_char(from_dt,'YYYY')
+        from  riunioni    where from_dt is not null   
+	union
+	SELECT '3' A,' 'C,' </select></form>' B
+from riunioni  where from_dt is not null
+	   )
+		  ORDER BY A ,C  
+     ]]>
+   </VAR>
+</ACTION> 
+  <ACTION NAME="FREEREPORT" DESC="ESEGUI SQLREPORT">
+ 
+      <VAR NAME="MQUERY" ID="Q1_M">
+   <![CDATA[
+
+select count(distinct id) from riunioni 
+where from_dt is not null
+
+
+]]></VAR>
+      <VAR NAME="MQUERY" ID="Q2_M">
+   <![CDATA[
+
+select count(distinct d.id) from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref and from_dt is not null
+
+
+]]></VAR>
+ <VAR NAME="TEMPLATE"><![CDATA[	
+<CENTER> Number of total meetings: <var id="Q1_M" type="array" col="0" row="0"><br>
+Number of attached documents: <var id="Q2_M" type="array" col="0" row="0"><br>
+<br> <br> 
+
+<font color=red> By clicking on the N. of meetings, it is possible to access to the details of each meeting
+</font>
+ </CENTER>	
+]]></VAR>
+</ACTION>
+<ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+<VAR NAME="FORM" DESC="PASSAGGIO PARAMETRI" NAME_FORM="form" TYPE="INHER" ID="R1_1_1"/> 
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Month/Year of meetings</th>
+<th bgcolor="#BCCCDC">N. of meetings</th>
+<th bgcolor="#BCCCDC">%</th>
+<th bgcolor="#BCCCDC">N. of attached documents</th>
+<th bgcolor="#BCCCDC">%</th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1" TYPE="TOTAL">
+    <![CDATA[
+select '<div align=center>'||d,'<div align=right>'||b,c,e,f from (
+ select 1 a,riu.data d, '<a href="javascript: void pCond(''MESE_ANNO='||riu.data||''',''form'');" >'||riu.n||'</a>' b,
+ riu.p c,nvl(doc.n,0) e,decode(doc.p,null,'0.0',doc.p)f,riu.ord ord from  
+      (select to_char(from_dt,'mm/yyyy') data, count(distinct r.id)n,
+      to_char(ratio_to_report(count(distinct r.id))over()*100,'990.0')p,max(from_dt) ord
+  from riunioni r
+group by to_char(from_dt,'mm/yyyy'))riu,
+(select to_char(from_dt,'mm/yyyy') data,  count(distinct d.id)n,to_char(ratio_to_report(count(distinct d.id))over()*100,'990.0')p
+  from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref
+group by to_char(from_dt,'mm/yyyy')) doc
+where riu.data=doc.data(+)
+union
+ select 2 a,'Totale', to_char(riu.n),riu.p,nvl(doc.n,0),decode(doc.p,null,'0.0',doc.p),riu.ord ord from  
+      (select count(distinct r.id)n,
+      to_char(ratio_to_report(count(distinct r.id))over()*100,'990.0')p,max(from_dt)ord
+  from riunioni r)riu,
+(select  count(distinct d.id)n,to_char(ratio_to_report(count(distinct d.id))over()*100,'990.0')p
+  from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref) doc
+)order by a,ord desc
+
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>   
+ </P_CRON>
+</PROJECT>
+<PROJECT SECTION="HIDDEN" AIFA="" UFF1="UFFICIO" UFF2="UFFICIO">
+<NAME>R1_1</NAME>
+<DESC> Meetings and Events</DESC>
+<P_CRON>
+<ACTION NAME="SQLREPORT"> 
+ <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+  Meetings and Events
+         ]]>
+     </VAR> 
+      <VAR NAME="SQLQUERY" ID="Q2" TYPE="FORM">
+   <![CDATA[
+ SELECT B
+   FROM(
+   SELECT '1' A,' 'C,'
+   <form name="anno"  action="[[CGIFILE]]" method="GET">
+      <input name="fase" type="hidden" value="1">
+      <input name="nome_progetto" type="hidden" value="R1_1">
+      <SELECT NAME="COND"  SIZE="1" onchange="anno.submit()">
+       <OPTION SELECTED>Year of Meetings' B
+from riunioni
+where from_dt is not null
+	   UNION 
+ SELECT   distinct '2' A,to_char(from_dt,'YYYY') C,'<OPTION VALUE="ANNO ='||to_char(from_dt,'YYYY')||'" >'||
+to_char(from_dt,'YYYY')
+        from  riunioni    where from_dt is not null   
+	union
+	SELECT '3' A,' 'C,' </select></form>' B
+from riunioni  where from_dt is not null
+	   )
+		  ORDER BY A ,C  
+     ]]>
+   </VAR>
+</ACTION> 
+  <ACTION NAME="FREEREPORT" DESC="ESEGUI SQLREPORT">
+ 
+      <VAR NAME="MQUERY" ID="Q1_M">
+   <![CDATA[
+
+select count(distinct id) from riunioni 
+where from_dt is not null and to_char(from_dt,'YYYY')='[[VALUE_OF="ANNO"]]'
+
+
+]]></VAR>
+      <VAR NAME="MQUERY" ID="Q2_M">
+   <![CDATA[
+
+select count(distinct d.id) from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref and from_dt is not null
+and to_char(from_dt,'YYYY')='[[VALUE_OF="ANNO"]]'
+
+
+]]></VAR>
+ <VAR NAME="TEMPLATE"><![CDATA[	
+<CENTER> <b>[[ANNO]]</b><br><br>Number of total meetings: <var id="Q1_M" type="array" col="0" row="0"><br>
+Number of attached documents: <var id="Q2_M" type="array" col="0" row="0"><br>
+<br> <br> 
+
+<font color=red>By clicking on the N. of meetings, it is possible to access to the details of each meeting
+</font>
+<br> <br> 
+ </CENTER>	
+]]></VAR>
+</ACTION>
+<ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+<VAR NAME="FORM" DESC="PASSAGGIO PARAMETRI" NAME_FORM="form" TYPE="INHER" ID="R1_1_1"/> 
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Month/Year of meetings</th>
+<th bgcolor="#BCCCDC">N. of meetings</th>
+<th bgcolor="#BCCCDC">%</th>
+<th bgcolor="#BCCCDC">N. of attached documents</th>
+<th bgcolor="#BCCCDC">%</th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1" TYPE="TOTAL">
+    <![CDATA[
+select '<div align=right>'||d,'<div align=right>'||b,c,e,f from (
+ select 1 a,riu.data d,'<a href="javascript: void pCond(''MESE_ANNO='||riu.data||''',''form'');" >'||riu.n||'</a>' b,
+ riu.p c,nvl(doc.n,0) e,decode(doc.p,null,'0.0',doc.p)f,riu.ord ord from  
+      (select to_char(from_dt,'mm/yyyy') data, count(distinct r.id)n,
+      to_char(ratio_to_report(count(distinct r.id))over()*100,'990.0')p,max(from_dt)ord
+  from riunioni r
+  where to_char(from_dt,'YYYY')='[[VALUE_OF="ANNO"]]'
+group by to_char(from_dt,'mm/yyyy'))riu,
+(select to_char(from_dt,'mm/yyyy') data,  count(distinct d.id)n,to_char(ratio_to_report(count(distinct d.id))over()*100,'990.0')p
+  from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref and to_char(from_dt,'YYYY')='[[VALUE_OF="ANNO"]]'
+group by to_char(from_dt,'mm/yyyy')) doc
+where riu.data=doc.data(+)
+union
+ select 2 a,'Totale', to_char(riu.n),riu.p,nvl(doc.n,0),decode(doc.p,null,'0.0',doc.p),riu.ord ord  from  
+      (select count(distinct r.id)n,
+      to_char(ratio_to_report(count(distinct r.id))over()*100,'990.0')p,max(from_dt)ord
+  from riunioni r
+  where to_char(from_dt,'YYYY')='[[VALUE_OF="ANNO"]]')riu,
+(select  count(distinct d.id)n,to_char(ratio_to_report(count(distinct d.id))over()*100,'990.0')p
+  from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref and to_char(from_dt,'YYYY')='[[VALUE_OF="ANNO"]]'
+) doc
+)order by a,ord desc
+
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>   
+ </P_CRON>
+</PROJECT>
+<PROJECT SECTION="HIDDEN" AIFA="" UFF1="UFFICIO" UFF2="UFFICIO">
+<NAME>R1_1_1</NAME>
+<DESC> Meetings and Events</DESC>
+<P_CRON>
+<ACTION NAME="SQLREPORT"> 
+ <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+   List of of meetings
+         ]]>
+     </VAR> 
+     </ACTION> 
+  <ACTION NAME="FREEREPORT" DESC="ESEGUI SQLREPORT">
+ 
+      <VAR NAME="MQUERY" ID="Q1_M">
+   <![CDATA[
+
+select count(distinct id) from riunioni 
+where from_dt is not null and to_char(from_dt,'MM/YYYY')='[[VALUE_OF="MESE_ANNO"]]'
+
+
+]]></VAR>
+      <VAR NAME="MQUERY" ID="Q2_M">
+   <![CDATA[
+
+select count(distinct d.id) from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref and from_dt is not null
+and to_char(from_dt,'MM/YYYY')='[[VALUE_OF="MESE_ANNO"]]'
+
+
+]]></VAR>
+ <VAR NAME="TEMPLATE"><![CDATA[	
+<CENTER> Month/Year: [[MESE_ANNO]]<br><br>
+Number of total meetings: <var id="Q1_M" type="array" col="0" row="0"><br>
+Number of attached documents: <var id="Q2_M" type="array" col="0" row="0"><br>
+<br> <br> 
+
+<font color=red> By clicking on the lenses below, it is possible to access to the details of each meeting
+</font>
+ </CENTER>	
+]]></VAR>
+</ACTION>
+<ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Date of meetings</th>
+<th bgcolor="#BCCCDC">Description</th>
+<th bgcolor="#BCCCDC">Attached documents</th>
+<th bgcolor="#BCCCDC">N. of invited partecipants</th>
+<th bgcolor="#BCCCDC">N. of effective partecipants</th>
+<th bgcolor="#BCCCDC">Attendance (%)</th>
+<th bgcolor="#BCCCDC"></th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1">
+    <![CDATA[
+ select distinct riu.data d, riu.oggetto, (case when doc.n is null then 'Not present' else to_char(doc.n)end ),
+ (case when co is null then '-' else to_char(co) end),
+ (case when pr is null then '-' else to_char(pr) end),
+ (case when riu.at is null then '-' else riu.at end ), '<a target="_new" href="../WCA/index.php?tab=1&ID='||id||'"><img src="/img_rep/lente1.gif" border=0 ></a>' from  
+      (select from_dt data,oggetto,id id, count(distinct userid)co,sum(user_pres)pr,
+      to_char((sum(user_pres)/count(distinct userid))*100,'990.0')at
+  from riunioni r,wom_user_ref w
+  where tipo_ref='Riunioni' and w.id_ref=r.id
+  and to_char(from_dt,'MM/YYYY')='[[VALUE_OF="MESE_ANNO"]]'
+group by from_dt,oggetto,id)riu,
+(select from_dt data,  count(distinct d.id)n,to_char(ratio_to_report(count(distinct d.id))over()*100,'990.0')p
+  from riunioni r, docs d
+where d.tipo_doc='Riunioni' and r.id=d.id_tipo_ref
+and to_char(from_dt,'MM/YYYY')='[[VALUE_OF="MESE_ANNO"]]'
+group by from_dt) doc
+where riu.data=doc.data(+)
+order by d
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>   
+ </P_CRON>
+</PROJECT>
+<PROJECT SECTION="REPORTS" AIFA="" UFF1="UFFICIO" UFF2="UFFICIO">
+<NAME>R2</NAME>
+<DESC> Documents area</DESC>
+<P_CRON>
+<ACTION NAME="SQLREPORT"> 
+ <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+   Documents area
+         ]]>
+     </VAR> 
+     </ACTION> 
+  <ACTION NAME="FREEREPORT" DESC="ESEGUI SQLREPORT">
+ 
+      <VAR NAME="MQUERY" ID="Q1_M">
+   <![CDATA[
+
+select count(distinct w.nome_area) from wom_docs_area w, wom_user_ref u where 
+u.id_ref=w.id_tipo_ref and u.tipo_ref='Doc_Area' 
+
+
+]]></VAR>
+      <VAR NAME="MQUERY" ID="Q2_M">
+   <![CDATA[
+
+select count(distinct w.nome_area) from wom_docs_area w, wom_user_ref u where 
+u.id_ref=w.id_tipo_ref and u.tipo_ref='Doc_Area' and  w.nome_area like 'Draft Area%' 
+
+
+]]></VAR>
+      <VAR NAME="MQUERY" ID="Q3_M">
+   <![CDATA[
+
+select count(distinct w.nome_area) from wom_docs_area w, wom_user_ref u where 
+u.id_ref=w.id_tipo_ref and u.tipo_ref='Doc_Area' and  w.nome_area like 'Public Area%' 
+
+
+]]></VAR>
+      
+ <VAR NAME="TEMPLATE"><![CDATA[	
+<CENTER> Number of documents area: <var id="Q1_M" type="array" col="0" row="0">
+<li>Draft Area: <var id="Q2_M" type="array" col="0" row="0"></li>
+<li>Public Area: <var id="Q3_M" type="array" col="0" row="0"></li>
+<br> <br> 
+
+
+ </CENTER>	
+]]></VAR>
+</ACTION>
+<ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+<VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+<font size=2>  Draft Document Areas</font>
+         ]]>
+     </VAR> 
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Documents area</th>
+<th bgcolor="#BCCCDC">Users</th>
+<th bgcolor="#BCCCDC">Documents</th>
+<th bgcolor="#BCCCDC">Approved documents</th>
+<th bgcolor="#BCCCDC">Last update</th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1">
+    <![CDATA[
+
+select w.nome_area, count(distinct u.userid),count(distinct dd.id),nvl(sum(approved),0),max(data)
+from wom_docs_area w, wom_user_ref u,docs dd where 
+u.id_ref=w.id_tipo_ref and u.tipo_ref='Doc_Area' and w.id_tipo_ref=dd.id_tipo_ref(+)
+and  w.nome_area like 'Draft Area%'  and dd.tipo_doc=u.tipo_ref
+group by w.nome_area
+
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>
+  <ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+  <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+<font size=2>  Public Document Areas</font>
+         ]]>
+     </VAR> 
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Documents area</th>
+<th bgcolor="#BCCCDC">Users</th>
+<th bgcolor="#BCCCDC">Documents</th>
+<th bgcolor="#BCCCDC">Last update</th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1">
+    <![CDATA[
+
+select w.nome_area, count(distinct u.userid),count(distinct dd.id),max(data) 
+from wom_docs_area w, wom_user_ref u,docs dd where 
+u.id_ref=w.id_tipo_ref and u.tipo_ref='Doc_Area' and w.id_tipo_ref=dd.id_tipo_ref(+)
+and  w.nome_area like 'Public Area%' and dd.tipo_doc=u.tipo_ref
+group by w.nome_area
+
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>      
+ </P_CRON>
+</PROJECT>
+<PROJECT SECTION="REPORTS" AIFA="" UFF1="UFFICIO" UFF2="UFFICIO">
+<NAME>R3</NAME>
+<DESC> Users</DESC>
+<P_CRON>
+<ACTION NAME="SQLREPORT"> 
+ <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+  Users
+         ]]>
+     </VAR> 
+      <VAR NAME="SQLQUERY" ID="Q2" TYPE="FORM">
+   <![CDATA[
+ SELECT B
+   FROM(
+   SELECT '1' A,' 'C,'
+   <form name="org"  action="[[CGIFILE]]" method="GET">
+      <input name="fase" type="hidden" value="1">
+      <input name="nome_progetto" type="hidden" value="R3_1">
+      <SELECT NAME="COND"  SIZE="1" onchange="org.submit()">
+       <OPTION SELECTED>Organizations' B
+from  users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3
+	   UNION 
+ SELECT   distinct '2' A,azienda_ente C,'<OPTION VALUE="AZIENDA_ENTE =#'||(case when azienda_ente is null then 'External Partners' else azienda_ente end)||'#" >'||
+(case when azienda_ente is null then 'External Partners' else azienda_ente end)
+       from users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3
+	union
+	SELECT '3' A,' 'C,' </select></form>' B
+from users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3
+	   )
+		  ORDER BY A ,C  
+     ]]>
+   </VAR>
+     </ACTION> 
+  <ACTION NAME="FREEREPORT" DESC="ESEGUI SQLREPORT">
+ 
+      <VAR NAME="MQUERY" ID="Q1_M">
+   <![CDATA[
+select count(distinct ana_utenti.userid) 
+from users_group, ana_utenti where (ana_utenti.userid=users_group.userid and 
+rule <>3) or ana_utenti.USERID!=users_group.userid
+
+
+]]></VAR> 
+      <VAR NAME="MQUERY" ID="Q2_M">
+   <![CDATA[
+select count(distinct ana_utenti.userid) 
+from users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3 and abilitato=1
+
+
+]]></VAR>  
+ <VAR NAME="TEMPLATE"><![CDATA[	
+<CENTER> Number of users: <var id="Q1_M" type="array" col="0" row="0"><br>
+Number of enabled users: <var id="Q2_M" type="array" col="0" row="0">
+<br> <br> 
+
+
+ </CENTER>	
+]]></VAR>
+</ACTION>
+<ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Name</th>
+<th bgcolor="#BCCCDC">Organization</th>
+<th bgcolor="#BCCCDC">Enabled</th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1">
+    <![CDATA[
+
+select distinct ana_utenti.nome||' '||ana_utenti.cognome, 
+(case when azienda_ente is null then 'External Partners' else azienda_ente end) o,
+decode(abilitato,1,'Yes','No')
+ from users_group, ana_utenti 
+where (ana_utenti.userid=users_group.userid and 
+rule <>3) or ana_utenti.USERID!=users_group.userid
+order by o
+
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>   
+ </P_CRON>
+</PROJECT>
+<PROJECT SECTION="HIDDEN" AIFA="" UFF1="UFFICIO" UFF2="UFFICIO">
+<NAME>R3_1</NAME>
+<DESC> Users</DESC>
+<P_CRON>
+<ACTION NAME="SQLREPORT"> 
+ <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+  Users
+         ]]>
+     </VAR> 
+      <VAR NAME="SQLQUERY" ID="Q2" TYPE="FORM">
+   <![CDATA[
+ SELECT B
+   FROM(
+   SELECT '1' A,' 'C,'
+   <form name="org"  action="[[CGIFILE]]" method="GET">
+      <input name="fase" type="hidden" value="1">
+      <input name="nome_progetto" type="hidden" value="R3_1">
+      <SELECT NAME="COND"  SIZE="1" onchange="org.submit()">
+       <OPTION SELECTED>Organizations' B
+from  users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3
+	   UNION 
+ SELECT   distinct '2' A,azienda_ente C,'<OPTION VALUE="AZIENDA_ENTE =#'||(case when azienda_ente is null then 'External Partners' else azienda_ente end)||'#" >'||
+(case when azienda_ente is null then 'External Partners' else azienda_ente end)
+       from users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3
+	union
+	SELECT '3' A,' 'C,' </select></form>' B
+from users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3
+	   )
+		  ORDER BY A ,C  
+     ]]>
+   </VAR>
+     </ACTION> 
+  <ACTION NAME="FREEREPORT" DESC="ESEGUI SQLREPORT">
+ 
+      <VAR NAME="MQUERY" ID="Q1_M">
+   <![CDATA[
+select count(distinct ana_utenti.userid) from users_group, ana_utenti where ana_utenti.userid=users_group.userid and 
+rule <>3 and (case when azienda_ente is null then 'External Partners' else azienda_ente end)='[[VALUE_OF="AZIENDA_ENTE"]]'
+
+
+
+]]></VAR>
+      
+ <VAR NAME="TEMPLATE"><![CDATA[	
+<CENTER> <b>[[AZIENDA_ENTE]]</b><br><br>
+Number of users: <var id="Q1_M" type="array" col="0" row="0">
+<br> <br> 
+
+
+ </CENTER>	
+]]></VAR>
+</ACTION>
+<ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Name</th>
+<th bgcolor="#BCCCDC">Organization</th>
+<th bgcolor="#BCCCDC">Enabled</th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1">
+    <![CDATA[
+
+select distinct ana_utenti.nome||' '||ana_utenti.cognome,
+ (case when azienda_ente is null then 'External Partners' else azienda_ente end) o,decode(abilitato,1,'Yes','No')
+ from users_group, ana_utenti 
+where ana_utenti.userid=users_group.userid and 
+rule <>3 and (case when azienda_ente is null then 'External Partners' else azienda_ente end)='[[VALUE_OF="AZIENDA_ENTE"]]'
+order by o
+
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>   
+ </P_CRON>
+</PROJECT>
+<PROJECT SECTION="REPORTS" AIFA="" UFF1="UFFICIO" UFF2="UFFICIO">
+<NAME>R4</NAME>
+<DESC>Active Discussion Forum</DESC>
+<P_CRON>
+<ACTION NAME="SQLREPORT"> 
+ <VAR NAME="TITLE" DESC="TITOLO">
+         <![CDATA[
+  Active Discussion Forum
+         ]]>
+     </VAR> 
+     </ACTION> 
+  <ACTION NAME="FREEREPORT" DESC="ESEGUI SQLREPORT">
+ 
+      <VAR NAME="MQUERY" ID="Q1_M">
+   <![CDATA[
+select count(distinct id) from forum where id_ref is null
+
+
+]]></VAR>
+<VAR NAME="MQUERY" ID="Q3_M">
+   <![CDATA[
+select count(distinct forum.id)n
+ from wom_forums, forum,wom_user_ref  where tipo_ref='Forum' and 
+wom_user_ref.id_ref=forum.id_forum and wom_forums.id=forum.id_forum and forum.id_ref is not null
+
+]]></VAR>
+ <VAR NAME="MQUERY" ID="Q2_M">
+   <![CDATA[
+select count(distinct wom_user_ref.userid) from forum,wom_user_ref where tipo_ref='Forum' and 
+wom_user_ref.id_ref=forum.id_forum and forum.id_ref is null
+
+
+]]></VAR>
+      
+ <VAR NAME="TEMPLATE"><![CDATA[	
+<CENTER> Number of topics: <var id="Q1_M" type="array" col="0" row="0"><br>
+Number of replies: <var id="Q3_M" type="array" col="0" row="0"><br>
+Number of users: <var id="Q2_M" type="array" col="0" row="0">
+<br> <br> 
+
+
+ </CENTER>	
+]]></VAR>
+</ACTION>
+<ACTION NAME="SQLREPORT" DESC="ESEGUI SQLREPORT">
+ <VAR NAME="INTESTAZIONE" DESC="INTESTAZIONE">
+       <![CDATA[
+             
+           
+<tr>
+<th bgcolor="#BCCCDC">Forum Name</th>
+<th bgcolor="#BCCCDC">Users</th>
+<th bgcolor="#BCCCDC">Topics</th>
+<th bgcolor="#BCCCDC">Replies</th>
+</tr>    
+     ]]>   
+     </VAR>
+<VAR NAME="SQLQUERY" ID="Q1" NO_OUTPUT="No active forum available at the moment">
+    <![CDATA[
+select q1.nome,q1.u,q1.t, nvl(q2.n,0) from
+(select nome, count(distinct wom_user_ref.userid)u, count(distinct forum.id)t
+ from wom_forums, forum,wom_user_ref  where tipo_ref='Forum' and 
+wom_user_ref.id_ref=forum.id_forum and wom_forums.id=forum.id_forum and forum.id_ref is null
+ group by nome)q1,
+( select nome, count(distinct forum.id)n
+ from wom_forums, forum,wom_user_ref  where tipo_ref='Forum' and 
+wom_user_ref.id_ref=forum.id_forum and wom_forums.id=forum.id_forum and forum.id_ref is not null
+ group by nome)q2
+ where q1.nome=q2.nome(+)
+
+
+  ]]>   
+     </VAR>
+        
+  </ACTION>   
+ </P_CRON>
+</PROJECT>
+</PROJECTS>

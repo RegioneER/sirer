@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Anagrafica Studio" titolo="Dati Clinici" table="RIASSUNTOCP" 
+	link_to="index.php?ID_STUD=[ID_STUD]|and|exams" 
+	cols="3"
+	js_function="if (!check_eta()) return false;cf();" js_onsave="yes"
+	load="$('[id^=cell_D_PATOLOGIAL]').attr('colspan','3'); $('[id^=cell_input_D_PATOLOGIAL]').attr('colspan','7');"
+>
+	
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field cols="3">
+	<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Dati di riassunto dello studio </b></td>]]></txt_value>
+	</field>
+  
+	 
+		
+	 <!--dati-->
+	<field type="eudract2" var="EUDRACT_NUM" var_type="text" var_size="14" cols="3" send="obbligatorio">
+			<txt_value><![CDATA[Eudract Number]]></txt_value>
+	</field> 
+	
+	<field type="textbox" var="CODICE_PROT" var_type="text"  var_size="100" cols="2" size="100" send="obbligatorio">
+			<txt_value>Codice dello studio</txt_value>
+  </field>
+ 	<field type="checkbox" var="CHECK_CODPROT"  group="THIS_CHECK" cols="1" set_NA="CODICE_PROT">
+			<txt_value>Non applicabile</txt_value>
+			<value val="CHECK_CODPROT"></value>
+		</field>
+		
+ 	
+ 	<field type="textarea" var="TITOLO_PROT" var_type="text" cols="3" rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Titolo dello studio]]></txt_value>
+  </field> 
+  <field type="radio" var="PROFIT" send="obbligatorio"  cols="3">
+		<txt_value>Tipo studio</txt_value>
+			<value val="1">Profit</value>
+			<value val="2">No Profit</value>
+	</field>
+	<!--field type="data" var="RICH_DT"  cols="3">
+			<txt_value>Data di richiesta del promotore (se applicabile)</txt_value>
+	</field-->
+ 	
+ 	<field cols="6" name="T3">
+		<txt_value><![CDATA[<td colspan="12" class=titolo3 align=left><b>Promotore</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="DESCR_SPONSOR" var_type="text" send="obbligatorio" var_size="200" cols="6" size="60" disabled_always="yes">
+		<txt_value><![CDATA[Promotore dello studio <b><a href="/errorejs.htm" onclick="window.open('sfoglia_promotore.php?DESCR_SPONSOR=DENOMINAZIONE&ID_SPONSOR=ID','finestraindipendente','scrollbars=yes,resizable=yes,width=1300,height=900'); return false;"><i class="fa fa-search"></i>Cerca</a></b>]]></txt_value>
+	</field>
+	<field type="hidden" var="ID_SPONSOR" var_type="text" var_size="1000"></field>
+	<field type="textbox" var="REF_SPONSOR" var_type="text" var_size="200" cols="6" size="60" send="obbligatorio">
+		<txt_value><![CDATA[Referente promotore]]></txt_value>
+	</field>
+	<field type="textbox" var="TEL_SPONSOR" var_type="text" var_size="200" cols="6" size="60">
+		<txt_value><![CDATA[Telefono referente promotore]]></txt_value>
+	</field>
+	<field type="textbox" var="EMAIL_SPONSOR" var_type="text" var_size="200" cols="6" size="60" send="obbligatorio">
+		<txt_value><![CDATA[Email referente promotore]]></txt_value>
+	</field>
+	<!--field type="textbox" var="PEC_SPONSOR" var_type="text" var_size="200" cols="6" size="60">
+		<txt_value><![CDATA[PEC referente promotore]]></txt_value>
+	</field-->
+	
+	<field cols="6" name="T3">
+		<txt_value><![CDATA[<td colspan="12" class=titolo3 align=left><b> CRO</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="DESCR_CRO" var_type="text" var_size="200" cols="6" size="60" disabled_always="yes" send="obbligatorio">
+		<txt_value><![CDATA[CRO <b><a href="/errorejs.htm" onclick="sbianca('DESCR_CRO','ID_CRO');document.forms[0].CHECK_CRO.checked=false;document.getElementById('tr_REF_CRO').style.display='';document.getElementById('tr_TEL_CRO').style.display='';document.getElementById('tr_EMAIL_CRO').style.display=''; window.open('sfoglia_cro.php?DESCR_CRO=DENOMINAZIONE&ID_CRO=ID','finestraindipendente','scrollbars=yes,resizable=yes,width=1300,height=900'); return false;"><i class="fa fa-search"></i>Cerca</a><!-- - <a href="/errorejs.htm" onclick="sbianca('DESCR_CRO','ID_CRO');return false;"> Cancella </a--></b>]]></txt_value>
+	</field>
+	<field type="checkbox" var="CHECK_CRO" group="THIS_CHECK" cols="6" set_NA="DESCR_CRO">
+		<txt_value>Non applicabile</txt_value>
+			<value val="CHECK_CRO"></value>
+	</field>
+	<field type="hidden" var="ID_CRO" var_type="text" var_size="1000"></field>
+	<field type="textbox" var="REF_CRO" var_type="text" var_size="200" cols="6" size="60" condition="CHECK_CRO" condition_value="0" hide="yes" send="obbligatorio">
+		<txt_value><![CDATA[Referente CRO]]></txt_value>
+	</field>
+	<field type="textbox" var="TEL_CRO" var_type="text" var_size="200" cols="6" size="60" condition="CHECK_CRO" condition_value="0" hide="yes">
+		<txt_value><![CDATA[Telefono referente CRO]]></txt_value>
+	</field>
+	<field type="textbox" var="EMAIL_CRO" var_type="text" var_size="200" cols="6" size="60" condition="CHECK_CRO" condition_value="0" hide="yes" send="obbligatorio">
+		<txt_value><![CDATA[Email referente CRO]]></txt_value>
+	</field>
+	<!--field type="textbox" var="PEC_CRO" var_type="text" var_size="200" cols="6" size="60">
+		<txt_value><![CDATA[ PEC referente CRO]]></txt_value>
+	</field-->
+	
+	<field cols="6" name="T3">
+		<txt_value><![CDATA[<td colspan="12" class=titolo3 align=left><b>Coordinatore dello studio</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="CENTRO_COORD" var_type="text" var_size="200" cols="6" size="60">
+		<txt_value><![CDATA[Centro Coordinatore]]></txt_value>
+	</field>
+	<field type="textbox" var="CE_COORD" var_type="text" var_size="200" cols="6" size="60">
+		<txt_value><![CDATA[Denominazione del CE Coordinatore]]></txt_value>
+	</field>
+ 	
+	<field type="radio" var="FASE_SPER" send="obbligatorio" cols="3">
+		<txt_value>Fase dello studio</txt_value>
+			<value val="1">Fase I</value>
+			<value val="2">Fase II</value>
+			<value val="3">Fase III</value>
+			<value val="4">Fase IV</value>
+	</field>
+	
+	<field type="radio" var="MULTICENTRICA" send="obbligatorio" cols="3">
+		<txt_value>Studio multicentrico?</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+		<!--coord-->
+	<!--field cols="3" name="T2">
+	<txt_value><![CDATA[<td colspan="6"   align=left><b> Dati del coordinatore</b></td>]]></txt_value>
+	</field>
+		<field type="textbox" var="COORDINATORE"  var_type="text" var_size="100" size="100" send="obbligatorio" cols="3">
+		<txt_value>Sperimentatore coordinatore della ricerca  </txt_value>
+	</field>
+	<field type="textbox" var="D_STRUT" var_type="text" size="100" var_size="300" cols="3" send="obbligatorio" disabled_always="yes">
+		<txt_value>
+		<![CDATA[Struttura clinica partecipante allo studio
+    	<br><a href="/errorejs.htm" onclick="window.open('sfoglia_strutture.php?DENOM_STRUTT=D_STRUT&ID_STRUT=ID_STRUT','finestraindipendente','scrollbars=yes,resizable=yes,width=800,height=800'); return false;">Ricerca nella banca dati...</a>]]>
+		</txt_value>
+	</field> 
+	<field type="hidden" var="ID_STRUT" var_type="text" var_size="1000"></field-->
+	
+	<!--disegno-->
+			<field cols="3" name="T3">
+	<txt_value><![CDATA[<td colspan="6"   align=left><b> Protocollo e disegno dello studio</b></td>]]></txt_value>
+	</field>
+	
+	<field cols="3" type="textarea" var="OBIETTIVO" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio">
+		<txt_value><![CDATA[Obiettivo dello studio]]></txt_value>
+  </field> 
+	<!--area terapeutica-->
+	<field cols="3" name="T4">
+	<txt_value><![CDATA[<td colspan="6"   align=left><b> Area terapeutica</b></td>]]></txt_value>
+	</field>
+	
+	<field  cols="3" var="AREA_TERAP" type="select" var_type="text" show_selected="yes" tcols="80" var_size="2000" size="2000" bytb="AREE_TERAP" bytbcode="ID" bytbdecode="DESCRIZIONE">
+	<txt_value>Area terapeutica </txt_value>
+	</field>
+	
+	<!--meddra-->
+	<!--field type="textbox" var="MEDDRA" var_type="text" var_size="100" cols="6" size="60">
+		<txt_value><![CDATA[Classificazione MedDRA (Versione, Codice, Termine)]]></txt_value>
+	</field-->
+	
+	<!--field cols="6" name="t6">
+		<txt_value><![CDATA[<td colspan="12" align="left" class=int>Patologia trattata (classificazione MedDRA)	<a> - </a>	
+		<a href="/errorejs.htm" onclick="window.open('sfoglia_meddra.php?MODE=SFOGLIA&LIVELLO=MEDRA2&CODICE=MEDRA3&DESCRIZIONE=D_MEDRA','finestraindipendente','scrollbars=yes,resizable=yes,width=700,height=800'); return false;"><font color="red">Sfoglia</font></a>
+			<a> - </a>	
+		<a href="/errorejs.htm" onclick="window.open('sfoglia_meddra.php?MODE=CERCA&LIVELLO=MEDRA2&CODICE=MEDRA3&DESCRIZIONE=D_MEDRA','finestraindipendente','scrollbars=yes,resizable=yes,width=700,height=800'); return false;"><font color="red">Cerca</font></a>
+		</td>]]></txt_value>
+	</field>
+
+	<field type="textbox" var="MEDRA2" var_type="text" disabled_always="yes" send="obbligatorio" size="8" var_size="4" cols="1">
+		<txt_value>Livello</txt_value>
+	</field>
+	<field type="textbox" var="MEDRA3" var_type="text" disabled_always="yes" send="obbligatorio" size="10" var_size="8" cols="1">
+		<txt_value>Codice</txt_value>
+	</field>
+	<field type="textbox" var="D_MEDRA" var_type="text" disabled_always="yes" send="obbligatorio" size="30" var_size="100" cols="1">
+		<txt_value>Descrizione termine</txt_value>
+	</field>
+	<field type="checkbox" var="CHECK_MEDRA" group="THIS_CHECK" cols="6" set_NA="D_MEDRA,MEDRA3,MEDRA2">
+		<txt_value>Non applicabile</txt_value>
+		<value val="CHECK_MEDRA"></value>
+	</field-->
+	
+	<!--new meddra-->
+	<field cols="6" name="t6">
+		<txt_value><![CDATA[<td colspan="12" align="left" class=titolo3>Patologia trattata (classificazione MedDRA)   <a> - </a>
+			<!-- old meddra-->
+			<!--a href="/errorejs.htm" onclick="window.open('sfoglia_meddra.php?MODE=SFOGLIA&LIVELLO=MEDRA2&CODICE=MEDRA3&DESCRIZIONE=D_MEDRA','finestraindipendente','scrollbars=yes,resizable=yes,width=400,height=600'); return false;"><font color="red">Sfoglia</font></a>
+			<a> - </a>  
+			<a href="/errorejs.htm" onclick="window.open('sfoglia_meddra.php?MODE=CERCA&LIVELLO=MEDRA2&CODICE=MEDRA3&DESCRIZIONE=D_MEDRA','finestraindipendente','scrollbars=yes,resizable=yes,width=400,height=600'); return false;"><font color="red">Cerca</font></a-->
+			<!--new meddra-->
+			<a href="/errorejs.htm" onclick="window.open('sfoglia_meddra.php?MODE=SFOGLIA&L1=PATOLOGIAL1&L2=PATOLOGIAL2&L3=PATOLOGIAL3&L4=PATOLOGIAL4&L5=PATOLOGIAL5&DL1=D_PATOLOGIAL1&DL2=D_PATOLOGIAL2&DL3=D_PATOLOGIAL3&DL4=D_PATOLOGIAL4&DL5=D_PATOLOGIAL5','finestraindipendente','scrollbars=yes,resizable=yes,width=400,height=600'); return false;"><b>Sfoglia</b></a>
+			<a> - </a>  
+			<a href="/errorejs.htm" onclick="window.open('sfoglia_meddra.php?MODE=CERCA&L1=PATOLOGIAL1&L2=PATOLOGIAL2&L3=PATOLOGIAL3&L4=PATOLOGIAL4&L5=PATOLOGIAL5&DL1=D_PATOLOGIAL1&DL2=D_PATOLOGIAL2&DL3=D_PATOLOGIAL3&DL4=D_PATOLOGIAL4&DL5=D_PATOLOGIAL5','finestraindipendente','scrollbars=yes,resizable=yes,width=400,height=600'); return false;"><b>Cerca</b></a>
+			<a> - </a>  
+			<a href="/errorejs.htm" onclick="document.forms[0].PATOLOGIAL1.value='';document.forms[0].D_PATOLOGIAL1.value='';document.forms[0].PATOLOGIAL2.value='';document.forms[0].D_PATOLOGIAL2.value='';document.forms[0].PATOLOGIAL3.value='';document.forms[0].D_PATOLOGIAL3.value='';document.forms[0].PATOLOGIAL4.value='';document.forms[0].D_PATOLOGIAL4.value='';document.forms[0].PATOLOGIAL5.value='';document.forms[0].D_PATOLOGIAL5.value='';return false;"><b>Cancella</b></a>
+			</td>]]>
+		</txt_value>
+	</field>
+	
+	<field type="textbox" disabled_always="yes" cols="1" size="10" var="PATOLOGIAL1" var_type="number">  <txt_value>SOC</txt_value>  </field>
+	<field type="textbox" disabled_always="yes" cols="5" size="80" var="D_PATOLOGIAL1" var_type="text" var_size="4000"><txt_value>SOC - Descrizione</txt_value></field>
+	<field type="textbox" disabled_always="yes" cols="1" size="10" var="PATOLOGIAL2" var_type="number">  <txt_value>HLGT</txt_value>  </field>
+	<field type="textbox" disabled_always="yes" cols="5" size="80" var="D_PATOLOGIAL2" var_type="text" var_size="4000"><txt_value>HLGT - Descrizione</txt_value></field>
+	<field type="textbox" disabled_always="yes" cols="1" size="10" var="PATOLOGIAL3" var_type="number">  <txt_value>HLT</txt_value>  </field>
+	<field type="textbox" disabled_always="yes" cols="5" size="80" var="D_PATOLOGIAL3" var_type="text" var_size="4000"><txt_value>HLT - Descrizione</txt_value></field>
+	<field type="textbox" disabled_always="yes" cols="1" size="10" var="PATOLOGIAL4" var_type="number">  <txt_value>PT</txt_value>  </field>
+	<field type="textbox" disabled_always="yes" cols="5" size="80" var="D_PATOLOGIAL4" var_type="text" var_size="4000"><txt_value>PT - Descrizione</txt_value></field>
+	<field type="textbox" disabled_always="yes" cols="1" size="10" var="PATOLOGIAL5" var_type="number">  <txt_value>LLT</txt_value>  </field>
+	<field type="textbox" disabled_always="yes" cols="5" size="80" var="D_PATOLOGIAL5" var_type="text" var_size="4000"><txt_value>LLT - Descrizione</txt_value></field>
+	
+	<!--icdix-->
+	<!--field cols="6" name="t6">
+		<txt_value><![CDATA[<td colspan="12" class=titolo3 align="left">Patologia trattata (classificazione ICD9)	<a> - </a>	
+			<a href="/errorejs.htm" onclick="window.open('sfoglia_DRG.php?MODE=SFOGLIA&CODE1=CODE1&CODE2=CODE2&CODE=ICD9_CODE&DECODE=ICD9_DECODE','finestraindipendente','scrollbars=yes,resizable=yes,width=1000,height=600'); return false;"><b>Sfoglia</b></a>
+				<a> - </a>	
+			 <a href="/errorejs.htm" onclick="window.open('sfoglia_DRG.php?MODE=CERCA&CODE1=CODE1&CODE2=CODE2&CODE=ICD9_CODE&DECODE=ICD9_DECODE','finestraindipendente','scrollbars=yes,resizable=yes,width=1000,height=600'); return false;"><b>Cerca</b></a>
+			</td>]]>
+		</txt_value>
+	</field>
+	<field type="textbox" var="ICD9_CODE" var_type="text" var_size="60" size="20" cols="6" disabled_always="yes" send="obbligatorio">
+		<txt_value><![CDATA[Codice]]></txt_value>
+	</field>
+	<field type="textbox" var="ICD9_DECODE" var_type="text" var_size="200" size="60" cols="6" disabled_always="yes" send="obbligatorio">
+		<txt_value><![CDATA[Descrizione]]></txt_value>
+	</field>
+	<field type="checkbox" var="CHECK_ICD9" group="THIS_CHECK" cols="6" set_NA="ICD9_CODE,ICD9_DECODE">
+		<txt_value>ICD9 Non Applicabile</txt_value>
+		<value val="CHECK_ICD9"></value>
+	</field>
+	<field type="hidden" var="CODE1" var_type="text" var_size="20" size="20" cols="3"> </field>
+	<field type="hidden" var="CODE2" var_type="text" var_size="20" size="20" cols="3"> </field-->
+	
+		<field type="radio" var="DS3"  send="obbligatorio" cols="3" >
+		<txt_value>Studio controllato</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<!--TOSCANA-51-->
+	<!--field type="radio" var="DS3_SPEC" condition="DS3" condition_value="1" hide="yes" cols="6" send="obbligatorio">
+		<txt_value>Studio controllato vs</txt_value>
+			<value val="1">nessun trattamento</value>
+			<value val="2">modello precedente dello stesso DM</value>
+			<value val="3">diversa modalita' funzionamento dello stesso DM</value>
+			<value val="4">altro dispositivo</value>
+			<value val="5">terapia farmacologica</value>
+			<value val="6">altro intervento</value>
+			<value val="7">placebo</value>
+			<value val="8">altro farmaco/combinazione di farmaci</value>
+			<value val="9">diversa posologia/diverso schema terapeutico dello stesso farmaco</value>
+			<value val="10">diversa preparazione farmaceutica</value>
+			<value val="11">altro trattamento non farmacologico</value>
+	</field-->
+	<field cols="6" type="checkbox_decode" var="CHECK_DS3" condition="DS3" condition_value="1" hide="yes" group="CHECK_DS3" group_send="obbligatorio">
+		<txt_value><![CDATA[Studio controllato vs]]></txt_value>
+			<value val="CHECK_DS3_1">nessun trattamento</value>
+			<value val="CHECK_DS3_2">modello precedente dello stesso DM</value>
+			<value val="CHECK_DS3_3">diversa modalità funzionamento dello stesso DM</value>
+			<value val="CHECK_DS3_4">altro dispositivo</value>
+			<!--value val="CHECK_DS3_5">terapia farmacologica</value-->
+			<value val="CHECK_DS3_6">altro intervento</value>
+			<value val="CHECK_DS3_7">placebo</value>
+			<value val="CHECK_DS3_8">altro farmaco/combinazione di farmaci</value>
+			<value val="CHECK_DS3_9">diversa posologia/diverso schema terapeutico dello stesso farmaco</value>
+			<value val="CHECK_DS3_10">diversa preparazione farmaceutica</value>
+			<value val="CHECK_DS3_11">altro trattamento non farmacologico</value>
+	</field>
+	<field type="textarea" cols="6" var="DISP_CFR" var_size="800" var_type="text" tcols="50" rows="5" send="obbligatorio" condition="CHECK_DS3_4" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Breve descrizione del dispositivo utilizzato come confronto]]></txt_value>
+	</field>
+	<field type="textarea" cols="6" var="INT_CRF" var_size="800" var_type="text" tcols="50" rows="5" send="obbligatorio" condition="CHECK_DS3_6" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Breve descrizione dell'intervento di confronto]]></txt_value>
+	</field>
+	<field type="textarea" cols="6" var="FARM_CRF" var_size="800" var_type="text" tcols="50" rows="5" send="obbligatorio" condition="CHECK_DS3_8" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Breve descrizione del farmaco/combinazione di farmaci di confronto]]></txt_value>
+	</field>
+	<field type="textarea" cols="6" var="TRATT_CRF" var_size="800" var_type="text" tcols="50" rows="5" send="obbligatorio" condition="CHECK_DS3_11" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Breve descrizione del trattamento non farmacologico di confronto]]></txt_value>
+	</field>
+	
+	<field cols="3" type="checkbox_decode" var="CHECK_CTR"  group_send="obbligatorio" group="CONTROLLO">
+  		<txt_value><![CDATA[Tipo <font color="red">*</font><br><i>e' possibile selezionare piu' di una voce</i>]]></txt_value>
+  		<value val="CTR_DS1">Randomizzato</value>
+  		<value val="CTR_DS2">In aperto</value>
+  		<value val="CTR_DS2A">Singolo Cieco</value>
+  		<value val="CTR_DS2B">Doppio Cieco</value>
+  		<!--value val="CTR_DS4">Parallelo</value--> <!--TOSCANA-51-->
+  		<value val="CTR_DS5">Cross over</value>
+  		<value val="CTR_DS2C">Altro</value>
+  </field>
+	<field type='textbox' var="SPEC_DS1" var_type="text" var_size="100" size="80" send="obbligatorio" condition="CTR_DS1" condition_value="1" hide="yes" cols="4" >
+		<txt_value> Rapporto di randomizzazione </txt_value>
+	</field>
+	<field type='textbox' var="SPEC_DS2" var_type="text" var_size="100" size="80" send="obbligatorio" condition="CTR_DS2C" condition_value="1" hide="yes" cols="4" >
+		<txt_value> Specificare altro tipo </txt_value>
+	</field>
+	
+			<field cols="3" name="T4">
+	<txt_value><![CDATA[<td colspan="6"   align=left><b> Popolazione in studio</b></td>]]></txt_value>
+	</field>
+	<!-- popolazione-->
+	<!--field type='textbox' var="PAZ_NUM_TOT" var_type="text" var_size="20" cols="3">
+		<txt_value>Specificare il numero di pazienti totali</txt_value>
+	</field-->
+	<!--field type='textbox' var="PAZ_NUM_ITA" var_type="text" var_size="20" cols="3">
+		<txt_value>Specificare il numero di pazienti in Italia</txt_value>
+	</field-->
+	
+	<field cols="3" type="checkbox_decode" var="CHECK_TIPO_POP"  group="CHECK_TIPO_POP" send="obbligatorio">
+		<txt_value><![CDATA[Tipo popolazione in studio]]></txt_value>
+  		<value val="ETA_PAZ">Pazienti</value>
+  		<value val="ETA_VOL">Volontari sani</value>
+  		<value val="ETA_INCA">Soggetti incapaci di dare validamente il proprio consenso</value>
+	</field>
+	
+	<field cols="3" type="radio" var="SESSO_POP" send="obbligatorio">
+		<txt_value>Sesso della popolazione in studio</txt_value>
+			<value val="1">Femminile</value>
+			<value val="2">Maschile</value>
+			<value val="3">Femminile e Maschile</value>
+	</field>
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6" align=left><b>Eta' della popolazione in studio</b><br><small>(e' possibile selezionare piu' di una voce)</small></td>]]></txt_value>
+	</field>
+	<field cols="3" type="checkbox_decode" var="CHECK_ETA_POP_BABY"  group="CHECK_ETA_POP_BABY">
+		<txt_value><![CDATA[Popolazione pediatrica]]></txt_value>
+			<value val="ETA_UTERO">In utero</value>
+			<value val="ETA_NEONATI">Neonati pretermine  (inferiore o uguale alla 37a settimana)</value>
+			<value val="ETA_POP_01M">Neonati (0-27 giorni)</value>
+			<value val="ETA_POP_123M">Lattanti e bambini piccoli (28 giorni-23 mesi)</value>
+			<value val="ETA_POP_211A">Bambini (2-11 anni)</value>
+			<value val="ETA_POP_1318A">Adolescenti (12-17 anni)</value>
+	</field>
+
+	<field cols="3" type="checkbox_decode" var="CHECK_ETA_POP_ADUL"  group="CHECK_ETA_POP_ADUL">
+		<txt_value><![CDATA[Popolazione adulta]]></txt_value>
+			<value val="ETA_POP_1944A">Adulti (18-44 anni)</value>
+			<value val="ETA_POP_4564A">Adulti (45-65 anni)</value>
+	</field>
+
+	<field cols="3" type="checkbox_decode" var="CHECK_ETA_POP_VECCHI"  group="CHECK_ETA_POP_VECCHI">
+		<txt_value><![CDATA[Popolazione geriatrica]]></txt_value>
+			<value val="ETA_POP_65A">Anziani (>65 anni)</value>
+	</field>
+  
+	<!--TOSCANA-51-->
+	<!--field cols="4" type="checkbox_decode" var="CHECK_REGIME" group="CHECK_REGIME" group_send="obbligatorio" send="obbligatorio">
+		<txt_value><![CDATA[Regime di ricovero/assistenza dei pazienti in studio]]></txt_value>
+			<value val="OSP">Ricovero ospedaliero</value>
+			<value val="DAY">Day Hospital</value>
+			<value val="AMB">Ambulatoriale</value>
+			<value val="TER">Territorio</value>
+			<value val="MMG">MMG</value>
+			<value val="PLS">PLS</value>
+			<value val="ALTRO">Altro</value>
+	</field>
+	<field cols="4" type="textbox" var="ALTROR_SPEC" var_type="text" var_size="30" size="30" send="obbligatorio" condition="ALTRO" condition_value="1" hide="yes"> 
+		<txt_value><![CDATA[Specificare altro regime]]></txt_value>
+	</field-->
+	<field cols="4" type="checkbox_decode" var="CHECK_REGIME" group="CHECK_REGIME" group_send="obbligatorio" send="obbligatorio">
+		<txt_value><![CDATA[Regime di ricovero/assistenza dei pazienti in studio]]></txt_value>
+			<value val="OSP">Ospedale</value>
+			<value val="TER">Territorio</value>
+	</field>
+	<field cols="4" type="checkbox_decode" var="CHECK_OSP" group="CHECK_OSP" group_send="obbligatorio" send="obbligatorio" condition="OSP" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Regime di ricovero in ospedale]]></txt_value>
+			<value val="ORD">Ricovero ordinario</value>
+			<value val="DAY">Ricovero in Day Hospital</value>
+			<value val="AMB">Ambulatorio</value>
+			<value val="ALTRO_OSP">Altro</value>
+	</field>
+	<field cols="4" type="textbox" var="CHECK_OSP_SPEC" var_type="text" var_size="30" size="80" send="obbligatorio" condition="ALTRO_OSP" condition_value="1" hide="yes"> 
+		<txt_value><![CDATA[Specificare altro regime ospedaliero]]></txt_value>
+	</field>
+	<field cols="4" type="checkbox_decode" var="CHECK_TER" group="CHECK_TER" group_send="obbligatorio" send="obbligatorio" condition="TER" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Regime di ricovero territoriale]]></txt_value>
+			<value val="MMG">MMG</value>
+			<value val="PLS">PLS</value>
+			<value val="ALTRO_TER">Altro</value>
+	</field>
+	<field cols="4" type="textbox" var="CHECK_TER_SPEC" var_type="text" var_size="30" size="80" send="obbligatorio" condition="ALTRO_TER" condition_value="1" hide="yes"> 
+		<txt_value><![CDATA[Specificare altro regime territoriale]]></txt_value>
+	</field>
+	
+	<field type="textbox" var="BRACCI" var_type="number" var_size="5" size="5" cols="4" send="obbligatorio">
+		<txt_value>Numero bracci di trattamento</txt_value>
+	</field>
+
+	<field cols="3" type="textarea" var="SINTESI_CLIN" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+  	<txt_value><![CDATA[Sintesi clinica e stato attuale]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="PROGRAMMA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Programma terapeutico (dosaggio e durata del trattamento)]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="ALTRI_FARM" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Altri farmaci associati]]></txt_value>
+  </field>
+	 <field cols="3" type="textarea" var="ALTRI_INT" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Altri interventi previsti]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="CONT_MON" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Controlli di monitoraggio]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="CRITRERI_INT" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Criteri per l' interruzione del trattamento]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="MOTIVAZIONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Motivazione clinica della richiesta]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="DATI_EF" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Dati pertinenti relativi alla efficacia ed alla tollerabilita']]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="GRADO" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Grado di comparabilita' dei pazienti inclusi nelle sperimentazioni cliniche condotte e di coloro per cui e' formulata la richiesta]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="MOD_RACCOLTA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Modalita' raccolta dati]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="ANALISI_RISBEN" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Analisi del rapporto richio/beneficio]]></txt_value>
+  </field>
+  <field cols="3" type="textarea" var="TOX" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Effetti tossici, eventi avversi o reazioni avverse probabili e possibili]]></txt_value>
+  </field>
+	
+	<!--durata sc-->
+	<field cols="6">
+		<txt_value><![CDATA[<td colspan="12" class=titolo3 align=left><b> Durata dello studio e data prevista di inizio/fine studio</b></td>]]></txt_value>
+	</field>
+	<field cols="6" type="data" var="INIZ_RECL_ITA_DT" def="(gg/mm/aaaa)" send="obbligatorio" onblur="calcoloDataFine();">
+		<txt_value>Data proposta per l'inizio dello studio in Italia </txt_value>
+	</field>
+	<field type="textbox" var="DUR_SPER" var_type="number" var_size="13" size="13" send="obbligatorio" cols="3" colspan="2" onchange="calcoloDataFine();"> 
+		<txt_value><![CDATA[Durata prevista dello studio globale ]]></txt_value>
+	</field>
+	<field type="radio" var="DUR_SPER_UNIT" cols="3" colspan="2" send="obbligatorio" onchange="calcoloDataFine();">
+		<txt_value><![CDATA[Unit&agrave; di misura]]></txt_value>
+			<value val="1">Giorni</value>
+			<value val="2">Settimane</value>
+			<value val="3">Mesi </value>
+			<value val="4">Anni</value>
+	</field>
+	<field cols="6" type="data" var="FINE_RECL_DT" def="(gg/mm/aaaa)" send="obbligatorio">
+		<txt_value>Data di conclusione prevista dello studio globale</txt_value>
+	</field>
+	
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

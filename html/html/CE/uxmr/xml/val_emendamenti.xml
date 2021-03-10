@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Emendamenti" titolo="Emendamenti" table="EMENDAMENTI"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|exams"
+	cols="3"
+	field_tb_show="EMEND_CODE||' - '||D_EMEND_TYPE"
+	tb_header="Codice emendamento - Tipo emendamento"
+	f_to_call="emendamento_crea_nuovo"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+<!-- 
+		<field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3" send="obbligatorio">
+			<txt_value>First Name </txt_value>
+  		</field>
+ -->
+	<field cols="3">
+	<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b>Dati Emendamento</b></td>]]></txt_value>
+	</field>
+	
+	<field type="textbox" var="EMEND_CODE"  var_type="text" var_size="200" size="100" send="obbligatorio" save="obbligatorio"  cols="3">
+		<txt_value>Codice Emendamento assegnato dal promotore</txt_value>
+	</field>
+	
+	<field type="data" var="EMEND_DT" cols="3" send="obbligatorio" save="obbligatorio">
+		<txt_value>Data emendamento</txt_value>
+  	</field>
+  	
+	<field type="multicheck" var="STRUTTURE" bytb="LISTA_STRUTTURE" bytbcode="CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD=[ID_STUD]" cols="3" save="obbligatorio" send="obbligatorio">
+			<txt_value>Selezionare i centri locali</txt_value>
+	</field>
+  	
+	
+	<field type="radio" var="EMEND_TYPE" send="obbligatorio" save="obbligatorio" cols="3">
+		<txt_value>Tipologia di emendamento</txt_value>
+			<value val="1">Sostanziale</value>
+			<value val="2">Non sostanziale</value>
+			<!--value val="3">Altro</value-->
+	</field>
+	<field type="radio" var="ALTRO" send="obbligatorio" save="obbligatorio" cols="3" condition="EMEND_TYPE" condition_value="3" hide="yes">
+		<txt_value>Se altro, specificare</txt_value>
+			<value val="1">Notifica</value>
+			<value val="2">Presa d'atto</value>
+	</field>
+	<field type="radio" var="URGENTE" send="obbligatorio"  save="obbligatorio" cols="3">
+		<txt_value>Emendamento urgente</txt_value>
+			<value val="1">Si</value>
+			<value val="2">No</value>
+	</field>
+	<field cols="3" type="textarea" var="SINTESI_EM" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  save="obbligatorio" send="obbligatorio">
+    	<txt_value><![CDATA[Sintesi dell'emendamento e relative motivazioni]]></txt_value>
+	</field> 
+	<field type="checkbox" var="EMEND_TIPO"  subtbcol="1" cols="3" send="obbligatorio" save="obbligatorio">
+		<txt_value>Emendamento</txt_value>
+		<value val="EMEND_TIPO_1">Al protocollo</value>
+		<value val="EMEND_TIPO_2">Disegno</value>		
+		<value val="EMEND_TIPO_3">Ai farmaci/dispositivi</value>
+		<value val="EMEND_TIPO_4">Al profilo di sicurezza del farmaco</value>
+		<value val="EMEND_TIPO_5">Agli schemi di trattamento farmacologico</value>
+		<value val="EMEND_TIPO_6">Alle modalita' di conservazione dei farmaci</value>
+		<value val="EMEND_TIPO_7">Parte statistica</value>
+		<value val="EMEND_TIPO_8">Al campione</value>
+		<value val="EMEND_TIPO_9">Al modello di analisi statistica</value>
+		<value val="EMEND_TIPO_10">Ai criteri di inclusuione/esclusione</value>
+		<value val="EMEND_TIPO_11">Alle indagini diagnostiche/di laboratorio</value>
+		<value val="EMEND_TIPO_12">Alle precauzioni</value>
+		<value val="EMEND_TIPO_13">Ad altri documenti allegati alla domanda iniziale</value>
+		<value val="EMEND_TIPO_14">Alla parte economica</value>
+		<value val="EMEND_TIPO_15">Rinnovo assicurazione</value>
+		<value val="EMEND_TIPO_16">Aumento della casistica</value>
+		<value val="EMEND_TIPO_17">Modulistica paziente (FI+CI+lettera MMG)</value>
+		<value val="EMEND_TIPO_18">Revisione Investigator's Brochure</value>
+		<value val="EMEND_TIPO_20">Cambio Principal Investigator</value>
+		<value val="EMEND_TIPO_19">Altro</value>
+	</field>
+		<field type="textbox" var="ALTRO_SPEC"  var_type="text" var_size="200" cols="3">
+		<txt_value>Se altro, specificare </txt_value>
+	</field>
+	
+	
+		<!-- 
+		<field cols="3">
+	<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Documenti allegati per la richiesta di parere al CE</b></td>]]></txt_value>
+	</field>
+		<field 
+		cols="3"
+   	type="file_doc" 
+   	var="EMEND_ORIG"	
+   	THREAD="Emendamento originale"
+   	TOPIC="Emendamento originale"
+   	>
+		<txt_value><![CDATA[Testo originale dell'emendamento]]>
+		</txt_value>
+	</field>
+	
+		
+		<field 
+		cols="3"
+   	type="file_doc" 
+   	var="RELAZIONE"	
+   	THREAD="Relazione"
+   	TOPIC="Relazione"
+   	>
+		<txt_value><![CDATA[Relazione sulla valutazione dello sperimentatore]]>
+		</txt_value>
+	</field>
+	
+	<field 
+	cols="3"
+   	type="file_doc" 
+   	var="PARERE_UN"	
+   	THREAD="Parere CE coordinatore"
+   	TOPIC="Parere CE coordinatore"
+   	>
+		<txt_value><![CDATA[Parere CE coordinatore]]>
+		</txt_value>
+	</field>
+	
+	 -->
+	 
+	<!--Luigi Nuova gestione EME e riapertura schede-->
+	<!--send>Procedi</send-->
+	<save>Salva</save>
+	
+	<cancel>Annulla</cancel>
+</form>

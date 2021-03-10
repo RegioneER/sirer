@@ -1,0 +1,27 @@
+<list titolo="Lista Studi" legend="no">
+	<!--<col tipo="lente" nome="CODPAT_1" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER" ord_arrow="yes">Individual Pa</col-->
+	<col tipo="hidden" nome="CENTER" var="CE_TUTTI_STUDI.CENTER"></col>
+	<col tipo="testo" nome="ID_STUD" var="CE_TUTTI_STUDI.ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" table="CE_TUTTI_STUDI" where="id_stud in (select center from ce_utenti_centri where userid='[remote_userid]')" order_by="desc" ord_arrow="yes">ID Studio</col>
+	<col tipo="testo" nome="CODICE_PROT" var="CE_TUTTI_STUDI.CODICE_PROT" table="CE_TUTTI_STUDI">Codice Studio</col>
+	<col tipo="testo" nome="TITOLO_PROT" var="CE_TUTTI_STUDI.TITOLO_PROT" table="CE_TUTTI_STUDI">Titolo Studio</col>
+	<col tipo="testo" nome="D_TIPO_SPER" var="CE_TUTTI_STUDI.D_TIPO_SPER" table="CE_TUTTI_STUDI">Tipo</col>
+	<!--
+	<col tipo="testo" nome="IN_SEDUTA" var="[patients_table].IN_SEDUTA" table="[patients_table]">Programmata</col>
+	<col tipo="testo" nome="IN_INTEGRAZIONE" var="[patients_table].IN_INTEGRAZIONE" table="[patients_table]">Integrazione</col>
+	-->
+	<!--col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col-->
+	<!--<col tipo="visite" param="ID_STUD,CENTER" EXAMS="visite_exams.xml"></col>-->
+	<!--col tipo="hidden" nome="STATO" var="CE_LISTA.STATO" table="CE_LISTA" where="[patients_table].ID_STUD = CE_LISTA.ID_STUD">Stato</col-->
+	<!--col tipo="testo" nome="SEGRETERIA_DT" var="[patients_table].SEGRETERIA_DT" table="[patients_table]">Inviata il</col-->
+	<!--col tipo="testo" nome="INTEGRAZIONE_DT" var="[patients_table].INTEGRAZIONE_DT" table="[patients_table]">Integrazione il</col-->
+	<!--col tipo="testo" nome="VALUTABILE_DT" var="[patients_table].VALUTABILE_DT" table="[patients_table]">Verificata il</col-->
+	<!--col tipo="testo" nome="DELIB_NUM" var="CE_LISTA.DELIB_NUM" table="[patients_table]">Codice interno CE</col-->
+	<!-- <col tipo="testo" nome="PROSSIMA_SED_DT" var="MIN(GSE_REGISTRAZIONE.DATA_SED_DT)" table="GSE_REGISTRAZIONE" where="GSE_REGISTRAZIONE.DATA_SED_DT > SYSDATE">Prossima seduta disponibile</col> -->
+	<col tipo="lente" nome="ID_STUD_1" var="CE_TUTTI_STUDI.ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" img="pen.png" >Dettaglio Schede</col>
+	<!--col tipo="elimina" nome="ELIMINA" script="index.php" param="delete=delete,ID_STUD,CENTER">Elimina</col-->
+	<!--
+	<col tipo="studio_short" studio="HIV">HIV</col>
+	<col tipo="studio_short" studio="TB">TB</col>
+	<col tipo="studio_short" studio="MAL">Malaria</col>
+	-->
+</list>

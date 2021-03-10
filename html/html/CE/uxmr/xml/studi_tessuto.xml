@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Tessuto" titolo="" table="TESSUTO"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="1"
+	field_tb_show="TESSUTO"
+	tb_header="Tessuto"
+	F_TO_CALL="force_tessuti"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		
+		<field type="hidden" var="FORCE_TESSUTI" var_type="text" var_size="8" tb="no"></field>
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+<field>
+	<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Utilizzo del tessuto</b></td>]]></txt_value>
+	</field>
+	<field colspan="2" cols="1" type="textbox" var="TESSUTO" var_type="text" var_size="90" size="100" send="obbligatorio">
+			<txt_value><![CDATA[]]>Tessuto che si intende utilizzare</txt_value>
+	</field>
+	  <field colspan="2" cols="1" type="textbox"   
+var="NRPRELIEVI" var_type="text" var_size="90" size="10">
+			<txt_value><![CDATA[]]>Nr prelievi</txt_value>
+	</field>
+	<field cols="1" type="textarea" var="PRELIEVO1" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">  
+    	<txt_value><![CDATA[Modalita' di prelievo del campione]]></txt_value>
+  </field> 
+  <field cols="1" type="textarea" var="STRUMENTAZIONI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  >
+    	<txt_value><![CDATA[Strumentazioni impiegate]]></txt_value>
+  </field> 
+
+	
+	<field cols="1" type="radio" var="PRELIEVO">
+    	<txt_value><![CDATA[Il prelievo modifica in qualche modo il normale iter diagnostico terapeutico previsto per il soggetto?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+    <field colspan="2" cols="1" type="textbox" var="RESP_CAMP" var_type="text" var_size="90" size="100">
+			<txt_value><![CDATA[]]>Responsabile della gestione dei campioni</txt_value>
+	</field>
+      <field cols="1" type="textarea" var="CONSERVAZIONE1" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" >
+    	<txt_value><![CDATA[Modalita' e luogo di conservazione del tessuto]]></txt_value>
+  </field> 
+    <field cols="1" type="radio" var="CAMPIONE_PAZ">
+    	<txt_value><![CDATA[Il campione sara' ricollegabile al singolo paziente?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+     <field cols="1" type="radio" var="TESSUTO_END">
+    	<txt_value><![CDATA[Il tessuto verra' distrutto al termine della sperimentazione?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+    <field cols="1" type="radio" var="CONSENSO" hide="yes" condition="TESSUTO_END" condition_value="2">
+    	<txt_value><![CDATA[Se no, e' previsto esplicito consenso del soggetto per ulteriore utilizzo?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+     <field cols="1" type="textarea" var="CONSERVAZIONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="TESSUTO_END" condition_value="2">
+    	<txt_value><![CDATA[Se no, motivare le ragioni]]></txt_value>
+  </field> 
+  
+  
+ 
+  <field cols="1" type="radio" var="TEST_GEN">
+    	<txt_value><![CDATA[Sono previsti test genetici?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+ 
+ <field cols="1" type="textarea" var="LETTERAT" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="TEST_GEN" condition_value="1">
+    	<txt_value><![CDATA[Quali sono le conoscenze gia' disponibili in letteratura sull'argomento oggetto dello studio?]]></txt_value>
+  </field> 
+  
+      <field cols="1" type="textarea" var="PROPONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="TEST_GEN" condition_value="1">
+    	<txt_value><![CDATA[Che cosa lo studio si propone di dimostrare?]]></txt_value>
+  </field> 
+ 
+  
+  
+  
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$reportTitle}</title>
+    <!-- Bootstrap -->
+    {foreach $cssAdded as $css}
+    	<link href="{$css}" rel="stylesheet">
+    {/foreach}
+  </head>
+  <body>
+  	<!--body-->
+    {foreach $jsAdded as $js}
+    <script src="{$js}"></script>
+    {/foreach}
+     {literal}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	  google.charts.load('current', {packages: ['corechart']});
+	  <!--inlineJs-->    
+	</script>
+	{/literal}
+  </body>
+</html>

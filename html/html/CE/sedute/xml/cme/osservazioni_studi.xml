@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<document queryName="DOC_OSSERV_CME" >
+  <field type="hidden" var="ID_SED" var_type="number" pk="yes"></field>
+  <field type="hidden" var="ID_STUD" var_type="number">
+  <field type="hidden" var="PROGR_CENTRO" var_type="number">
+  <field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"/>
+  <field type="hidden" var="ESAM" var_type="number" />
+  <field type="hidden" var="VISITNUM" var_type="number" />
+  <field type="hidden" var="VISITNUM_PROGR" var_type="number"  value="0" pk="yes"/>
+  <field type="hidden" var="CENTER" var_type="text" var_size="40"/>
+  <field type="hidden" var="PROGR"  var_type="number" pk="yes">
+    <value val="1"></value>
+  </field>
+  <field type="hidden" var="ID" var_type="number"/>
+  <field type="hidden" var="ID_REF" var_type="number"/>
+  <field type="hidden" var="VAR_NAME" var_type="text" var_size="40" pk="yes" >
+ 	<value val="1"></value>
+  </field>
+  <field type="hidden" var="TOPIC" var_type="text" var_size="500" />
+	
+	<field type="text" var_size="100" size="100" var="ID_STUDIO" cols="1" tb="no" bytb="CE_INFO_STUDIO" bytbcode="ID_STUD" bytbdecode="ID_STUD" bytbwhere="ID_STUD=[ID_STUD]" bytbnoprefix="yes" >
+			<txt_value>ID Studio</txt_value>
+  	</field>
+		
+		<field type="text" var_size="100" size="100" var="CODICE_STUDIO" cols="1" tb="no" bytb="CE_INFO_STUDIO" bytbcode="CODICE_PROT" bytbdecode="CODICE_PROT" bytbwhere="ID_STUD=[ID_STUD]" bytbnoprefix="yes" >
+			<txt_value>Codice Studio</txt_value>
+  	</field>
+  	
+	<field type="text" var_size="100" size="100" var="TITOLO_STUDIO" cols="1" tb="no" bytb="CE_INFO_STUDIO" bytbcode="TITOLO_PROT" bytbdecode="TITOLO_PROT" bytbwhere="ID_STUD=[ID_STUD]" bytbnoprefix="yes" >
+			<txt_value>Titolo Studio</txt_value>
+  	</field>
+	  
+	<field type="data" var="DOC_DT" save="obbligatorio" send="obbligatorio">
+		<txt_value>Data</txt_value>
+	</field>
+		
+	<field type="textbox" var_size="100" size="100" var="TITOLO" cols="1"  >
+		<txt_value>Titolo del documento</txt_value>
+  	</field>
+  		
+  	<field cols="1" type="textarea" var="NOTE"  var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Note]]></txt_value>
+  </field> 
+ 
+</document>

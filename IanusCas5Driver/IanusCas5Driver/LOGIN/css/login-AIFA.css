@@ -1,0 +1,249 @@
+
+.input-tb td,h1 {
+color:#18347E !important;
+}
+
+body{
+	margin: 0px;
+	padding: 0px;
+	
+	font-size: 85%;
+	font-family: "Trebuchet MS", tahoma, arial, sans-serif;
+	color: #404040;
+	
+}
+
+/* Table Layout */
+.main-box{
+	margin: 0 auto;
+	margin-top:10px;
+	width:660px;
+	height:400px;
+	background:#ffffff url(../images/main-box-aifa.jpg) no-repeat center;
+	
+}
+
+.main-top-sx{
+	width:15px;
+	height:15px;
+	background:#ffffff url(../images/main-top-sx.gif) no-repeat bottom right;
+}
+
+.main-top{
+	height:15px;
+	background:#ffffff url(../images/main-top.gif) repeat-x bottom;
+}
+
+.main-top-dx{
+	width:15px;
+	height:15px;
+	background:#ffffff url(../images/main-top-dx.gif) repeat-x bottom left;
+}
+
+.main-sx{
+	width:15px;
+	background:#ffffff url(../images/main-sx.gif) repeat-y;
+}
+
+.main-dx{
+	width:15px;
+	background:#ffffff url(../images/main-dx.gif) repeat-y;
+}
+
+.main-bottom-sx{
+	width:15px;
+	height:15px;
+	background:#ffffff url(../images/main-bottom-sx.gif) no-repeat;
+}
+
+.main-bottom{
+	height:15px;
+	background:#ffffff url(../images/main-bottom.gif) repeat-x;
+}
+
+.main-bottom-dx{
+	width:15px;
+	height:15px;
+	background:#ffffff url(../images/main-bottom-dx.gif) repeat-x;
+}
+
+/* Login body */
+.login-box{
+	margin: 0 auto;
+	width: 90%;
+	padding-top:50px;
+	padding-bottom:50px;
+	height: 280px;
+}
+
+.input-box{
+	margin: 0 auto;
+	width:426px;
+	height:276px;
+	/* background:transparent url(../images/input-box.png) no-repeat; */
+}
+
+.input-tb{
+	margin: 0 auto;
+	margin-top:20px;
+	width:80%;
+}
+
+/* Text */
+.center{
+	text-align:center;
+}
+
+.bold{
+	color:#18347e;
+	font-weight:bold;
+}
+
+/* Footer */
+.footer{
+	font-size:0.8em;
+	font-weight:bold;
+	text-align:center;
+}
+
+/* FieldText */
+.textbox{
+	height:18px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	padding:0px;
+	padding-left:4px;
+	padding-top:2px;
+	background: transparent;
+}
+
+.textbox-sx-user{
+	width:15px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-user.gif") no-repeat;
+}
+
+.textbox-sx-user-wrong{
+	width:15px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-user_wrong.gif") no-repeat;
+}
+
+.textbox-sx-pass{
+	width:15px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-pass.gif") no-repeat;
+}
+
+.textbox-sx-pass-wrong{
+	width:15px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-pass_wrong.gif") no-repeat;
+}
+
+.textbox-sx-mail{
+	width:15px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-mail.gif") no-repeat;
+}
+
+.textbox-sx-mail-wrong{
+	width:15px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-mail_wrong.gif") no-repeat;
+}
+
+.textbox-cx{
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-cx.gif") repeat-x;
+}
+
+.textbox-cx-wrong{
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-cx_wrong.gif") repeat-x;
+}
+
+.textbox-dx{
+	width:5px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-dx.gif") no-repeat;
+}
+
+.textbox-dx-wrong{
+	width:5px;
+	height:25px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-dx_wrong.gif") no-repeat;
+}
+
+/* Buttons */
+.button{
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	padding:0px;
+	color:#fafafa;
+	font-weight:bold;
+	background: transparent;
+}
+
+.button-sx{
+	width:5px;
+	height:22px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/button-sx-dark.gif") no-repeat;
+}
+
+.button-cx{
+	height:22px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	padding:0px;
+	background: transparent url("../images/button-cx-dark.gif") repeat-x;
+}
+
+.button-dx{
+	width:5px;
+	height:22px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/button-dx-dark.gif") no-repeat;
+}
+
+.link{
+	color:#0079bc;
+}

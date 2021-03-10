@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Farmaco" titolo="Farmaco" table="FARMACOOS"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	field_tb_show="ATC||' - '||SPECIALITA||' - '||PRINC_ATT"
+	tb_header="ATC - Specialita' - Principio Attivo"
+	F_TO_CALL="force_farmaco_osserv"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="FORCE_FARMACO_OSSERV" var_type="text" var_size="8" tb="no"></field>
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field cols="2" >
+			<txt_value><![CDATA[<td colspan="4 "  class=titolo3 align=center><b>Farmaco in studio osservazionale</b></td>]]></txt_value>
+		</field>
+		<field type="radio" var="TIPO_ATC" save="obbligatorio" send="obbligatorio" cols="2">
+		<txt_value>ATC Generico</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+		</field>
+		<!--a href="/errorejs.htm" onclick="window.open('sfoglia_atc.php?CODE=ATC&amp;DECODE=DATC&amp;LIVELLO=LATC&amp;GROUP=GDATC','finestraindipendente','scrollbars=no,resizable=yes,width=400,height=600'); return false;"><b>Ricerca nella banca dati</b></a-->
+		<field cols="2" type="textbox" var="ATC" var_type="text" var_size="10" size="20" send="obbligatorio" ACTION_TYPE="onclick" DISABLED_ALWAYS="yes"	>
+			<txt_value><![CDATA[ATC&nbsp;
+			<a href="/errorejs.htm" onclick="open_ATC(); return false;"><b><i class="fa fa-folder-open-o"></i>&nbsp;Sfoglia</b></a> 
+			&nbsp;-&nbsp;
+			<a href="/errorejs.htm" onclick="window.open('cerca_specialita.php?SPECIALITA=SPECIALITA&AIC=AIC&ATC_LIVELLO=LATC&ATC_INN=GDATC&ATC=ATC&DATC=DATC&COD_PRINC_ATT=COD_PRINC_ATT&PRINC_ATT=PRINC_ATT&TIT_AIC=D_TITOLARE_AIC&COD_TIT_AIC=TITOLARE_AIC&CONFEZIONE=CONFEZIONE','finestraindipendente','scrollbars=yes,resizable=yes,width=1000,height=600'); return false;"><b><i class="fa fa-search"></i>&nbsp;Ricerca</b></a>
+			]]></txt_value>
+		</field>
+		<field cols="2" type="textbox" var="LATC" var_type="text" var_size="20" size="5" DISABLED_ALWAYS="yes">
+    	<txt_value><![CDATA[ATC livello]]></txt_value>
+    </field> 	
+    <field cols="2" type="textbox" var="DATC" var_type="text" var_size="80" size="80" DISABLED_ALWAYS="yes"	send="obbligatorio">
+    	<txt_value><![CDATA[ATC descrizione]]></txt_value>
+    </field>
+       <field cols="2" type="textbox" var="GDATC" var_type="text" var_size="80" size="80" DISABLED_ALWAYS="yes">
+    	<txt_value><![CDATA[Gruppo ATC]]></txt_value>
+    </field>
+		<field cols="2" type="textbox" var="SPECIALITA" var_type="text" var_size="80" size="80" send="obbligatorio">
+    	<txt_value><![CDATA[Specialita']]></txt_value>
+    </field>
+		<field cols="2" type="textbox" var="AIC" var_type="text" var_size="80" size="80" send="obbligatorio">
+    	<txt_value><![CDATA[Codice AIC]]></txt_value>
+    </field>
+    <field cols="2" type="textbox" var="CONFEZIONE" var_type="text" var_size="100" size="100" >
+    	<txt_value><![CDATA[Confezione]]></txt_value>
+    </field>
+		<field cols="2" type="textbox" var="PRINC_ATT" var_type="text" var_size="80" size="80" >
+    	<txt_value><![CDATA[Principio attivo]]></txt_value>
+    </field>
+    <field type="hidden" var="COD_PRINC_ATT" var_type="text" var_size="80"></field>
+    <field type="hidden" var="TITOLARE_AIC" var_type="text" var_size="80"></field>
+    <field type="hidden" var="D_TITOLARE_AIC" disabled_always="yes" var_type="text" var_size="80" size="80" DISABLED="yes">
+			<txt_value><![CDATA[Titolare AIC]]></txt_value>
+		</field>
+		<field cols="2" type="textarea" var="INDICAZIONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio">
+    	<txt_value><![CDATA[Indicazione]]></txt_value>
+		</field>
+		<field cols="2" type="textarea" var="POSOLOGIA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Posologia]]></txt_value>
+		</field>  
+ 		<field cols="2" type="select" var="VIA_SOMMIN" show_selected="yes" bytb="VIE_SOMMIN" bytbcode="ID" BYTBDECODE="DESCRIZIONE" BYTBORDERBY="DESCRIZIONE ASC">  
+			<txt_value><![CDATA[Via di somministrazione  ]]></txt_value>
+		</field>
+		<field cols="2" type="textarea" var="NOTE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Note]]></txt_value>
+  	</field>
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

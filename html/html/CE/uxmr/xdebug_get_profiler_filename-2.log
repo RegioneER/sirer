@@ -1,0 +1,7 @@
+select * from CE_DISPOSITIVI_OS where VISITNUM=:VISITNUM and ESAM=:ESAM and PROGR=:PROGR and VISITNUM_PROGR=:VISITNUM_PROGR and ID_STUD=:ID_STUDarray (
+  'VISITNUM' => '0',
+  'ESAM' => '18',
+  'PROGR' => 1,
+  'VISITNUM_PROGR' => 0,
+  'ID_STUD' => '7148',
+)

@@ -1,0 +1,263 @@
+body {
+	background-color: #FFFFFF;
+	margin-left: 0px;
+	margin-top: 0px;
+	padding: 0px;
+	font-family: "Trebuchet MS";
+	background-image: url(images/sfondo.gif);
+}
+
+.borderleft {
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #336699;
+	padding-left: 10px;
+}
+.fondo {
+	background-image: url(images/sfondo.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+.Stile4 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #00135D;
+	letter-spacing: 1px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #FFFFFF;
+	padding-top: 8px;
+}
+.ul {
+	font-family: "Trebuchet MS";
+	font-size: 12px;
+	left: 0px;
+	margin-left: 10px;
+	list-style-image: none;
+}
+
+#menu {
+	position: absolute;
+	left: 15px;
+	top: 135px;
+	z-index: 2;
+}
+
+.align_menu {
+	position: absolute;
+	left: 68px;
+}
+
+.li-etici {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #336699;
+	list-style-type: none;
+	line-height: 15px;
+}
+#strumenti {
+	position: absolute;
+	left: 610px;
+	top: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #00135D;
+	letter-spacing: 1px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+	margin-top: 0px;
+	line-height: 0px;
+	padding-top: 5px;
+}
+.li-eng {
+	list-style-image: none;
+	list-style-type: none;
+	border: 0px;
+	color: #666666;
+	line-height: 14px;
+	font-size: 0.7em;
+}
+.ul-eng {
+	left: 0px;
+	list-style-image: none;
+	list-style-type: none;
+	font-size: 0.6em;
+	font-weight: bold;
+}
+
+
+.menu a:link {
+	color: #666666;
+	text-decoration: none;
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+	font-weight: bold;
+}
+.menu a:visited {
+	text-decoration: none;
+	color: #666666;
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+	font-weight: bold;
+}
+.menu a:hover {
+	text-decoration: none;
+	color: #336699;
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+	font-weight: bold;
+}
+.menu a:active {
+	text-decoration: none;
+	color: #336699;
+	font-family: "Trebuchet MS";
+	font-size: 11px;
+	font-weight: bold;
+}
+
+
+#primo-piano {
+	position: absolute;
+	width: 168px;
+	left: 605px;
+	top: 135px;
+	background-image: url(../img/primo-piano1.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	padding-top: 38px;
+	padding-left: 0px;
+}
+.primo-piano-text {
+	font-family: "Trebuchet MS";
+	font-size: 0.75em;
+	color: #000000;
+	padding-right: 4px;
+	padding-bottom: 4px;
+	line-height: 1.1em;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #FFFFFF;
+	padding-left: 4px;
+	padding-top: 0px;
+	margin: 0px;
+	float: left;
+}
+
+.testo {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	font-size: 12px;
+}
+
+.testo_b12 {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.testo_11 {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	font-size: 11px;
+}
+
+.testo13 {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	font-size: 13px;
+	font-weight: bold;
+}
+.testo13_1 {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	font-size: 13px;
+	font-weight: bold;
+	font-style:italic;
+}
+
+.testo13_2 {
+	font-family: "Trebuchet MS";
+	color: #000000;
+	font-size: 13px;
+}
+
+.imgdx {
+	float: left;
+	padding-right: 10px;
+}
+
+.filo {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #336699;
+}
+
+
+.descrizione
+{
+  text-align:justify;
+  font-weight: bold;
+  font-size: 12px;  
+}
+.value
+{
+  text-align:left;
+}
+
+.decor
+{
+  border-style:solid;
+  border-color:#016D65;
+}
+
+.titolo
+{
+  color:#FFFFFF;
+  font-weight: bold;
+  font-size:14pt;
+}
+
+
+
+.trovato
+{
+  color:#6495ED;
+  font-weight:bold;
+}
+
+.sotto_titolo
+{
+  font-size:15px;
+  font-weight:bold;
+}
+
+
+.menuitems
+{
+  font-size:8px;
+}
+
+.note
+{
+  font-size:10px;
+}
+
+.risultati
+{
+  font-size:10px;
+}
+
+
+.dati_etico
+{
+	font-family: "Trebuchet MS";
+	color: #336699;
+	font-size: 12px;
+	margin-left: 10px;
+	left: 15px;
+}
+
+.repeat {
+	background-repeat: no-repeat;
+}

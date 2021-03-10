@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Inserimento centri" titolo="Inserimento centri" table="CENTRILOCALI"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]|and|form=dati_centri.xml"
+	cols="6"
+	load="liste('centri');"
+	tb_header="Centro,UOC"
+	field_tb_show="D_CENTRO,UNITA_OPERATIVA_TEMP"
+	f_to_call="centri_open_subwf01"
+	>
+	
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	
+	<field type="hidden" var="PC_KEY" cols="6" var_size="20" ><value val="[PROGR]"></value></field>
+	
+	<field type="hidden" var="FORCE_CENTRO" var_type="text" var_size="8" tb="no"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+		<field cols="6">
+			<txt_value><![CDATA[<td  colspan="12" class=titolo3 align=center><b> Centri partecipanti locali</b></td>]]></txt_value>
+		</field>
+		
+		<field cols="6">
+			<txt_value><![CDATA[<td colspan="12" class=titolo3  align=left><b> Dati del centro:</b></td>]]></txt_value>
+		</field>
+		
+		<!--field type="radio" var="STRUTTURA" cols="6" save="obbligatorio" send="obbligatorio">
+			<txt_value>Selezionare la tipologia del centro</txt_value>
+				<value val="1">Struttura ospedaliera</value>
+				<value val="2">MMG PLS</value>
+		</field-->
+		
+ 		<field type="select" var="CENTRO" no_dm_change="yes" save="obbligatorio" send="obbligatorio" cols="6" show_selected="yes" bytb="ELENCO_CENTRILOC" bytbcode="ID" BYTBDECODE="DESCRIZIONE"  bytborderby="OLD DESC ,DESCRIZIONE ASC" onchange="$('#cell_input_DIPARTIMENTO select').empty();$('#cell_input_DIR_DIPARTIMENTO :text').val('');$('#cell_input_UNITA_OP select').empty();$('#cell_input_DIR_UO :text').val('');$('#cell_input_PRINC_INV select').val('');seleziona('CENTRO','DIPARTIMENTO');cf();">
+			<txt_value> Struttura partecipante </txt_value>
+		</field>
+		<!--field type="select" var="ISTITUTO" save="obbligatorio" send="obbligatorio" cols="6" bytb="GEMELLI_TOTAL" bytbcode="distinct ID_IST" BYTBDECODE="DESCR_IST" show_selected="yes" bytbwhere="ID_REF_STR='[CENTRO]'" onchange="$('#cell_input_DIPARTIMENTO select').empty();$('#cell_input_DIR_DIPARTIMENTO :text').val('');$('#cell_input_UNITA_OP select').empty();$('#cell_input_DIR_UO :text').val('');$('#cell_input_PRINC_INV select').empty();if(this.value=='-9999'){alert('Attenzione!\n Non e\' possibile selezionare questa opzione');$('#cell_input_ISTITUTO select').empty();return false;} seleziona_compila('ISTITUTO','DIPARTIMENTO','DIR_ISTITUTO');seleziona('ISTITUTO','PRINC_INV');">
+  		<txt_value><![CDATA[Istituto]]></txt_value>
+  	</field>
+  	<field type="textbox" var="DIR_ISTITUTO" var_type="text"  var_size="70" size="70" cols="6">
+  		<txt_value><![CDATA[Direttore Istituto]]></txt_value>
+  	</field-->
+		<!--field type="select" var="DIPARTIMENTO" save="obbligatorio" send="obbligatorio" cols="6" bytb="VENETO_DIP" bytbcode="distinct ID_DIP" BYTBDECODE="DESCR_DIP" show_selected="yes" bytbwhere="ID_REF_STR='[CENTRO]'" onchange="$('#cell_input_UNITA_OP select').empty();$('#cell_input_DIR_UO :text').val('');seleziona_compila('DIPARTIMENTO','UNITA_OP','DIR_DIPARTIMENTO');seleziona('DIPARTIMENTO','PRINC_INV');">
+  		<txt_value><![CDATA[Dipartimento]]></txt_value>
+  	</field>
+  	<field type="textbox" var="DIR_DIPARTIMENTO" var_type="text"  var_size="70" size="70" cols="6">
+  		<txt_value><![CDATA[Direttore Dipartimento]]></txt_value>
+  	</field>
+  	<field type="select" var="UNITA_OP" save="obbligatorio" send="obbligatorio" cols="6" bytb="VENETO_DIP" bytbcode="distinct ID_UO" BYTBDECODE="DESCR_UO" show_selected="yes" bytbwhere="ID_DIP='[DIPARTIMENTO]'" onchange="compila_text('UNITA_OP','DIR_UO');">
+  		<txt_value><![CDATA[Unita' operativa]]></txt_value>
+  	</field>
+  	<field type="textbox" var="DIR_UO" var_type="text"  var_size="70" size="70" cols="6">
+  		<txt_value><![CDATA[Direttore U.O.]]></txt_value>
+  	</field>
+  	<field type="select" var="PRINC_INV" save="obbligatorio" send="obbligatorio" cols="6" bytb="VENETO_PRINC_INV" bytbcode="PROGR_PRINC_INV" BYTBDECODE="PRINC_INV" show_selected="yes" bytbwhere="ID_DIP='[DIPARTIMENTO]'" bytborderby="PRINC_INV ASC">
+			<txt_value> Principal Investigator</txt_value>
+		</field>
+		<field type="textbox" var="SPEC_PI" var_type="text" save="obbligatorio" send="obbligatorio" var_size="70" size="70" cols="6" condition="PRINC_INV" condition_value="-9944" hide="yes">
+  		<txt_value><![CDATA[Specificare il Principal Investigator]]></txt_value>
+  	</field-->
+		
+		<!-- GIULIO - Ripristinare lo sfoglia nel momento in cui abbiamo una banca dati dei medici MMG/PLS -->
+		
+		<!--field type="textarea" var="MMG_PLS" var_size="1000" var_type="text" tcols="80" rows="5" cols="6" disabled_always="yes" condition="STRUTTURA" condition_value="2" hide="yes">
+			<txt_value><![CDATA[MMG/PLS <br>
+				<a href="/errorejs.htm" onclick="window.open('sfoglia_mmgpls.php?SOURCE=MMG_PLS&SOURCE_ID=MMG_PLS_ID','finestraindipendente','scrollbars=yes,resizable=yes,width=700,height=900'); return false;"><font color="red">Sfoglia MMG/PLS</font></a>
+					<br><br>
+				<a href="/errorejs.htm" onclick="document.forms[0].MMG_PLS.value='';document.forms[0].MMG_PLS_ID.value=''; return false;">Cancella</a>]]>
+			</txt_value>
+		</field-->
+		<!--field type="hidden" var="MMG_PLS_ID" var_type="text" var_size="2000"></field-->
+		
+		<field type="textbox" var="UNITA_OPERATIVA_TEMP" var_type="text"  var_size="100" size="55" cols="6" send="obbligatorio">
+  		<txt_value><![CDATA[Unit&agrave; Operativa]]></txt_value>
+  	</field>
+		
+		<!--field type="textarea" var="MMG_PLS" var_size="1000" var_type="text" tcols="80" rows="5" cols="6" save="obbligatorio" send="obbligatorio" condition="STRUTTURA" condition_value="2" hide="yes">
+			<txt_value>MMG/PLS</txt_value>
+		</field-->
+			
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

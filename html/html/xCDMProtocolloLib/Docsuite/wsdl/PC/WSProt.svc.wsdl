@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions name="WSProt" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+                  xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://tempuri.org/"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+                  xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+    <wsp:Policy wsu:Id="BasicHttpEndpoint_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <http:NegotiateAuthentication xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"/>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://tempuri.org/Imports">
+            <xsd:import schemaLocation="WSProt.svc.xsd0.xsd"
+                        namespace="http://tempuri.org/"/>
+            <xsd:import schemaLocation="WSProt.svc.xsd1.xsd"
+                        namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="IWSProt_Insert_InputMessage">
+        <wsdl:part name="parameters" element="tns:Insert"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_Insert_OutputMessage">
+        <wsdl:part name="parameters" element="tns:InsertResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_AddDocument_InputMessage">
+        <wsdl:part name="parameters" element="tns:AddDocument"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_AddDocument_OutputMessage">
+        <wsdl:part name="parameters" element="tns:AddDocumentResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_InsertCommit_InputMessage">
+        <wsdl:part name="parameters" element="tns:InsertCommit"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_InsertCommit_OutputMessage">
+        <wsdl:part name="parameters" element="tns:InsertCommitResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetProtocolLink_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetProtocolLink"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetProtocolLink_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetProtocolLinkResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetDocumentsViewerLink_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetDocumentsViewerLink"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetDocumentsViewerLink_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetDocumentsViewerLinkResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetPecs_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetPecs"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetPecs_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetPecsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_SetProtocolStatus_InputMessage">
+        <wsdl:part name="parameters" element="tns:SetProtocolStatus"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_SetProtocolStatus_OutputMessage">
+        <wsdl:part name="parameters" element="tns:SetProtocolStatusResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetProtocolStatuses_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetProtocolStatuses"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetProtocolStatuses_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetProtocolStatusesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetProtocolInfo_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetProtocolInfo"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetProtocolInfo_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetProtocolInfoResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetContact_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetContact"/>
+    </wsdl:message>
+    <wsdl:message name="IWSProt_GetContact_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetContactResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="IWSProt">
+        <wsdl:operation name="Insert">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/Insert" message="tns:IWSProt_Insert_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/InsertResponse"
+                         message="tns:IWSProt_Insert_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="AddDocument">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/AddDocument"
+                        message="tns:IWSProt_AddDocument_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/AddDocumentResponse"
+                         message="tns:IWSProt_AddDocument_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="InsertCommit">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/InsertCommit"
+                        message="tns:IWSProt_InsertCommit_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/InsertCommitResponse"
+                         message="tns:IWSProt_InsertCommit_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetProtocolLink">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/GetProtocolLink"
+                        message="tns:IWSProt_GetProtocolLink_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/GetProtocolLinkResponse"
+                         message="tns:IWSProt_GetProtocolLink_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetDocumentsViewerLink">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/GetDocumentsViewerLink"
+                        message="tns:IWSProt_GetDocumentsViewerLink_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/GetDocumentsViewerLinkResponse"
+                         message="tns:IWSProt_GetDocumentsViewerLink_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetPecs">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/GetPecs" message="tns:IWSProt_GetPecs_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/GetPecsResponse"
+                         message="tns:IWSProt_GetPecs_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="SetProtocolStatus">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/SetProtocolStatus"
+                        message="tns:IWSProt_SetProtocolStatus_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/SetProtocolStatusResponse"
+                         message="tns:IWSProt_SetProtocolStatus_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetProtocolStatuses">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/GetProtocolStatuses"
+                        message="tns:IWSProt_GetProtocolStatuses_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/GetProtocolStatusesResponse"
+                         message="tns:IWSProt_GetProtocolStatuses_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetProtocolInfo">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/GetProtocolInfo"
+                        message="tns:IWSProt_GetProtocolInfo_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/GetProtocolInfoResponse"
+                         message="tns:IWSProt_GetProtocolInfo_OutputMessage"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetContact">
+            <wsdl:input wsaw:Action="http://tempuri.org/IWSProt/GetContact"
+                        message="tns:IWSProt_GetContact_InputMessage"/>
+            <wsdl:output wsaw:Action="http://tempuri.org/IWSProt/GetContactResponse"
+                         message="tns:IWSProt_GetContact_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BasicHttpEndpoint" type="tns:IWSProt">
+        <wsp:PolicyReference URI="#BasicHttpEndpoint_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Insert">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/Insert" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AddDocument">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/AddDocument" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="InsertCommit">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/InsertCommit" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProtocolLink">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/GetProtocolLink" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDocumentsViewerLink">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/GetDocumentsViewerLink" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPecs">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/GetPecs" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetProtocolStatus">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/SetProtocolStatus" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProtocolStatuses">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/GetProtocolStatuses" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetProtocolInfo">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/GetProtocolInfo" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetContact">
+            <soap:operation soapAction="http://tempuri.org/IWSProt/GetContact" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="WSProt">
+        <wsdl:port name="BasicHttpEndpoint" binding="tns:BasicHttpEndpoint">
+            <soap:address location="https://sirer.ausl.pc.it/WSProt/WSProt.svc"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="CERCA PAZIENTE" titolo="CERCA PAZIENTE" table="STUDY_ANA_PAT" cols="1">
+  <field type="hidden" var="SEARCH" tb="no"><value val='1'></value></field>
+  <field type="hidden" var="TSEARCH" tb="no"><value val='1'></value></field>
+  <field type="hidden" var="FORM" tb="no" />
+     
+   
+	<field>
+		<txt_value><![CDATA[<tr><td colspan="2" class="titolo"><b>CERCA STUDIO</b></td></tr>]]></txt_value>
+	</field>
+
+	<!--field type="hidden" tb="no" var="CENTER" bytb="ANA_UTENTI_2" bytbcode="ID_CE" bytbdecode="ID_CE" byvar="ID_CE" bytbwhere="USERID='[remote_userid]'">
+		<txt_value>Centro</txt_value>
+	</field-->
+ 	<field type="textbox" var="S_ID_STUD" var_type="number">
+		<txt_value>ID Studio</txt_value>
+	</field>
+	<field type="textbox" var="S_CODICE_PROT">
+		<txt_value>Codice</txt_value>
+	</field>
+	<field type="textbox" var="EUDRACT_NUM">
+		<txt_value>Eudract number</txt_value>
+	</field>
+	<field type="textbox" var="S_TITOLO_PROT">
+		<txt_value>Titolo</txt_value>
+	</field>
+	<field type="select" show_selected="yes" var="S_TIPO_SPER" >      
+		<txt_value>Tipologia studio</txt_value>
+		<value val="1">Interventistico con farmaco</value>           
+		<value val="2">Interventistico senza farmaco e dispositivo</value> 
+		<value val="3">Interventistico con dispositivo medico</value>             
+		<value val="5">Osservazionale con farmaco</value>      
+		<value val="6">Osservazionale senza farmaco e dispositivo</value> 
+		<value val="7">Osservazionale con dispositivo medico</value> 
+		<value val="8">Uso Terapeutico di farmaco</value>      
+		<value val="12">Campioni biologici</value>
+		<value val="9">Uso Terapeutico di dispositivo medico</value>        
+		<!--value val="10">Studi con impiego di tessuti umani</value-->        
+		<!--value val="11">Indagine genetica</value-->    
+		<!--value val="-9900">Altro</value-->        
+	</field>    
+	<field type="textbox" var="S_DESCR_SPONSOR">
+		<txt_value>Promotore</txt_value>
+	</field>
+	<field type="textbox" var="S_DESCR_CRO">
+		<txt_value>CRO</txt_value>
+	</field>
+<!--	<field type="data" var="S_FROM_DT_REGISTRAZIONE_DT" min="[S_TO_DT_REGISTRAZIONE_DT]"> -->
+   	<field type="data" var="S_FROM_DT_REGISTRAZIONE_DT">
+		<txt_value>Registrato da</txt_value>
+	</field>
+<!--   	<field type="data" var="S_TO_DT_REGISTRAZIONE_DT" max="[S_FROM_DT_REGISTRAZIONE_DT]"> -->
+   	<field type="data" var="S_TO_DT_REGISTRAZIONE_DT">
+		<txt_value>Registrato a</txt_value>
+	</field>
+	
+		<!--field type="data" var="S_RIUNIONE_CE_DT">
+		<txt_value>Seduta CE</txt_value>
+	</field-->
+	
+	<!-- 
+	<field type="textbox" var="S_NOME">
+		<txt_value>Nome</txt_value>
+	</field>
+   	<field type="data" var="NASCITA_DT" min="sysdate">
+		<txt_value>Data di nascita</txt_value>
+	</field>
+	<field type="select" var="GENDER">
+		<txt_value>Sesso</txt_value>
+		<value val="M">M</value>
+		<value val="F">F</value>
+	</field> 
+   	-->
+	<send>Cerca</send> 
+	<cancel>Cancella</cancel> 
+</form>
+	
+	
+	
+	
+	
+	
+	

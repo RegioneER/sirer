@@ -1,0 +1,31 @@
+<list titolo="Lista Studi">
+	<!--<col tipo="lente" nome="CODPAT_1" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER" ord_arrow="yes">Individual Pa</col>
+	<col tipo="hidden" nome="CENTER" var="ce_studi_approvati_sgr.CENTER"></col-->
+	<col tipo="testo" nome="ID_STUD" var="distinct ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" table="ce_studi_approvati_sgr" where="id_stud in (select center from ce_utenti_centri where userid='[remote_userid]')" order_by="desc" ord_arrow="yes">ID Studio</col>
+	<col tipo="testo" nome="CODICE_PROT" var="CODICE_PROT" table="ce_studi_approvati_sgr" where="userid='[remote_userid]'">Codice Studio</col>
+	<col tipo="testo" nome="TITOLO_PROT" var="TITOLO_PROT" table="ce_studi_approvati_sgr">Titolo Studio</col>
+	<col tipo="testo" nome="D_TIPO_SPER" var="D_TIPO_SPER" table="ce_studi_approvati_sgr">Tipo</col>
+	
+	<!--col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col-->
+	<!--<col tipo="visite" param="ID_STUD,CENTER" EXAMS="visite_exams.xml"></col>-->
+	<!--col tipo="hidden" nome="STATO" var="CE_LISTA.STATO" table="CE_LISTA" where="[patients_table].ID_STUD = CE_LISTA.ID_STUD">Stato</col-->
+	<!--col tipo="testo" nome="VALUTABILE_DT" var="[patients_table].VALUTABILE_DT" table="[patients_table]">Verificata il</col-->
+	<!--col tipo="testo" nome="VALUTATO_DT" var="[patients_table].VALUTATO_DT" table="[patients_table]">Valutato il</col-->
+	<!--col tipo="testo" nome="DELIB_NUM" var="CE_LISTA.DELIB_NUM" table="[patients_table]">Codice interno CE</col-->
+	<!-- <col tipo="testo" nome="PROSSIMA_SED_DT" var="MIN(GSE_REGISTRAZIONE.DATA_SED_DT)" table="GSE_REGISTRAZIONE" where="GSE_REGISTRAZIONE.DATA_SED_DT > SYSDATE">Prossima seduta disponibile</col> -->
+	<col tipo="lente" nome="ID_STUD_1" var="ce_studi_approvati_sgr.ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" img="pen.png" >Dettaglio Schede</col>
+	<!-- 
+	<col tipo="testo" nome="IN_SEDUTA" var="[patients_table].IN_SEDUTA" table="[patients_table]">Programmata</col>
+	<col tipo="testo" nome="IN_INTEGRAZIONE" var="[patients_table].IN_INTEGRAZIONE" table="[patients_table]">Integrazione</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+	<col tipo="visite" param="ID_STUD,CENTER" EXAMS="visite_exams.xml"></col>
+	<col tipo="hidden" nome="STATO" var="CE_LISTA.STATO" table="CE_LISTA" where="[patients_table].ID_STUD = CE_LISTA.ID_STUD">Stato</col>
+	 -->
+	 <!--
+	<col tipo="studio_short" studio="HIV">HIV</col>
+	<col tipo="studio_short" studio="TB">TB</col>
+	<col tipo="studio_short" studio="MAL">Malaria</col>
+	-->
+	<!--col tipo="testo" nome="IN_EMENDAMENTO" var="[patients_table].IN_EMENDAMENTO" table="[patients_table]">In Emendamento</col>
+	<col tipo="testo" nome="IN_EMENDAMENTO_APPROVAZIONE" var="[patients_table].IN_EMENDAMENTO_APPROVAZIONE" table="[patients_table]">Da approvare</col-->
+</list>

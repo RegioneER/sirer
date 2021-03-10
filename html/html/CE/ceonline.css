@@ -1,0 +1,480 @@
+BODY {
+	margin: 0px;
+	margin-bottom: 20px;
+	background: White;
+	FONT-FAMILY: verdana, sans-serif;
+	font-style: normal;
+	color: #0C1C4C;
+	font-size: 13px;
+	padding: 0px;
+
+}
+A:link {
+	text-decoration: none; 
+	color: #2B6285; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;	
+	font-size: 13px; 
+	font-weight: bold
+}
+A:hover {
+	text-decoration: none; 
+	color: #4412D8; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;	
+	font-size: 13px; 
+	font-weight: bold
+}
+A:visited {
+	text-decoration: none; 
+	color: #405C77; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;	
+	font-size: 13px; 
+	font-weight: bold
+}
+A:hover {
+	text-decoration: none; 
+	color: #4412D8; 
+	font-family: Verdana, Arial, Helvetica, sans-serif;	
+	font-size: 13px; 
+	font-weight: bold;
+}
+
+img{
+	border: 0px;
+}	
+.bg {
+	background-image: url(images/banner3c.gif);
+	background-repeat: no-repeat;
+	height: 130 px;
+	padding: 10px;
+}
+.bgcelle {
+	background-color: #336699;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: center;
+	border:solid 1px;
+	border-color:#000082;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.bgcellea {
+	background-color: #FFFFFF;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: center;
+	border:solid 1px;
+	border-color:#000082;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 14px;
+	color: #336699;
+	font-weight: bold;
+}
+.bgcelle_nucleo {
+	background-color: #A998A3;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: center;
+	border:solid 1px;
+	border-color:#FFFFFF;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.bgcelle_compo {
+	background-color: #008080;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: center;
+	border:solid 1px;
+	border-color:#000082;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.bgcelle2 {
+	background-color: #336699;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: center;
+	border:solid 1px;
+	border-color:#000082;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+}
+.bgcelle2_nucleo {
+	background-color: #A998A3;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: center;
+	border:solid 1px;
+	border-color:#FFFFFF;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+}
+.bgcelle2_compo {
+	background-color: #008080;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: center;
+	border:solid 1px;
+	border-color:#FFFFFF;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+.strumenti {
+	background-color: #E4F2FF;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: cente;
+	border:solid 1px;
+	border-color:#E7E7E7;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #2D3E9A;
+	padding-left: 10px;
+}
+.strumenti_nucleo {
+	background-color: #DBFDE6;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: cente;
+	border:solid 1px;
+	border-color:#E7E7E7;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #2D3E9A;
+	padding-left: 10px;
+}
+}
+.strumenti_compo {
+	background-color: #BCDAC7;
+	background-repeat: no-repeat;
+	width: 200px;
+	text-align: cente;
+	border:solid 1px;
+	border-color:#E7E7E7;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #2D3E9A;
+	padding-left: 10px;
+}
+.st_centrale {
+	border:solid 1px;
+	border-color:#E7E7E7;
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #2D3E9A;
+	padding-left: 10px;
+}
+.st_centrale1 {
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #2D3E9A;
+	padding-center: 10px;
+	vertical-align: top;
+	}
+.st_centrale2 {
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #2D3E9A;
+	padding-center: 10px;
+	vertical-align: top;
+	background-color: #E4F2FF;
+	border:solid 1px;
+	border-color:#E7E7E7;
+	}
+.st_centrale2_compo {
+	font-family: Franklin Gothic Book, verdana;
+	font-size: 13px;
+	color: #2D3E9A;
+	padding-center: 10px;
+	vertical-align: top;
+	background-color: #BCDAC7;
+	border:solid 1px;
+	border-color:#E7E7E7;
+	}
+
+
+.titolo {
+	background-color: #B8CADD;
+	background-image: url(images/capo.gif);
+	background-position: left;
+	background-repeat: no-repeat;
+	padding-left: 6px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 13px;
+	color: #282853;
+	}		
+td {
+	font-family: Franklin Gothic Book, verdana;
+	FONT-SIZE: 13px;
+	color: #2D3E9A;
+	text-decoration: none;
+}
+.tabella{
+	font-family: verdana;
+	FONT-SIZE: 10px;
+	color: #2D3E9A;
+	text-decoration: none;
+}
+.destra {
+  	background-color: #D6D6EB;
+  	text-align: right;
+	padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: 12px;
+	color: #282853;
+}
+
+.mttl { 
+				
+        padding-right: 5px; 
+        padding-left: 2px;
+        font-size: 13px;
+        color: #2D3E9A;
+        background-image: url(/images/mttl_bar2.gif);
+        border:1px solid #7796C7; 
+}       
+
+
+.input {
+  	background-color: #EDF6FF;
+	padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: 12px;
+	color: #282853;
+}
+.input_nucleo {
+  	background-color: #C6BBC2;
+	padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: 12px;
+	color: #282853;
+}
+.input_compo {
+  	background-color: #BCDAC7;
+	padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: 12px;
+	color: #282853;
+}
+
+
+
+TEXTAREA {
+	FONT-SIZE: 10px;
+	COLOR: #666666;
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: white;
+	margin-top: 4px;
+}
+SELECT {
+	FONT-SIZE: 10px;
+	COLOR: #666666;
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: white;
+	margin-top: 4px;
+}
+INPUT {
+	FONT-SIZE: 9px;
+	COLOR: #666666;
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: white;
+	margin-top: 4px;
+}
+TD.inputdossier {
+	PADDING-RIGHT: 5px; 
+	PADDING-LEFT: 5px; 
+	FONT-SIZE: 13px; 
+	PADDING-BOTTOM: 5px; 
+	COLOR: #282853; 
+	PADDING-TOP: 5px; 
+	FONT-FAMILY: Verdana; 
+	BACKGROUND-COLOR: #c2d6f3
+	}
+	
+TD.spostato {
+	PADDING-RIGHT: 5px; 
+	PADDING-LEFT: 5px; 
+	PADDING-BOTTOM: 5px; 
+	PADDING-TOP: 5px; 
+	}	
+TD.sc4bis {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 9px; PADDING-BOTTOM: 2px; COLOR: ; PADDING-TOP: 2px; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #ebebe9;
+}
+
+TD.sc4bis_info {
+	PADDING-RIGHT: 2px; 
+	PADDING-LEFT: 2px; 
+	FONT-SIZE: 15px; 
+	PADDING-BOTTOM: 2px; COLOR: ; 
+	PADDING-TOP: 2px; 
+	FONT-FAMILY: Verdana; 
+	BACKGROUND-COLOR: #ebebe9; 
+}
+
+TD.sc4bis_info1 {
+	PADDING-RIGHT: 2px; 
+	PADDING-LEFT: 2px; 
+	FONT-SIZE: 11px; 
+	PADDING-BOTTOM: 2px; COLOR: ; 
+	PADDING-TOP: 2px; 
+	FONT-FAMILY: Verdana; 
+	BACKGROUND-COLOR: #ebebe9; 
+}
+
+TD.sc4bis_indice {
+	PADDING-RIGHT: 2px; 
+	PADDING-LEFT: 2px; 
+	FONT-SIZE: 15px; 
+	PADDING-BOTTOM: 2px; COLOR: ; 
+	PADDING-TOP: 2px; 
+	FONT-FAMILY: Verdana; 
+	BACKGROUND-COLOR: #ebebe9; 
+	font-weight: bold;
+}
+TD.grassetto{
+	FONT-FAMILY: Verdana; 
+	font-weight: bold;
+	FONT-SIZE: 13px;
+	text-align: center;
+}
+TD.tossicita {
+	FONT-SIZE: 13px;
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	BACKGROUND-COLOR: white;
+	
+	text-align: middle;
+}
+
+
+
+  /*css per calendario*/
+
+table.calendar {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 0.8em;
+	border-collapse: collapse;
+	background-color: white;
+	border: solid #999999 1px;
+	background-color: white;
+	width: 215px;
+	text-align: center;
+	/*prevent user from selecting text in Mozilla & Safari - check calendar constructor for IE code)*/
+	-moz-user-select: none;
+    /*-khtml-user-select: none;*/
+}
+table.calendar a {
+}
+table.calendar a:hover {
+}
+table.calendar input, table.calendar select {
+	font-size: 10px;
+}
+table.calendar td, table.calendar th {
+	border: 0;
+	font-size: 10px;
+	text-align: center;
+}
+div.mainheading {
+	margin: 2px;
+}
+.closeBtn {
+	/*float: right;
+	width: 15px;
+	/*font-size: 1.5em;
+	height: 13px;
+
+	padding: 0 0 3px 0;
+	margin: 1px 8px 0 0;
+	border: solid black 1px;*/
+}
+/*all styles related to the main calendar grid*/
+table.cells {
+	border-collapse: collapse;
+	border: solid #CCCCCC 1px;
+	cursor: pointer;
+	empty-cells: show;
+	margin: 0 6px 0 6px;
+}
+/*the day headings*/
+table.cells th {
+	border: solid #CCCCCC 1px;
+	text-align: left;
+	font-weight: bold;
+	color: #0054E3;
+	width: 22px;
+}
+table.cells th.wkhead {
+	border-right: double #CCCCCC 3px;
+	cursor: default;
+	width: 22px;
+}
+/*The date cells*/
+table.cells td {
+	border: solid #CCCCCC 1px;
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+	height: 20px; /*IE doesn't like ems*/
+}
+table.cells td.wkhead {
+	background-color: white;
+	text-align: center;
+	border-right: double #CCCCCC 3px;
+	color: #0054E3;
+}
+table.cells td.noselect {
+	background-color: #EEEEEE;
+	color: #BBBBBB;
+	text-decoration: line-through;
+	cursor: default;
+}
+table.cells td.hlday {
+	background-color: #99FF99;
+}
+table.cells td.wkday {
+	background-color: #DDDDDD;
+}
+table.cells td.wkend {
+	background-color: #DDDDDD;
+}
+table.cells td.curdate {
+
+}
+table.cells td.cell_selected {
+	background-color: #99CCFF;
+	color: black;
+}
+table.cells td.notmnth {
+	background-color: #FFFFFF;
+	color: #CCCCCC;
+}
+table.cells td.notallowed {
+	background-color: white;
+	color: #EEEEEE;
+	font-style: italic;
+}
+table.cells td.hover {
+	background-color: #999999;
+}
+table.cells td div {
+	padding: 1px;
+	margin: 0;
+}

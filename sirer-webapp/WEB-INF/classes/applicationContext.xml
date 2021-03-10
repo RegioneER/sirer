@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:annotation-config/>
+
+    <import resource="classpath:passwordEncoders/plain.xml"/>
+    <import resource="classpath:UsernamePasswordAuthenticationProvider.xml"/>
+
+
+    <bean id="freemarkerConfig"
+          class="it.cineca.siss.axmr3.web.freemarker.AxmrFreemarkerConfigurer">
+        <property name="templateLoaderPath" value="${template.path}"/>
+        <property name="freemarkerSettings">
+            <props>
+                <prop key="default_encoding">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+
+    <import resource="classpath:propertyConfigurer.xml"/>
+
+
+    <!-- parametri per hibernate -->
+    <util:properties id="hibernateProperties">
+        <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+        <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+        <prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+        <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+        <prop key="hibernate.default_schema">${jdbc.username}</prop>
+        <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+    </util:properties>
+
+    <!--Definizione Datasources -->
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!--property name="testOnBorrow" value="true" ></property>
+        <property name="validationQuery" value="select 1 from dual" ></property-->
+        <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+
+    </bean>
+
+    <alias name="dataSource" alias="UserDataSource"/>
+    <alias name="dataSource" alias="DocDataSource"/>
+
+    <bean id="namingStrategy" class="it.cineca.siss.axmr3.doc.hibernatecfg.CustomNamingStrategy">
+        <property name="prefix" value="${hibernate.tablePrefix:DOC}"></property>
+    </bean>
+
+    <!--SessionFactory Hibernate per le entità specifiche del progetto -->
+    <bean id="docSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="DocDataSource"></property>
+        <property name="packagesToScan">
+            <list>
+                <value>it.cineca.siss.axmr3.doc.entities</value>
+            </list>
+        </property>
+        <property name="hibernateProperties" ref="hibernateProperties"/>
+        <property name="namingStrategy" ref="namingStrategy"/>
+    </bean>
+
+    <!--Configurazione security -->
+    <bean id="idServizio" class="java.lang.String">
+        <constructor-arg value="${idp.idServizio}"/>
+    </bean>
+    <bean id="xCdmPrefix" class="java.lang.String">
+        <constructor-arg value="${xCDM.prefix}"/>
+    </bean>
+    <bean id="xCdmBaseUrl" class="java.lang.String">
+        <constructor-arg value="${xCDM.baseUrl}"/>
+    </bean>
+
+    <bean id="FileStoragePath" class="java.lang.String">
+        <constructor-arg value="${xCDM.fileStoragePath:/tmp}"/>
+    </bean>
+
+    <bean id="ShibFilter" class="it.cineca.siss.axmr3.authentication.filters.HeaderAuthenticationFilter">
+        <property name="principalRequestHeader" value="${useridAuthzHeader:REMOTE_USERID}"/>
+        <property name="authenticationManager" ref="preAuthManager"/>
+    </bean>
+
+    <bean id="paramFilter" class="it.cineca.siss.axmr3.authentication.filters.ParamAuthenticationFilter">
+        <property name="authenticationManager" ref="preAuthManager"/>
+    </bean>
+
+    <bean id="preAuthProvider" class="it.cineca.siss.axmr3.authentication.providers.TrustedAuthenticationProvider"/>
+
+    <bean id="preAuthManager" class="org.springframework.security.authentication.ProviderManager">
+        <property name="providers">
+            <list>
+                <ref local="preAuthProvider"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="mdcFilter" class="it.cineca.siss.axmr3.filters.MDCFilter"/>
+
+    <bean id="switchUserProcessingFilter"
+          class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter">
+        <property name="userDetailsService" ref="userDetailsService"/>
+        <property name="switchUserUrl" value="/j_spring_security_switch_user"/>
+        <property name="exitUserUrl" value="/j_spring_security_exit_user"/>
+        <property name="targetUrl" value="/app/documents"/>
+    </bean>
+
+
+    <security:global-method-security secured-annotations="enabled"/>
+    <!--blocco servizi rest con autenticazione basic-->
+    <security:http use-expressions="true" pattern="/services/**" create-session="stateless">
+        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <security:custom-filter ref="mdcFilter" after="SECURITY_CONTEXT_FILTER"/>
+        <security:http-basic/>
+    </security:http>
+
+    <!--blocco servizi rest solo interni senza autenticazione-->
+    <security:http use-expressions="true" pattern="/internal-services/**" create-session="stateless">
+        <security:intercept-url pattern="/**" access="permitAll"/>
+        <security:form-login/>
+    </security:http>
+
+    <!--
+<security:http use-expressions="true" pattern="/services/rest/**" create-session="stateless" >
+<security:intercept-url pattern="/**" access="isAuthenticated()"/>
+<security:http-basic/>
+</security:http>
+        -->
+    <!--
+    <security:http use-expressions="true" pattern="/pconsole/**" create-session="stateless" >
+        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <security:custom-filter position="PRE_AUTH_FILTER" ref="ShibFilter" />
+        <security:form-login login-page="/authz/login" authentication-failure-url="/authz/login?error=true"/>
+    </security:http>
+
+    -->
+
+
+    <security:http use-expressions="true">
+        <security:intercept-url pattern="/app/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/app/admin/*" access="hasRole('tech-admin')"/>
+        <security:intercept-url pattern="/app/documents/dm/**" access="hasRole('DATAMANAGER')"/>
+        <security:intercept-url pattern="/rest/dm/**" access="hasRole('DATAMANAGER')"/>
+        <security:intercept-url pattern="/j_spring_security_switch_user" access="hasRole('tech-admin')"/>
+        <security:intercept-url pattern="/process-engine/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/int/**" access="permitAll"/>
+
+        <security:intercept-url pattern="/pconsole/**" access="isAuthenticated()"/>
+
+        <security:intercept-url pattern="/authz/**" access="permitAll"/>
+
+        <security:custom-filter position="PRE_AUTH_FILTER" ref="${preAuthFilter:ShibFilter}"/>
+        <security:custom-filter position="SWITCH_USER_FILTER" ref="switchUserProcessingFilter"/>
+        <security:form-login login-page="/authz/login" authentication-failure-url="/authz/login?error=true"/>
+        <security:remember-me user-service-ref="userDetailsService" key="rememberMe"/>
+
+        <security:custom-filter ref="mdcFilter" after="SECURITY_CONTEXT_FILTER"/>
+    </security:http>
+
+
+    <bean id="org.springframework.security.authenticationManager"
+          class="org.springframework.security.authentication.ProviderManager">
+        <property name="providers">
+            <list>
+                <ref local="authenticationProvider"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--Configurazione Gestore Transazioni DB -->
+
+    <bean id="axm3TX" class="it.cineca.siss.axmr3.transactions.Axmr3TXManager" destroy-method="destroy" scope="request">
+        <aop:scoped-proxy/>
+        <property name="sessionFactories">
+            <map>
+                <entry key="doc" value-ref="docSessionFactory"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="axm3TXFull" class="it.cineca.siss.axmr3.transactions.Axmr3TXManagerNonRequestScoped" scope="prototype"
+          destroy-method="destroy">
+        <property name="sessionFactories">
+            <map>
+                <entry key="doc" value-ref="docSessionFactory"/>
+            </map>
+        </property>
+    </bean>
+
+
+    <!-- Registrazione Servizi -->
+
+    <bean id="documentService" class="it.cineca.siss.axmr3.doc.web.services.DocumentService" scope="request">
+        <property name="templatePolicyFallbackObjs" value="${templatePolicyFallbackObjs:NONE}"/>
+        <property name="templateFTLOverrideObjs" value="${templateFTLOverrideObjs:NONE}"/>
+        <property name="baseNameOraStrategy" value="${baseNameOraStrategy:NORMAL}"/>
+        <aop:scoped-proxy/>
+    </bean>
+
+    <bean id="adminService" class="it.cineca.siss.axmr3.doc.web.services.AdminService" scope="request">
+        <aop:scoped-proxy/>
+    </bean>
+
+    <!-- Configurazione per gestione di form multipart -->
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="2097152000"/>
+    </bean>
+
+    <bean id="springApplicationContext" class="it.cineca.siss.axmr3.spring.SpringApplicationContext"/>
+
+    <bean id="messagesFolder" class="java.lang.String">
+        <constructor-arg value="${template.path}"/>
+    </bean>
+
+    <import resource="activiti-standalone-context.xml"/>
+    <import resource="activiti-ui-context.xml"/>
+
+    <!-- Bean di inizializzazione DB -->
+    <bean id="processActions" class="it.cineca.siss.axmr3.doc.notRequestScopedBean.ProcessActionsBean"/>
+
+    <bean id="threadFactory" class="org.springframework.scheduling.concurrent.CustomizableThreadFactory">
+        <constructor-arg value="xCDM-Internal"/>
+    </bean>
+
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="threadFactory" ref="threadFactory"/>
+    </bean>
+
+    <bean id="interalService" class="it.cineca.siss.axmr3.doc.beans.InternalServiceBean">
+        <property name="status" value="${internalService:Off}"/>
+        <property name="protocol" value="${internalServiceProtocol:http}"/>
+        <property name="host" value="${internalServiceHost:}"/>
+        <property name="port" value="${internalServicePort:0}"/>
+        <property name="basePath" value="${internalServiceBasePath:}"/>
+        <property name="taskExecutor" ref="taskExecutor"/>
+    </bean>
+
+
+</beans>

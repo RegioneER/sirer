@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<document queryName="DOC_AVVIO_CME" >
+  <field type="hidden" var="ID_STUD" var_type="number" pk="yes"></field>
+  <field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"/>
+  <field type="hidden" var="ESAM" var_type="number" />
+  <field type="hidden" var="VISITNUM" var_type="number" />
+  <field type="hidden" var="VISITNUM_PROGR" var_type="number"  value="0" pk="yes"/>
+  <field type="hidden" var="CENTER" var_type="text" var_size="40"/>
+  <field type="hidden" var="PROGR"  var_type="number" pk="yes">
+    <value val="1"></value>
+  </field>
+  <field type="hidden" var="ID" var_type="number"/>
+  <field type="hidden" var="ID_REF" var_type="number"/>
+  <field type="hidden" var="VAR_NAME" var_type="text" var_size="40" pk="yes" >
+ 	<value val="1"></value>
+  </field>
+  <field type="hidden" var="TOPIC" var_type="text" var_size="500" />
+
+	  
+	<field type="radio" var="APERTO" send="obbligatorio" cols="3">
+			<txt_value><![CDATA[Il centro &egrave; stato aperto]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field>
+		
+		<field type="data" var="APERTO_DT" cols="3" hide="yes" condition="APERTO" condition_value="1">
+			<txt_value>Data di apertura del centro (gg/mm/yyyy)</txt_value>
+		</field>	
+		
+		<field type="radio" var="ARRUOLAMENTO" send="obbligatorio" cols="3">
+			<txt_value><![CDATA[E' stato arruolato il primo soggetto (firma del consenso informato)]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field>
+		
+ 		<field type="data" var="ARR_DT" cols="3" hide="yes" condition="ARRUOLAMENTO" condition_value="1">
+			<txt_value>Data di arruolamento del primo soggetto (gg/mm/yyyy)</txt_value>
+		</field>	
+		
+		<field type="textarea" var="NOTE" var_type="text" cols="3" rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Note ]]></txt_value>
+  	</field> 
+ 
+</document>

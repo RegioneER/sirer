@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Farmaco" titolo="Farmaco" table="FARMACO"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	field_tb_show="ATC"
+	tb_header="ATC"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		
+<field cols="2">
+	<txt_value><![CDATA[<td colspan="4"  class=titolo3 align=center><b>Farmaco in studio di uso terapeutico</b></td>]]></txt_value>
+	</field>
+	<field colspan="4" cols="2" type="textbox" var="MEDICINALE" var_type="text" var_size="90" size="100" send="obbligatorio">
+			<txt_value><![CDATA[Medicinale che si intende utilizzare &nbsp;]]></txt_value>
+	</field>
+	<field colspan="4" cols="2" type="textbox" var="PRODUTTORE" var_type="text" var_size="90" size="100">
+			<txt_value><![CDATA[Impresa produttrice &nbsp;]]></txt_value>
+	</field>
+	<!--field cols="2" type="radio" var="CATEGORIA">
+    	<txt_value><![CDATA[Categoria del trattamento farmacologico]]></txt_value>
+    	<value val="1">Test</value>
+    	<value val="2">Comparatore</value>
+    </field>
+	<field cols="2">
+	<txt_value><![CDATA[<td colspan="4" align=left>Specificare la dose totale (valore e unita') </td>]]></txt_value>
+	</field>
+	<field colspan="2" cols="1" type="textbox" var="DOSE_INIZIALE_FH_VAL" var_type="text" var_size="90" size="10">
+			<txt_value><![CDATA[]]></txt_value>
+	</field>
+	<field type="select" colspan="2" cols="1" var="DOSE_INIZIALE_FH_UNIT" show_selected="yes" bytb="UNITA_MISURA" bytbcode="CODE" BYTBDECODE="DECODE" BYTBORDERBY="DECODE ASC">  
+	</field>
+	<field colspan="4" cols="2" type="textbox" var="NR_SOMM" var_type="text" var_size="90" size="100">
+			<txt_value><![CDATA[]]>Nr. di somministrazioni</txt_value>
+	</field-->
+	<!--field colspan="4" cols="2" type="textbox" var="DURATA" var_type="text" var_size="90" size="100">
+			<txt_value><![CDATA[]]>Durata dello studio</txt_value>
+	</field-->
+ 		 <field cols="2" type="radio" var="AUTO_ITA">
+    	<txt_value><![CDATA[Il farmaco &egrave; in commercio?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+     <field cols="2" type="textarea" var="INDICAZIONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_ITA" condition_value="1">
+    	<txt_value><![CDATA[Se sì, con quale indicazione?]]></txt_value>
+  </field> 
+    <field cols="2" type="textarea" var="PAESIITA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_ITA" condition_value="1">
+    	<txt_value><![CDATA[Se sì, indicare in quali Paesi]]></txt_value>
+  </field> 
+  
+    <field cols="2" type="radio" var="INDIC_DIFF" hide="yes" condition="AUTO_ITA" condition_value="2">
+    	<txt_value><![CDATA[Se il farmaco non e' in commercio o lo si vuole utilizzare per un'indicazione diversa da quella per cui e' registrato, indicare se]]></txt_value>
+    	<value val="1">il farmaco per l'indicazione d'uso e' sottoposto a sperimentazione clinica di fase III, in corso o conclusa</value>
+    	<value val="2">il farmaco per l'indicazione d'uso e' sottoposto a sperimentazione clinica di fase II conclusa</value>
+    </field>
+    <field cols="2" type="textarea" var="PAESI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_EST" condition_value="1">
+    	<txt_value><![CDATA[Se sì, indicare in quali Paesi]]></txt_value>
+  </field> 
+    <field cols="2" type="textarea" var="INDICAZIONE_PROP" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Indicazione proposta per l'uso del farmaco]]></txt_value>
+  </field>
+  <field cols="2" type="radio" var="FARMACIA">
+    	<txt_value><![CDATA[L'uso terapeutico del farmaco prevede il coinvolgimento diretto della Farmacia Ospedaliera nella preparazione?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+  <field cols="2" type="checkbox_decode" var="COINV_FARMA" group="CHECK_FARMA" hide="yes" condition="FARMACIA" condition_value="1">
+    		<txt_value>Se si', il coinvolgimento della Farmacia Ospedaliera nell'allestimento delle somministrazioni individuali prevede</txt_value>
+    		<value val="RIC">Ricostituzione</value>
+    		<value val="DIL">Diluizione</value>
+    		<value val="CONF">Confezionamento</value>
+    		<value val="ALTRO">Altro</value>
+    </field>
+  
+      <field cols="2" type="textarea" var="ALTRO_SPEC" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="ALTRO" condition_value="1">
+    	<txt_value><![CDATA[Se altro, descrivere brevemente le modalita' di allestimento richieste alla Farmacia]]></txt_value>
+  </field>
+  
+  
+  
+  
+  
+		<field cols="2" type="radio" var="USO_FARMACO">
+    	<txt_value><![CDATA[L'uso del farmaco e' rivolto a]]></txt_value>
+    	<value val="1">singolo paziente non trattato nell'ambito di studi clinici</value>
+    	<value val="2">pazienti che hanno partecipato ad una sperimentazione clinica che ha dimostrato un profilo di efficacia e tollerabilità tale da configurare 
+    	la necessita' di poter continuare a fuire, con la massima tempestivita', dei risultati ottenuti</value>
+    </field>
+    
+    
+	<save>salva</save>
+	<cancel>Annulla</cancel>
+</form>

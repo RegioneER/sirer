@@ -1,0 +1,1 @@
+this.elements={bracci:[],tp:[],prestazioni:[],tpxp:[],pxp:[],pxs:[],markup:0,tpxp2update:[],tpxp2delete:[],pxs2delete:[],pxp2delete:[],budgetStudio:[],pxpCTC:[],pxsCTC:[],costiAggiuntivi:[],passthroughCTC:[],prezzi:[],target:{}};

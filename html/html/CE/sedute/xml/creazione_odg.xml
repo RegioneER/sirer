@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Compilazione ODG" titolo="Compilazione ODG" table="ODG" 
+	link_to="index.php?ID_SED=[ID_SED]|and|exams" 
+	cols="1"
+	f_to_call="creaPDF_odg"
+	>
+		<field type="hidden" var="ID_SED" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+
+		<field type="hidden" var="CENTER" var_type="number" />
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+
+		<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
+		<field type="hidden" var="TEMPLATE_TYPE" var_type="text" var_size="100" >
+			<value val="odg"></value>
+		</field>
+		
+		<field>
+			<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Intestazione ordine del giorno</b></td>]]></txt_value>
+		</field>
+		
+		<field type="ckeditor_gen" var="ODG_INTESTAZIONE" var_type="clob" template_type="odg" tcols="160" rows="30" toolbar="MyToolbar" height="1000" width="1000" azzera="crea_ODG_intestazione" >
+			<txt_value></txt_value>
+		</field>
+		
+		<field>
+			<txt_value><![CDATA[<td colspan="2"  class=titolo4 align=center><br><br><br></td></tr><tr><td colspan="2"  class=titolo3 align=center><b>Ordine del giorno</b></td>]]></txt_value>
+		</field>
+		
+		<field type="ckeditor_gen" var="ODG" var_type="clob" template_type="odg" tcols="160" rows="30" toolbar="MyToolbar" height="2000" width="1000" azzera="crea_ODG" >
+			<txt_value></txt_value>
+		</field>
+ 
+	<enable>
+	</enable>
+
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>
+
+

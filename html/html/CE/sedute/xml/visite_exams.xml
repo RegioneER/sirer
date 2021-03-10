@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<visit_exam>
+	<group text="Seduta">
+		<visit number="0" text="Preparazione Riunione" short_txt="Preparazione Riunione" >
+			<exam number="0" xml="registrazione.xml" mandatory="yes">
+				<text>Dati di identificazione della seduta</text>
+			</exam>
+			<exam number="1" xml="scelta_studi.xml" mandatory="yes">
+				<text>Selezione studi/emendamenti</text>
+			</exam>
+			<exam number="2" xml="convoca_componenti.xml" mandatory="yes">
+				<text>Convocazione componenti</text>
+			</exam>
+			<exam number="10" xml="creazione_odg.xml" mandatory="yes">
+				<text>Preparazione ODG</text>
+			</exam>
+			<!--exam number="11" xml="creazione_odg.xml" mandatory="yes">
+				<text>Storicizzazione ODG</text>
+			</exam-->
+			
+		</visit>
+
+		<visit number="1" text="Relazioni/Osservazioni" short_txt="Relazioni/Osservazioni" >
+			<exam number="1" xml="relazione_studi.xml"
+				WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" default="yes" next_enabled="no">
+				<text>Relazioni studi</text>
+			</exam>
+			<exam number="2" xml="osservazioni_studi.xml"
+				WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" default="yes" next_enabled="no">
+				<text>Osservazioni studi</text>
+			</exam>
+			<exam number="3" xml="relazioni_eme.xml"
+				WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" default="yes" next_enabled="no">
+				<text>Relazioni emendamenti</text>
+			</exam>
+			<exam number="4" xml="osservazioni_eme.xml"
+				WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" default="yes" next_enabled="no">
+				<text>Osservazioni emendamenti</text>
+			</exam>
+		</visit>
+		
+		<visit number="2" text="Verbalizzazione" short_txt="Verbalizzazione" >
+			<exam number="2" xml="presenza_componenti.xml" mandatory="yes">
+				<text>Presenza componenti</text>
+			</exam>
+			<exam number="1" xml="presenza_studi.xml" mandatory="yes">
+				<text>Conferma studi/emendamenti</text>
+			</exam>
+
+			<exam number="10" xml="creazione_verbale.xml" mandatory="yes">
+				<text>Preparazione Verbale</text>
+			</exam>
+			
+			<exam number="20" xml="doc_verbale.xml"
+			WCA_FIELDS="D_AREA_DOC,DOC_VERB"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" trash="yes">
+				<text>Documenti Verbale</text>
+			</exam>
+			
+		</visit>
+				
+	</group>
+</visit_exam>

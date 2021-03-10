@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c8848435-7c4b-47bf-86b8-01cf17defcfe" name="Default" comment="Docsuite: allineamento sendFileConcentPEBody.php">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docsuite/authentication.php" beforeDir="false" afterPath="$PROJECT_DIR$/Docsuite/authentication.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docsuite/sendFileContentPE.php" beforeDir="false" afterPath="$PROJECT_DIR$/Docsuite/sendFileContentPE.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docsuite/sendFileContentPEBody.php" beforeDir="false" afterPath="$PROJECT_DIR$/Docsuite/sendFileContentPEBody.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docsuite/soapClient/DocsuiteWSClientFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/Docsuite/soapClient/DocsuiteWSClientFactory.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docsuite/wsdl/WSProt.svc.wsdl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docsuite/wsdl/WSProt.svc.xsd0.xsd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Docsuite/wsdl/WSProt.svc.xsd1.xsd" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution>
+      <executable path="C:\ProgramData\ComposerSetup\bin\composer.bat" />
+    </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/filesystem" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-code" />
+      <path value="$PROJECT_DIR$/vendor/zendframework/zend-eventmanager" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/phpro/soap-client" />
+      <path value="$PROJECT_DIR$/vendor/symfony/console" />
+      <path value="$PROJECT_DIR$/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/clue/stream-filter" />
+      <path value="$PROJECT_DIR$/vendor/php-http/guzzle6-adapter" />
+      <path value="$PROJECT_DIR$/vendor/php-http/client-common" />
+      <path value="$PROJECT_DIR$/vendor/php-http/httplug" />
+      <path value="$PROJECT_DIR$/vendor/php-http/promise" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message" />
+      <path value="$PROJECT_DIR$/vendor/php-http/message-factory" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/php-http/discovery" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1Q2wMO4ogu8EAfAaYIzHQrGlSj4" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Iride" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\app\XMR\xCDMProtocolloLib\Iride" />
+      <recent name="C:\app\XMR\xCDMProtocolloLib\Archiflow" />
+      <recent name="C:\app\xCDMProtocolloLib\Docsuite" />
+      <recent name="C:\app\xCDMProtocolloLib\Babel" />
+      <recent name="C:\app\xCDMProtocolloLib\Archiflow" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\app\xCDMProtocolloLib\Babel" />
+      <recent name="C:\app\xCDMProtocolloLib" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="PHP Script.testSendPE - Docsuite">
+    <configuration name="InternalWebServer" type="PhpBuiltInWebServerConfigurationType" factoryName="PHP Built-in Web Server" document_root="$PROJECT_DIR$">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="createFolder" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Babel/createFolder.php" scriptParameters="MSRRNT64S69A944K 080105 PG 2019 2">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testRetrieveContent - Docsuite" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Docsuite/retrieveFileContent.php" scriptParameters="MSRRNT64S69A944K RE NA 2019 70588">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testRetrieveContent - Maggioli" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Iride/retrieveFileContent.php">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testRetrieveContent" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Babel/retrieveFileContent.php">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testRetrieveList - Archiflow" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Archiflow/retrieveFileList.php">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testRetrieveList - Docsuite" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Docsuite/retrieveFileList.php" scriptParameters="MSRRNT64S69A944K RE NA 2019 70588">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testRetrieveList - Maggioli" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Iride/retrieveFileList.php">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testRetrieveList" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Babel/retrieveFileList.php">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testSendPE - Archiflow" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Archiflow/sendFileContentPE.php" scriptParameters="MSRRNT64S69A944K 080105 PG 2019 2 111/2019 10 C:\app\XMR\xCDMProtocolloLib\provafile.pdf application/pdf">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testSendPE - Docsuite" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Docsuite/sendFileContentPE.php" scriptParameters="MSRRNT64S69A944K PC NA 2019 2 111/2019 10 C:\app\XMR\xCDMProtocolloLib\provafile.pdf application/pdf">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testSendPE - Maggioli" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Iride/sendFileContentPE.php" scriptParameters="MSRRNT64S69A944K IRST NA 2019 2 111/2019 10 C:\app\XMR\xCDMProtocolloLib\provafile.pdf application/pdf">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testSendPE" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Babel/sendFileContentPE.php" scriptParameters="MSRRNT64S69A944K 080105 PG 2019 2 111/2019 10 C:\app\XMR\xCDMProtocolloLib\provafile.pdf application/pdf">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="testSendPEBody - Docsuite" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/Docsuite/sendFileContentPEBody.php" scriptParameters="MSRRNT64S69A944K RE NA 2019 2 111/2019 10 provafile.pdf C:\app\XMR\xCDMProtocolloLib\filebodyContent.txt">
+      <CommandLine workingDirectory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="PHP Built-in Web Server.InternalWebServer" />
+      <item itemvalue="PHP Script.createFolder" />
+      <item itemvalue="PHP Script.testRetrieveContent - Docsuite" />
+      <item itemvalue="PHP Script.testRetrieveContent - Maggioli" />
+      <item itemvalue="PHP Script.testRetrieveContent" />
+      <item itemvalue="PHP Script.testRetrieveList - Archiflow" />
+      <item itemvalue="PHP Script.testRetrieveList - Docsuite" />
+      <item itemvalue="PHP Script.testRetrieveList - Maggioli" />
+      <item itemvalue="PHP Script.testRetrieveList" />
+      <item itemvalue="PHP Script.testSendPE - Archiflow" />
+      <item itemvalue="PHP Script.testSendPE - Docsuite" />
+      <item itemvalue="PHP Script.testSendPEBody - Docsuite" />
+      <item itemvalue="PHP Script.testSendPE - Maggioli" />
+      <item itemvalue="PHP Script.testSendPE" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c8848435-7c4b-47bf-86b8-01cf17defcfe" name="Default" comment="" />
+      <created>1558013423062</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1558013423062</updated>
+      <workItem from="1558013424584" duration="5894000" />
+      <workItem from="1558078496667" duration="2408000" />
+      <workItem from="1558090326538" duration="756000" />
+      <workItem from="1558336730706" duration="1056000" />
+      <workItem from="1558421581129" duration="2949000" />
+      <workItem from="1558686931271" duration="3430000" />
+      <workItem from="1558702149697" duration="207000" />
+      <workItem from="1558705365421" duration="39000" />
+      <workItem from="1558705482046" duration="2778000" />
+      <workItem from="1559206198771" duration="3951000" />
+      <workItem from="1559725563227" duration="6500000" />
+      <workItem from="1559892387612" duration="879000" />
+      <workItem from="1560152277063" duration="917000" />
+      <workItem from="1560174655664" duration="1559000" />
+      <workItem from="1560260133602" duration="1659000" />
+      <workItem from="1560324167846" duration="598000" />
+      <workItem from="1560325944538" duration="10465000" />
+      <workItem from="1560410436255" duration="1292000" />
+      <workItem from="1560516808597" duration="6599000" />
+      <workItem from="1560756415424" duration="3430000" />
+      <workItem from="1560845518302" duration="1753000" />
+      <workItem from="1561010943775" duration="3007000" />
+      <workItem from="1561445603919" duration="7391000" />
+      <workItem from="1561530776241" duration="6729000" />
+      <workItem from="1562747286384" duration="4051000" />
+      <workItem from="1562852253241" duration="2639000" />
+      <workItem from="1562914950792" duration="1675000" />
+      <workItem from="1563268158391" duration="640000" />
+      <workItem from="1563528664438" duration="1311000" />
+      <workItem from="1563886388940" duration="2287000" />
+      <workItem from="1563969310726" duration="1201000" />
+      <workItem from="1564060498114" duration="786000" />
+      <workItem from="1564131923907" duration="2544000" />
+      <workItem from="1564144428610" duration="4402000" />
+      <workItem from="1566981951124" duration="1525000" />
+      <workItem from="1567407202533" duration="613000" />
+      <workItem from="1567433011180" duration="1309000" />
+      <workItem from="1567492442183" duration="607000" />
+      <workItem from="1568015970165" duration="5109000" />
+      <workItem from="1568097841823" duration="1819000" />
+      <workItem from="1568183274292" duration="6346000" />
+      <workItem from="1568364631106" duration="14463000" />
+      <workItem from="1568615584065" duration="8696000" />
+      <workItem from="1568638954397" duration="15000" />
+      <workItem from="1568639686027" duration="1260000" />
+      <workItem from="1568700597876" duration="1277000" />
+      <workItem from="1568789800976" duration="2997000" />
+      <workItem from="1568874770943" duration="1209000" />
+      <workItem from="1568963002569" duration="5234000" />
+      <workItem from="1569229130945" duration="6708000" />
+      <workItem from="1569843654376" duration="923000" />
+      <workItem from="1570006776472" duration="571000" />
+      <workItem from="1570007449935" duration="115000" />
+      <workItem from="1570441449967" duration="4117000" />
+    </task>
+    <task id="LOCAL-00001" summary="leggiProtocolloString Maggioli implementato">
+      <created>1558707550970</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1558707550970</updated>
+    </task>
+    <task id="LOCAL-00002" summary="parametrizzati con argomenti a linea di comando le funzioni di creazione fascicolo e invio file protocollo in entrata (BABEL)">
+      <created>1559207567190</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559207567190</updated>
+    </task>
+    <task id="LOCAL-00003" summary="aggiunto recupero dati da post">
+      <created>1559207751379</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1559207751379</updated>
+    </task>
+    <task id="LOCAL-00004" summary="tentativo di recupero schede da archiflow">
+      <created>1560326751211</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1560326751212</updated>
+    </task>
+    <task id="LOCAL-00005" summary="preparato ambiente docsuite (attendiamo credenziali per autenticazione)">
+      <created>1560517283013</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1560517283013</updated>
+    </task>
+    <task id="LOCAL-00006" summary="prototipo ambiente docsuite (hanno basic authentication anche sul wsdl)">
+      <created>1560521971121</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1560521971121</updated>
+    </task>
+    <task id="LOCAL-00007" summary="prototipo ambiente docsuite (hanno basic authentication anche sul wsdl)">
+      <created>1560522156713</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560522156713</updated>
+    </task>
+    <task id="LOCAL-00008" summary="prototipo ambiente docsuite (hanno NTLM authentication anche sul wsdl)">
+      <created>1560524743281</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560524743281</updated>
+    </task>
+    <task id="LOCAL-00009" summary="integrazione docsuite (verificare xml protocollo)">
+      <created>1561484151415</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1561484151415</updated>
+    </task>
+    <task id="LOCAL-00010" summary="integrazione docsuite fase 2 (invio doc) ok!">
+      <created>1561538911119</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1561538911119</updated>
+    </task>
+    <task id="LOCAL-00011" summary="debug removed">
+      <created>1561539069103</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1561539069103</updated>
+    </task>
+    <task id="LOCAL-00012" summary="consolidamento invio documento docsuite">
+      <created>1561539252780</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1561539252780</updated>
+    </task>
+    <task id="LOCAL-00013" summary="consolidamento invio documento docsuite">
+      <created>1562751492237</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1562751492238</updated>
+    </task>
+    <task id="LOCAL-00014" summary="aggiornamento e fix base64">
+      <created>1562943817871</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1562943817872</updated>
+    </task>
+    <task id="LOCAL-00015" summary="aggiornamento url test AUSL RE">
+      <created>1564132513339</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1564132513339</updated>
+    </task>
+    <task id="LOCAL-00016" summary="todo: mittenti/destinatari docsuite">
+      <created>1564141276585</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1564141276585</updated>
+    </task>
+    <task id="LOCAL-00017" summary="primi test Maggioli protocollo in entrata">
+      <created>1564159179922</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1564159179923</updated>
+    </task>
+    <task id="LOCAL-00018" summary="sviluppo Archiflow (bozza di ricerca protocollo e primi test invio documento)">
+      <created>1568370984825</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1568370984825</updated>
+    </task>
+    <task id="LOCAL-00019" summary="sviluppo Archiflow (bozza di ricerca protocollo e primi test invio documento)">
+      <created>1568375047526</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1568375047526</updated>
+    </task>
+    <task id="LOCAL-00020" summary="sviluppo Archiflow (bozza di ricerca protocollo e primi test invio documento)">
+      <created>1568375641360</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1568375641360</updated>
+    </task>
+    <task id="LOCAL-00021" summary="test fase1 e fase2 maggioli (IRST) completati (Iride per noi)">
+      <created>1568386814950</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1568386814950</updated>
+    </task>
+    <task id="LOCAL-00022" summary="stabilizzato maggioli in attesa di avere aperto WS fascicolo, integrato piacenza (DocSuite) con dati aggiornati">
+      <created>1568638438522</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1568638438522</updated>
+    </task>
+    <task id="LOCAL-00023" summary="testato invio documento su archiflow (con id archivio e id tipo documento non definitivo). chiesto mapping preciso per i metadati. manca il recupero del numero di protocollo appena creato utilizzando load_card o load_index_card.">
+      <created>1568995679190</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1568995679190</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Protocollazione su protocollo generale/arrivo OK (con titolario/classification folder). manca il recupero del numero di protocollo appena creato utilizzando load_card o load_index_card.">
+      <created>1569230463133</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1569230463133</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Protocollazione su protocollo generale/arrivo OK (con titolario/classification folder). Ritorno correttamente numero di protocollo appena creato.">
+      <created>1569233175352</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1569233175352</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Archiflow: recupero contenuto documento (principale) protocollato.">
+      <created>1569237943173</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1569237943173</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Archiflow: recupero contenuto documento (principale) protocollato.">
+      <created>1569238394130</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1569238394130</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Docsuite: allineamento sendFileConcentPEBody.php">
+      <created>1569844462470</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1569844462470</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Babel: inserimento parametri di produzione (da switchare quando ci comunicheranno)">
+      <created>1570007341059</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1570007341059</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Docsuite: allineamento sendFileConcentPEBody.php">
+      <created>1570007534578</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1570007534578</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="leggiProtocolloString Maggioli implementato" />
+    <MESSAGE value="parametrizzati con argomenti a linea di comando le funzioni di creazione fascicolo e invio file protocollo in entrata (BABEL)" />
+    <MESSAGE value="aggiunto recupero dati da post" />
+    <MESSAGE value="tentativo di recupero schede da archiflow" />
+    <MESSAGE value="preparato ambiente docsuite (attendiamo credenziali per autenticazione)" />
+    <MESSAGE value="prototipo ambiente docsuite (hanno basic authentication anche sul wsdl)" />
+    <MESSAGE value="prototipo ambiente docsuite (hanno NTLM authentication anche sul wsdl)" />
+    <MESSAGE value="integrazione docsuite (verificare xml protocollo)" />
+    <MESSAGE value="integrazione docsuite fase 2 (invio doc) ok!" />
+    <MESSAGE value="debug removed" />
+    <MESSAGE value="consolidamento invio documento docsuite" />
+    <MESSAGE value="aggiornamento e fix base64" />
+    <MESSAGE value="aggiornamento url test AUSL RE" />
+    <MESSAGE value="todo: mittenti/destinatari docsuite" />
+    <MESSAGE value="primi test Maggioli protocollo in entrata" />
+    <MESSAGE value="sviluppo Archiflow (bozza di ricerca protocollo e primi test invio documento)" />
+    <MESSAGE value="test fase1 e fase2 maggioli (IRST) completati (Iride per noi)" />
+    <MESSAGE value="stabilizzato maggioli in attesa di avere aperto WS fascicolo, integrato piacenza (DocSuite) con dati aggiornati" />
+    <MESSAGE value="testato invio documento su archiflow (con id archivio e id tipo documento non definitivo). chiesto mapping preciso per i metadati. manca il recupero del numero di protocollo appena creato utilizzando load_card o load_index_card." />
+    <MESSAGE value="Protocollazione su protocollo generale/arrivo OK (con titolario/classification folder). manca il recupero del numero di protocollo appena creato utilizzando load_card o load_index_card." />
+    <MESSAGE value="Protocollazione su protocollo generale/arrivo OK (con titolario/classification folder). Ritorno correttamente numero di protocollo appena creato." />
+    <MESSAGE value="Archiflow: recupero contenuto documento (principale) protocollato." />
+    <MESSAGE value="Babel: inserimento parametri di produzione (da switchare quando ci comunicheranno)" />
+    <MESSAGE value="Docsuite: allineamento sendFileConcentPEBody.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docsuite: allineamento sendFileConcentPEBody.php" />
+  </component>
+</project>

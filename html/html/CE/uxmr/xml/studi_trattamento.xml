@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Trattamento" titolo="Trattamento" table="TRATTAMENTO"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	field_tb_show="D_TIPO_TRAT"
+	tb_header="Tipo trattamento"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field type="select" var="TIPO_TRAT" send="obbligatorio" cols="2">
+			<txt_value> Tipo trattamento</txt_value>
+				<value val="1"> Integratore alimentare</value>
+				<value val="2"> Fitoterapico</value>
+				<value val="3"> Riabilitazione fisica</value>
+				<value val="4"> Riabilitazione psicologica</value>
+				<value val="5"> Tecnica chirurgica</value>
+				<value val="6"> Altro</value>
+		</field>
+    <field type="textbox" var="ALTROSPEC" var_type="text"  var_size="30" size="80" cols="2" condition="TIPO_TRAT" condition_value="6" hide="yes" send="obbligatorio">
+    	<txt_value><![CDATA[Se altro specificare]]></txt_value>
+    </field>
+    <field type="textarea" var="DESCR_TRAT" var_type="text" cols="2" rows="8" tcols="80" var_size="3900" size="3900" send="obbligatorio">
+    	<txt_value>Descrizione trattamento</txt_value>
+    </field> 
+
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

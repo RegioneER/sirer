@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Dati Valutazione" titolo="Dati Valutazione" table="VALUTAZIONE"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]|and|exams=visite_exams.xml"
+	cols="2"
+	field_tb_show="D_CENTRO,D_PRINC_INV,'&lt;b&gt;'||D_RIS_DELIB||'&lt;/b&gt;','&lt;b&gt;'||RIUNIONE_CE_DT||'&lt;/b&gt;',' &lt;div align=center&gt; &lt;a target=_blank href=index.php?mod_lettera=yes&amp;ID_STUD='||ID_STUD||'&amp;VISITNUM='||VISITNUM||'&amp;VISITNUM_PROGR='||VISITNUM_PROGR||'&amp;PROGR='||PROGR||' &gt; &lt;i class=''btn btn-info btn-xs fa fa-file-word-o'' &gt; &lt;/i&gt; &lt;/a&gt; &lt;/div&gt;','&lt;div align=center&gt; &lt;a target=_new href=/pentaho/api/repos/%3Ahome%3Anet%3Ace_veneto%3Avalutazione_studio.prpt/viewer?ID_STUD='||ID_STUD||'&amp;VISITNUM_PROGR='||VISITNUM_PROGR||'&amp;PROGR='||PROGR||' &gt; &lt;i class=''btn btn-xs btn-info icon-zoom-in'' &gt; &lt;/i&gt; &lt;/a&gt; &lt;/div&gt;'"
+	tb_header="Centro,PI,Esito parere,Data parere,Genera lettera di parere,Dettaglio rilievi generali"
+	f_to_call="centri_open_subwf02"
+	>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+	</field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+	<field type="hidden" var="MISTO" var_type="text" tb="no" bytb="REGISTRAZIONE" bytbcode="PEDIATRICO" bytbdecode="PEDIATRICO" bytbwhere="ID_STUD='[ID_STUD]'"></field>
+	<field type="hidden" var="MISTO_CEP" var_type="text" tb="no" compila="1" compila_condition_var="MISTO|RIS_DELIB" compila_condition_value="2|3" compila_op="AND"></field>
+	
+	<!--field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3" send="obbligatorio">
+		<txt_value>First Name </txt_value>
+	</field-->
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Dati di parere del CE</b></td>]]></txt_value>
+	</field>
+	<!--field type="select" var="CENTRO" send="obbligatorio" cols="2" bytb="VALUTAZIONE" bytbcode="CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND VISITNUM=[VISITNUM] AND VISITNUM_PROGR=[VISITNUM_PROGR] AND ESAM=[ESAM] AND PROGR=1">
+		<txt_value> Struttura partecipante </txt_value>
+			<value val="1"> Azienda Ulss 20 di Verona</value>
+			<value val="2"> P.O. lungodegenza di Marzana (VR)</value>
+			<value val="3"> Polo Ospedaliero dell'Est Veronese di San Bonifacio (VR)</value>
+			<value val="4"> Casa di Cura Chierego E Perbellini di Verona</value>
+			<value val="5"> Casa di Cura Villa Lieta di Verona</value>
+			<value val="6"> Casa di Cura San Francesco di Verona</value>
+			<value val="7"> Casa di Cura Villa S. Chiara di Verona</value>
+			<value val="8"> Osp. classif. S. Giuliana sorelle mis. di Verona</value>
+	</field>
+	<field type="select" var="PRINC_INV" send="obbligatorio" cols="2"  bytb="VALUTAZIONE" bytbcode="PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND VISITNUM=[VISITNUM] AND VISITNUM_PROGR=[VISITNUM_PROGR] AND ESAM=[ESAM] AND PROGR=1">
+		<txt_value> Sperimentatore responsabile</txt_value>
+			<value val="1"> Alessandro Adami</value>
+			<value val="2"> Maurizio Anselmi </value>
+			<value val="3"> Felice Bilone </value>
+	</field-->
+	
+	<field type="hidden" var="PC_KEY" cols="2" var_size="20">
+		<txt_value> Progressivo centri </txt_value>
+	</field>
+	<field type="hidden" var="CENTRO" cols="2" var_size="20" bytb="VALUTAZIONE" bytbcode="CENTRO" bytbdecode="CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND VISITNUM=[VISITNUM] AND VISITNUM_PROGR=[VISITNUM_PROGR] AND ESAM=[ESAM] AND PROGR=1" >
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_CENTRO" cols="2" var_size="200" bytb="VALUTAZIONE" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND VISITNUM=[VISITNUM] AND VISITNUM_PROGR=[VISITNUM_PROGR] AND ESAM=[ESAM] AND PROGR=1" >
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="hidden" var="PRINC_INV" cols="2" var_size="20" bytb="VALUTAZIONE" bytbcode="PRINC_INV" bytbdecode="PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND VISITNUM=[VISITNUM] AND VISITNUM_PROGR=[VISITNUM_PROGR] AND ESAM=[ESAM] AND PROGR=1">
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>
+	<field type="text" var="D_PRINC_INV" cols="2" var_size="200" bytb="VALUTAZIONE" bytbcode="D_PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND VISITNUM=[VISITNUM] AND VISITNUM_PROGR=[VISITNUM_PROGR] AND ESAM=[ESAM] AND PROGR=1">
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>
+	
+	<!--field type="data" var="RICHIESTA_DT"  cols="1"  >
+	   <txt_value>Data della richiesta di valutazione</txt_value>
+	</field>
+	<field type="text" var_size="200" var="DELIBERA"  cols="1" bytb="RICHIESTA_DELIBERA" bytbcode="DELIBERA" bytbdecode="DELIBERA" bytbwhere="id_stud=[ID_STUD]" >
+	   <txt_value>Delibera</txt_value>
+	</field-->
+	
+	<!--field type="data" var="RIUNIONE_CE_DT"  cols="2" bytb="REGISTRAZIONE rs,GSE_PRES_STUDI ps,GSE_REGISTRAZIONE r" bytbcode="MAX(r.DATA_SED_DT)" bytbdecode="MAX(r.DATA_SED_DT)" bytbwhere="rs.ID_STUD='[ID_STUD]' AND (ps.STUDI LIKE '%|[ID_STUD]|%' OR ps.STUDI_EMENDAMENTI LIKE '%|[ID_STUD]|%' OR ps.STUDI_SOSPESI LIKE '%|[ID_STUD]|%') AND ps.ID_SED = r.ID_SED ">
+	   <txt_value>Data della seduta di valutazione (gg/mm/yyyy)</txt_value>
+	</field-->
+	<field type="data" var="RIUNIONE_CE_DT"  send="obbligatorio" cols="2" bytb="GSE_REGISTRAZIONE" bytbnoprefix="yes" bytbcode="DATA_SED_DT" bytbdecode="DATA_SED_DT" bytbwhere="ID_SED=(select link_odg from CE_VALUTAZIONE where id_stud=[ID_STUD] and visitnum=[VISITNUM] and visitnum_progr=[VISITNUM_PROGR] and esam=[ESAM] and progr=[PROGR])">
+		<txt_value>Data della seduta di valutazione (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="data" var="PARERE_UNICO_DT" cols="2" >
+		<txt_value>Data del parere unico (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="radio" var="RIS_DELIB" send="obbligatorio" cols="2">
+		<txt_value>Decisione del CE</txt_value>
+			<value val="1">Parere favorevole</value>
+			<value val="2">Parere non favorevole</value>
+			<value val="3">Richiesta d'integrazione/modifica</value>
+			<!--value val="9">Revoca</value-->
+			<value val="8">Presa d'atto</value>
+			<!--value val="4">Studio approvato a condizione</value-->
+			<!--value val="5">Studio approvato con commento</value-->
+	</field>
+	<field type="radio" var="PARERE_CEP" send="obbligatorio" cols="2" condition="MISTO_CEP" condition_value="1" hide="yes">
+	<txt_value><![CDATA[Richiedi parere al comitato etico pediatrico]]></txt_value>
+		<value val="1">Sì</value>
+		<value val="2">No</value>
+	</field>
+	
+	<field type="radio" var="ESPRESSIONE_PARERE" send="obbligatorio" cols="2">
+	<txt_value><![CDATA[Parere espresso]]></txt_value>
+		<value val="1">Unanimità</value>
+		<value val="2">Maggioranza</value>
+	</field>
+	<field type="textarea" var="ESPR_PAR_SPEC" var_type="text" cols="2" var_size="3000" size="clob" rows="8" tcols="80" hide="yes" condition="ESPRESSIONE_PARERE" condition_value="2" send="obbligatorio">
+		<txt_value><![CDATA[Specificare le motivazioni dell'espressione del parere a maggioranza]]></txt_value>
+	</field>
+	
+	<field type="radio" var="ESPRESSIONE_PARERE_SOTTO" cols="2">
+	<txt_value><![CDATA[Decisione del CE sui sottostudi]]></txt_value>
+		<value val="1">Parere favorevole</value>
+		<value val="2">Parere non favorevole</value>
+		<value val="3">Richiesta d'integrazione/modifica</value>
+		<value val="-9911">Non applicabile</value>
+	</field>
+	
+	<field type="multicheck" var="MEMBRI_APPROV" cols="1" height_box="340" bytb="LISTA_COMPONENTI" bytbcode="USERID" bytbdecode="COGNOME||' '||NOME" bytbwhere="CENTER=(select id_ce from ana_utenti_2 where userid='[USERID_INS]')" bytborderby="COGNOME">
+		<txt_value><![CDATA[Selezionare i <br><b>componenti presenti e votanti (assenza di conflitti di interessi)</b> <br/> <input type="checkbox" name="all_MEMBRI_APPROV_MCHECK" onclick="sel_clear_all(this.checked,'MEMBRI_APPROV_MCHECK_');if(this.checked){sel_clear_all(0,'MEMBRI_ASTENUTI_MCHECK_');$('[name=all_MEMBRI_ASTENUTI_MCHECK]').prop('checked',false);}">Seleziona tutti]]></txt_value>
+	</field>
+	
+	<field type="multicheck" var="MEMBRI_ASTENUTI" cols="1" height_box="340" bytb="LISTA_COMPONENTI" bytbcode="USERID" bytbdecode="COGNOME||' '||NOME" bytbwhere="CENTER=(select id_ce from ana_utenti_2 where userid='[USERID_INS]')" bytborderby="COGNOME">
+		<txt_value><![CDATA[Selezionare i <br><b>componenti presenti ma astenuti</b> <br/> <input type="checkbox" name="all_MEMBRI_ASTENUTI_MCHECK" onclick="sel_clear_all(this.checked,'MEMBRI_ASTENUTI_MCHECK_');if(this.checked){sel_clear_all(0,'MEMBRI_APPROV_MCHECK_');$('[name=all_MEMBRI_APPROV_MCHECK]').prop('checked',false);}">Seleziona tutti]]></txt_value>
+	</field>
+	
+	<field type="multicheck" var="MEMBRI_ESTERNI" cols="1" height_box="200" bytb="LISTA_COMPONENTI_EXT" bytbcode="USERID" bytbdecode="COGNOME||' '||NOME" bytbwhere="CENTER=(select id_ce from ana_utenti_2 where userid='[USERID_INS]')" bytborderby="COGNOME">
+		<txt_value><![CDATA[Selezionare i <b>componenti speciali</b>]]></txt_value>
+	</field>
+	
+	<field type="multicheck" var="ESPERTI_CHIAMATA" cols="1" height_box="200" bytb="LISTA_ESPERTI_CHIAMATA" bytbcode="USERID" bytbdecode="COGNOME||' '||NOME" bytbwhere="CENTER=(select id_ce from ana_utenti_2 where userid='[USERID_INS]')" bytborderby="COGNOME">
+		<txt_value><![CDATA[Selezionare gli <b>esperti a chiamata</b>]]></txt_value>
+	</field>
+	
+	<field type="multicheck" var="DOCS_VALUTATI_GEN" cols="1" height_box="340" bytb="DOCUMENTAZIONE" bytbcode="PROGR" bytbdecode="'&lt;b&gt;'||D_DOC_GEN||'&lt;/b&gt;'||'&lt;br/&gt; Data:'||DOC_DT||'&lt;br/&gt; Versione:'||DOC_VERS||'&lt;br/&gt; Altro:'||DOC_GEN_ALTRO||'&lt;br/&gt; Descrizione:'||DESCR_AGG||'&lt;hr/&gt;'" bytbwhere="ID_STUD=[ID_STUD]" >
+		<txt_value><![CDATA[Selezionare i documenti <b>generali</b> valutati <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'DOCS_VALUTATI_GEN_MCHECK_')">Seleziona tutti]]></txt_value>
+	</field>
+	
+	<field type="multicheck" var="DOCS_VALUTATI_LOC" cols="1" height_box="340" bytb="DOCUM_CENTRO" bytbcode="VISITNUM_PROGR||'_'||PROGR" bytbdecode="'&lt;b&gt;'||D_DOC_LOC||'&lt;/b&gt;'||'&lt;br/&gt; Data:'||DOC_DT||'&lt;br/&gt; Versione:'||DOC_VERS||'&lt;br/&gt; Altro:'||DOC_LOC_ALTRO||'&lt;br/&gt; Descrizione:'||DESCR_AGG||'&lt;hr/&gt;'" bytbwhere="ID_STUD=[ID_STUD] AND VISITNUM_PROGR=[VISITNUM_PROGR]" >
+		<txt_value><![CDATA[Selezionare i documenti <b>centro specifici</b> valutati <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'DOCS_VALUTATI_LOC_MCHECK_')">Seleziona tutti]]></txt_value>
+	</field>
+	
+	<!--field type="textarea" var="SOSP_MOT" var_size="1000" var_type="text" cols="2" tcols="80" rows="3" hide="yes" condition="RIS_DELIB" condition_value="3">
+		<txt_value><![CDATA[Chiarimenti o integrazioni richieste al promotore  <i>(testo libero max 3900 caratteri)</i>]]></txt_value>
+	</field>
+	<field type="textarea" var="COMM_MOT" var_size="1000" var_type="text" cols="2" tcols="80" rows="3" hide="yes" condition="RIS_DELIB" condition_value="4,5">
+		<txt_value><![CDATA[Descrizione della condizione o commento<i>(testo libero max 3900 caratteri)</i>]]></txt_value>
+	</field-->
+	
+	<field type="textarea" var="OBIETTIVO" var_type="text" cols="2" var_size="clob" size="clob" rows="8" tcols="80" send="obbligatorio">
+		<txt_value><![CDATA[Rilievi generali]]></txt_value>
+	</field>
+	<!--field type="textarea" var="COMPONENTI" var_type="text" cols="2" rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+		<txt_value><![CDATA[Componenti del CE presenti alla seduta ]]></txt_value>
+	</field> 
+	<field type="textarea" var="ESTERN" var_type="text" cols="2" rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+		<txt_value><![CDATA[Eventuali esperti esterni al CE presenti alla seduta ]]></txt_value>
+	</field-->
+  
+  <field cols="2"
+    type="file_cme" 
+    var="DOC_PARERE"
+    THREAD="Parere CE" 
+    TOPIC="Parere CE"
+    xmlTypeDefinition="cme/val_dati_valutazione.xml" 
+    auto_approve="yes"
+   >
+    <txt_value>File Parere</txt_value>
+   </field>
+   
+	<field type="textbox" var="PROTOCOLLO" var_type="text" var_size="10" cols="2" size="10"> <!--TOSCANA-51 send="obbligatorio"-->
+		<txt_value>Numero protocollo</txt_value>
+	</field>
+	<field type="data" var="PROTOCOLLO_DT" cols="2"> <!--TOSCANA-51 send="obbligatorio"-->
+		<txt_value>Data di protocollo (gg/mm/yyyy)</txt_value>
+	</field>
+	
+	<!--TOSCANA-51-->
+	<field type="textbox" var="REGISTRO_CE" var_type="text" var_size="10" cols="2" size="10" send="obbligatorio">
+		<txt_value>Numero registro CE</txt_value>
+	</field>
+	<field type="data" var="REGISTRO_CE_DT" cols="2" send="obbligatorio">
+		<txt_value>Data registro CE (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="data" var="FIRMA_PRES_DT" cols="2" send="obbligatorio">
+		<txt_value>Data di firma del Presidente (gg/mm/yyyy)</txt_value>
+	</field>
+  
+	<send>Invia</send>
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

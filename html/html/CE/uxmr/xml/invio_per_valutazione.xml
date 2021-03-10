@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Invio Studio" titolo="Invio Studio" table="REGINVIO" 
+	FIELD_TB_SHOW="D_CENTRO,D_PRINC_INV,D_DOC_COMPLETA"
+	TB_HEADER="Centro,Principal Investigator,Documentazione Completa"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]|and|exams=visite_exams.xml" 
+	cols="2"
+	f_to_call="open_istr_ts"
+	>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+	</field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	
+	<field type="hidden" var="COMBO" var_type="number" compila="1" compila_condition_var="VISITNUM_PROGR|PROGR" compila_condition_value="0|1" compila_op="AND"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+
+	<!--field type="textbox" var="CODICE" crypto="yes" var_type="text" var_size="3" cols="1" size="3" send="obbligatorio">
+		<txt_value>First Name </txt_value>
+	</field-->
+	<!--field type="hidden" var="CENTRO" cols="2" var_size="20" bytb="CENTRILOCALI" bytbcode="CENTRO" bytbdecode="CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_CENTRO" cols="2" var_size="200" bytb="CENTRILOCALI" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="hidden" var="PRINC_INV" cols="2" var_size="20" bytb="CENTRILOCALI" bytbcode="PRINC_INV" bytbdecode="PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>
+	<field type="text" var="D_PRINC_INV" cols="2" var_size="200" bytb="CENTRILOCALI" bytbcode="D_PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field-->
+		 
+	<field type="hidden" var="PC_KEY" cols="2" var_size="20" >
+		<txt_value> Progressivo centri </txt_value>
+	</field>
+	<field type="hidden" var="CENTRO" cols="2" var_size="20" >
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_CENTRO" cols="2" var_size="200" >
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="hidden" var="PRINC_INV" cols="2" var_size="20" >
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>
+	<field type="text" var="D_PRINC_INV" cols="2" var_size="200" >
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="4" class=titolo3 align=center><b> Verifica documentazione</b></td>]]></txt_value>
+	</field>
+	<field type="radio" var="BONIFICO" send="obbligatorio" cols="2">
+		<txt_value>E' stata presentata ricevuta del bonifico della fee del Comitato Etico?</txt_value>
+			<value val="1">Si</value>
+			<value val="2">No</value>
+			<value val="-9933">NA</value>
+	</field>
+	<!--field type="textbox" var="BONIFICO_EURO" var_type="text" var_size="200" cols="2" size="40" send="obbligatorio" hide="yes" condition="BONIFICO" condition_value="1">
+		<txt_value><![CDATA[Importo bonifico (in euro)]]></txt_value>
+	</field-->
+	<field type="textbox" var="BONIFICO_EURO_NUM" var_type="number" cols="2" size="40" save="facoltativo"  send="obbligatorio" hide="yes" condition="BONIFICO" condition_value="1">
+		<txt_value><![CDATA[Importo bonifico (in euro)]]></txt_value>
+	</field>
+	<field type="radio" var="BONIFICO_DOVUTO" send="obbligatorio" cols="2" hide="yes" condition="BONIFICO" condition_value="1">
+		<txt_value>L'importo pagato corrisponde al dovuto?</txt_value>
+			<value val="1">Si</value>
+			<value val="2">No</value>
+			<!--value val="-9933">NA</value-->
+	</field>
+	<field type="textbox" var="BONIFICO_CONGUAGLIO" var_type="text" var_size="200" cols="2" size="40" send="obbligatorio" hide="yes" condition="BONIFICO_DOVUTO" condition_value="2">
+		<txt_value><![CDATA[Se l'importo pagato non corrisponde al dovuto ed è necessario un conguaglio, indicare l'importo  (in euro)]]></txt_value>
+	</field>
+	<field type="hidden" var="INVIO_DT" >
+		<txt_value>Data di invio pratica</txt_value>
+			<value>SYSDATE</value>
+	</field>
+	
+	<field type="data" var="RICEZI_DT" cols="2" send="obbligatorio">
+		<txt_value>Data di ricezione della documentazione</txt_value>
+	</field>
+	<!--field type="checkbox" var="RICEZI_DTNA" group="THIS_CHECK" set_NA="RICEZI_DT" cols="2">
+		<txt_value>Non applicabile</txt_value>
+		<value val="RICEZI_DTNA"></value>
+	</field-->
+	<!--field type="textbox" var="DELIB_NUM" var_type="text" var_size="200" cols="2" size="40" send="obbligatorio" condition="COMBO" condition_value="1" hide="yes">
+		<txt_value>Codice studio interno CE</txt_value>				
+	</field--> 
+	<field type="textbox" var="DELIB_NUM" var_type="text" var_size="200" cols="2" size="40" send="obbligatorio">
+		<txt_value>Codice studio interno CE</txt_value>				
+	</field> 
+	<field type="radio" var="DOC_COMPLETA" send="obbligatorio" cols="2">
+		<txt_value>Documentazione completa</txt_value>
+			<value val="1">Si</value>
+			<value val="2">No</value>
+	</field>
+	<field type="data" var="COMPLETEZZA_DT" cols="2" send="obbligatorio" hide="yes" condition="DOC_COMPLETA" condition_value="1">
+		<txt_value>Data di valutazione della completezza della documentazione</txt_value>
+	</field>
+	<field type="textarea" var="NOTE" var_type="text" cols="2" rows="4" tcols="50" var_size="2000" size="2000" hide="yes" condition="DOC_COMPLETA" condition_value="1">
+		<txt_value><![CDATA[Note]]></txt_value>
+	</field>
+	<field type="data" var="INTEGRAZ_DT" cols="2" send="obbligatorio" hide="yes" condition="DOC_COMPLETA" condition_value="2">
+		<txt_value>Data di richiesta integrazioni</txt_value>
+	</field>
+	<field type="textarea" var="RICH_INTEGR" var_type="text" cols="2" rows="4" tcols="50" var_size="2000" size="2000" hide="yes" condition="DOC_COMPLETA" condition_value="2">
+		<txt_value><![CDATA[Richiesta integrazione]]></txt_value>
+	</field> 
+	
+	<field type="textarea" var="OSSERVAZIONI" var_type="text" cols="2" rows="4" tcols="50" var_size="2000" size="2000">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field> 
+		
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

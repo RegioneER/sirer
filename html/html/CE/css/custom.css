@@ -1,0 +1,26 @@
+a:hover{
+	text-decoration:none;
+}
+
+/*uxmr*/
+.tab-content > tbody > tr:nth-child(1) > td:nth-child(2) > a:nth-child(1){
+		display:none;
+}
+
+/*sedute*/
+.tab-content > tbody > tr:nth-child(1) > td:nth-child(1) > a:nth-child(1){
+		display:none;
+}
+
+form[name='ALL_IN_FORMS'] select {
+    max-width: 418px;
+}
+
+form[name='ALL_IN_FORMS'] input[type='textbox'] {
+    width: 98px;
+}
+
+/* form[name='ALL_IN_FORMS'] th:nth-child(2) {
+    display: none;
+} */
+

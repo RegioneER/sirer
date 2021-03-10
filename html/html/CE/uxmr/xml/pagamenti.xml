@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Pagamenti" titolo="Pagamenti" table="PAGAMENTI"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="6"
+	field_tb_show="QUOTA_TOT"
+	tb_header="Quota totale"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field cols="6">
+	<txt_value><![CDATA[<td colspan="12"  class=titolo3 align=center><b> Dati pagamenti</b></td>]]></txt_value>
+	</field>
+	
+		<field type="textbox" var="PREVISIONE_COR" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Previsione di ripartizione del corrispettivo a paziente (indicare valore percentuale)(studio profit): ]]></txt_value>
+	</field>
+	<field type="textbox" var="COMPENSI_PER" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Compensi al personale medico coinvolto nella sperimentazione clinica (indicare valore percentuale)(studio profit): ]]></txt_value>
+	</field>
+	<field type="textbox" var="COMPENSI_PERN" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Compensi al personale non medico coinvolto nella sperimentazione clinica (indicare valore percentuale)(studio profit): ]]></txt_value>
+	</field>
+	<field type="textbox" var="ENTITA_FIN" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Entita' del finanziamento (in Euro)(studio no-profit): ]]></txt_value>
+	</field>
+	<field type="textbox" var="ENTE" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Ente/enti che mette/mettono a disposizione il finanziamento per la conduzione dello studio (studio no-profit): ]]></txt_value>
+	</field>
+	<field type="textbox" var="BORSE" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Attivazione di contratti/borse di studio: ]]></txt_value>
+	</field>
+	<field type="textbox" var="BENI" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Acquisizione di beni o servizi]]></txt_value>
+	</field>
+	<field type="textbox" var="ATTREZZATURE" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Acquisizione di attrezzature]]></txt_value>
+	</field>
+	<field type="textbox" var="FORMAZIONE" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Congressi, corsi di aggiornamento, altre iniziative di formazione]]></txt_value>
+	</field>
+	<field type="textbox" var="ALTRO" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Altro]]></txt_value>
+	</field>
+	<field type="textbox" var="TOTALE" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Totale]]></txt_value>
+	</field>
+		<field type="textbox" var="QUOTA_TOT" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Quota totale (in Euro): ]]></txt_value>
+	</field>
+	<field cols="6" type="data" var="ACCONTO_DT" send="obbligatorio" def="(gg/mm/aaaa)">
+		<txt_value>Data di acconto </txt_value>
+	</field>
+	<field type="textbox" var="QUOTA_ACCONTO" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Quota di acconto (in Euro): ]]></txt_value>
+	</field>
+	<field type="textbox" var="DAPAGARE" var_type="text" var_size="50" size="70" send="obbligatorio" cols="6">
+		<txt_value><![CDATA[Quota da pagare (in Euro): ]]></txt_value>
+	</field>
+	
+	<field  cols="6" name="T6">
+	<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>Personale</b></td>]]></txt_value>
+	</field>
+	<field type="select" var="NR_PERSONE" cols="6" show_selected="yes">
+					<txt_value> Indicare il numero di personale </txt_value>
+					
+					<value val="5">1</value>
+					<value val="4">2</value>
+					<value val="3">3</value>
+					<value val="2">4</value>
+					<value val="1">5</value>
+					<value val="2">4</value>
+					<value val="6">6</value>
+					<value val="7">7</value>
+					<value val="8">8</value>
+					<value val="9">9</value>
+					<value val="10">10</value>
+		</field>
+	
+	
+	
+ 		<field  cols="6" name="T7" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+	<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>1</b></td>]]></txt_value>
+	</field>
+		<field type="textbox" var="NOME" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Nome]]></txt_value>
+		</field>
+	<field type="textbox" var="COGNOME" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Cognome]]></txt_value>
+		</field>
+		<field type="textbox" var="PROFESSIONE" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Professione]]></txt_value>
+		</field>
+		<field type="textbox" var="REPARTO" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Reparto]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFA" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Quota compenso previsto]]></txt_value>
+		</field>
+		<field type="textbox" var="SALDO" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Saldo]]></txt_value>
+		</field>
+		
+		<field  cols="6" name="T8" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+	<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>1</b></td>]]></txt_value>
+	</field>
+		<field type="textbox" var="NOME2" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Nome]]></txt_value>
+		</field>
+	<field type="textbox" var="COGNOME2" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Cognome]]></txt_value>
+		</field>
+		<field type="textbox" var="PROFESSIONE2" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Professione]]></txt_value>
+		</field>
+		<field type="textbox" var="REPARTO2" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Reparto]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFA2" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Tariffa]]></txt_value>
+		</field>
+		<field type="textbox" var="SALDO2" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Saldo]]></txt_value>
+		</field>
+		<field  cols="6" name="T9" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+	<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>1</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="NOME3" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Nome]]></txt_value>
+		</field>
+	<field type="textbox" var="COGNOME3" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Cognome]]></txt_value>
+		</field>		
+		<field type="textbox" var="PROFESSIONE3" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Professione]]></txt_value>
+		</field>
+		<field type="textbox" var="REPARTO3" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Reparto]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFA3" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Tariffa]]></txt_value>
+		</field>
+		<field type="textbox" var="SALDO3" var_type="text" var_size="50" size="50"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Saldo]]></txt_value>
+		</field>
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

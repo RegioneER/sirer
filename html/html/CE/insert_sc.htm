@@ -1,0 +1,190 @@
+<html lang="EN" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>CE OnLine</title>
+<link media="screen" href="ceonline.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="epoch_classes.js"></script>
+<script type="text/javascript">
+
+	var bas_cal;      
+window.onload = function () {
+	bas_cal = new Epoch('epoch_basic','flat',document.getElementById('basic_container'));
+};
+/*]]>*/
+</script>
+
+</head>
+<SCRIPT language=javascript src="/js/text.js"></SCRIPT>
+
+<body>
+<!--testata-->
+<table width="100%" border="0" align="center" height="108" style="background-image:url('images/sfondo.gif')">
+	<tr>
+	  <td class="bg">&nbsp;</td>
+	</tr>
+</table>
+
+<br>
+
+
+
+<table class="ricetta" align="center" border="0" width="1000" height="400">
+	<tr>
+		<td width="100">&nbsp;</td>
+		<td class="bgcelle">Inserisci nuova sperimentazione clinica</td>
+		<td class="bgcelle">Monitoraggio/aggiornamento</td>
+		<td class="bgcelle">Cerca sperimentazioni</td>
+		<td class="bgcelle">Area documentale e Forum</td>
+		<td class="bgcelle">Reporting </td>
+	</tr>
+	<tr>
+		<td valign="top" width="30%">
+			<table border="0" width="70%">
+				<tr>	
+						<td class="bgcelle2" height="40">Dati Utente</td>
+				</tr>
+				<tr>
+		<td class="strumenti" valign="top"><b>Nome:</b> Mauro&nbsp;Rossi
+			<br><b>E-mail:</b> m.rossi@mail.it
+			<br><b>Profilo:</b> Segreteria Comitato Etico per la sperimentazione clinica della provincia di Verona </td>
+	</tr>
+	
+	<tr>
+		<td class="bgcelle2" height="40">Utility</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Bacheca del CE</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Messaggi</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Contatti</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Calendario</td>
+	</tr>
+	<tr>
+		<td class="strumenti">News</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Link utili</td>
+	</tr>
+	<tr>
+		<td class="strumenti">help</td>
+	</tr>
+	
+			</table>
+		</td>
+	<td colspan="5" class="st_centrale" valign="top"  width="70%">
+			
+			<table align="center" width="100%" border="0">
+				
+				<tr>
+					<td class="st_centrale1" align="center">&nbsp;</td>
+					<td class="st_centrale1" align="center">&nbsp;</td>
+				</tr>
+				
+			</table>
+			
+				
+				
+				<table><tr><td>	&nbsp;	</td>	</tr>	</table>
+
+					<table align="center" width="100%" border="1" bordercolor="#2D3E9A">
+				
+				<tr>	
+					<td class="st_centrale1" align="left" colspan="3"><b>Inserisci nuova sperimentazione clinica</b></td>
+				</tr>
+				<tr><td>&nbsp;</td></tr>
+				
+				<tr>
+		<td class="destra" width="50%">Codice dello studio:</td>
+		<td class="input">
+			<input type="text" size="20" maxlength="20" name="CODICE">
+			</td>
+	</tr>
+			<tr>
+		<td class="destra" width="50%">Titolo dello studio:</td>
+		<td class="input">
+			<input type="text" size="20" maxlength="20" name="TITOLO">
+			</td>
+	</tr>
+	<tr>
+		<td class="destra" width="50%">Promotore dello studio:</td>
+		<td class="input">
+			<input type="text" size="20" maxlength="20" name="SPONSOR">
+			</td>
+	</tr>
+	
+	<tr>
+		<td class="destra" width="50%">Tipo studio:</td>
+		<td class="input">
+		        <select name=STUDIO_TIPO>
+						      <option value=""></option>
+					        <option value="0">Interventistico con farmaco</option>
+	                <option value="1">Interventistico senza farmaco</option>
+	                <option value="3">Osservazionale</option>
+	                <option value="84">Compassionevole</option>
+	                <option value="81">Interventistico con dispoditivo medico</option>
+	                <option value="78">Tessutale</option>
+	                <option value="5">Altro</option>
+						</select></td>
+	</tr>
+	
+	<tr>
+		<td class="destra" width="50%">Se altro tipo specificare:</td>
+		<td class="input">
+			<input type="text" size="20" maxlength="20" name="ALTRO1">
+			</td>
+	</tr>
+	<!--tr>
+		<td class="st_centrale2" width="50%">Se positiva, specificare la data:</td>
+		<td class="st_centrale2"> 
+			<input type="text" size="2" maxlength="2" name="DATADELIB_DTD">
+			<input type="text" size="2" maxlength="2" name="DATADELIB_DTM">
+			<input type="text" size="4" maxlength="4" name="DATADELIB_DTY"> (gg/mm/aaaa)</td>
+			<input type="hidden" name="DATADELIB_DT" value="">
+			<input type="hidden" name="DATADELIB_DTRC" value="">
+	</tr-->
+	<tr>
+    <td class="destra" >Allegare il file del protocollo in italiano</td>
+    <td class="input"><input type="text" size="50" maxlength="50" name="DELIB_FILE"> 
+					<input type="button" value="Sfoglia" ></td>
+	</tr>
+		<tr>
+    <td class="destra" >Allegare il file del consenso informato</td>
+    <td class="input"><input type="text" size="50" maxlength="50" name="DELIB_FILE"> 
+					<input type="button" value="Sfoglia" ></td>
+	</tr>
+		<tr>
+    <td class="destra" >Allegare il file dell'investigator brochure</td>
+    <td class="input"><input type="text" size="50" maxlength="50" name="DELIB_FILE"> 
+					<input type="button" value="Sfoglia" ></td>
+	</tr>
+	<tr>
+    <td class="destra" >Allegare il file dell'IMP dossier</td>
+    <td class="input"><input type="text" size="50" maxlength="50" name="DELIB_FILE"> 
+					<input type="button" value="Sfoglia" ></td>
+	</tr>
+				<table width="100%" align="center">
+	<tr>            
+		<td align="center"> 
+			 
+			<input type="button" value="Invia" name="B2" onclick="location.href='menu.htm'">
+			<INPUT type=reset value=Annulla name=B2></td>
+	</tr>
+</table>	
+			</table>
+			
+			
+			</td>
+	</tr>
+
+	<tr>
+	<td width="200"><a class="percorso" href="home.htm">Torna all'Home Page</a></td>
+</tr>
+
+
+</form>
+</body>
+</html>

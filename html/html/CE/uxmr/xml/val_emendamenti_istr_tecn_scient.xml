@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Invio Studio" titolo="Invio Studio" table="EME_ITS" 
+	FIELD_TB_SHOW="D_CENTRO,'&lt;div align=center&gt; &lt;a target=_blank href=index.php?mod_istruttoria_ts_eme=yes&amp;ID_STUD='||ID_STUD||'&amp;VISITNUM='||VISITNUM||'&amp;VISITNUM_PROGR='||VISITNUM_PROGR||'&amp;PROGR='||PROGR||' &gt; &lt;i class=''btn btn-info btn-xs fa fa-file-word-o'' &gt; &lt;/i&gt; &lt;/a&gt; &lt;/div&gt;'"
+	TB_HEADER="Centro,Genera scheda istruttoria"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]|and|exams=visite_exams.xml" 
+	cols="4"
+	load="$('[class=radio]').css({'float':'left','margin-top':'10px'}); $('[id^=cell_].destra').attr('colspan','6');"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="MODIFICA_DT" var_type="date" >
+			<value val="sysdate"></value>
+		</field>
+		<field type="hidden" var="TEMPLATE_TYPE" var_type="text" var_size="100" >
+			<value val="eme_its"></value>
+		</field>
+		<field type="hidden" var="CENTRO" var_type="number">
+		</field>
+ 		<field type="hidden" var="D_CENTRO" var_type="text" var_size="200">
+		</field>
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+
+    <!--**************** EMENDAMENTI-->
+<field cols="4" name="T1" >
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=center><b> Istruttoria Tecnico Scientifica per Emendamento</b></td>]]></txt_value>
+	</field>
+	<!--field type="radio" cols="4" var="OSSC" send="obbligatorio" subtbcol="3">
+		<txt_value>Inserito in osservatorio AIFA (OSsC)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field cols="4" type="textarea" var="NOTE_STORICO" var_type="text" rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Elenco storico degli emendamenti: eventuali note (testo libero):]]></txt_value>
+	</field>
+	
+	<field cols="4" type="textarea" var="NOTE_EME" var_type="text" rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Identificazione dell'emendamento: eventuali note (testo libero):]]></txt_value>
+	</field-->
+	
+	<field type="radio" cols="4" var="EME_DM" send="obbligatorio" subtbcol="3">
+		<txt_value>L’emendamento è tale da 'incidere sulla sicurezza dei soggetti della sperimentazione o modificare l’interpretazione della documentazione scientifica a sostegno dello svolgimento dello studio oppure siano significativi in relazione allo svolgimento clinico dello studio' (definizione emendamento sostanziale dal DM 21 dicembre 2007)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MIS_URGENTI" send="obbligatorio" subtbcol="3">
+		<txt_value>L’emendamento è stato oggetto di misure urgenti ed adeguate per proteggere i soggetti dello studio contro ogni possibile rischio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="LETTERA" send="obbligatorio" subtbcol="3">
+		<txt_value>Lettera di trasmissione, contenente le motivazioni per considerare l’emendamento come sostanziale, firmata e datata</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="APP9" send="obbligatorio" subtbcol="3">
+		<txt_value>Appendice 9 (se applicabile)</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field cols="4" type="textarea" var="NOTE_DOC" var_type="text" rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Informazioni di supporto, se applicabili]]></txt_value>
+	</field>
+	
+	
+	<field cols="4" name="T2">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> Elementi modificati dall'emendamento:</b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="PROTOCOLLO" send="obbligatorio" subtbcol="3">
+		<txt_value>Protocollo</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="QUALITA" send="obbligatorio" subtbcol="3">
+		<txt_value>Dati sulla qualità e/o sicurezza dell’IMP</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PAZ" send="obbligatorio" subtbcol="3">
+		<txt_value>Informative al paziente/genitore/tutore legale</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MEDICO" send="obbligatorio" subtbcol="3">
+		<txt_value>Informazioni al medico curante</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PI" send="obbligatorio" subtbcol="3">
+		<txt_value>Sperimentatore principale di un centro</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POLIZZA" send="obbligatorio" subtbcol="3">
+		<txt_value>Polizza assicurativa</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BOZZA" send="obbligatorio" subtbcol="3">
+		<txt_value>Bozza di convenzione</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ALTRO" send="obbligatorio" subtbcol="3">
+		<txt_value>Altro</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+
+	<field cols="4" type="textarea" var="ALTRO2" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="ALTRO" condition_value="1">
+		<txt_value><![CDATA[Se altro, specificare:]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONSEGUENZE" send="obbligatorio" subtbcol="3">
+		<txt_value>L’emendamento ha conseguenze per i soggetti già inclusi nello studio</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="SOSPENSIONE" send="obbligatorio" subtbcol="3">
+		<txt_value>L’emendamento riguarda la sospensione temporanea dello studio </txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="NOTE" var_type="text" rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Eventuali note (testo libero)::]]></txt_value>
+	</field>
+	
+	<field cols="4" name="T3">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> Elementi modificati nel protocollo clinico (se applicabile) e rivalutati:</b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="ETICI" send="obbligatorio" subtbcol="3">
+		<txt_value>Aspetti etici, quali tutela dei diritti, salute, benessere dei soggetti</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PROCEDURE" send="obbligatorio" subtbcol="3">
+		<txt_value>Procedure per la qualità dei dati</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="OBIETTIVI" send="obbligatorio" subtbcol="3">
+		<txt_value>Obiettivi dello studio</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DISEGNO" send="obbligatorio" subtbcol="3">
+		<txt_value>Disegno dello Studio</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONSENSO" send="obbligatorio" subtbcol="3">
+		<txt_value>Modalità di sottomissione del Consenso informato</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ARRUOLAMENTO" send="obbligatorio" subtbcol="3">
+		<txt_value>Procedure di arruolamento</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ESITO" send="obbligatorio" subtbcol="3">
+		<txt_value>Misurazioni di esito</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="TEMPI" send="obbligatorio" subtbcol="3">
+		<txt_value>Tempistica degli esami clinico-diagnostici</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="TEST" send="obbligatorio" subtbcol="3">
+		<txt_value>Aggiunta o eliminazione di test o di misurazioni</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PARTECIPANTI" send="obbligatorio" subtbcol="3">
+		<txt_value>Numero dei partecipanti</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ETA_PARTECIPANTI" send="obbligatorio" subtbcol="3">
+		<txt_value>Intervallo di età dei partecipanti</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INCLUSIONE" send="obbligatorio" subtbcol="3">
+		<txt_value>Criteri di inclusione</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ESCLUSIONE" send="obbligatorio" subtbcol="3">
+		<txt_value>Criteri di esclusione</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MONITORAGGIO" send="obbligatorio" subtbcol="3">
+		<txt_value>Monitoraggio della sicurezza</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="SICUREZZA" send="obbligatorio" subtbcol="3">
+		<txt_value>Variazione dei criteri di sicurezza per interrompere il trattamento sperimentale</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DURATA" send="obbligatorio" subtbcol="3">
+		<txt_value>Durata dell’esposizione al prodotto sperimentale</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POSOLOGIA" send="obbligatorio" subtbcol="3">
+		<txt_value>Variazione di posologia del medicinale sperimentale </txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONFRONTO" send="obbligatorio" subtbcol="3">
+		<txt_value>Variazione del prodotto di confronto</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICA" send="obbligatorio" subtbcol="3">
+		<txt_value>Analisi statistica</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONCLUSIONE" send="obbligatorio" subtbcol="3">
+		<txt_value>Variazione della definizione di conclusione dello studio</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RAPPORTO" send="obbligatorio" subtbcol="3">
+		<txt_value>Modificazione alla valutazione del rapporto beneficio/rischio</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+		
+		
+	<field cols="4" type="textarea" var="NOTE2" var_type="text" rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Eventuali note (testo libero):]]></txt_value>
+	</field>
+	
+		<field cols="4" type="textarea" var="ASPETTI" var_type="text" rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Altri aspetti particolari che si ritiene di portare all'attenzione del Comitato Etico (testo libero): :]]></txt_value>
+	</field>
+		
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>
+

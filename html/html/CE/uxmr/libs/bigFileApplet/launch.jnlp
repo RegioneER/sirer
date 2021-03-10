@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="$$codebase" href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>XmrFileUploadApplet</title>
+        <vendor>cin0562a</vendor>
+        <homepage href=""/>
+        <description>XmrFileUploadApplet</description>
+        <description kind="short">XmrFileUploadApplet</description>
+        
+        
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se java-vm-args="-Djava.security.policy=applet.policy" version="1.6+"/>
+        <jar href="XmrFileUploadApplet.jar" main="true"/>
+        
+        
+    <jar href="lib/activation.jar"/>
+<jar href="lib/FastInfoset.jar"/>
+<jar href="lib/http.jar"/>
+<jar href="lib/InternetChecker.jar"/>
+<jar href="lib/jaxb-api.jar"/>
+<jar href="lib/jaxb-impl.jar"/>
+<jar href="lib/jaxb-xjc.jar"/>
+<jar href="lib/jaxws-api.jar"/>
+<jar href="lib/jaxws-rt.jar"/>
+<jar href="lib/jaxws-tools.jar"/>
+<jar href="lib/jsr250-api.jar"/>
+<jar href="lib/mimepull.jar"/>
+<jar href="lib/resolver.jar"/>
+<jar href="lib/saaj-api.jar"/>
+<jar href="lib/saaj-impl.jar"/>
+<jar href="lib/stax-ex.jar"/>
+<jar href="lib/streambuffer.jar"/>
+<jar href="lib/swing-layout-1.0.4.jar"/>
+<jar href="lib/woodstox.jar"/>
+<jar href="lib/AbsoluteLayout.jar"/>
+<jar href="lib/ClientLib.jar"/>
+</resources>
+    <applet-desc height="300" main-class="it.cineca.siss.xmr.applets.XmrFileUpload" name="XmrFileUploadApplet" width="300">
+        
+    </applet-desc>
+</jnlp>

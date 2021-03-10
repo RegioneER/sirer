@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<!-- 	FIELD_TB_SHOW="D_TIPO_DOC||'&lt;br&gt;'||D_DOC_GEN||'&lt;br&gt;'||D_DOC_LOC,DOC_DT,DOC_VERS" -->
+<!--FIELD_TB_SHOW="'&lt;b&gt;Tipologia:&lt;/b&gt; '||D_DOC_LOC|| case when DOC_LOC_ALTRO is not null then '&lt;br&gt;&lt;b&gt;Specificare:&lt;/b&gt; '||DOC_LOC_ALTRO end || case when DESCR_AGG is not null then '&lt;br&gt;&lt;b&gt;Descrizione aggiuntiva:&lt;/b&gt; '||DESCR_AGG end,DOC_DT,DOC_VERS"
+		TB_HEADER="Tipo,Data,Versione"-->
+	<form fname="DOCUMENTAZIONE" titolo="DOCUMENTAZIONE" table="DOCUM_CENTRO"
+	FIELD_TB_SHOW="''"
+	TB_HEADER=" "
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]|and|ESAM=[ESAM]"
+	cols="2"
+	FIELD_AGG="DOC_LOC|DOC_DT|DOC_VERS|DOC_CENTROSPEC"
+	FIELD_AGG_TXT="Tipo|Data|Versione|Scarica Doc."
+	TRASH="no"
+	DOC_FIELD="DOC_CENTROSPEC"
+	HIDE_ALL_IN_BUTTON="no"
+	F_TO_CALL="force_doc_cs"
+	load="ce_doc_loc_disable();"
+  >
+
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"> <value val="next"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+    <field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="INVIOCO" tb="no"></field>
+	<field type="hidden" var="CENTER" var_type="text" var_size="8"></field>
+	<field type="hidden" var="CODE1" var_type="number"></field>
+	<field type="hidden" var="CODE2" var_type="number"></field>
+	<field type="hidden" var="CORE" var_type="number"></field>
+	<field type="hidden" var="COORD" var_type="number"></field>
+	<field type="hidden" var="CS" var_type="number"></field>
+	<field type="hidden" var="D_DOCUMENTO" var_type="text" var_size="400" ></field>
+
+	<field type="hidden" var="CODICE" var_type="text" var_size="40" bytb="REGISTRAZIONE" bytbcode="CODICE" bytbdecode="CODICE" bytbwhere="ID_STUD='[ID_STUD]'" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	
+	<field type="hidden" var="FORCE_DOC_CS" var_type="text" var_size="8" tb="no"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+	<field type="hidden" var="MISTO" var_type="text" tb="no" bytb="REGISTRAZIONE" bytbcode="PEDIATRICO" bytbdecode="PEDIATRICO" bytbwhere="ID_STUD='[ID_STUD]'"></field>
+	<field type="hidden" var="CEP" var_type="text" tb="no" bytb="VALUTAZIONE" bytbcode="PARERE_CEP" bytbdecode="PARERE_CEP" bytbwhere="ID_STUD='[ID_STUD]' and VISITNUM_PROGR=[VISITNUM_PROGR] and progr=(select max(progr) from ce_valutazione where id_stud='[ID_STUD]' and VISITNUM_PROGR=[VISITNUM_PROGR]) "></field>
+	<field type="hidden" var="MISTO_CEP" var_type="text" tb="no" compila="1" compila_condition_var="MISTO|CEP" compila_condition_value="2|1" compila_op="AND"></field>
+
+	<field cols="2">
+	<txt_value><![CDATA[<td colspan="4"  class=titolo3 align=center><b> Nuovo Documento</b></td>]]></txt_value>
+	</field>
+
+ 		<field type="hidden" var="PC_KEY" cols="6" var_size="20" bytb="CENTRILOCALI" bytbcode="PC_KEY" bytbdecode="PC_KEY" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+					<txt_value> Struttura partecipante </txt_value>
+		</field>
+ 		<field type="hidden" var="CENTRO" cols="2" bytb="CENTRILOCALI" bytbcode="CENTRO" bytbdecode="CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+					<txt_value> Struttura partecipante </txt_value>
+		</field>
+ 		<field type="text" var="D_CENTRO" cols="2" bytb="CENTRILOCALI" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+					<txt_value> Struttura partecipante </txt_value>
+		</field>
+		
+    
+    <field cols="2" type="select" var="DOC_LOC" show_selected="yes"  send="obbligatorio" save="obbligatorio" bytb="DOC_LOC" bytbcode="ID" BYTBDECODE="DESCRIZIONE"  bytborderby="DESCRIZIONE ASC" > <!--bytbwhere="MISTO_CEP='[MISTO_CEP]'"-->
+			<txt_value>Selezionare il documento centro specifico</txt_value>
+	  </field>
+	  	<field type="textbox" var="DESCR_AGG" cols="2" var_size="200" size="100">
+    	<txt_value>Descrizione aggiuntiva</txt_value>
+    </field>
+	  <field cols="2" type="textbox" var="DOC_LOC_ALTRO" var_type="text"  var_size="200" size="100" condition="DOC_LOC" condition_value="18" hide="yes">
+    	<txt_value><![CDATA[Se altro, specificare]]></txt_value>
+    </field>
+ 	
+		<field type="data" var="DOC_DT" cols="1">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="DOC_VERS" var_type="text"  var_size="30" size="12"  send="obbligatorio" save="obbligatorio" cols="1">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+   
+   <field cols="2"
+    type="file_cme" 
+    var="DOC_CENTROSPEC"
+    THREAD="Documentazione Centro Specifica" 
+    TOPIC="Centro Specifica"
+    xmlTypeDefinition="cme/documentazione_centro_specifica.xml" 
+    save="obbligatorio"
+    send="obbligatorio"
+    auto_approve="yes">
+    <txt_value>Attach</txt_value>
+   </field>
+   
+   <field cols="2" type="textarea" var="NOTE"  var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Note:]]></txt_value>
+  </field> 
+	
+  	<save>Inserisci documento</save>
+	<cancel>Annulla</cancel>		
+</form>
+   
+		

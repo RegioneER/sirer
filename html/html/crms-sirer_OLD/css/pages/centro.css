@@ -1,0 +1,12 @@
+label{
+	display:block;
+	margin-top:5px;
+}
+input,textarea,select{
+	margin-bottom:5px;
+}
+
+.main-content button.btn{
+	font-size:16px;
+	margin-top:20px;
+}

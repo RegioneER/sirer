@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Convocazione componenti" titolo="Convocazione componenti" table="SEL_COMPONENTI" 
+	link_to="index.php?ID_SED=[ID_SED]|and|exams" 
+	cols="1"
+	f_to_call="componenti_merge"
+	>
+		<field type="hidden" var="ID_SED" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+
+		<field type="hidden" var="CENTER" var_type="number" />
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+
+		<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
+		
+	<field>
+		<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Convocazione partecipanti alla riunione</b></td>]]></txt_value>
+	</field>
+	
+		<field type="multicheck" var="CONVOCAZIONI" height_box="340" bytb="LISTA_COMP_INT_EXT" bytbcode="USERID" bytbdecode="QUALIFICA||' '||NOME||' '||COGNOME||' - '||RUOLO" bytbwhere="CENTER=[CENTER]" bytborderby="OLD desc, COGNOME">
+			<txt_value><![CDATA[Selezionare i <b>componenti</b> <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'CONVOCAZIONI_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		<field type="hidden" var="CONVOCAZIONI_CONFERMATE" var_type="text" var_size="4000" />
+		<field type="hidden" var="CONVOCAZIONI_RESPINTE" var_type="text" var_size="4000" />
+
+		<field type="multicheck" var="CONVOCAZIONI_ESTERNI" height_box="340" bytb="LISTA_COMP_SPECIALI" bytbcode="USERID" bytbdecode="QUALIFICA||' '||NOME||' '||COGNOME||' - '||RUOLO" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME">
+			<txt_value><![CDATA[Selezionare i <b>membri speciali</b> <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'CONVOCAZIONI_ESTERNI_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		<!--field type="multicheck" var="CONVOCAZIONI_SPERIMENTATORI" bytb="LISTA_SPERIMENTATORI" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" >
+			<txt_value><![CDATA[Selezionare gli <b>sperimentatori</b>]]></txt_value>
+		</field-->
+		<field type="multicheck" var="CONVOCAZIONI_SEGR_CE" height_box="340" bytb="LISTA_SEGR_CE" bytbcode="USERID" bytbdecode="QUALIFICA||' '||NOME||' '||COGNOME||' - '||RUOLO" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME">
+			<txt_value><![CDATA[Selezionare i <b>membri della segreteria</b> <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'CONVOCAZIONI_SEGR_CE_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+ 
+ 
+	<enable>
+	</enable>
+
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>
+
+

@@ -1,0 +1,1 @@
+select ID_STATO from CEWF_STATO where PK_SERVICE=7148NULL

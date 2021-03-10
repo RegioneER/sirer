@@ -1,0 +1,28 @@
+#menu4{
+	width:200px;
+}
+
+#menu4 .menu_header {
+	width:200px;
+}
+
+#menu4 .menu_item {
+	width:200px;
+}
+
+#menu4 div.menu_item a:link, a:visited{
+	width:200px;
+	white-space: wrap;
+}
+
+#menu4 .menu_header a,.item_preview1 a {
+  	height: 32px;
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+	text-decoration: none;
+}
+
+#menu4 div a:link, #menu4 div a:visited, .item_preview2 a:link, .item_preview2 a:visited {
+	width:200px;
+white-space: wrap;
+}

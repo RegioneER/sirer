@@ -1,0 +1,28 @@
+<list titolo="Lista Pazienti">
+
+	<col tipo="hidden" nome="CENTER" var="CE_TUTTI_STUDI.CENTER" table="CE_TUTTI_STUDI"></col>
+	<col tipo="testo" nome="ID_STUD" var="CE_TUTTI_STUDI.ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" table="CE_TUTTI_STUDI" where="id_stud in (select center from ce_utenti_centri where userid='[remote_userid]')" order_by="desc" ord_arrow="yes">ID Studio</col>
+	<col tipo="testo" nome="CODICE_PROT" var="CE_TUTTI_STUDI.CODICE_PROT" table="CE_TUTTI_STUDI">Codice Studio</col>
+	<col tipo="testo" nome="TITOLO_PROT" var="CE_TUTTI_STUDI.TITOLO_PROT" table="CE_TUTTI_STUDI">Titolo Studio</col>
+	<col tipo="hidden" nome="TIPO_SPER" var="CE_TUTTI_STUDI.TIPO_SPER" table="CE_TUTTI_STUDI">Tipo Sperimentazione</col>
+	<col tipo="testo" nome="DESCR_SPONSOR" var="CE_TUTTI_STUDI.DESCR_SPONSOR" table="CE_TUTTI_STUDI">Sponsor</col>
+	<col tipo="testo" nome="REGISTRAZIONE_DT" var="CE_TUTTI_STUDI.REGISTRAZIONE_DT" table="CE_TUTTI_STUDI">Registrazione</col>
+	<col tipo="lente" nome="ID_STUD_1" var="CE_TUTTI_STUDI.ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" img="pen.png" >Modifica</col>
+	<!--col tipo="testo" nome="RIUNIONE_CE_DT" var="RIUNIONE_CE_DT" table="CE_STUDI_CENTRI_PAR_ESPR" where="CE_STUDI_CENTRI_PAR_ESPR.id_stud=CE_TUTTI_STUDI.ID_STUD">Registrazione</col-->
+<!-- 
+	<col tipo="testo" nome="CODPAT" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER"  table="[patients_table]" ord_arrow="yes"  order_by="desc">Codice paziente</col>
+	<col tipo="hidden" nome="NASCITA_DT" var="to_char([patients_table].NASCITA_DT,'DDMMYYYY')" table="[patients_table]"></col>
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER" table="[patients_table]"></col>
+	
+	<col tipo="testo" nome="COGNOME" crypto="yes" var="[patients_table].COGNOME" table="[patients_table]">Cognome</col>
+	<col tipo="testo" nome="NOME" crypto="yes" var="[patients_table].NOME" table="[patients_table]">Nome</col>
+	<col tipo="testo" nome="GENDER" var="decode([patients_table].gender,1,'M',2,'F')" table="[patients_table]">Sesso</col>
+	<col tipo="testo" nome="NASCITA_DT1" var="to_char([patients_table].NASCITA_DT,'DD/MM/YYYY')" table="[patients_table]">Data di nascita</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+ -->
+ 
+	</list>
+
+
+
+ 

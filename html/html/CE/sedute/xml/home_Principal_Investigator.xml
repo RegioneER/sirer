@@ -1,0 +1,14 @@
+<page titolo="CE Online">
+	<blocco titolo="Sedute">
+		<link>
+			<testo><![CDATA[</a><b>Lista sedute</b>]]></testo>
+		</link>
+		<link script="index.php" param="list=patients_list.xml">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lista sedute]]></testo>
+		</link>
+		<link script="index.php" param="search=proc">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerca sedute]]></testo>
+		</link>
+	</blocco>
+
+</page>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<visit_exam>
+	<group text="Studio">
+		<visit number="0" text="" short_txt="Dati Studio" >
+			<exam number="0" xml="registrazione.xml" mandatory="yes">
+				<text>Dati di identificazione dello studio</text>
+			</exam>
+			<exam number="8" xml="dati_clinicidm.xml">
+				<text>Riassunto dello studio interventistico con dispositivo medico</text>
+			</exam>
+			<!--exam number="14" xml="dati_clinicisdm.xml">
+				<text>Riassunto dello studio interventistico senza dispositivo medico</text>
+			</exam-->
+			<exam number="9" xml="dati_clinicinf.xml">
+				<text>Riassunto dello studio interventistico senza farmaco e dispositivo</text>
+			</exam>
+			<exam number="7" xml="studi_dispositivi.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Dispositivi medici</text>
+			</exam>
+			
+			<exam number="1" xml="dati_clinici.xml" mandatory="yes">
+				<text>Riassunto dello studio interventistico con farmaco</text>
+			</exam>
+			<exam number="6" xml="studi_farmaco.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Farmaci in studio interventistico</text>
+			</exam>
+			<exam number="11" xml="dati_clinicios.xml" mandatory="yes">
+				<text>Riassunto dello studio osservazionale con farmaco</text>
+			</exam>
+			<exam number="15" xml="studi_farmacoos.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Farmaci in studio osservazionale</text>
+			</exam>
+			<exam number="16" xml="dati_cliniciossf.xml" mandatory="yes">
+				<text>Riassunto dello studio osservazionale senza farmaco e dispositivo</text>
+			</exam>
+			<exam number="17" xml="dati_cliniciosdm.xml">
+				<text>Riassunto dello studio osservazionale con dispositivo medico</text>
+			</exam>
+			<exam number="18" xml="studi_dispositivios.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Studi osservazionali con dispositivi medici</text>
+			</exam>
+			<!--exam number="19" xml="dati_cliniciossdm.xml">
+				<text>Riassunto dello studio osservazionale senza dispositivo medico</text>
+			</exam-->
+			<exam number="12" xml="sottostudi.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Sottostudi</text>
+			</exam>
+			<!-- 
+			<exam number="2" xml="reg_documentazione.xml" >
+				<text>Allegati documentali</text>
+			</exam>
+			-->
+			<exam number="10" xml="dati_locale.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Centri e dati di gestione locale dello studio</text>
+			</exam>		
+			
+		<!--exam number="13" xml="fattibilita.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Fattibilita' economica locale</text>
+			</exam-->
+				<exam number="2" xml="documentazione_core.xml" 
+				WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" trash="yes">
+				<text>Allegati documentali</text>
+			</exam>
+						
+		</visit>
+
+		<visit number="2" text="" short_txt="Verifica Segreteria CE" >
+			<!-- nel visit exam del CE-->
+			<exam number="1" xml="invio_per_valutazione.xml" mandatory="yes">
+				<text>Verifica documentazione</text>
+			</exam>		
+						
+		</visit>
+		
+		<visit number="4" text="Dati Valutazione CE (Parere)" short_txt="Valutazione CE (Parere)" >
+			<exam number="1" xml="parere.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Inserisci parere</text>
+			</exam>
+		</visit>
+
+		<visit number="8" text="Dati monitoraggio" short_txt="Monitoraggio" >
+			<exam number="1" xml="dati_monitoraggio.xml" mandatory="yes">
+				<text>Monitoraggio scientifico</text>
+			</exam>
+			<exam number="2" xml="dati_monitoraggioam.xml" mandatory="yes">
+				<text>Monitoraggio ammministrativo</text>
+			</exam>
+		</visit>
+		
+		
+		<visit number="10" text="Dati valutazione" short_txt="Valutazione Studio">
+			<exam number="1" xml="val_fattibilita_locale.xml">
+				<text>Valutazione fattibilità locale</text>
+			</exam>
+			<exam number="2" xml="val_richiesta_delibera.xml">
+				<text>Richiesta/Valutazione/Delibera</text>
+			</exam>
+			<exam number="3" xml="val_emendamenti.xml">
+				<text>Emendamenti</text>
+			</exam>
+			<exam number="4" xml="val_dati_valutazione.xml">
+				<text>Dati Valutazione</text>
+			</exam>
+			<exam number="50" xml="val_follow_up.xml">
+				<text>Follow up (avvio/conclusione)</text>
+			</exam>
+			<exam number="60" xml="val_risultati_pubblicazioni.xml">
+				<text>Risultati e pubblicazioni</text>
+			</exam>
+			<exam number="70" xml="val_susar.xml">
+				<text>SUSAR</text>
+			</exam>
+		</visit>
+		
+		
+		<!--visit number="20" text="DOCUMENTAZIONE" short_txt="Documentazione" VIEWABLE_ON_CLOSE="yes">
+			
+			<exam number="0" xml="documentazione_core.xml" 
+			WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+			WCA_FIELDS_DECODE="Area,Tipo Documento"
+			 mandatory="yes" progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione CORE</text>
+			</exam>
+			<exam number="1" xml="documentazione_coord.xml" 
+			WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+			WCA_FIELDS_DECODE="Area,Tipo Documento"
+			progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione solo al CE Coordinatore</text>
+			</exam>
+			<exam number="2" xml="documentazione_sat.xml" optional="yes"
+			WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+			WCA_FIELDS_DECODE="Area,Tipo Documento"
+			progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione centro specifica</text>
+			</exam>
+		</visit-->
+		
+	</group>
+</visit_exam>

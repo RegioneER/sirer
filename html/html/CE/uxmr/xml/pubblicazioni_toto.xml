@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Pubblicazioni" titolo="Pubblicazioni" table="PUBBLICAZIONI_TOTO"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="3"
+	field_tb_show="PUBBLICAZIONE_DT"
+	tb_header="Data pubblicazione"
+	f_to_call="action_pubblicazioni_toto"
+>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Pubblicazioni dello studio</b></td>]]></txt_value>
+	</field>
+	<field type="radio" var="PUBBLICATI" cols="3" show_selected="yes" send="obbligatorio">
+		<txt_value>I risultati dello studio sono stati pubblicati?</txt_value>
+		<value val="1">Si</value>
+		<value val="2">No</value>
+	</field>
+	<field cols="3" type="textarea" var="PUBL_SPEC" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" condition="PUBBLICATI" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Se si', specificare i riferimenti della pubblicazione]]></txt_value>
+	</field>
+  <field type="data" var="PUBBLICAZIONE_DT" cols="3" save="obbligatorio" send="obbligatorio" condition="PUBBLICATI" condition_value="1" hide="yes">
+		<txt_value><![CDATA[Data della pubblicazione (gg/mm/yyyy)]]></txt_value>
+	</field>
+	<field cols="3" condition="PUBBLICATI" condition_value="1" hide="yes"
+    type="file_cme" 
+    var="PUBBLICAZIONE_TOTO_FILE"
+    THREAD="File della pubblicazione" 
+    TOPIC="File della pubblicazione"
+    xmlTypeDefinition="cme/pubblicazioni_toto.xml" 
+    auto_approve="yes"
+  >
+		<txt_value>File della pubblicazione</txt_value>
+	</field>
+
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

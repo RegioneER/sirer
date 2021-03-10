@@ -1,0 +1,72 @@
+BODY {
+	FONT-SIZE: 75%; BACKGROUND: #ffffff; MARG<input type="password" >IN: 0px; COLOR: #000000; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif
+}
+.bg_testata {
+	background-image: url(../images/logo.png);
+	background-repeat: no-repeat;
+	height: 102px;
+}
+.bg {
+	background-image: url(../images/banner.png);
+	background-repeat: repeat-x;
+	height: 102 px;
+}
+.barretta {
+	background-image: url(../images/barretta.png);
+	background-repeat: repeat-x;
+	height: 102 px;
+}
+td {
+	font-family: Verdana;
+	FONT-SIZE: x-small;
+	color: #282853;
+}
+.destra {
+  text-align: right;
+	padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: x-small;
+	color: #282853;
+}
+
+.sinistra {
+  padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: x-small;
+	color: #282853;
+}
+.bianco {
+  text-align: center;
+	padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: x-small;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+
+A:link {
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: x-small;
+	font-weight: bold;
+	COLOR: #00204A;
+	TEXT-DECORATION: none
+}
+A:hover {
+	 COLOR: #FF7100;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+A:visited {
+	COLOR: #00204A;
+	 TEXT-DECORATION: none;
+	font-weight: bold;
+}
+A:hover {
+	 COLOR: #FF7100;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+.bordi{
+	border: solid 1px;
+	border-color: #998A9D;
+}

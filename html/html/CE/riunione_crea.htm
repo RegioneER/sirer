@@ -1,0 +1,214 @@
+<html lang="EN" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>CE OnLine</title>
+<link media="screen" href="ceonline.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="epoch_classes.js"></script>
+<script type="text/javascript">
+
+	var bas_cal;      
+window.onload = function () {
+	bas_cal = new Epoch('epoch_basic','flat',document.getElementById('basic_container'));
+};
+/*]]>*/
+</script>
+
+</head>
+<SCRIPT language=javascript src="/js/text.js"></SCRIPT>
+
+<body>
+<!--testata-->
+<table width="100%" border="0" align="center" height="108" style="background-image:url('images/sfondo.gif')">
+	<tr>
+	  <td class="bg">&nbsp;</td>
+	</tr>
+</table>
+
+<br>
+
+
+<table class="ricetta" align="center" border="0" width="1000" height="400">
+	<tr>
+		<td class="bgcellea"><img src="images/riunioni.gif"><br><b>RIUNIONI</b></td>
+		<td class="bgcelle">Inserisci nuova riunione</td>
+		<td class="bgcelle">Gestione presenze</td>
+		<td class="bgcelle">Assegna gettone di presenza</td>
+		<td class="bgcelle">Inserisci documenti per riunioni</td>
+		<td class="bgcelle">Aggiorna riunione</td>
+	</tr>
+	<tr>
+		<td valign="top" width="30%">
+			<table border="0" width="70%">
+				<tr>	
+						<td class="bgcelle2" height="40">Dati Utente</td>
+				</tr>
+				<td class="strumenti" valign="top"><b>Nome:</b> Roberta&nbsp;Joppi
+			<br><b>E-mail:</b> roberta.joppi@ulss20.verona.it
+			<br><b>Profilo:</b> Segreteria Comitato Etico per la sperimentazione clinica della provincia di Verona </td>
+	<tr>
+		<td class="bgcelle2" height="40">Utility</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Registro sperimentazioni cliniche</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Bacheca del CE</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Messaggi</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Contatti</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Calendario</td>
+	</tr>
+	<tr>
+		<td class="strumenti">News</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Link utili</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Help</td>
+	</tr>
+	
+			</table>
+		</td>
+	<td colspan="5" class="st_centrale" valign="top"  width="70%">
+			
+			<table align="center" width="100%" border="0">
+				
+				<tr>
+					<td class="st_centrale1" align="center">&nbsp;</td>
+					<td class="st_centrale1" align="center">&nbsp;</td>
+				</tr>
+				
+			</table>
+			
+				
+				
+				
+				<table><tr><td>	&nbsp;	</td>	</tr>	</table>
+
+					<table align="center" width="100%" border="0">	
+				<tr>		
+					<td class="st_centrale1" align="left" colspan="5"><b>Crea riunione</b></td>
+				</tr>
+				
+				
+				<tr><td colspan="5">&nbsp;</td></tr>
+				
+				
+				<tr>
+		<td class="input" width="50%" colspan="3">Tipo di riunione:</td>
+		<td class="input">Seduta del comitato etico</td>
+	</tr>
+	
+			<tr><td class="input" colspan="3">Data:</td>
+                			<td class="input"><img src="images/calendario_2.gif" border="0" alt="calendario"></td>
+  				    			</tr>
+	
+	
+	<tr>
+    <td class="input" colspan="3">Convocata da:</td>
+    <td class="input">SEGRETERIA DEL COMITATO ETICO PER LA SPERIMENTAZIONE CLINICA DELLA PROVINCIA DI VERONA</td>
+	</tr>
+	
+	
+	<tr>
+    <td class="input" colspan="3">Oggetto:</td>
+    <td class="input"> <select name=DISCIPL>
+						      <option value=""></option>
+	                <option value="1" selected>Riunione periodica del Comitato Etico</option>
+	                <option value="2">Valutazione Studio osservazionale</option>
+	                <option value="3">Valutazione Dispositivo medico</option>
+						</select>
+		</td>
+	</tr>
+	
+	
+	
+	<!--tr>
+		<td class="input" width="50%" colspan="4"><b>Seleziona gli Studi interventistici con farmaci oggetto della riunione da inserire nell'Ordine del Giorno:</b></td>
+		</tr>
+		
+			
+				
+				<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">2008-002703-20</td>
+			</tr>
+			<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">2008-001337-95</td>
+			</tr>
+				<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">2008-000976-26</td>
+			</tr>
+				<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">2008-000349-68</td>
+			</tr>
+				<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">2007-033045-33</td>
+			</tr>
+				<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">2007-007666-38</td>
+			</tr>
+			
+			<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="RP" value="1"><b>Studio osservazionale</b>:</td>
+			</tr>
+			<tr>
+				
+				
+				<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">OS#1</td>
+			</tr>
+			<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">OS#2</td>
+			</tr>
+				<tr bgcolor="#FFE8E8">
+			<td class="input" width="50%" colspan="4">
+			<input type="checkbox" name="SC1" value="1">OS#3</td>
+			</tr-->
+							
+	
+			<tr class="input"><td class="input" colspan="3">Note:</td><td>
+						<textarea name=ODG_OTHER cols="100" rows="4"  name="DESTINATARI"> </textarea>
+			       </td></tr>
+	
+	
+	
+	
+	
+	
+					<table width="100%" align="center">
+	<tr>            
+		<td align="center"> 
+			 
+			<input type="button" value="CREA RIUNIONE" name="B2" onclick="location.href='menu.htm'">
+			<INPUT type=reset value=Annulla name=B2></td>
+	</tr>
+</table>
+			</table>
+			
+			
+			</td>
+	</tr>
+	
+
+	<tr>
+	<td width="200"><a class="percorso" href="home.htm">Torna all'Home Page</a></td>
+</tr>
+
+
+</form>
+</body>
+</html>

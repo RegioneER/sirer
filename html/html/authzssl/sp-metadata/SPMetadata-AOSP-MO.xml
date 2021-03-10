@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" ID="_of3nrdbgmoowfewvh8phdwizfdmyr4cupcsvtew" entityID="https://sirer.progetto-sole.it/cas/idp" validUntil="2040-11-30T12:36:54.765Z">
+    <md:Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+    </md:Extensions>
+    <md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:1.1:protocol">
+        <md:Extensions xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init">
+            <init:RequestInitiator Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://sirer.progetto-sole.it/cas/login?client_name=AOSP+Modena"/>
+        </md:Extensions>
+        <md:KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDGzCCAgOgAwIBAgIJAOljozmNa5+RMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNVBAMMGXNpcmVy
+MDMucHJpdmF0ZS5jaW5lY2EuaXQwHhcNMjAwODI2MTY0MjI0WhcNMzAwODI0MTY0MjI0WjAkMSIw
+IAYDVQQDDBlzaXJlcjAzLnByaXZhdGUuY2luZWNhLml0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEAvsniYENSkBLGHrCa2HGRdR+cxoqqs2HB7PVrndDmJG6ti0S0W9HxbOvFG1EhcQAo
+Hr0NutX31TV38lEvCxUtPu5mXT8lu6J+ybjRORKhtSD65p4djpqaKI3NMjEzXkZP/AdaGh1lAs+3
+WKMn8wQDSfAHNrZb5Eu2H0yOnJzqPaBecLzBCh7g88RA4Nq+AQifbiQ+SZPTPASRWsP3qDrPXdlf
+a72Pzb95WZuRa67SI7E1LeNTmTyh3jtKPyQ2Fv7mD1iEh+3drEMmoM+7VN1hrqS/lqGY6bdGzIN6
+aOuuzIg1rXbEcx92iFm/fRwADKAkG8ostRNXcE5gp+caYunsuwIDAQABo1AwTjAdBgNVHQ4EFgQU
+l9o88fEqozHr6GL8XXuQyZqAYbswHwYDVR0jBBgwFoAUl9o88fEqozHr6GL8XXuQyZqAYbswDAYD
+VR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAIjwYk1ncKYWo0hC2tooVipw4GtMOvnZcWjmA
+gTC+T3cSwRSK5OVQ5CoIG7gGZfrxK3PlxtpYJRpCcelob8XJWYIKs+XrD5zGGlQW85F7SJyGExjY
+SCWGIFeVSxM+x/nJ6GqzNvuKL0DtOHT7YZNG3Hr9SVdnB5hrvDm0BtUYrQsADZQqkUiucCTUZ5gM
+xg0PUqp32S20zVN5wx2US3J70dqCQpQtT35ECsArXxL/OwIHhwHO48ka1E4HQ8vbFf2QGORnw3X9
+3lZtaTOot/pedclF4J//fwLLpSuWHM966XT1CFc3DIK1bDC+mJj7IwYigewA739u4QmeEglrJDln
+gQ==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:KeyDescriptor use="encryption">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDGzCCAgOgAwIBAgIJAOljozmNa5+RMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNVBAMMGXNpcmVy
+MDMucHJpdmF0ZS5jaW5lY2EuaXQwHhcNMjAwODI2MTY0MjI0WhcNMzAwODI0MTY0MjI0WjAkMSIw
+IAYDVQQDDBlzaXJlcjAzLnByaXZhdGUuY2luZWNhLml0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEAvsniYENSkBLGHrCa2HGRdR+cxoqqs2HB7PVrndDmJG6ti0S0W9HxbOvFG1EhcQAo
+Hr0NutX31TV38lEvCxUtPu5mXT8lu6J+ybjRORKhtSD65p4djpqaKI3NMjEzXkZP/AdaGh1lAs+3
+WKMn8wQDSfAHNrZb5Eu2H0yOnJzqPaBecLzBCh7g88RA4Nq+AQifbiQ+SZPTPASRWsP3qDrPXdlf
+a72Pzb95WZuRa67SI7E1LeNTmTyh3jtKPyQ2Fv7mD1iEh+3drEMmoM+7VN1hrqS/lqGY6bdGzIN6
+aOuuzIg1rXbEcx92iFm/fRwADKAkG8ostRNXcE5gp+caYunsuwIDAQABo1AwTjAdBgNVHQ4EFgQU
+l9o88fEqozHr6GL8XXuQyZqAYbswHwYDVR0jBBgwFoAUl9o88fEqozHr6GL8XXuQyZqAYbswDAYD
+VR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAIjwYk1ncKYWo0hC2tooVipw4GtMOvnZcWjmA
+gTC+T3cSwRSK5OVQ5CoIG7gGZfrxK3PlxtpYJRpCcelob8XJWYIKs+XrD5zGGlQW85F7SJyGExjY
+SCWGIFeVSxM+x/nJ6GqzNvuKL0DtOHT7YZNG3Hr9SVdnB5hrvDm0BtUYrQsADZQqkUiucCTUZ5gM
+xg0PUqp32S20zVN5wx2US3J70dqCQpQtT35ECsArXxL/OwIHhwHO48ka1E4HQ8vbFf2QGORnw3X9
+3lZtaTOot/pedclF4J//fwLLpSuWHM966XT1CFc3DIK1bDC+mJj7IwYigewA739u4QmeEglrJDln
+gQ==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sirer.progetto-sole.it/cas/login?client_name=AOSP+Modena" index="0"/>
+    </md:SPSSODescriptor>
+</md:EntityDescriptor>

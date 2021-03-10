@@ -1,0 +1,266 @@
+{% set h1Level=hlevel %}
+{% set h2Level=hlevel+1 %}
+{% set h3Level=hlevel+2 %}
+{% set h4Level=hlevel+3 %}
+<div class="elementTypeArea">
+    <h{{ h1Level }} id="{{ type.typeId }}" class="row header smaller lighter blue">
+    	Elemento {{ type.typeId }}  
+        {% if collapsable %}
+        	<a href="#" data-type="show_hide" data-id-ref="type_{{ type.id }}">(mostra/nascondi)</a>
+        {% endif %}
+    </h{{ h1Level }}>
+        <div id="type_{{ type.id }}" {% if collapsable and collapsed %}style="display: none;"{% endif %}>
+        	<b>id</b>: {{ type.id }}<br/>
+        	<table class="table basic-info table-bordered table-hover">
+				<thead>
+    				<tr>
+    					<th>Root</th>
+    					<th>Contenitore</th>
+    					<th>Ricorsivo</th>
+    					<th>File Allegato</th>
+    					<th>Checkout</th>
+    				</tr>
+				</thead>
+				<tbody>
+    				<tr>
+    					<td>{{ booleanToCheck(type.rootAble)|raw }}</td>
+    					<td>{{ booleanToCheck(type.container)|raw }}</td>
+    					<td>{{ booleanToCheck(type.selfRecursive)|raw }}</td>
+    					<td>{{ booleanToCheck(type.hasFileAttached)|raw }}</td>
+    					<td>{{ booleanToCheck(type.checkOutEnabled)|raw }}</td>
+    				</tr>
+				</tbody>
+			</table>
+			{% if type.acls|length > 0 %}
+        		<h{{ h2Level }} id="{{ type.typeId }}_ACL" class="row header smaller lighter blue">ACL</h{{ h2Level }}>
+				<table class="table basic-info table-bordered table-hover">
+    				<thead>
+        				<tr>
+        					<th>Visualizza</th>
+        					<th>Crea</th>
+        					<th>Aggiorna</th>
+        					<th>Commenta</th>
+        					<th>Modera</th>
+        					<th>Elimina</th>
+        					<th>Gestisci permessi</th>
+        					<th>Aggiungi figli</th>
+        					<th>Rimouvi checkout</th>
+        					<th>Avvia processo</th>
+        					<th>Abilita template</th>
+        					<th>Naviga</th>
+        					<th>Containers</th>
+        					<th>Template</th>
+        					<th>Policy</th>
+        				</tr>
+    				</thead>
+    				<tbody>
+    			    {% for acl in type.acls %}
+    			    	<tr>
+            				<td>{{ booleanToCheck(acl.policy.canView)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canCreate)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canUpdate)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canAddComment)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canModerate)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canDelete)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canChangePermission)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canAddChild)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canRemoveCheckOut)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canLaunchProcess)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canEnableTemplate)|raw }}</td>
+            				<td>{{ booleanToCheck(acl.policy.canBrowse)|raw }}</td>
+            				<td>
+    			                {% set firstLoop=true %}
+								{%  for container in acl.containers %}
+								    {% if not firstLoop %}, {% endif %}
+								    {% if container.authority %} G: {% else %} U: {% endif %}
+									{{ container.container }}
+									{% set firstLoop=false %}
+						        {% endfor %}
+							</td>
+							<td>{% if not acl.detailTemplate is null %}
+							{{ acl.detailTemplate }}
+							{% endif %}
+							</td>
+							<td>{% if not acl.predPolicy is null %}
+							{{ acl.predPolicy.name }} (id: {{ acl.predPolicy.id }})
+							{% endif %}
+							</td>
+            				
+            			</tr>
+            			
+            		
+            		{% endfor %}
+            		</tbody>
+        		</table>
+        	{% endif %}
+        	
+			{% if type.associatedTemplates|length > 0%}
+				<h{{ h2Level }} id="{{ type.typeId }}_TEMPLATES" class="row header smaller lighter blue">
+					Template associati
+				</h{{ h2Level }}>
+				{% for templateAssoc in type.associatedTemplates %}
+					{% set template = templateAssoc.metadataTemplate %}
+					{% if template.fields|length >0 %}
+						<h{{ h3Level }} id="{{ type.typeId }}_TEMPLATE_{{ template.name }}" class="row header smaller lighter blue">
+							Template: {{ template.name }} 
+							{% if collapsable %}
+								<a href="#" data-type="show_hide" data-id-ref="tamplate_type_id_{{ type.id }}_{{ template.id }}">(mostra/nascondi)</a></td>
+							{% endif %}
+						</h{{ h3Level }}>
+						<div class="tamplatelistArea" id="tamplate_type_id_{{ type.id }}_{{ template.id }}" {% if collapsable and collapsed %}style="display: none;"{% endif %}>
+    						<b>id</b>: {{ template.id }}<br/>
+						{{ booleanToCheck(templateAssoc.enabled)|raw }}Abilitato alla creazione
+						{% if  templateAssoc.templateAcls|length >0 %}
+							<h{{ h4Level }} id="{{ type.typeId }}_TEMPLATE_{{ template.name }}_ACL" >ACL specifiche</h{{ h4Level }}>
+							<table class="table template-policy-spec table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>Visualizza</th>
+										<th>Crea</th>
+										<th>Modifica</th>
+										<th>Elimina</th>
+										<th>Containers</th>
+									</tr>
+								</thead>
+								<tbody>
+								{% for acl in templateAssoc.templateAcls %}
+									<tr>
+										<td>{{ booleanToCheck(acl.policy.canView)|raw }}</td>
+										<td>{{ booleanToCheck(acl.policy.canCreate)|raw }}</td>
+										<td>{{ booleanToCheck(acl.policy.canUpdate)|raw }}</td>
+										<td>{{ booleanToCheck(acl.policy.canDelete)|raw }}</td>
+										<td>
+										{% set firstLoop=true %}
+								        {%  for container in acl.containers %}
+								        	{% if not firstLoop %}, {% endif %}
+								        	{% if container.authority %} G: {% else %} U: {% endif %}
+											{{ container.container }}
+											{% set firstLoop=false %}
+										{% endfor %}
+										</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							
+							</table>
+						
+							{% endif %}
+							<table class="table template-spec table-bordered table-hover">
+        						<thead>
+        							<tr>
+        								<th>Id campo</th>
+        								<th>Campo</th>
+        								<th>Tipo</th>
+        								<th>Obbligatorio</th>
+        								<th>Auditable</th>
+        								<th>Posizione</th>
+        							</tr>	
+    		 					</thead>
+    		 					<tbody>
+    					    {% set firstLoop=true %} 
+    						{% for field in template.fields %}
+        							<tr>
+        								<td>{{ field.name }}</td>
+        								<td>{{field.id}}</td>
+        								<td>{{field.type}}</td>
+        								<td>{{ booleanToCheck(field.mandatory)|raw }}</td>
+        								<td>{{ booleanToCheck(template.auditable)|raw }}</td>
+        								<td>{{ field.position }}</td>
+        							</tr>
+        						</tbody>
+    						{% endfor %}
+    						</table>
+						</div>	
+						
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			{% if type.associatedWorkflows|length > 0 %}
+				<h{{ h2Level }} id="{{ type.typeId }}_PROCESSES" class="row header smaller lighter blue">
+					Processi
+				</h{{ h2Level }}>
+        		{% for wf in type.associatedWorkflows %}
+        			<h{{ h3Level }} id="{{ type.typeId }}_PROCESSES_{{ wf.processKey }}" class="row header smaller lighter blue">
+        				Processo: {{ processesDetail[wf.processKey]['name'] }} [{{ wf.processKey }}]
+        				{% if collapsable %}
+							<a href="#" data-type="show_hide" data-id-ref="process_assoc_{{ type.id }}_{{wf.processKey  }}">(mostra/nascondi)</a>
+						{% endif %}
+					</h{{ h3Level }}>
+					<div class="processArea" id="process_assoc_{{ type.id }}_{{ wf.processKey }}" {% if collapsable and collapsed %}style="display: none;"{% endif %}>
+						<table class="table template-spec table-bordered table-hover">
+        						<thead>
+        							<tr>
+        								<th>Abilitato</th>
+        								<th>Avviato alla creazione</th>
+        								<th>Avviato all'aggiornamento</th>
+        								<th>Avviato all'eliminazione</th>
+        							</tr>	
+    		 					</thead>
+    		 					<tbody>
+    		 							<tr>
+        								<td>{{ booleanToCheck(wf.enabled)|raw }}</td>
+        								<td>{{ booleanToCheck(wf.startOnCreate)|raw }}</td>
+        								<td>{{ booleanToCheck(wf.startOnUpdate)|raw }}</td>
+        								<td>{{ booleanToCheck(wf.startOnDelete)|raw }}</td>
+        							</tr>
+        						</tbody>
+        					</table>
+						{{ processImage(wf.processKey)|raw }}
+					<ul>
+					{% for userTask in processesDetail[wf.processKey]['userTask'] %}
+						<li><i class="fa fa-user"></i> <b>{{ userTask['name'] }}</b> ({{ userTask['id'] }})
+							{% if userTask.listners|length > 0 %}
+    							<ul>
+    								<li><i class="fa fa-cog"></i> Azioni:
+    									<ul>
+    							        {% for listener in userTask.listners %}
+        									<li><b>{{ listener['event'] }}</b>: {{ listener['expression'] }}</li>
+        						        {% endfor %}
+        								</ul>
+        							</li>
+    							</ul>
+							{% endif %}
+							{% if userTask.formProperties|length > 0 %}
+    							<ul>
+    								<li><i class="fa fa-pencil-square-o"></i> Form
+            							<ul>
+							            {% for formProperty in userTask.formProperties %}
+                								<li><b>{{ formProperty['name'] }}</b> ({{ formProperty['id'] }}): {{ formProperty['type'] }} {{ formProperty['required'] }}</li>
+                						{% endfor %}
+                						</ul>
+                					</li>
+    							</ul>
+							{% endif %}
+						</li>
+					{% endfor %}
+					{% for serviceTask in processesDetail[wf.processKey]['serviceTask'] %}
+						<li><i class="fa fa-cog"></i> <b>{{ serviceTask['name'] }}</b> ({{ serviceTask['id'] }})
+    						<ul>
+    							<li>{{ serviceTask['expression'] }}</li>
+    						</ul>
+						</li>
+					{% endfor %}
+					{% for mailTask in processesDetail[wf.processKey]['mailTask'] %}
+						<li><i class="fa fa-envelope"></i> <b>{{ mailTask['name'] }}</b> ({{ mailTask['id'] }})
+    						<ul>
+    							{% for mailProp in mailTask.fields %}
+    								<li><b>{{ mailProp['name'] }}</b>: {{ mailProp['value'] }}</li>
+    							{% endfor %}
+    							
+    						</ul>
+						</li>
+					{% endfor %}
+					</ul>
+        			</div>
+        		{% endfor %}
+        	{% endif %}
+        	
+			{% if type.allowedChildNames|length > 0 %}
+				<h{{ h2Level }} id="{{ type.typeId }}_FIGLI" class="row header smaller lighter blue">Figli</h{{ h2Level }}>
+				{% for childName in type.allowedChildNames %}
+					<li>{{ childName }}</li>
+				{%  endfor %}
+			{%  endif %}
+			</div>
+</div>
+			

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{titolo}}</title>
+        
+        <meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		
+		<link rel="stylesheet" href="https://siss-cas.cineca.it/xCDM-docs/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://siss-cas.cineca.it/xCDM-docs/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://siss-cas.cineca.it/xCDM-docs/css/ace-total.min.css"/>
+		<link rel="stylesheet" href="https://siss-cas.cineca.it/xCDM-docs/css/global.css"/>
+		
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="https://siss-cas.cineca.it/xCDM-docs/assets/css/ace-part2.css" class="ace-main-stylesheet" />
+		  	<link rel="stylesheet" href="https://siss-cas.cineca.it/xCDM-docs/assets/css/ace-ie.css" />
+		<![endif]-->
+		<!-- ace settings handler -->
+		<script src="https://siss-cas.cineca.it/xCDM-docs/assets/js/ace-extra.js"></script>
+
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="https://siss-cas.cineca.it/xCDM-docs/assets/js/html5shiv.js"></script>
+		<script src="https://siss-cas.cineca.it/xCDM-docs/assets/js/respond.js"></script>
+		<![endif]-->
+	</head>
+    <body class="no-skin">
+		<!-- #section:basics/navbar.layout -->
+		<div id="navbar" class="navbar navbar-default ace-save-state">
+			<div class="navbar-container ace-save-state" id="navbar-container">
+				
+
+				<!-- /section:basics/sidebar.mobile.toggle -->
+				<div class="navbar-header pull-left">
+					<!-- #section:basics/navbar.layout.brand -->
+					<a href="#" class="navbar-brand">
+						<small>
+							<i class="fa fa-folder-open"></i>
+							{{titolo}}
+						</small>
+					</a>
+				</div>
+
+				<!-- #section:basics/navbar.dropdown -->
+				
+				<!-- /section:basics/navbar.dropdown -->
+			</div><!-- /.navbar-container -->
+		</div>
+
+		<!-- /section:basics/navbar.layout -->
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			<!-- #section:basics/sidebar -->
+			
+
+			<!-- /section:basics/sidebar -->
+			<div class="main-content">
+				<div class="main-content-inner">
+					
+					<div class="page-content">
+						<!-- #section:settings.box -->
+						
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								    {% for type in types %}
+							        		{% include 'elementBase.html.twig' with {'type': type, 'hlevel': 1, 'collapsed': false, 'collapsable': false} %}
+							    	{% endfor %}  
+      
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+
+    	
+   
+   <!-- basic scripts -->
+   		<script src="https://siss-cas.cineca.it/xCDM-docs/assets/js/jquery.js"></script>
+		<script src="https://siss-cas.cineca.it/xCDM-docs/js/ace-total.min.js"></script>
+		
+		
+		<script src="https://siss-cas.cineca.it/xCDM-docs/js/actions.js"></script>
+	</body>
+</html>
+   

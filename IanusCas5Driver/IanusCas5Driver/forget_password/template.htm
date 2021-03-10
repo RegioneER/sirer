@@ -1,0 +1,588 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+<title>Lost Password</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<meta name="author" content="a.colabufalo@cineca.it" />
+<meta name="description" content="Forget password - Sistemi informativi e servizi per la sanità - cineca.it" />
+
+<style>
+/* *** css by miss monorom www.intensivstation.ch *** */
+/* css released under Creative Commons License -  http://creativecommons.org/licenses/by/2.0/deed.en  */
+
+body {
+ background: #ffffff url('../images/body.jpg') top left;
+font-size: 11px;
+font-family: Verdana, Arial, SunSans-Regular, Sans-Serif;
+color:#564b47;
+padding:0px;
+margin:0px;
+
+}
+
+a {color: #564b47; text-decoration: none; font-weight:bold;}
+a:visited {color:#564b47; text-decoration: none; font-weight:bold;}
+a:hover {color: #564b47; text-decoration: none; font-weight:bold;}
+a:active { color:#564b47; text-decoration: none; font-weight:bold;}
+
+a1 {color: #564b47; text-decoration: none; font-weight:bold;}
+a1:visited {color:#564b47; text-decoration: none; font-weight:bold;}
+a1:hover {color: #564b47; text-decoration: none; font-weight:bold;}
+a1:active { color:#564b47; text-decoration: none; font-weight:bold;}
+
+h1 {
+font-size: 12px;
+color:#c43300;
+text-decoration: underline;
+
+/*border-top:1px solid #564b47;
+border-bottom:1px solid #564b47;*/
+/*padding:5px 15px;*/
+margin-left:20px;
+margin-top:0px;
+margin-bottom:0px;
+}
+
+h2 {
+color: #9A1212;
+font-size:1.5em;
+font-weight: normal;
+padding: 5px 10px;
+margin:0px;}
+
+img.download {vertical-align:middle;}
+
+/* ----------container to center the layout-------------- */
+#container {
+width: 98%;
+
+margin-left: auto;
+margin-right: auto;
+
+/*background: #ffffff url('menubottom.jpg') no-repeat bottom left;*/
+border-left:1px solid #282853;
+border-right: 1px solid #282853;
+}
+
+/* ----------banner for logo-------------- */
+
+#banner {
+
+text-align: center;
+/*background:  url('header.jpg') no-repeat bottom center;*/
+background-color: #90c5ef;
+padding: 10px;
+margin: 0px;
+border: 1px solid #90c5ef;
+color:#90c5ef;
+}
+#banner a {
+	padding:0px;
+}
+#banner img {padding:0px;} 
+#bannertitle{padding:0px; font-size:2em;}
+#bannertitle h2 {	font-size:2em;	}
+#sotto {
+	/*padding-top:50px;*/
+	
+
+}
+
+#infobox {
+
+margin: auto;
+border:1px solid #282853;
+text-align: center;
+background-color: #b8cadd;
+padding: 5px;
+margin-left:10px;
+margin-right: 10px;
+margin-top: 5px;
+margin-bottom: 5px;
+
+}
+
+#infobox td {
+	font-size: 9px;
+	border:1px solid #282853;
+	
+}
+
+#infobox td h2 {
+	padding: 0px;
+	margin: 0px;
+	font-size: 9px;
+	color: #90c5ef;
+	text-align: left;
+}
+
+#infobox .int_inf {
+	width:80px;
+	text-align: right;
+}
+
+#infobox .int_tbl {
+	text-transform: uppercase;
+	color: #282853;;
+	font-weight: bolder;
+	text-align: center;
+}
+
+#checkmailbox {
+
+margin: auto;
+border:1px solid #282853;
+text-align: center;
+background-color: #b8cadd;
+padding: 5px;
+margin-left:10px;
+margin-right: 10px;
+margin-top: 5px;
+margin-bottom: 5px;
+
+}
+
+#checkmailbox td {
+	font-size: 9px;
+	border:1px solid #282853;
+	
+}
+
+#checkmailbox td h2 {
+	padding: 0px;
+	margin: 0px;
+	font-size: 9px;
+	color: #ffffff;
+	text-align: left;
+}
+
+#checkmailbox .int_inf {
+	width:80px;
+	text-align: right;
+}
+
+#checkmailbox .int_tbl {
+	text-transform: uppercase;
+	color: #282853;;
+	font-weight: bolder;
+	text-align: center;
+}
+
+/* -----------------content--------------------- */
+#content {
+overflow:auto;
+background:#ffffff;
+padding: 5px;
+margin-left: 205px;
+margin-right: 0px;
+margin-top:4px;
+
+}
+div#content {
+min-height: 200px;
+height: auto !important;
+height: 200px;
+
+/*height:150px;*/
+}
+
+#content h1 {
+	text-align: center;
+	padding: 0px;
+	margin:5px;
+	color: #564b47;
+	
+}
+
+#content table {
+	margin-top:0px;
+	background:  #ffffff;
+	width: 100%;
+
+}
+
+#content td {
+	margin:0px;
+	border:1px solid #282853;
+
+}
+
+
+#content_mail {
+background:#ffffff;
+padding: 0px;
+margin-left: 205px;
+margin-right: 0px;
+margin-top:5px;
+margin-bottom:10px;
+}
+div#content_mail { 
+padding: 10px;
+/*height:expression(this.scrollHeight > 600 ? "auto":"600px"); */
+}
+
+#content_mail table {
+	background:  #ffffff;
+	width: 100%;
+}
+
+#content_mail td {
+	margin:0px;
+	border:1px solid #282853;
+
+}
+
+#content_mail .int_inf {
+	width:180px;
+	text-align: right;
+}
+
+
+p, pre{
+padding: 5px 10px;
+margin:0px;
+}
+
+/* --------------left navi------------- */
+#left {
+float: left;
+width: 200px;
+margin-top: 0px;
+margin-left:0px;
+margin-right:0px;
+margin-bottom:5px;
+
+padding: 0px;
+background:#ffffff;
+ height:90%;
+}
+
+/* -----------footer--------------------------- */
+#footer {
+clear: both;
+margin: 0px;
+padding:0px;
+height:50px;
+background-color: #90c5ef;
+border: 1px solid #90c5ef;
+}
+ #footer h1 a{
+ 	margin:auto;
+ }
+  #footer h1{
+  padding:10px 0px 10px 10px;
+  font-size: 1em;
+  
+}
+#footer ul{
+	display:inline;
+}
+ /**********vertical menu***************/
+.verticalmenu {	
+  text-align: center;
+  margin: auto;
+  padding-bottom: 5px;
+}
+
+.verticalmenu table {	
+  width:90%;
+  text-align: center;
+  margin: auto;
+  border:1px solid #282853;
+  margin-top: 5px;
+}
+
+.verticalmenu td {	
+  
+  border-top:1px solid #282853;
+  padding-top: 4px;
+}
+
+ 
+.verticalmenu ul{
+ list-style:none;
+/*list-style-image: url("bullet.gif")*/
+
+ padding-left: 10px;
+ padding-bottom: 0px;
+ margin: 0px;
+ font-weight: normal;
+
+}
+
+ .verticalmenu li, a:link, .verticalmenu a:visited, .verticalmenu a:hover {
+   display: block;
+   /*background: url('menuhover.gif') no-repeat;*/
+ }
+
+ .verticalmenu a:hover {
+   /*background: url('menuhover.gif') no-repeat;*/
+   color: #dc4d1b;
+ }
+ 
+ #content a:link {
+	display: inline;
+}
+
+.int {
+	background-color: #B8CADD;
+	background-position: left;
+	background-repeat: no-repeat;
+	padding-left: 6px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: x-small;
+	color: #282853;
+}
+
+td {
+	font-family: Verdana;
+	FONT-SIZE: x-small;
+	color: #282853;
+}
+	
+TD.sc4bis {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 9px; PADDING-BOTTOM: 2px; COLOR: ; PADDING-TOP: 2px; FONT-FAMILY: Verdana; BACKGROUND-COLOR: Lavender
+}
+
+TD.sc4bis_sel {
+	FONT-WEIGHT:bold;PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 9px; PADDING-BOTTOM: 2px; COLOR: ; PADDING-TOP: 2px; FONT-FAMILY: Verdana; BACKGROUND-COLOR: LightBlue 
+}
+
+
+TD.sc4tris {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 9px; PADDING-BOTTOM: 2px; COLOR: ; PADDING-TOP: 2px; FONT-FAMILY: Verdana; BACKGROUND-COLOR:LightBlue 
+}
+
+TD.sc4bis_info {
+	PADDING-RIGHT: 2px; 
+	PADDING-LEFT: 2px; 
+	FONT-SIZE: 15px; 
+	PADDING-BOTTOM: 2px; COLOR: ; 
+	PADDING-TOP: 2px; 
+	FONT-FAMILY: Verdana; 
+	BACKGROUND-COLOR: #ebebe9; 
+}
+
+input[type="submit"] {
+	/*width:50px;
+	height:16px;*/
+	font-size: 9px;
+	vertical-align: middle;
+	/*border:1px solid #282853;*/
+	margin:1px;
+}
+
+input[type="button"] {
+	/*width:50px;
+	height:16px;*/
+	font-size: 9px;
+	vertical-align: middle;
+	/*border:1px solid #282853;*/
+	margin:1px;
+}
+
+a.thread {color: #990000; text-decoration: none; font-weight:bold;}
+a.thread:visited {color:#990000; text-decoration: none; font-weight:bold;}
+a.thread:hover {color: #990000; text-decoration: none; font-weight:bold;}
+a.thread:active { color:#990000; text-decoration: none; font-weight:bold;}
+
+#filters {
+	margin:auto;
+	border-spacing: 4px;
+	margin-bottom:5px;
+	margin-top:5px;
+	
+}
+
+#filters td {
+	border: 1px solid #564b47;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top:5px;
+	padding-bottom: 5px;
+}
+
+#filters a {
+	color: #c43300;
+	text-decoration: underline;
+}
+
+.menu {
+	margin:auto;
+	border-spacing: 5px;
+	color:#282853;
+	margin-bottom: 0px;
+}
+
+.menu td {
+	border: 1px solid #282853;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.menu a {
+	color:#282853;
+	text-decoration: underline;
+}
+
+p.center_text {
+	text-align: center;
+	line-height: 20px;
+	font-weight: bold;
+}
+
+p.center_text a {
+	text-decoration: underline;
+}
+
+table.pages td {
+	margin-bottom:5px;
+	padding: 5px;
+	text-align: center;
+}
+
+/*#find {
+	margin:auto;
+	text-align:center;
+}
+
+#find input[type="submit"] {	
+  width: 80px;
+  height: 16px;
+}
+
+#find input[type="text"] {	
+  width: 200px;
+  height: 10px;
+  vertical-align: middle;
+  font-size: 8px;
+
+}
+
+#find input[type="radio"] {	
+  vertical-align: text-bottom;
+  font-size: 8px;
+
+}*/
+//------------
+.menu {
+	margin:auto;
+	text-align:center;
+	color:#282853;
+}
+
+/*.menu input[type="submit"] {	
+  width: 40px;
+  height: 16px;
+}*/
+
+.menu input[type="text"] {;
+  width: 100px;
+  height: 10px;
+  vertical-align: middle;
+  font-size: 9px;
+
+}
+
+.menu input[type="radio"] {	
+  vertical-align: text-bottom;
+  font-size: 8px;
+
+}
+
+h3 {
+	text-align: center;
+	margin: auto;
+}
+/*
+*
+.inline-button {
+   _width:12em;
+   font: bold 65%/1 Verdana, sans-serif;
+   margin: 0 0.2em; padding: 0.1em 0; _padding:0;
+   border: 1px solid black;
+   white-space:nowrap;
+   text-decoration: none;
+   vertical-align:middle;
+   background: #ccc;
+   color: black;
+   }
+.inline-button em {
+   _width:1em; _cursor:hand;
+   font-style: normal;
+   margin:0; padding: 0.1em 0.5em;
+   background: white;
+   color: black;
+   }
+.inline-button span {
+   _width:1em; _cursor:hand;
+   margin:0; padding: 0.1em 0.5em 0.1em 0.3em;
+   }
+.inline-button:hover {
+   background: #666;
+   color: white;
+   }
+.inline-button:hover em {
+   background: black;
+   color: white;
+   }
+   */
+   .red {
+   	margin:0px;
+   	padding:0px;
+   	text-align:center;
+   	color:#c43300;
+   	margin-bottom:-8px;
+   }
+   
+.selected a {
+	text-decoration:underline;
+	color:#282853;
+	padding-left: 2px;
+	
+}
+
+</style>
+
+<link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+<!--SCRIPT-->
+</head>
+
+<!--  ogni 60 secondi -->
+<body>
+
+
+<!-- div id="container_up"></div-->
+<div id="container">
+<div id="banner">
+<div id='bannertitle'><a1 href=''>Lost password - Cineca.it</a1><!--mainmenu--></div>
+
+</div>
+
+<div id="outer">
+<div id="inner">
+
+<div id="left">
+<div class="verticalmenu"><!--mailboxes-->
+<div id="infobox"><!--infos--></div>
+<div id="checkmailbox" style="display:none;"><!--checkmailbox--></div>
+</div>
+</div>
+
+<div id="content"><!--filters--> <!--messages--></div>
+
+<div id="content_mail" style="overflow: auto; display:none;">
+<p><!--message--></p>
+</div>
+<br />
+</div>
+</div>
+
+<div id="footer"><!--mainmenu--></div>
+</div>
+</body>
+</html>

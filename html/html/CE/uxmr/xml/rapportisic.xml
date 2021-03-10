@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Rapporti di sicurezza" titolo="Rapporti di sicurezza" table="RAPPORTISIC"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="3"
+	field_tb_show="TITOLO_RAP_SIC||' - '||PERIODO1||' - '||PERIODO2||' - '||RELAZ_DT"
+	tb_header="Titolo - Dal - Al - Data relazione"
+>
+	<!--inserire f_to_call per l'approvazione documentale!!!-->
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	<!--field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3">
+		<txt_value>First Name </txt_value>
+	</field-->
+
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Rapporti sulla sicurezza</b></td>]]></txt_value>
+	</field>
+	<!--field type="select" var="CENTRO" cols="3">
+		<txt_value> Struttura partecipante </txt_value>
+			<value val="1"> Azienda Ulss 20 di Verona</value>
+			<value val="2"> P.O. lungodegenza di Marzana (VR)</value>
+			<value val="3"> Polo Ospedaliero dell'Est Veronese di San Bonifacio (VR)</value>
+			<value val="4"> Casa di Cura Chierego E Perbellini di Verona</value>
+			<value val="5"> Casa di Cura Villa Lieta di Verona</value>
+			<value val="6"> Casa di Cura San Francesco di Verona</value>
+			<value val="7"> Casa di Cura Villa S. Chiara di Verona</value>
+			<value val="8"> Osp. classif. S. Giuliana sorelle mis. di Verona</value>
+	</field>
+	<field type="select" var="PRINC_INV" cols="3">
+		<txt_value> Sperimentatore responsabile</txt_value>
+			<value val="1"> Alessandro Adami</value>
+			<value val="2"> Maurizio Anselmi </value>
+			<value val="3"> Felice Bilone </value>
+	</field-->
+	<field type="text" var="D_CENTRO" var_size="4000" cols="3" bytb="CENTRILOCALI" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_PRINC_INV" var_type="text" var_size="200" cols="3" bytb="CENTRILOCALI" bytbcode="D_PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value>Principal Investigator</txt_value>
+	</field>
+	<field type="hidden" var="PRINC_INV" cols="3" var_size="20" bytb="CENTRILOCALI" bytbcode="PRINC_INV" bytbdecode="PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>	
+	<field type="textbox" var="TITOLO_RAP_SIC" var_type="text" var_size="20" cols="3" size="20" send="obbligatorio">
+		<txt_value>Titolo rapporto sicurezza</txt_value>
+	</field>
+	<field type="data" var="PERIODO1" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value><![CDATA[Periodo di riferimento del rapporto<br> Dal (gg/mm/yyyy)]]></txt_value>
+	</field>
+	<field type="data" var="PERIODO2" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value>Al (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="hidden" var="TIPO_SPER" var_type="number" tb="no" bytb="REGISTRAZIONE" bytbcode="TIPO_SPER" bytbdecode="TIPO_SPER" bytbwhere="ID_STUD=[ID_STUD]">
+	</field>
+	<field type="multicheck" var="SUSPECT_DRUG" bytb="LISTA_FARMACI" bytbcode="PAIR_FARM" bytbdecode="OGGETTO_STUDIO" bytbwhere="ID_STUD=[ID_STUD]" cols="3" save="obbligatorio" send="obbligatorio" condition="TIPO_SPER" condition_value="1,3,5,7,8,10" hide="yes">
+		<txt_value><![CDATA[Selezionare i faramaci/dispositivi]]></txt_value>
+	</field>
+	<field type="data" var="RELAZ_DT" cols="3" >
+		<txt_value><![CDATA[Data della relazione (es. relazioni annuali) (gg/mm/yyyy)]]></txt_value>
+	</field>
+	<field cols="3"
+    type="file_cme" 
+    var="RAPPORTISIC_FILE"
+    THREAD="File del rapporto" 
+    TOPIC="File del rapporto"
+    xmlTypeDefinition="cme/rapportisic.xml" 
+    auto_approve="yes"
+  >
+		<txt_value>File del rapporto</txt_value>
+	</field> 
+	<field cols="3" type="textarea" var="NOTE"  var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Note]]></txt_value>
+	</field>
+	
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

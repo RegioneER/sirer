@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<document queryName="DOC_PARERE_EME_CME" >
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="CENTRO" var_type="number">
+		</field>
+ 		<field type="hidden" var="D_CENTRO" var_type="text" var_size="200">
+		</field>
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		
+ 	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Dati di parere del CE all'emendamento</b></td>]]></txt_value>
+	</field>
+
+	<field type="radio" var="RIS_DELIB" send="obbligatorio"  cols="3">
+		<txt_value>Decisione del CE sull'emendamento</txt_value>
+		<value val="1">Emendamento approvato</value>
+		<value val="2">Emendamento non approvato</value>
+		<!--value val="10">Emendamento sospeso</value>
+		<value val="11">Emendamento sospeso formale</value-->
+			<value val="12">Emendamento presa d'atto</value>
+		<value val="4">Emendamento approvato a condizione</value>
+		<value val="5">Emendamento approvato con commento</value>
+		<value val="9">Emendamento solo notificato</value>
+	</field>
+	
+
+	<send>Invia</send>
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

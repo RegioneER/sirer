@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<document queryName="DOC_RAPPORTISIC" >
+  <field type="hidden" var="ID_STUD" var_type="number" pk="yes"></field>
+  <field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"/>
+  <field type="hidden" var="ESAM" var_type="number" />
+  <field type="hidden" var="VISITNUM" var_type="number" />
+  <field type="hidden" var="VISITNUM_PROGR" var_type="number"  value="0" pk="yes"/>
+  <field type="hidden" var="CENTER" var_type="text" var_size="40"/>
+  <field type="hidden" var="PROGR"  var_type="number" pk="yes">
+    <value val="1"></value>
+  </field>
+  <field type="hidden" var="ID" var_type="number"/>
+  <field type="hidden" var="ID_REF" var_type="number"/>
+  <field type="hidden" var="VAR_NAME" var_type="text" var_size="40" pk="yes" >
+ 	<value val="1"></value>
+  </field>
+  <field type="hidden" var="TOPIC" var_type="text" var_size="500" />
+
+	<field type="text" var="D_CENTRO" var_size="4000" cols="3" bytb="CENTRILOCALI" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	
+	<field type="text" var="D_PRINC_INV" var_type="text" var_size="200" cols="3" bytb="CENTRILOCALI" bytbcode="D_PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+    	<txt_value>Principal Investigator</txt_value>
+    </field>
+	<field type="hidden" var="PRINC_INV" cols="3" var_size="20" bytb="CENTRILOCALI" bytbcode="PRINC_INV" bytbdecode="PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>
+		
+	<field type="textbox" var="TITOLO_RAP_SIC" var_type="text"  var_size="20" cols="3" size="20">
+			<txt_value>Titolo rapporto sicurezza</txt_value>
+  </field>
+	
+	<field type="data" var="PERIODO1" cols="3" >
+			<txt_value><![CDATA[Periodo di riferimento del rapporto<br> Dal (gg/mm/yyyy)]]></txt_value>
+  </field>
+  
+  <field type="data" var="PERIODO2" cols="3" >
+			<txt_value>Al (gg/mm/yyyy)</txt_value>
+  </field>
+	
+		<field type="multicheck" var="SUSPECT_DRUG" bytb="LISTA_FARMACI" bytbcode="PAIR_FARM" bytbdecode="OGGETTO_STUDIO" bytbwhere="ID_STUD=[ID_STUD]" cols="3" save="obbligatorio" send="obbligatorio" condition="TIPO_SPER" condition_value="1,3,5,7,8,10" hide="yes">
+			<txt_value><![CDATA[Selezionare i faramaci/dispositivi]]></txt_value>
+	</field>
+  
+  <field type="data" var="RELAZ_DT" cols="3" >
+			<txt_value><![CDATA[Data della relazione (es. relazioni annuali) (gg/mm/yyyy)]]></txt_value>
+  		</field>
+		
+		   <field cols="3" type="textarea" var="NOTE"  var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Note]]></txt_value>
+  </field>
+    
+ 
+</document>

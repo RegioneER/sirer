@@ -1,0 +1,20 @@
+<list titolo="Lista Pazienti">
+
+	<col tipo="hidden" nome="CENTER" var="ce_studi_ricerca_info.CENTER" table="ce_studi_ricerca_info"></col>
+	<col tipo="testo" nome="ID_STUD" var="ce_studi_ricerca_info.ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" table="ce_studi_ricerca_info" where="id_stud in (select center from ce_utenti_centri where userid='[remote_userid]')" order_by="desc" ord_arrow="yes">ID Studio</col>
+	<col tipo="testo" nome="CODICE_PROT" var="ce_studi_ricerca_info.CODICE_PROT" table="ce_studi_ricerca_info">Codice Studio</col>
+	<col tipo="testo" nome="TITOLO_PROT" var="ce_studi_ricerca_info.TITOLO_PROT" table="ce_studi_ricerca_info">Titolo Studio</col>
+	<col tipo="hidden" nome="ID_CE" var="ce_studi_ricerca_info.ID_CE" table="ce_studi_ricerca_info">Sezione CE</col>
+	<col tipo="testo" nome="NOME_CE" var="ce_id_ce.NOME_CE" table="ce_id_ce" where="ce_id_ce.ID_CE=ce_studi_ricerca_info.ID_CE">Sezione CE</col>
+	<col tipo="testo" nome="D_PRINC_INV" var="ce_studi_ricerca_info.D_PRINC_INV" table="ce_studi_ricerca_info">Princ Inv</col>
+	<col tipo="testo" nome="D_CENTRO" var="ce_studi_ricerca_info.D_CENTRO" table="ce_studi_ricerca_info">Struttura</col>
+	<!--col tipo="testo" nome="DESCR_SPONSOR" var="ce_studi_ricerca_info.DESCR_SPONSOR" table="ce_studi_ricerca_info">Sponsor</col>
+	<col tipo="testo" nome="D_CENTRO" var="ce_studi_ricerca_info.D_CENTRO" table="ce_studi_ricerca_info">Centro</col-->
+	<col tipo="testo" nome="DELIB_NUM" var="ce_studi_ricerca_info.DELIB_NUM" table="ce_studi_ricerca_info">Codice interno CE</col>
+	<col tipo="testo" nome="RIUNIONE_CE_DT" var="ce_studi_ricerca_info.RIUNIONE_CE_DT" table="ce_studi_ricerca_info">Seduta CE</col>
+	<col tipo="hidden" nome="RIUNIONE_CE_DTD" var="to_char(RIUNIONE_CE_DT,'DD')" table="ce_studi_ricerca_info"></col>
+	<col tipo="hidden" nome="RIUNIONE_CE_DTM" var="to_char(RIUNIONE_CE_DT,'MM')" table="ce_studi_ricerca_info"></col>
+	<col tipo="hidden" nome="RIUNIONE_CE_DTY" var="to_char(RIUNIONE_CE_DT,'YYYY')" table="ce_studi_ricerca_info"></col>
+	<col tipo="lente" nome="ID_STUD_1" var="ce_studi_ricerca_info.ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" img="pen.png" >Modifica</col>
+	
+</list>

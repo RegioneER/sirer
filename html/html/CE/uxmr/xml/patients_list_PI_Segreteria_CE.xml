@@ -1,0 +1,17 @@
+<list titolo="Lista Principal Investigators">
+
+	<col tipo="hidden" nome="PROGR_PRINC_INV" var="CE_VENETO_PRINC_INV.PROGR_PRINC_INV" table="CE_VENETO_PRINC_INV" order_by="desc"></col>
+	
+	<col tipo="testo" nome="DENOM" var="CE_VENETO_USERID_CE.DESCRIZIONE" table="CE_VENETO_USERID_CE" where="CE_VENETO_PRINC_INV.ID_STR=CE_VENETO_USERID_CE.ID and CE_VENETO_USERID_CE.USERID=[remote_userid]" ord_arrow="yes">Struttura</col>
+	
+	<col tipo="testo" nome="PRINC_INV" var="CE_VENETO_PRINC_INV.PRINC_INV" table="CE_VENETO_PRINC_INV" ord_arrow="yes">Principal Investigator</col>
+	
+	<col tipo="testo" nome="D_DIP_UNI" var="CE_VENETO_PRINC_INV.D_DIP_UNI" table="CE_VENETO_PRINC_INV" ord_arrow="yes">Dipendente universitario</col>
+	
+	<col tipo="hidden" nome="ID_STR" var="CE_VENETO_PRINC_INV.ID_STR" table="CE_VENETO_PRINC_INV"></col>
+ 
+	</list>
+
+
+
+ 

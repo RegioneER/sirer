@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title><!-- titolo --></title>
+		<meta name="Description" content="Cineca WEB Login" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+		<!--[if IE 7]>
+		<link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+		<link rel="stylesheet" href="assets/css/ace.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+		<!--[if lte IE 8]>
+		<link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+		<!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+	<style>
+	textarea, input{
+		color:black !important;	
+	}
+	textarea:focus, input:focus{
+		color:black !important;	
+	}
+	</style>
+	</head>
+
+	<body style="background-color: white;">
+		<div class="container">
+			<div class="row" style="margin-top: 100px;">
+				<div style="text-align: center; color:red;">
+					<!-- login-error -->
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<div style="text-align:center">
+							<h4 class="blue" style="font-size:18px"><i class="icon-lock"></i>&nbsp;Clinical&nbsp;Research&nbsp;Management&nbsp;System</h4>
+							<img src="unipadova.jpg"/>
+							</div>
+							<form  action="<!-- action -->" method="post">
+								<!-- hiddens -->
+								<fieldset>
+									<label for="j_username" class="block clearfix"><span class="block input-icon input-icon-right">
+											<input type="text" name="j_username" id="j_username" placeholder="Username" class="form-control">
+											<i class="icon-user"></i> </span> </label>
+									<label for="j_password" class="block clearfix"><span class="block input-icon input-icon-right">
+											<input type="password" name="j_password" id="j_password" placeholder="Password" class="form-control">
+											<i class="icon-key"></i> </span> </label>
+									<div class="space"></div>
+									<div class="clearfix">
+										<button class="width-35 pull-left btn btn-sm btn-primary" type="submit">
+											Login
+										</button>
+										<a href="forget_password/" class="pull-right">Forgot password?</a>
+									</div>
+									<!-- captcha -->
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--div style="text-align: center;">
+				&copy; <!-- siss -->
+				- <!-- reserved -->
+			</div-->
+		</div>
+		<!-- out_code -->
+	</body>
+</html>

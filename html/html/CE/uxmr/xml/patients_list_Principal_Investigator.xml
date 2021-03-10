@@ -1,0 +1,19 @@
+<list titolo="Lista Studi">
+	<!--<col tipo="lente" nome="CODPAT_1" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER" ord_arrow="yes">Individual Pa</col-->
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER"></col>
+	<col tipo="testo" nome="ID_STUD" var="[patients_table].ID_STUD" script="index.php" param="exams=visite_exam.xml,ID_STUD" table="[patients_table]" where="[patients_table].id_stud in (select center from ce_utenti_centri where userid='[remote_userid]')" order_by="desc" ord_arrow="yes">ID Studio</col>
+	<col tipo="testo" nome="CODICE_PROT" var="[patients_table].CODICE_PROT" table="[patients_table]">Codice Studio</col>
+	<col tipo="testo" nome="TITOLO_PROT" var="[patients_table].TITOLO_PROT" table="[patients_table]">Titolo Studio</col>
+	<col tipo="testo" nome="TIPO_SPER" var="decode([patients_table].TIPO_SPER,1,'Interventistico con farmaco',2,'Interventistico senza farmaco e dispositivo',3,'Interventistico con dispositivo medico',5,'Osservazionale con farmaco',6,'Osservazionale senza farmaco e dispositivo',7,'Osservazionale con dispositivo medico',8,'Uso Terapeutico',9,'Uso Compassionevole',10,'Tessutale',11,'Indagine genetica',-9900,'Altro')" table="[patients_table]">Tipo</col>
+	<col tipo="testo" nome="IN_SEDUTA" var="[patients_table].IN_SEDUTA" table="[patients_table]">Programmata</col>
+	<col tipo="testo" nome="IN_INTEGRAZIONE" var="[patients_table].IN_INTEGRAZIONE" table="[patients_table]">Integrazione</col>
+	<col tipo="testo" nome="DELIB_NUM" var="CE_LISTA.DELIB_NUM" table="[patients_table]">Codice interno CE</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+	<col tipo="visite" param="ID_STUD" EXAMS="visite_exams.xml"></col>
+	<col tipo="hidden" nome="STATO" var="CE_LISTA.STATO" table="CE_LISTA" where="[patients_table].ID_STUD = CE_LISTA.ID_STUD">Stato</col>
+	<!--
+	<col tipo="studio_short" studio="HIV">HIV</col>
+	<col tipo="studio_short" studio="TB">TB</col>
+	<col tipo="studio_short" studio="MAL">Malaria</col>
+	-->
+</list>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Valutazione fattibilita locale" titolo="Valutazione fattibilità locale" table="FATTIBILITA_LOCALE" 
+	link_to="index.php?ID_STUD=[ID_STUD]|and|exams" 
+	cols="3"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+
+ <field cols="3">
+	<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Dati di fattibilita' locale</b></td>]]></txt_value>
+	</field>
+<field type="data" var="PRESENTAZIONE_DT" cols="3" send="obbligatorio">
+			<txt_value>Data di presentazione della domanda:</txt_value>
+  		</field>
+
+ 		<field type="textbox" var="STRUTTURA" var_type="text"  var_size="200" cols="3" size="40" send="obbligatorio">
+			<txt_value>Struttura dove si svolge lo studio:</txt_value>
+  		</field>
+		<field type="text" var_size="200" var="TITOLO"  cols="3" bytb="REGISTRAZIONE" bytbcode="TITOLO" bytbdecode="TITOLO" bytbwhere="ID_STUD=[ID_STUD]" >
+		   <txt_value>Titolo sperimentazione</txt_value>
+		</field>
+ 		<field type="textbox" var="PROTOCOLLO" var_type="text"  var_size="200" cols="3" size="40" send="obbligatorio">
+			<txt_value>Numero protocollo:</txt_value>
+  		</field>
+ 		<field type="textbox" var="EUDRACT" var_type="text"  var_size="200" cols="3" size="40" send="obbligatorio">
+			<txt_value>Codice Eudract:</txt_value>
+  		</field>
+ 		<field type="textbox" var="INVESTIGATOR" var_type="text"  var_size="200" cols="3" size="40" send="obbligatorio">
+			<txt_value>Principal Investigator:</txt_value>
+  		</field>
+ 		<field type="textbox" var="REPARTO" var_type="text"  var_size="200" cols="3" size="40" send="obbligatorio">
+			<txt_value>Reparto:</txt_value>
+  		</field>
+ 		<field type="textbox" var="N_SPERIMENTAZIONI" var_type="number"  var_size="200" cols="3" size="40" send="obbligatorio">
+			<txt_value>Nr. sperimentazioni attualmente in corso dal PI dello studio:</txt_value>
+  		</field>
+ 		<field type="textbox" var="N_PAZIENTI" var_type="number"  var_size="200" cols="3" size="40" send="obbligatorio">
+			<txt_value>Nr. pazienti coinvolti nelle sperimentazioni in corso:</txt_value>
+  		</field>
+ 		<field type="data" var="VALUTAZIONE_DT" cols="3" send="obbligatorio">
+			<txt_value>Data della valutazione:</txt_value>
+  		</field>
+ 		<field 
+ 		 cols="3" 
+				type="file_doc" 
+				var="VALUTAZIONE_0_1_FILE" 
+				THREAD="Fattibilita locale [CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Download documento</txt_value>
+		</field>
+
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

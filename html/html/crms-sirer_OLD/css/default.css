@@ -1,0 +1,420 @@
+@font-face {
+    font-family: logo;
+    src: url(../fonts/LT-Oksana-Medium.ttf.woff);
+}
+
+.bootbox-body{
+	font-size:26px;
+}
+a i[class^=icon-] ,a:hover i[class^=icon-],a:visited i[class^=icon-],a:active i[class^=icon-]{
+	text-decoration:none;
+}
+
+.clearfix{
+	clear:both;
+}
+
+.field-inline-edit input,.field-inline-edit select,.field-inline-edit textarea{
+	border-color:#fff!important;
+	resize:none;
+}
+
+.field-inline-edit input:focus,.field-inline-edit select:focus,.field-inline-edit textarea:focus{
+	border-color: #D5D5D5!important;
+	resize:both;
+}
+
+.field-view-mode{
+	font-weight:bold;
+}
+
+.field-inline-edit label,.field-inline-edit a.btn-link{
+	vertical-align:top;
+}
+.editable-buttons{
+	vertical-align:bottom;
+}
+.editable-empty{
+	color:#999 ;
+	/*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;*/
+}
+
+.field-view input:disabled,.field-view select:disabled,.field-view textarea:disabled,.field-view .select2-container.select2-container-disabled .select2-choice {
+	background-color:#fff;
+	border-color:#fff;
+	resize:none;
+}
+.select2-arrow{
+	display:none;
+}
+/*
+.field-component label{
+	clear:both;	
+}
+
+.control-label{
+	text-align:left!important;
+}
+*/
+
+
+.status-bar .form-horizontal .form-group.field-component.field-inline-edit label.col-sm-12{
+	text-align:left !important;	
+}
+
+.form-group {
+    margin-bottom: 5px !important;
+    margin-top: 5px !important;
+}
+
+.select2-ace *,.select2-ace  {
+	background:#FFFFFF!important;
+	border-color:#D5D5D5!important;
+	/*padding-left: 12px;
+	min-width: 45px;*/
+}
+
+
+.status-bar{
+	border-top: 2px solid #4c8fbd;
+	border-left: 1px solid #C5D0DC;
+	border-bottom: 1px solid #C5D0DC;
+	background:white;
+	padding-bottom: 10px;
+	/*
+	height: 100vh;
+    */
+}
+
+.status-bar h2{
+    color: #333333;
+    font-size: 21px;
+    border-color: -moz-use-text-color -moz-use-text-color #e5e5e5;
+    border-image: none;
+    border-style: none none solid;
+    border-width: 0 0 1px;
+}
+
+.status-bar .content{
+	
+}
+
+.status-bar .my-timeline{
+	display: inline-block !important;
+    font-size: 20px;
+    height: 18px;
+    left: 98px;
+    line-height: 12px;
+    opacity: 1;
+    padding: 0;
+    position: absolute !important;
+    top: 4px;
+    width: 12px;
+}
+
+
+.status-bar .timeline-style2 .timeline-item:before {
+	top: 16px !important;
+	bottom: -1px !important;
+	left: 105px;	
+}
+
+.status-bar .timeline-info .timeline-date{
+	font-weight: bold;
+	margin-right: 5  !important;
+    width: 90px !important;
+}
+
+
+.status-bar .timeline-body .timeline-date{
+	font-weight: bold;
+	margin-left: -8px !important;
+    width: 90px !important;
+}
+
+
+.logo-banner{
+	min-height: 70px;
+	height: 70px;
+	max-height: 70px;
+	background-image: url('/def_blank.png');
+	background-size: 1400px 70px;
+  background-repeat: no-repeat;
+}
+
+.logo-left{
+	min-height: 70px;
+	height: 70px;
+	max-height: 70px;
+	background-image: url('/logo_gemelli.png');
+	background-size: 200px 70px;
+  background-repeat: no-repeat;
+  float: left;
+}
+
+.logo-right{
+	min-height: 70px;
+	height: 70px;
+	max-height: 70px;
+	background-image: url('/logo_gemelli.png');
+	background-size: 200px 70px;
+  background-repeat: no-repeat;
+  float: right;
+}
+
+/* Example tokeninput style #2: Facebook style */
+ul.token-input-list-facebook {
+    overflow: hidden; 
+    height: auto !important; 
+    height: 1%;
+    min-width: 400px;
+    border: 1px solid #8496ba;
+    cursor: text;
+    font-size: 12px;
+    font-family: Verdana;
+    min-height: 1px;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    list-style-type: none;
+    clear: left;
+}
+
+ul.token-input-list-facebook li input {
+    border: 0;
+    width: 100px;
+    padding: 3px 8px;
+    background-color: white;
+    margin: 2px 0;
+    -webkit-appearance: caret;
+}
+
+li.token-input-token-facebook {
+    overflow: hidden; 
+    height: auto !important; 
+    height: 15px;
+    margin: 3px;
+    padding: 1px 3px;
+    background-color: #eff2f7;
+    color: #000;
+    cursor: default;
+    border: 1px solid #ccd5e4;
+    font-size: 11px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    float: left;
+    white-space: nowrap;
+}
+
+li.token-input-token-facebook p {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+li.token-input-token-facebook span {
+    color: #a6b3cf;
+    margin-left: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+li.token-input-selected-token-facebook {
+    background-color: #5670a6;
+    border: 1px solid #3b5998;
+    color: #fff;
+}
+
+li.token-input-input-token-facebook {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+div.token-input-dropdown-facebook {
+    position: absolute;
+    width: 400px;
+    background-color: #fff;
+    overflow: hidden;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    cursor: default;
+    font-size: 11px;
+    font-family: Verdana;
+    z-index: 1000000000000;
+}
+
+div.token-input-dropdown-facebook p {
+    margin: 0;
+    padding: 5px;
+    font-weight: bold;
+    color: #777;
+}
+
+div.token-input-dropdown-facebook ul {
+    margin: 0;
+    padding: 0;
+}
+
+div.token-input-dropdown-facebook ul li {
+    background-color: #fff;
+    padding: 3px;
+    margin: 0;
+    list-style-type: none;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-dropdown-item2-facebook {
+    background-color: #fff;
+}
+
+div.token-input-dropdown-facebook ul li em {
+    font-weight: bold;
+    font-style: normal;
+}
+
+div.token-input-dropdown-facebook ul li.token-input-selected-dropdown-item-facebook {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.comment-box:before{
+	left: 15px !important;
+	top: 40px !important;
+}
+
+.topbar-button-text{
+	vertical-align:middle;
+}
+
+
+.editable-submit{
+	margin-top: -20px !important;
+}
+
+.editable-cancel{
+	margin-top: -20px !important;
+}
+
+.btn-spaced{
+	margin-right:5px!important;
+	margin-left:5px!important;
+}
+#sidebar .dropdown-toggle{
+	padding-right: 24px !important;
+}
+.ui-dialog .ui-dialog-titlebar{
+	padding:7px!important;
+}
+
+.disabled-tab a ,.disabled-tab  a:hover,.disabled-tab a:visited ,.disabled-tab a:active {
+	background-color:#ccc!important;
+	color:#fff!important;
+}
+.field-component .col-lg-2{
+	padding:0px!important;
+}
+ @media only screen and (max-width: 900px) {
+	.hidden-900 {
+	    display: none !important;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.hidden-1200 {
+	    display: none !important;
+	}
+}
+
+div.bootbox.modal.fade.in {
+      z-index:19070;
+ }
+ 
+ div.bootbox.modal.fade.in + div {
+      z-index:9060;
+ }
+ 
+ .filtered-tab {
+      display:none!important;
+ }
+ 
+  .filtered-tab.active-section, .nav-toggled .filtered-tab{
+  	display:block!important;
+  }
+  
+  input.ace.ace-switch.ace-switch-6[type="checkbox"]:checked + .lbl:before{
+  	background-color:#8AB2C9!important;
+  }
+  
+  .sidebar-right{
+  
+	font-family:"Open Sans";
+	font-size:13px;
+	color:rgb(57,​ 57,​ 57);
+	line-height:19.5px;
+	background-color:#FFFFFF;
+	border-top-width:0px;
+	border-left-width:0.0px;
+	border-bottom-width:0px;
+	border-right-width:0px;
+	border-top-color:rgb(204,​ 204,​ 204);
+	border-left-color:rgb(204,​ 204,​ 204);
+	border-bottom-color:rgb(204,​ 204,​ 204);
+	border-right-color:#E7E4EC;
+	border-top-style:solid;
+	border-right-style:solid;
+	border-bottom-style:solid;
+	border-left-style:solid;
+	top:0px;
+	right:-7px;
+	position:relative;
+	float:right;
+	border-image-outset:0 0 0 0;
+	border-image-repeat:stretch stretch;
+	border-image-slice:100% 100% 100% 100%;
+	border-image-source:none;
+	border-image-width:1 1 1 1;
+	box-sizing:border-box;
+  }
+  
+
+  
+  #rightbar-toggle{
+	z-index:20;
+    font-size: 13px !important;
+    height: 39px !important;
+    left: -11px;
+    position: absolute;
+    top: 20px;
+    width: 23px !important;
+}
+ 
+ #rightbar-toggle i {
+  	font-size:16px;
+}
+
+.status-bar{
+	margin-top:20px;
+}
+
+
+
+.tabbable{
+	margin-top:20px;
+}
+
+
+.select2-choice{
+	min-width:200px !important;
+}

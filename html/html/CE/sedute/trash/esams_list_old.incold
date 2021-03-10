@@ -1,0 +1,943 @@
+<?php
+
+class xml_esams_list extends xml_esams_list_prototype{
+
+function print_esams($es_val, $key, $esam, $vprogr=0){
+		$in=$this->session_vars;
+		$conn=$this->conn;
+		$xml_dir=$this->xml_dir;
+		$config_service=$this->config_service;
+		if($es_val['HEADER']!="")$header="<tr><td class=\"sc4bis\"></td><td class=\"int exam_header\" style=\"text-align:left;\">{$es_val['HEADER']}</td></tr>";
+		if ($vprogr!=null) $agg_param="&VISITNUM_PROGR={$vprogr}";
+		else $agg_param="";
+		global $service;
+		$nome_form=$es_val['TESTO'];
+		//ESAMI NON PROGRESSIVO
+		if ((!isset($es_val['PROGR']) || $es_val['PROGR']!='yes') && !isset($es_val['CORR'])){
+			$img="to_be_comp.gif";
+			$progr=1;
+			if ($es_val['PROGR']!='') $progr=$es_val['PROGR'];
+			if ($es_val['RES'][$progr]['INIZIO']=='0' || $es_val['RES'][$progr]['INIZIO']=='') $img="to_be_comp.gif";
+			if ($es_val['RES'][$progr]['INIZIO']=='1') $img="saved.gif";
+			if ($es_val['RES'][$progr]['FINE']=='1') $img="submitted.gif";
+			$date=$es_val['RES'][$progr]['INSERTDT'];
+			if ($es_val['FOTH'] && ($es_val['RES'][$progr]['FINE']=='1' || $es_val['FOTH_ALWAYS']=='yes'))
+			{
+				if(isset($es_val['EOTH']) && $es_val['EOTH']!=='')$esam_oth=$es_val['EOTH'];
+				else $esam_oth=$es_val['NUMBER'];
+				$query_data="select {$es_val['FOTH']} as FOTH from {$config_service['service']}_{$es_val['TOTH']} where {$config_service['PK_SERVICE']}='{$in[$config_service['PK_SERVICE']]}' and esam={$esam_oth}";
+				$sql2=new query($conn);
+				$sql2->set_sql($query_data);
+				$sql2->exec();
+				$sql2->get_row();
+				$foth=$sql2->row['FOTH'];
+				$nome_esame=$es_val['TESTO'].$foth;
+			}
+			else{
+			$nome_esame=$es_val['TESTO'];
+			}
+			if($es_val['INS_DATE']=='yes'){
+				$nome_esame.=$date;
+			}
+			if ($es_val['RES'][$progr]['FINE']=='1') $nome_esame.="</a>";
+			if ($es_val['RES'][$progr]['ABILITATO']=='1' || $es_val['RES']['']['ABILITATO']=='1')
+			{
+
+
+				$href="<a href=\"index.php?CENTER=".$in['CENTER']."&amp;".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=$key&amp;ESAM=$esam&amp;PROGR=1&amp;form=".$es_val['XML']."{$agg_param}\">";
+
+				$close_href="</a>";
+
+
+				if ($es_val['INDENT']=='yes') $indent="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+				else $indent="";
+				$img_tag="<img src=\"/images/$img\" border=\"0\">";
+
+				if ($this->integrazione->eq_enabled && $this->integrazione->eq_int!=''){
+					$agg_where='';
+					if ($vprogr!=null) $agg_where="and VISITNUM_PROGR={$vprogr}";
+					$sql_query="select count(*) as c from {$service}_eqfield where
+					esam={$esam}
+					and visitnum=$key
+					and progr=$progr
+					$agg_where
+					and {$this->config_service['PK_SERVICE']}={$in[$this->config_service['PK_SERVICE']]}
+					and eq_int={$this->integrazione->eq_int}
+					";
+					$sql2=new query($this->conn);
+					$sql2->get_row($sql_query);
+					if ($sql2->row['C']>0){
+						$img_tag="<img src=\"images/eq_img.png\" width=\"15px\" title=\"La scheda e' in fase di integrazione\">".$img_tag;
+						//$nome_esame.="$href<img src=\"images/eq_img.png\" width=\"15px\" title=\"La scheda e' in fase di integrazione\">$close_href";
+						$nome_esame.="</a><b>(scheda modificata in fase di integrazione)</b>";
+					}
+				}
+				if ($es_val['RES']['1']['EQ_ACTION']==1){
+					$img_tag="<img src=\"images/eq_img.png\" width=\"15px\" title=\"La scheda e' in fase di integrazione\">".$img_tag;
+					$nome_esame.="</a><b>(scheda aggiunta in fase di integrazione)</b>";
+				}
+			if ($es_val['RES']['1']['EQ_ACTION']==2){
+					$img_tag="<img src=\"images/iphone_delete_icon.png\" width=\"15px\" title=\"La scheda rimossa in fase di integrazione\">".$img_tag;
+					$nome_esame.="</a><b>(scheda rimossa in fase di integrazione)</b>";
+				}
+				$this->body.="{$header}
+									<tr>
+										 <td class=\"sc4bis\" width=\"10%\" align=\"center\">{$indent}{$href}{$img_tag}{$close_href}
+										</td>
+										<td class=\"sc4bis\" align=\"left\">{$indent}$href".$nome_esame."$close_href<br/>
+										</td>
+									</tr>
+										";
+			}
+		}
+		//ESAMI PROGRESSIVI
+		else {
+			$last_progr=0;
+			$form_alt='';
+			if (isset($es_val['RES']) && !isset($es_val['CORR'])){
+				if(isset($es_val['ALL_IN'])){
+
+					foreach ($es_val['RES'] as $es_progr => $progr_vals){
+						if ($es_val['RES'][$es_progr]['INIZIO']=='1'){
+							$sql2=new query($conn);
+							if ($es_val['DATA']!='') {
+								$query_data="select to_char({$es_val['DATA']}, 'DD/MM/YYYY') as data from {$service}_{$es_val['TABLE']} where ".$config_service['PK_SERVICE']."='{$in[$config_service['PK_SERVICE']]}' and  progr='{$es_progr}'";
+								$sql2->set_sql($query_data);
+								$sql2->exec();
+								$sql2->get_row();
+								$date=$sql2->row['DATA'];
+							}
+							if ($es_val['RES'][$es_progr]['INIZIO']=='0') $img="to_be_comp.gif";
+							if ($es_val['RES'][$es_progr]['INIZIO']=='1') $img="saved.gif";
+							if ($es_val['RES'][$es_progr]['FINE']=='1') $img="submitted.gif";
+						}
+						$last_progr=$es_progr;
+					}
+					$n_progr=0;
+					$init=false;
+					$all_completed=true;
+					$eq_present=false;
+					$add_text='';
+					$count_added=0;
+					$count_deleted=0;
+					$all_deleted=true;
+					$all_added=true;
+					foreach ($es_val['RES'] as $keys => $val) {
+						if ($val['INIZIO']=='1') $n_progr++;
+						if ($val['INIZIO']=='' || $val['INIZIO']=='0') $img="to_be_comp.gif";
+						if ($val['INIZIO']=='1') $init=true;
+						if ($val['FINE']!='1') $all_completed=false;
+						if ($val['INV_QUERY']!='') $eq_present=true;
+						if ($val['EQ_ACTION']==2) {
+							$all_added=false;
+							$count_deleted++;
+						}
+						if ($val['EQ_ACTION']==1) {
+							$all_deleted=false;
+							$count_added++;
+						}
+						if ($val['EQ_ACTION']==1) $add_text="</a><b>(Schede aggiunte/rimosse in fase di integrazione)</b>";
+						if ($val['EQ_ACTION']==2) $add_text="</a><b>(Schede aggiunte/rimosse in fase di integrazione)</b>";
+					}
+					if ($add_text!='' && $all_added) $add_text="</a><b>(Schede aggiunte in fase di integrazione)</b>";
+					if ($add_text!='' && $all_deleted) $add_text="</a><b>(Schede rimosse in fase di integrazione)</b>";
+					if ($init) $img="saved.gif";
+					if ($all_completed)  $img="submitted.gif";
+					if ($n_progr==0) {
+						$img="to_be_comp.gif";
+						if($this->true_false['configurato'])
+						$n_progr=$this->testi['nuovo_inserimento'];
+						else
+						$n_progr="Nuovo inserimento";
+					}
+					if (isset($es_val['VIEWABLE_ON_CLOSE']) && $es_val['VIEWABLE_ON_CLOSE']=='yes'){
+						$count_fine=0;
+						foreach ($es_val['RES'] as $k_idx=>$val_idx){
+							if ($val_idx['FINE']==1 || $val_idx['USERID']==$in['remote_userid']) {
+
+								$count_fine++;
+							}
+						}
+						$n_progr=$count_fine;
+						if ($count_fine==0){
+							$img="to_be_comp.gif";
+						}
+					}
+					$date=" (".$n_progr.") ".$date;
+					$nome_esame=$es_val['TESTO']." $date";
+					$nome_esame.=$add_text;
+					if ($es_val['RES'][$es_progr]['ABILITATO']=='1'){
+
+						$href="<a href=\"index.php?CENTER=".$in['CENTER']."&amp;".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=$key&amp;ESAM=$esam&amp;form=".$es_val['XML']."{$agg_param}\">";
+						$close_href="</a>";
+						$img_tag="<img src=\"/images/$img\" border=\"0\">";
+						if ($eq_present){
+							if ($all_deleted) $img_tag="<img src=\"images/iphone_delete_icon.png\" width=15px>".$img_tag;
+							else $img_tag="<img src=\"images/eq_img.png\" width=15px>".$img_tag;
+						}
+						$to_assign="";
+						if($es_val['NUMBER']==301) { //AIC3LIST='0' OR MEDICINALI like '%(aic:)%'
+							$sql_query="select * from cp_vi_confezioni_uff where {$this->config_service['PK_SERVICE']}={$in[$this->config_service['PK_SERVICE']]} and visitnum_progr={$vprogr}  and (aic6 is null or aic3 is null)";
+//							echo $sql_query;
+							$sql_aic=new query($this->conn);
+							$sql_aic->exec($sql_query);
+							$sql_aic->get_row();
+							if($sql_aic->numrows>0)
+							if($sql_aic->numrows==1)
+							$to_assign=" - <b>".$sql_aic->numrows." confezione con aic3/aic6 da associare</b>";
+							else
+							$to_assign=" - <b>".$sql_aic->numrows." confezioni con aic3/aic6 da associare</b>";
+						}
+
+						$this->body.="{$header}
+													<tr>
+														 <td class=\"sc4bis\" width=\"10%\" align=\"center\">$href{$img_tag}$close_href
+														</td>
+														<td class=\"sc4bis\" align=\"left\">$href".$nome_esame." $close_href $to_assign <br/>
+														</td>
+														<!--td class=\"sc4bis\" align=\"center\">
+														</td>
+														<td class=\"sc4bis\" align=\"center\"><b>&nbsp;$date</b><br/>
+														</td-->
+													</tr>
+												";
+						if($es_val['NUMBER']==301 && $vprogr==0) {
+							$this->body="<p style=\"color:red;margin:5 auto;margin-bottom:0px;text-align:center;font-weight:bold;\">ATTENZIONE: le confezioni presenti sono le copie di quelle inserite dall'azienda, divise in \"blocchi medicinali\"<br />
+							Il collegamento al CTS è incluso nel primo blocco.</p>"
+							.$this->body;
+						}
+					}
+				}
+				else{
+					foreach ($es_val['RES'] as $es_progr => $progr_vals){
+						if ($es_val['RES'][$es_progr]['INIZIO']=='1'){
+							$sql2=new query($conn);
+							if ($es_val['DATA']!='') {
+								$query_data="select to_char({$es_val['DATA']}, 'DD/MM/YYYY') as data from {$service}_{$es_val['TABLE']} where ".$config_service['PK_SERVICE']."='{$in[$config_service['PK_SERVICE']]}' and  progr='{$es_progr}'";
+								$sql2->set_sql($query_data);
+								$sql2->exec();
+								$sql2->get_row();
+								$date=$sql2->row['DATA'];
+							}
+							if ($es_val['VAL_AGG']!='') {
+								$query_data="select {$es_val['VAL_AGG']} as VAL_AGG from {$service}_{$es_val['TABLE']} where ".$config_service['PK_SERVICE']."='{$in[$config_service['PK_SERVICE']]}' and  progr='{$es_progr}' and esam='$esam'";
+								$sql2->set_sql($query_data);
+								$sql2->exec();
+								$sql2->get_row();
+								$date=$sql2->row['VAL_AGG'];
+							}
+
+							if ($last_progr+1!=$es_progr)
+							while ($last_progr<$es_progr-1){
+
+								$last_progr++;
+								$n_progr=$last_progr;
+								$img="to_be_comp.gif";
+								$form_alt=str_replace(".xml", ".xml", $es_val['XML']);
+								if (!file_exists($xml_dir."/".$form_alt)) $form_alt=$es_val['XML'];
+								$href="<a href=\"index.php?CENTER=".$in['CENTER']."&amp;".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=$key&amp;ESAM=$esam&amp;form=".$form_alt."{$agg_param}\">";
+								$nome_esame=$es_val['TESTO']." n. $n_progr";
+								$close_href="</a>";
+								if ($es_val['RES'][$es_progr]['EQ_INT']!=''){
+									$nome_esame.="$href<img src=\"images/eq_img.png\" width=\"15px\" title=\"La scheda e' in fase di integrazione\">$close_href";
+								}
+								if ($es_val['RES'][$es_progr]['INV_QUERY']!=''){
+
+									if ($es_val['RES'][$es_progr]['EQ_ACTION']==2){
+										if ($this->integrazione->eq_enabled) continue;
+									}
+									if ($es_val['RES'][$es_progr]['EQ_ACTION']==1){
+										if (!$this->integrazione->eq_enabled) continue;
+										$eq_present=true;
+									}
+								}
+								$img_tag="<img src=\"/images/$img\" border=\"0\">";
+								if ($eq_present) $img_tag="<img src=\"images/eq_img.png\" width=15px>".$img_tag;
+
+
+								$this->body.="{$header}
+																<tr>
+																	 <td class=\"sc4bis\" width=\"10%\" align=\"center\">$href{$img_tag}$close_href
+																	</td>
+																	<td class=\"sc4bis\" align=\"left\">$href".$nome_esame." $close_href<br/>
+																	</td>
+																	<!--td class=\"sc4bis\" align=\"center\">
+																	</td>
+																	<td class=\"sc4bis\" align=\"center\"><b>&nbsp;$date</b><br/>
+																	</td-->
+																</tr>
+															";
+
+							}
+							if ($es_val['RES'][$es_progr]['INIZIO']=='0') $img="to_be_comp.gif";
+							if ($es_val['RES'][$es_progr]['INIZIO']=='1') $img="saved.gif";
+							if ($es_val['RES'][$es_progr]['FINE']=='1') $img="submitted.gif";
+							$n_progr=$es_progr;
+							if (isset($es_val['VAL_AGG'])) $nome_esame="{$es_val['TESTO']} {$date}";
+							else {
+								if ($date!='') $date=" n.{$n_progr} ($date)";
+								$nome_esame=$es_val['TESTO']." $date";
+							}
+							if ($es_val['RES'][$es_progr]['ABILITATO']=='1'){
+								$href="<a href=\"index.php?CENTER=".$in['CENTER']."&amp;".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=$key&amp;ESAM=$esam&amp;PROGR=$es_progr&amp;form=".$es_val['XML']."\">";
+								if ($es_progr!=''){
+								}
+								$close_href="</a>";
+								if ($es_val['RES'][$es_progr]['EQ_INT']!=''){
+									$nome_esame.="$href<img src=\"images/eq_img.png\" width=\"15px\" title=\"La scheda e' in fase di integrazione\">$close_href";
+								}
+								$img_tag="<img src=\"/images/$img\" border=\"0\">";
+							if ($es_val['RES'][$es_progr]['INV_QUERY']!=''){
+
+									if ($es_val['RES'][$es_progr]['EQ_ACTION']==2){
+										if ($this->integrazione->eq_enabled) $record_deleted=true;
+										else $record_deleted=false;
+									}
+									if ($es_val['RES'][$es_progr]['EQ_ACTION']==1){
+										if (!$this->integrazione->eq_enabled) continue;
+										$eq_present=true;
+										$nome_esame.="</a><b>(Scheda aggiunta)</b>";
+									}
+								}
+								if ($eq_present) $img_tag="<img src=\"images/eq_img.png\" width=15px>".$img_tag;
+								else {
+										$sql_mod="select count(*) as C from {$this->config_service['service']}_EQFIELD
+									where
+									{$this->config_service['PK_SERVICE']}={$in[$this->config_service['PK_SERVICE']]}
+									and ESAM=$esam
+									and VISITNUM={$this->session_vars['VISITNUM']}
+									and PROGR=$es_progr
+									and VISITNUM_PROGR={$this->session_vars['VISITNUM_PROGR']}
+									";
+									$sql_mod_=new query($this->conn);
+									$sql_mod_->get_row($sql_mod);
+									if ($sql_mod_->row['C']>0) $img_tag="<img src=\"images/eq_img.png\" width=15px>".$img_tag;
+
+								}
+								if ($record_deleted) $img_tag="<img src=\"images/iphone_delete_icon.png\" width=15px>".$img_tag;
+
+								$this->body.="{$header}
+																<tr>
+																	 <td class=\"sc4bis\" width=\"10%\" align=\"center\">$href{$img_tag}$close_href
+																	</td>
+																	<td class=\"sc4bis\" align=\"left\">$href".$nome_esame." $close_href<br/>
+																	</td>
+																	<!--td class=\"sc4bis\" align=\"center\">
+																	</td>
+																	<td class=\"sc4bis\" align=\"center\"><b>&nbsp;$date</b><br/>
+																	</td-->
+																</tr>
+															";
+
+							}
+							$last_progr=$es_progr;
+						}
+
+					}
+				}
+				if (($es_val['RES'][$es_progr]['FINE']==1 || $es_val['RES'][$es_progr]['INIZIO']=='' || $es_val['NEXT_ENABLED']!='') && !isset($es_val['ALL_IN']) && !$es_val['RES'][$es_progr]['VISITCLOSE']){
+					if(!$this->true_false['configurato'])$this->testi['nuovo_inserimento']='Nuovo inserimento';
+					if ($es_val['RES'][$es_progr]['INIZIO']!='') $next_progr=$es_progr+1;
+					else $next_progr=$es_progr;
+					$href="<a href=\"index.php?CENTER=".$in['CENTER']."&amp;".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=$key&amp;ESAM=$esam&amp;PROGR={$next_progr}&amp;form=".$es_val['XML']."\">";
+					$close_href="</a>";
+				}
+			}
+		}
+	}
+
+
+	/*
+<div id="droplinetabs1" class="droplinetabs">
+<ul>
+<li><a href="http://www.dynamicdrive.com/"><span>Home</span></a></li>
+<li><a href="http://www.dynamicdrive.com/style/"><span>CSS Examples</span></a></li>
+<li><a href="http://tools.dynamicdrive.com"><span>Tools</span></a></li>
+<li><a href="http://www.javascriptkit.com/"><span>JavaScript</span></a></li>
+<li><a href="http://www.cssdrive.com"><span>Gallery</span></a></li>
+</ul>
+</div>
+	 */
+	function esams_list_html($service=null){
+		if(isset($service))
+			$parametro_passato=true;
+		$in=$this->session_vars;
+		$conn=$this->conn;
+		$xml_dir=$this->xml_dir;
+		$config_service=$this->config_service;
+		global $patient_table;
+		$sql=new query($conn);
+		if(!$service)global $service;
+		$sql_close="select min(visitclose) as chiusa from {$service}_coordinate where {$config_service['PK_SERVICE']}='{$in[$config_service['PK_SERVICE']]}'";
+		$sql->set_sql($sql_close);
+		$sql->exec();
+		$sql->get_row();
+		$chiusa=$sql->row['CHIUSA'];
+
+		if ($config_service['PK_SERVICE']=='') $config_service['PK_SERVICE']=$this->PK_SERVICE;
+		if ($config_service['VISITNUM_PROGR']=='1') {
+			$add_vprogr="VISITNUM_PROGR,";
+			$sql=new query($conn);
+			$sql_select="select max(visitnum_progr) as maxvp from ".$service."_COORDINATE where {$config_service['PK_SERVICE']}='".$in[$config_service['PK_SERVICE']]."'";
+			$sql->set_sql($sql_select);
+			$sql->exec();
+			$sql->get_row();
+			$max_vp=$sql->row['MAXVP'];
+			foreach($this->visitnums as $visit => $vval){
+				if ($vval['PROGR']=='yes') {
+					$v_progr_esam_spec=$this->esams[$visit];
+					unset($this->esams[$visit]);
+					for ($i=0; $i<=$max_vp; $i++){
+						$this->esams[$visit][$i]=$v_progr_esam_spec;
+					}
+				}
+			}
+		}
+		$query="
+		select userid,visitclose,visitnum,$add_vprogr esam, progr, inizio, fine, to_char(insertdt, 'DD/MM/YYYY') as insertdt, abilitato
+		from ".$service."_COORDINATE
+		where {$config_service['PK_SERVICE']}='".$in[$config_service['PK_SERVICE']]."'
+		and (EQ_ACTION is null or EQ_ACTION=2)
+		order by visitnum,$add_vprogr esam ,progr";
+		/*
+		if ($this->config_service['eQuerySpec']['Integrazione']['ON']==1 && $this->session_vars['WFact']==$this->config_service['eQuerySpec']['Integrazione']['ROLE']){
+			$sql_query="select * from {$service}_eq where
+			stato!=1 and userid_ins='{$this->session_vars['remote_userid']}'
+			and {$this->config_service['PK_SERVICE']}={$_GET[$this->config_service['PK_SERVICE']]}
+			";
+		$sql=new query($conn);
+		if ($sql->get_row($sql_query)) {$eq_int=$sql->row['EQUERY_INT'];
+			$query="
+			select INV_QUERY,EQ_ACTION,userid,visitclose,visitnum,$add_vprogr esam, progr, inizio, fine, to_char(insertdt, 'DD/MM/YYYY') as insertdt, abilitato
+			from ".$service."_COORDINATE
+			where {$config_service['PK_SERVICE']}='".$in[$config_service['PK_SERVICE']]."'
+			and (EQ_ACTION is null or (INV_QUERY=$eq_int and EQ_ACTION=1))
+			order by visitnum,$add_vprogr esam ,progr";
+			}
+		}
+		*/
+		if ($this->integrazione->eq_enabled && $this->integrazione->eq_int!=''){
+			$query="
+			select INV_QUERY,EQ_ACTION,userid,visitclose,visitnum,$add_vprogr esam, progr, inizio, fine, to_char(insertdt, 'DD/MM/YYYY') as insertdt, abilitato
+			from ".$service."_COORDINATE
+			where {$config_service['PK_SERVICE']}='".$in[$config_service['PK_SERVICE']]."'
+			/*
+			and (EQ_ACTION is null or (INV_QUERY={$this->integrazione->eq_int} and EQ_ACTION=1))
+			*/
+			order by visitnum,$add_vprogr esam ,progr";
+		}
+//		echo $query;
+		$sql=new query($conn);
+		$sql->set_sql($query);
+		$sql->exec();
+		while ($sql->get_row()){
+			if ($this->visitnums[$sql->row['VISITNUM']]['PROGR']=='yes') {
+				if ($sql->row['ABILITATO']=='1') $this->visitnums[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']]['ENABLED']=true;
+				if (isset($this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']])){
+					$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['FINE']=$sql->row['FINE'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['INIZIO']=$sql->row['INIZIO'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['INSERTDT']=$sql->row['INSERTDT'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['ABILITATO']=$sql->row['ABILITATO'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['VALIDATA']=$sql->row['VALIDATA'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['VISITCLOSE']=$sql->row['VISITCLOSE'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['USERID']=$sql->row['USERID'];
+					if ($this->integrazione->eq_enabled && $this->integrazione->eq_int!=''){
+						$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['EQ_ACTION']=$sql->row['EQ_ACTION'];
+						$this->esams[$sql->row['VISITNUM']][$sql->row['VISITNUM_PROGR']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['INV_QUERY']=$sql->row['INV_QUERY'];
+					}
+					$this->visitnums[$sql->row['VISITNUM']]['CLOSED']=$sql->row['VISITCLOSE'];
+				}
+			}
+			else {
+				if (isset($this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']])){
+					if ($sql->row['ABILITATO']=='1') $this->visitnums[$sql->row['VISITNUM']]['ENABLED']=true;
+					$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['FINE']=$sql->row['FINE'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['INIZIO']=$sql->row['INIZIO'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['INSERTDT']=$sql->row['INSERTDT'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['ABILITATO']=$sql->row['ABILITATO'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['VALIDATA']=$sql->row['VALIDATA'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['VISITCLOSE']=$sql->row['VISITCLOSE'];
+					$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['USERID']=$sql->row['USERID'];
+				if ($this->integrazione->eq_enabled && $this->integrazione->eq_int!=''){
+						$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['EQ_ACTION']=$sql->row['EQ_ACTION'];
+						$this->esams[$sql->row['VISITNUM']][$sql->row['ESAM']]['RES'][$sql->row['PROGR']]['INV_QUERY']=$sql->row['INV_QUERY'];
+					}
+					$this->visitnums[$sql->row['VISITNUM']]['CLOSED']=$sql->row['VISITCLOSE'];
+				}
+			}
+		}
+		if ($this->integrazione->eq_enabled && $this->integrazione->eq_int!='' && !$this->config_service['eQuerySpec']['Integrazione']['EXCLUDE_VISIT'][$_GET['VISITNUM']]){
+			if($this->integrazione->stato==0)
+			$this->body.="
+			<div style='font-align:center;color:red;font-weight:bold'>
+			Attenzione! le schede contrassegnate con il simbolo <img src=\"images/eq_img.png\" width=20px> hanno subito modifiche
+			</div>
+				";
+			else
+			$this->body.="
+			<div style='font-align:center;color:#F57900;font-weight:bold'>
+			Attenzione! le schede contrassegnate con il simbolo <img src=\"images/eq_img.png\" width=20px> sono in corso di approvazione
+			</div>
+				";
+		}
+		$equery_enabled=$this->integrazione->eq_enabled;
+		$this->tab="<ul id=\"globalnav\">";
+		foreach ($this->visitnums as $key => $val) {
+			if ($val['VIEWABLE_ON_CLOSE']=='yes' && $in['USER_TIP']!='DE' && $val['CLOSED']!='1'){
+				continue;
+			}
+			$af_progr="";
+			if (isset($in['GROUP'])){
+				$in['VISITNUM']='non so';
+				if (isset($this->group[$in['GROUP']]['VISIT'][$key])){
+					$in['VISITNUM']=$key;
+				}
+			}
+			if ($in['VISITNUM']=='') $in['VISITNUM']=0;
+			if ($this->visitnums[$key][0]['ENABLED'] || $this->visitnums[$key]['ENABLED']){
+				if ($in['VISITNUM']=="$key"){
+					$tab_bar[$key]="<li><a class='selected' href=\"index.php?CENTER=".$in['CENTER']."&".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=".$val['NUMBER']."&amp;exams=visite_exams.xml\"><span class='selected'>{$val['SHORT_TXT']}</span></a></li>";
+				} else {
+					$tab_bar[$key]="<li><a href=\"index.php?CENTER=".$in['CENTER']."&".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=".$val['NUMBER']."&amp;exams=visite_exams.xml\"><span>{$val['SHORT_TXT']}</span></a></li>";
+				}
+			}
+			if (!isset($in['VISITNUM']) || $in['VISITNUM']=="$key"){
+				if ($val['PROGR']=='yes') {
+					if (!$this->isVisitClose($key) && $val['BUTTONS_DISABLED']!='yes' && $in['USER_TIP']=='DE') $aggiungi_visita="<input type='button' value='".$this->testo('Aggiungi')."' onclick=\"
+						window.location.href='index.php?CENTER={$in['CENTER']}&VISITNUM={$key}&{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}&CREATE_VPROGR=yes';
+					\">";
+					else $aggiungi_visita='';
+					if ($aggiungi_visita=='' && $this->config_service['eQuerySpec']['Integrazione']['ON']==1 && $this->session_vars['WFact']==$this->config_service['eQuerySpec']['Integrazione']['ROLE']){
+						$aggiungi_visita="<input type='button' value='Aggiungi (Integrazione domanda)' onclick=\"
+							if (confirm('Proseguendo, sara\\' possibile inserire un nuovo blocco di schede come integrazione alla domanda gia\\' inviata! Continuare?'))
+							window.location.href='index.php?CENTER={$in['CENTER']}&VISITNUM={$key}&{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}&CREATE_VPROGR=yes';
+							else return false;
+							\">";
+					}
+					global $config_service;
+					if (isset($config_service['class_visit_progr']))
+					$style_table="class=\"{$config_service['class_visit_progr']}\" ";
+					else $style_table="";
+					if ($this->visitnums[$key][0]['ENABLED'])
+					{
+						$this->body.="
+		  				<table $style_table width=\"100%\">
+							<tr class=int>
+							<td>&nbsp;&nbsp;</td>
+								<td width=80%>
+								<a href=\"index.php?CENTER={$in['CENTER']}&{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}&VISITNUM={$key}&exams=visite_exams.xml\">
+									{$this->visitnums[$key]['TEXT']}
+								</a>
+								</td>
+								<td align=center>
+									$aggiungi_visita<br/>
+									<a href=\"#\" onclick=\"
+									//--show_all--
+									return false;
+									\">Mostra tutte le schede</a>
+								</td>
+							</tr>
+						";
+					}
+					foreach($this->esams[$key] as $vprogr => $vesam) {
+						if ($max_vprogr<$vprogr) $max_vprogr=$vprogr;
+					}
+					global $onload;
+					foreach($this->esams[$key] as $vprogr => $vesam){
+						$nro=$vprogr+1;
+						if($val['SET_PROGR_START']=='')$nro_label=$nro;
+						else $nro_label=$vprogr+$val['SET_PROGR_START'];
+						if ($this->visitnums[$key][$vprogr]['ENABLED']){
+							$param="";
+							foreach($_GET as $gkey => $gval) if ($gkey!='VISITNUM_PROGR') $param.="$gkey=$gval&";
+							if ($in['VISITNUM_PROGR']!=$nro-1 && $this->visitnums[$key]['SHOW_ALWAYS']!="yes") {
+								$onload.="
+								document.getElementById('af_{$key}_{$nro}').style.display='none';
+								";
+							}
+							$show_all.="
+								document.getElementById('af_{$key}_{$nro}').style.display='';
+							";
+							$not_delete=false;
+							foreach ($vesam as $esam => $es_val){
+								if ($es_val['RES'][1]['FINE']=='1') $not_delete=true;
+							}
+							if ($in['USER_TIP']!='DE') $not_delete=true;
+							if ($not_delete || $val['BUTTONS_DISABLED']=='yes') $delete_button="";
+							else $delete_button="
+									<input type='button' value='".$this->testo('Elimina')."' onclick=\"
+										if (confirm('".$this->testo("Sei sicuro di voler eliminare")." {$this->visitnums[$key]['TEXT']} ".$this->testo("numero")." $nro?'))
+											window.location.href='index.php?{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}&VISITNUM={$key}&VISITNUM_PROGR={$vprogr}&DelVisitProgr=yes';
+										else return false;
+									\">
+								";
+							if ($this->integrazione->eq_enabled && $this->integrazione->eq_int!='') $delete_button="<input type='button' value='".$this->testo('Elimina')."' onclick=\"
+										if (confirm('".$this->testo("Sei sicuro di voler eliminare")." {$this->visitnums[$key]['TEXT']} ".$this->testo("numero")." $nro?'))
+											window.location.href='index.php?{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}&VISITNUM={$key}&VISITNUM_PROGR={$vprogr}&DelVisitProgr=yes';
+										else return false;
+									\">";
+							if ($vprogr==0) $delete_button='';
+							if ($this->visitnums[$key]['DATA_TABLE']!=''){
+								$sql2=new query($conn);
+							$tbs=split("\|", $this->visitnums[$key]['DATA_TABLE']);
+							$fields=split(";", $this->visitnums[$key]['DATA_FIELD']);
+							$lbls=split("\|", $this->visitnums[$key]['DATA_HEADER']);
+							$table='';
+							$data='';
+							$tb_content='';
+							$tb_header='';
+							$data_cols='';
+							$f_count=0;
+							$idx_start=0;
+							$idx_end=0;
+							$tot_field=0;
+							for ($i=0;$i<count($tbs);$i++){
+								$sql_query="select {$fields[$i]} from {$service}_{$tbs[$i]} where {$this->PK_SERVICE}={$in[$this->PK_SERVICE]} and visitnum=$key and visitnum_progr=$vprogr";
+								$sql2->exec($sql_query);
+								$fields_count[$i]=count(split(",", $fields[$i]));
+								$idx_start+=$fields_count[$i-1];
+								$tot_field+=$fields_count[$i];
+								$f_count=0;
+								while ($sql2->get_row()){
+									if ($sql2->n_r>1)
+									$f_count=0;
+									foreach ($sql2->row as $k_=>$v_){
+										$data[$idx_start+$f_count].=$v_."<br/>";
+										$f_count++;
+									}
+								}
+							}
+
+							for($i=0;$i<$tot_field;$i++){
+								$data[$i]=rtrim($data[$i], "<br/>");
+								$tb_content.="<td valign=top align=right class=sc4bis>{$data[$i]}</td>";
+							}
+							foreach ($lbls as $l_idx=>$l_content){
+								$tb_header.="<th valign=top class=int>$l_content</th>";
+							}
+
+							$table="<table width=100%><tr>$tb_header</tr><tr>$tb_content</tr></table>";
+							$display="none";
+							}
+							else {
+								$table='';
+								$display='';
+							}
+
+							$onclick="";
+							if ($es_val['RES'][1]['EQ_ACTION']==1 && $es_val['RES'][1]['INV_QUERY']=$eq_int){
+								$eq_img_="<img src=\"images/eq_img.png\">";
+							}
+							
+							/*
+							$af_number=$nro-1;
+							$clona_af="";
+							if ($key==2) {
+								//LUIGI: mette la clonazione pratica solo se la visitnum 4 è aperta
+							$sql_closed="select min(visitclose) as chiusa from {$service}_coordinate where {$config_service['PK_SERVICE']}='{$in[$config_service['PK_SERVICE']]}' and visitnum = '{$key}'";
+							$sql->set_sql($sql_closed);
+							$sql->exec();
+							$sql->get_row();
+							$clona_chiusa=$sql->row['CHIUSA'];
+							if ($clona_chiusa!=1)
+							$clona_af="
+							<input type=\"button\" value=\"Clona IMP Form $nro\"
+												onclick=\"
+												if (confirm('Attenzione, clonando questa IMP Form si cloneranno anche le schede relative.\\\nSi consiglia di compilarle prima di procedere alla clonazione.\\\n')) 
+												window.location.href='index.php?VISITNUM=2&ID_SPER={$_GET['ID_SPER']}&VISITNUM_PROGR=$af_number&CLONA';
+												else return false;
+											\">
+							
+							";
+							
+							}
+							*/
+							
+														
+							$this->body.="
+							<tr>
+								<td valign=top class=sc4bis>
+									&nbsp;<b>$nro_label. {$eq_img_}</b>
+								</td>
+								<td colspan=2>
+								<table style=\"border:2px solid\" width=100%>
+									<tr class=int>
+										<td width=80%>
+											$table
+										</td>
+										<td valign=top align=center>
+										$delete_button<br/>
+										$clona_af
+											<a href=\"#\" onclick=\"show_hide('af_{$key}_{$nro}'); return false;\">Mostra/nascondi schede</a>
+										</td>
+									</tr>
+									<tr>
+										<td colspan=2>
+											<table id='af_{$key}_{$nro}' align=\"center\" style=\"display:;border-color:#c0c0c0\" cellpadding=\"2\" cellspacing=\"0\" width=\"100%\">
+	        					";
+							foreach ($vesam as $esam => $es_val){
+								if ($vprogr==null) $vprogr="0";
+								if ($es_val['RES'][1]['ABILITATO']=='1') {
+									$this->print_esams($es_val,$key,$esam, $vprogr);
+								}
+							}
+							$this->body.="
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>";
+						}
+					}
+					$this->body=str_replace("//--show_all--", $show_all, $this->body);
+					if ($this->visitnums[$key][0]['ENABLED']) $this->body.="</table>";
+				}
+				else{
+					if ($this->visitnums[$key]['ENABLED']){
+						$tbody_close='';
+						$tbody_open='';
+						$show_hide_link='';
+						$count_schede=0;
+						$schede_vuote=0;
+						foreach ($this->esams[$key] as $esam => $es_val){
+							if ($es_val['RES'][1]['ABILITATO']=='1') {
+								$count_schede++;
+							}
+							if ($es_val['RES'][1]['ABILITATO']=='1') {
+								foreach ($es_val['RES'] as $k_v=>$v_v){
+									if ($v_v['INIZIO']!='1')
+									$schede_vuote++;
+								}
+							}
+						}
+						if (isset($val['SHOW_HIDE'])){
+							$tbody_open="<tbody id=\"VISITNUM_{$key}_TBODY\" style=\"display:none\">";
+							$tbody_close="</tbody>
+							<tbody id=\"VISITNUM_{$key}_TBODY_\" style=\"display:\">
+								<tr>
+									<td class=sc4bis>
+									<ul>
+										<li><b>Totale Schede: $count_schede</b></li>
+										<li><b><font color=red>Schede vuote: $schede_vuote</font></b></li>
+									</ul>
+									</td>
+							</tbody>
+							";
+							$show_hide_link="
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a href=\"#\" onclick=\"
+							show_hide('VISITNUM_{$key}_TBODY');
+							show_hide('VISITNUM_{$key}_TBODY_');
+							return false;
+							\">Mostra/Nascondi tutte le schede</a>";
+						}
+
+						$this->body.="
+		  		<table border=\"0\" align=\"center\" style=\"border-color:#c0c0c0\" cellpadding=\"2\" cellspacing=\"0\" width=\"100%\">
+	        	<tr>
+							<td class=\"int\" colspan=2 align=\"left\"><a href=\"index.php?CENTER=".$in['CENTER']."&".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;VISITNUM=".$val['NUMBER']."&amp;exams=visite_exams.xml\" class=\"sc2b\">".$val['TEXT']."</a>
+						$show_hide_link
+							</td>
+				</tr>
+				$tbody_open
+						";
+
+						foreach ($this->esams[$key] as $esam => $es_val){
+							if ($es_val['RES'][1]['ABILITATO']=='1') {
+								$this->print_esams($es_val,$key,$esam);
+							}
+						}
+						$this->body.=$tbody_close;
+					}
+				}
+			}
+
+			global $service;
+			$sql_close_visit="select nvl(min(visitclose),0) as close from {$service}_coordinate where {$this->PK_SERVICE}={$in[$this->PK_SERVICE]} and VISITNUM=$key";
+			$sql=new query($this->conn);
+			$sql->get_row($sql_close_visit);
+			if ($this->visitnums[$key]['CLOSE_VISIT']!='' && $sql->row['CLOSE']=='0' && $in['USER_TIP']=='DE' && ($in['VISITNUM']=='' || $in['VISITNUM']==$key)){
+				if ($this->visitnums[$key]['CLOSE_VISIT_NOTE']){
+					$this->body.="
+				<tr>
+					<td class=\"int\" colspan=2 align=center>
+						<div id='BUTTON_CLOSE_VISIT' style=\"display:\">
+						<input type=\"button\" value=\"{$this->visitnums[$key]['CLOSE_VISIT']}\"
+						onclick=\"
+						document.getElementById('CLOSE_VISIT_NOTE').style.display='';
+						document.getElementById('BUTTON_CLOSE_VISIT').style.display='none';
+						\"
+						>
+						</div>
+						<div id='CLOSE_VISIT_NOTE' class=\"input\" style=\"display:none\">
+						<form method='GET' action=\"index.php\" onsubmit=\"
+						if (document.getElementById('NOTE_CHIUSURA_SPEC_ID').value==''){
+							alert('Inserire note');
+							return false;
+						}
+						\">
+						<input type='hidden' name='{$this->PK_SERVICE}' value=\"{$in[$this->PK_SERVICE]}\">
+						<input type='hidden' name='CLOSE_VISIT' value=\"$key\">
+						{$this->visitnums[$key]['CLOSE_VISIT_NOTE']}:<br/>
+						<textarea id='NOTE_CHIUSURA_SPEC_ID' name='NOTE_CHIUSURA_SPEC' cols=80 rows=5></textarea><br/>
+						<input type='submit' value=\"Procedi\" onclick=\"
+						if (document.getElementById('NOTE_CHIUSURA_SPEC_ID').value==''){
+							alert('Inserire note');
+							return false;
+						}
+						\">
+						&nbsp; <input type='button' value=\"Annulla\"
+						onclick=\"
+						document.getElementById('CLOSE_VISIT_NOTE').style.display='none';
+						document.getElementById('BUTTON_CLOSE_VISIT').style.display='';
+						\"
+						>
+						</form>
+						</div>
+					</td>
+				</tr>
+					";
+				}
+				else
+				$this->body.="
+				<tr>
+					<td class=\"int\" colspan=2 align=center>
+						<input type=\"button\" value=\"{$this->visitnums[$key]['CLOSE_VISIT']}\"
+						onclick=\"window.location.href=window.location.href+'&CLOSE_VISIT=$key';\"
+						>
+					</td>
+				</tr>
+				";
+				
+			}
+			//echo "<hr>".$this->body."<hr>";
+
+			/*
+			//Dario - inserisco bottone INVIA
+			$this->body.='
+			<tr>
+				<td class="int" colspan=2 align=center>
+					<input type="button" name="nextStep" value="Invia" />
+				</td>
+			</tr>
+			';
+			*/
+				
+		}
+		$tabs="
+		<div id=\"droplinetabs1\" class=\"droplinetabs\">
+			<ul>
+		";
+			foreach ($tab_bar as $key=>$val){
+				$tabs.=$val;
+			}
+			//if(checkInviataConfig($in[$config_service['PK_SERVICE']])==1) $invia_txt_tab="Ricevuta d'invio della domanda";
+			//else $invia_txt_tab="VERIFICA E INVIA CTA";
+			/*
+			$sql_query="select id_stato from {$service}wf_stato where pk_service='{$in[$config_service['PK_SERVICE']]}'";
+			$sql_stato=new query($this->conn);
+			$sql_stato->exec($sql_query);
+			$sql_stato->get_row();
+			if($sql_stato->row['ID_STATO']>1 && $sql_stato->row['ID_STATO']!=5) $invia_txt_tab="Ricevuta d'invio della CTA";
+			else 
+			$invia_txt_tab="Invia CTA";
+			if ($this->integrazione->eq_enabled && $this->integrazione->eq_int!='') $invia_txt_tab="Invia integrazione all'AIFA";
+			if($this->config_service['service']!="CP_CART" && !($sql_stato->row['ID_STATO']==5 && $in['WFact']=="CE"))
+			$tabs.="<li><a class='button' href=\"index.php?CENTER=".$in['CENTER']."&".$config_service['PK_SERVICE']."=".$in[$config_service['PK_SERVICE']]."&amp;SendAIFA=yes\"><span>$invia_txt_tab</span></a></li>";
+			*/
+			$tabs.="</ul>
+			</div>";
+			$this->body=$tabs.$this->body;
+		if ($this->body!='')	$this->body.="</table>";
+		global $service;
+		$sql_close="select min(visitclose) as closed from {$service}_coordinate where {$config_service['PK_SERVICE']}='{$in[$config_service['PK_SERVICE']]}'";
+		$sql2=new query($conn);
+		$sql2->set_sql($sql_close);
+		$sql2->exec();
+		$sql2->get_row();
+		if (isset($this->esams['CLOSE_ALL']) && $in['USER_TIP']=='DE' && $sql2->row['CLOSED']!='1')
+		{
+			$sql_query="select max(stato) as stato from {$service}_coordinate where {$this->PK_SERVICE}='{$in[$this->PK_SERVICE]}' and abilitato=1";
+			$sql=new query($conn);
+			$sql->set_sql($sql_query);
+			$sql->exec();
+			$sql->get_row();
+			if ($sql->row['STATO']=='2') {
+				$sql_query="select min(fine) as fine from {$service}_coordinate where {$this->PK_SERVICE}='{$in[$this->PK_SERVICE]}' and abilitato=1";
+				$sql=new query($conn);
+				$sql->set_sql($sql_query);
+				$sql->exec();
+				$sql->get_row();
+				if ($sql->row['FINE']=='1')
+				$this->body.="
+			<p align=center id='close_all_p'>
+			<a href=\"index.php?close_all=yes&{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}\">
+			Invia revisione
+			</a>
+			</p>
+		<script>
+			document.getElementById('close_all_p').innerHTML='<input type=\\'button\\' value=\\'Invia revisione\\' onclick=\"window.location.href=\\'index.php?close_all=yes&{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}\\'\">';
+		</script>
+		";
+			}
+			else {
+				$js_close_all=make_js($this->esams['CLOSE_ALL']);
+				$this->body.="
+			<p align=center id='close_all_p'>
+			<a href=\"index.php?close_all=yes&{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}\">
+			{$this->esams['CLOSE_ALL']}
+			</a>
+			</p>
+		<script>
+			document.getElementById('close_all_p').innerHTML='<input type=\"button\" value=\"{$js_close_all}\" onclick=\"if (confirm(\\'Attenzione!Preseguendo non sar� possibile effettuare modifiche alla pratica.\\'))window.location.href=\\'index.php?close_all=yes&{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}\\';else return false;\">';
+		</script>
+		";
+			}
+		}
+		if ($equery_enabled && $eq_int!='') {
+			$alert_int="<div align=\"center\" style=\"color:red;font-weight:bold\">
+			Attenzione, ci sono schede in corso di integrazione, per rendere effettive le integrazioni apportate cliccare sul pulsante \"Invia Integrazione\" in basso
+			</div>";
+			$button="<p align=center><input type='button' value='Invia Integrazione' onclick=\"
+						window.location.href='index.php?{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}&SendAIFA=yes';
+						\"></p>";
+			$this->body=$alert_int.$this->body.$alert_int.$button;
+		}
+
+		/*
+		//Dario - bottone invia pratica
+		$this->body.='<table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td class="sc4bis" style="text-align: center;">';
+		//$redir = "https://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+		//$this->body .= $this->PK_SERVICE;
+		$redir = "index.php?{$this->PK_SERVICE}={$in[$this->PK_SERVICE]}&NextWFStep=yes";
+		//print_r($this); //$pk = $_GET[''];
+		$this->body.='<input type="button" onclick="location.href=\''.$redir.'\'" value="Chiudi schede e invia pratica" />';
+		$this->body.='</td></tr></table>';
+		//Fine bottoner invia
+		*/
+		
+		if($config_service['Patients_list']!="") {
+		$this->body.="<p align=left>";
+		if($this->config_service['lang']=="en") {
+			$go="Go to ";
+		} else {
+			$go="Vai alla ";
+		}
+		if($config_service['Patients_list']!="") {
+			$link="index.php?list=patients_list.xml";
+			if($in['CENTER']!='') $link.="&CENTER={$in['CENTER']}";
+			if(!$parametro_passato)	$this->body.="$go
+	  	<a href=\"$link\">{$config_service['Patients_list']} &gt;&gt; </a>";
+	  }
+		$this->body.="</p>";
+		}
+		$this->body.= "<p align='right'><a target=\"new\" href=\"index.php?&make_cta_form=yes&ID_SPER={$in[$this->PK_SERVICE]}\">Visualizza la pratica in formato html<img height=\"20\" border=\"0\" src=\"images/htm_1.gif\"></p>";
+		$this->body.= "<p align='right'><a target=\"new\" href=\"index.php?pdf=make&make_cta_form=yes&ID_SPER={$in[$this->PK_SERVICE]}\">Visualizza la pratica in formato pdf<img height=\"20\" border=\"0\" src=\"images/pdf.gif\"></p>";
+		return $this->body;
+	}
+
+
+}
+
+?>

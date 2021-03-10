@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Anagrafica Studio" titolo="Anagrafica Studio" table="REGISTRAZIONE" 
+	link_to="index.php?ID_STUD=[ID_STUD]|and|exams" 
+	cols="1"
+	f_to_call="registrazione"
+	load="if (document.getElementsByName('ID_CE')[0].value!=4) delete_entries();"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+
+		<field type="hidden" var="CENTER" var_type="number" />
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+
+		<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
+
+		<field type="hidden" var="VALUTABILE" var_type="number" var_size="1" /> <!-- Campo per avere flag di studio valutabile (passaggio di stato e inseribile in seduta) -->
+		<field type="hidden" var="VALUTABILE_TEXT" var_type="text" var_size="4000" /> <!-- Campo per avere flag di studio valutabile (passaggio di stato e inseribile in seduta) -->
+		<field type="hidden" var="IN_SEDUTA" var_type="number" var_size="1" /> <!-- Campo per avere flag di studio inserito in una seduta, eventualmente resettabile per essere ri-valutato -->
+		<field type="hidden" var="IN_INTEGRAZIONE" var_type="number" var_size="1" /> <!-- Campo per integrazioni -->
+		<field type="hidden" var="INTEGRAZIONE" var_type="number" var_size="10" value="0" /> <!-- Numero integrazione -->
+
+		<field type="hidden" var="SEGRETERIA_DT"    var_type="date"  /> <!-- Date accessorie -->
+		<field type="hidden" var="INTEGRAZIONE_DT"  var_type="date"  /> <!-- Date accessorie -->
+		<field type="hidden" var="VALUTABILE_DT"   var_type="date"  /> <!-- Date accessorie -->
+		<field type="hidden" var="VALUTATO_DT"   var_type="date"  /> <!-- Date accessorie -->
+		<field type="hidden" var="APERTURA_DT"   var_type="date"  /> <!-- Date accessorie -->
+		<field type="hidden" var="CHIUSURA_DT"   var_type="date"  /> <!-- Date accessorie -->
+		<field type="hidden" var="CHIUSURA_TEXT" var_type="text" var_size="4000" /> <!-- Campo per avere flag di studio valutabile (passaggio di stato e inseribile in seduta) -->
+
+		<field type="hidden" var="IN_EMENDAMENTO" var_type="number" var_size="1" />
+		<field type="hidden" var="IN_EMENDAMENTO_APPROVAZIONE" var_type="number" var_size="1" />
+		<field type="hidden" var="EMENDAMENTO_DT" var_type="date" /> <!-- Date accessorie -->
+		
+		<field type="hidden" var="CHIUSO" var_type="number" var_size="1" />
+		<field type="hidden" var="RITIRATO" var_type="number" var_size="1" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field type="hidden" var="ID_CE" var_type="text" tb="no" bytb="ANA_UTENTI_2" bytbcode="ID_CE" bytbdecode="ID_CE" bytbwhere="USERID='[remote_userid]'"></field>
+		<field>
+			<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b> Registrazione nuovo studio</b></td>]]></txt_value>
+		</field>
+		
+		<field type="hidden" var="REGISTRAZIONE_DT" var_type="date" >
+			<value val="sysdate"></value>
+		</field>
+		
+ 		<!--field type="textbox" var="CODICE_PROT" var_type="text"  var_size="20" cols="1" size="20" send="obbligatorio">
+			<txt_value>Codice dello studio</txt_value>
+  	</field>
+  	<field type="textarea" var="TITOLO_PROT" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Titolo dello studio:]]></txt_value>
+  	</field> 
+  	<field type="radio" var="PROFIT" send="obbligatorio"  cols="1">
+			<txt_value>Tipo studio</txt_value>
+				<value val="1">Profit</value>
+				<value val="2">No Profit</value>
+		</field>
+		<field type="data" var="RICH_DT"  cols="1">
+			<txt_value>Data di richiesta del promotore (se applicabile)</txt_value>
+		</field>
+ 		<field type="textbox" var="DESCR_SPONSOR" var_type="text"  var_size="200" cols="1" size="100" >
+			<txt_value>Promotore dello studio</txt_value>
+  	</field>
+  	<field type="textbox" var="DESCR_CRO" var_type="text"  var_size="200" cols="1" size="100" >
+			<txt_value>CRO</txt_value>
+  	</field-->
+		<field type="select" show_selected="yes" var="TIPO_SPER"  send="obbligatorio" cols="1" >
+			<txt_value>Tipologia studio</txt_value>
+				<value val="1">Interventistico con farmaco</value>
+				<value val="2">Interventistico senza farmaco e dispositivo</value>
+				<value val="3">Interventistico con dispositivo medico</value>
+				<value val="5">Osservazionale con farmaco</value>
+				<value val="6">Osservazionale senza farmaco e dispositivo</value>
+				<value val="7">Osservazionale con dispositivo medico</value>
+				<value val="8">Uso Terapeutico di farmaco</value>
+				<value val="9">Uso Terapeutico di dispositivo medico</value>
+				<value val="12">Campioni biologici</value>
+				<!--value val="10">Studi con impiego di tessuti umani</value-->
+				<!--value val="11">Indagine genetica</value-->
+				<!--value val="-9900">Altro</value-->
+		</field>
+		<field type="radio" var="PEDIATRICO" send="obbligatorio"  cols="1">
+			<txt_value>Tipo studio</txt_value>
+				<value val="1">Pediatrico</value>
+				<value val="2">Misto</value>
+				<value val="3">Solo Adulti</value>
+		</field>
+		<!--field type="eudract2" var="EUDRACT_NUM" var_type="text" var_size="14"   condition="TIPO_SPER" condition_value="1" hide="yes" cols="1">
+			<txt_value><![CDATA[Eudract Number]]></txt_value>
+		</field--> 
+		<!--field type="textbox" var="ID_RSO" var_type="text" var_size="200" cols="1" size="40" condition="TIPO_SPER" condition_value="5" hide="yes" show_vis="yes"  >
+			<txt_value>Idicare ID dello studio nel RSO (Registro Studi Osservazionali) AIFA:</txt_value>				
+		</field-->  
+		<!--field type="textbox" var="TIPO_OTHER" var_type="text" var_size="200" cols="1" size="40" condition="TIPO_SPER" condition_value="-9900" hide="yes" send="obbligatorio">
+			<txt_value>Se Altro, specificare</txt_value>				
+		</field-->   
+ 
+		<enable>
+		<exam number="2" visitnum="0" visitnum_progr="0" progr="1"></exam>
+		<exam number="10" visitnum="0" visitnum_progr="0" progr="1"></exam>
+		
+
+    <exam number="1" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="1"></exam>
+    <exam number="6" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="1"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="1"></exam>
+		
+		<exam number="9" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="2"></exam>
+		<exam number="61" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="2"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="2"></exam>
+		
+		<exam number="7" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="3"></exam>
+    <exam number="8" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="3"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="3"></exam>
+		
+    <exam number="11" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="5"></exam>
+    <exam number="15" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="5"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="5"></exam>
+		
+		<exam number="16" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="6"></exam>
+		<exam number="62" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="6"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="6"></exam>
+		
+    <exam number="17" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="7"></exam>
+    <exam number="18" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="7"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="7"></exam>
+		
+    <exam number="19" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="8"></exam>
+    <exam number="60" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="8"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="8"></exam>
+	
+	<exam number="21" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="9"></exam>
+    <exam number="63" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="9"></exam>
+		
+		<exam number="5" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="10"></exam>
+    <exam number="20" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="10"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="10"></exam>
+    
+    <exam number="121" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="12"></exam>
+	<exam number="12" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="12"></exam>
+		
+		<exam number="24" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="-9900"></exam>
+		
+    <!--exam number="13" visitnum="0" visitnum_progr="0" progr="1"></exam-->
+    <!--exam number="14" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="4"></exam-->
+		
+		<!--exam number="19" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="8"></exam-->
+    <!--exam number="3" visitnum="0" visitnum_progr="0" progr="1"></exam>
+    <exam number="4" visitnum="0" visitnum_progr="0" progr="1"></exam>
+    <exam number="5" visitnum="0" visitnum_progr="0" progr="1"></exam-->
+ 
+    <!--exam number="13" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="11"></exam>
+    <exam number="14" visitnum="0" visitnum_progr="0" progr="1" condition_var="TIPO_SPER" condition_value="11"></exam-->
+
+    <!--exam number="20" visitnum="0" visitnum_progr="0" progr="1"></exam-->
+	</enable>
+		
+	<send>Crea studio</send>
+	<cancel>Annulla</cancel>
+</form>

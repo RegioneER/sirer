@@ -1,0 +1,203 @@
+<html lang="EN" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>CE OnLine</title>
+<link media="screen" href="ceonline.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="epoch_classes.js"></script>
+<script type="text/javascript">
+
+	var bas_cal;      
+window.onload = function () {
+	bas_cal = new Epoch('epoch_basic','flat',document.getElementById('basic_container'));
+};
+/*]]>*/
+</script>
+
+</head>
+<SCRIPT language=javascript src="/js/text.js"></SCRIPT>
+
+<body>
+<!--testata-->
+<table width="100%" border="0" align="center" height="108" style="background-image:url('images/sfondo.gif')">
+	<tr>
+	  <td class="bg">&nbsp;</td>
+	</tr>
+</table>
+
+<br>
+
+
+
+<table class="ricetta" align="center" border="0" width="1000" height="400">
+	<tr>
+		<td class="bgcellea"><img src="images/registro.gif"><br><b>REGISTRO SPERIMENTAZIONI CLINICHE</b></td>
+		<td class="bgcelle">Inserisci nuova sperimentazione clinica</td>
+		<td class="bgcelle">Monitoraggio/aggiornamento</td>
+		<td class="bgcelle">Cerca sperimentazioni</td>
+		<td class="bgcelle">Area documentale e Forum</td>
+		<td class="bgcelle">Reporting </td>
+	</tr>
+	<tr>
+		<td valign="top" width="30%">
+			<table border="0" width="70%">
+				<tr>	
+						<td class="bgcelle2" height="40">Dati Utente</td>
+				</tr>
+				<tr>
+	<td class="strumenti" valign="top"><b>Nome:</b> Roberta&nbsp;Joppi
+			<br><b>E-mail:</b> roberta.joppi@ulss20.verona.it
+			<br><b>Profilo:</b> Segreteria Comitato Etico per la sperimentazione clinica della provincia di Verona </td>
+	</tr>
+	
+	<tr>
+		<td class="bgcelle2" height="40">Utility</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Bacheca del CE</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Messaggi</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Contatti</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Calendario</td>
+	</tr>
+	<tr>
+		<td class="strumenti">News</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Link utili</td>
+	</tr>
+	<tr>
+		<td class="strumenti">Help</td>
+	</tr>
+	
+			</table>
+		</td>
+	<td colspan="5" class="st_centrale" valign="top"  width="70%">
+			
+			<table align="center" width="100%" border="0">
+			
+				<tr>
+					<td class="st_centrale1" align="center">&nbsp;</td>
+					<td class="st_centrale1" align="center">&nbsp;</td>
+				</tr>
+				
+			</table>
+			
+			<table align="center" width="100%" border="1">
+				<tr>
+					<td class="tabella" align="center"><br><b>ID</b></td>
+					<td class="tabella" align="center"><br><b>Tipologia studio</b></td>
+					<td class="tabella" align="center"><br><b>Eudract Number/Codice studio Ministero</b></td>
+					<td class="tabella" align="center"><br><b>Codice studio promotore</b></td>
+					<td class="tabella" align="center"><br><b>Codice studio CE</b></td>
+					<td class="tabella" width="30%" align="center"><br><b>Titolo studio</b></td>
+					<td class="tabella" align="center"><br><b>Data di richiesta promotore</b></td>
+					<td class="tabella" align="center"><br><b>Stato</b></td>
+				</tr>
+				<tR>
+					<td align="center" class="tabella"><br>211</td>
+					<td align="center" class="tabella"><br>Interventistico con farmaci</td>
+					<td align="center" class="tabella"><br>2008-004127-36</td>
+					<td align="center" class="tabella"><br>AIFA-ASMA-BF-001</td>
+					<td align="center" class="tabella"><br>-</td>
+					<td align="center" class="tabella" width="200"><br>Studio nazionale multicentrico randomizzato controllato in doppio cieco volto a valutare la non inferiorita' dell'associazione  Budesonide/Formoterolo al bisogno rispetto all'associazione Budesonide/Formoterolo assunto regolarmente 2 volte al giorno piu' terbutalina al bisogno nei pazienti con asma lieve-moderato persistente</td>
+					<td align="center" class="tabella"><br>04/06/2008</td>
+					<td align="center" class="tabella"><br>Da valutare</td>
+				</tr>
+				
+			</table>
+				
+				
+				
+				<table><tr><td>	&nbsp;	</td>	</tr>	</table>
+
+					<table align="center" width="100%" border="0">
+						<tR>
+							<td align="center" colspan="5"> <input type=button onclick="document.riunioni.FORM.value='riunioni.xml';document.riunioni.CODE_PARE.value='next';document.riunioni.submit();return false;" value="Convoca una nuova riunione" style="font-weight: bold; border-left: 2px groove #3399FF; border-top: 2px groove #3399FF; border-bottom: 2px groove #3399FF"><br/>
+			</td>	</tr>
+				
+				
+				<tr>		
+					<td class="st_centrale1" align="left" colspan="4"><b>Inserisci dati di valutazione</b></td>
+				</tr>
+				<tr><td colspan="4">&nbsp;</td></tr>
+				
+				<TR>
+                <TD class="input">Data della richiesta di valutazione:</TD>
+                <TD class="input">04/03/2008</td>
+</tr>    
+				
+				<TR>
+                <TD class="input">Specificare se il Comitato Etico ha valutato la sperimentazione da condurre:</TD>
+                <TD class="input">presso struttura ove ha sede il Comitato Etico </td>
+</tr>   
+	<TR>
+                <TD class="input">Valutazione dello studio:</TD>
+                <TD class="input">Positiva </td>
+</tr>   
+				
+				<tr>
+		<td class="input"> Data di seduta del comitato etico:</td>
+		<td class="input" colspan="3"><b>17/06/2008</b></td>
+		
+	</tr>
+				<tr>
+		<td class="input">Numero del registro delle sperimentazioni cliniche:</td>
+		<td class="input" colspan="3"><b>78</b></td>
+		
+	</tr>
+				<tr>
+		<td class="input">Elenco dei membri del Comitato Etico presenti alla seduta </td>
+		<td class="input" colspan="3"><b>Dal Sasso, Del Zotti, Ferrari,</b></td>
+		
+	</tr>
+	
+	<tr>
+		<td class="input">Consulenti esterni presenti alla seduta:</td>
+		<td class="input" colspan="3"><b>Rossi, Bianchi,</b></td>
+		
+	</tr>
+	
+		<tr>
+		<td colspan="3"><b>Gestione della segreteria del Comitato Etico </b> </td>
+	</tr>
+	<tr>
+		<td class="input">Possesso di polizza assicurativa:</td>
+		<td class="input" colspan="3"><b>Sì</b></td>
+		
+	</tr>
+	<tr>
+		<td class="input">Contributo per paziente previsto dallo sponsor:</td>
+		<td class="input" colspan="3"><b>9000 €</b></td>
+		
+	</tr>
+	
+	<tr>
+		<td class="input">Numero pazienti previsti per il centro:</td>
+		<td class="input" colspan="3"><b>10</b></td>
+		
+	</tr>
+	
+	
+	
+	
+	
+	
+				</table>
+			
+			
+			</td>
+	</tr>
+	
+
+	<tr>
+	<td width="200"><a class="percorso" href="home.htm">Torna all'Home Page</a></td>
+</tr>
+
+
+</form>
+</body>
+</html>

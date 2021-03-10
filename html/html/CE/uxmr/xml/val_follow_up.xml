@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Follow up" titolo="Follow up" table="FOLLOW_UP" 
+	link_to="index.php?ID_STUD=[ID_STUD]|and|exams" 
+	cols="1"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+<!-- 
+		<field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3" send="obbligatorio">
+			<txt_value>First Name </txt_value>
+  		</field>
+ -->
+	<field cols="1">
+	<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Inizio studio</b></td>]]></txt_value>
+	</field>
+		
+		<field type="data" var="PAZ1_DT" cols="1" >
+			<txt_value>Data di arruolamento del primo soggetto:</txt_value>
+  		</field>
+  		
+	<send>Procedi</send>
+	<cancel>Annulla</cancel>
+</form>

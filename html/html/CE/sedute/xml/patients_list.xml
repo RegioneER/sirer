@@ -1,0 +1,19 @@
+<list titolo="Lista Sedute">
+	<!--<col tipo="lente" nome="CODPAT_1" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER" ord_arrow="yes">Individual Pa</col-->
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER"></col>
+	<col tipo="testo" nome="ID_SED" var="[patients_table].ID_SED" script="index.php" param="exams=visite_exam.xml,ID_SED" table="[patients_table]" ord_arrow="yes">ID Seduta</col>
+	<col tipo="testo" nome="DATA_SED_DT" var="[patients_table].DATA_SED_DT" table="[patients_table]" order_by="desc" >Data</col>
+	<col tipo="testo" nome="CODICE_SED" var="[patients_table].CODICE_SED" table="[patients_table]">Codice Studio</col>
+	<col tipo="testo" nome="TIPO_SED" var="decode([patients_table].TIPO_SED,1,'Programmata',2,'Straordinaria')" table="[patients_table]">Tipo</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+	<col tipo="visite" param="ID_STUD,CENTER" EXAMS="visite_exams.xml"></col>
+	<!--
+	<col tipo="studio_short" studio="HIV">HIV</col>
+	<col tipo="studio_short" studio="TB">TB</col>
+	<col tipo="studio_short" studio="MAL">Malaria</col>
+	-->
+</list>
+
+
+
+ 

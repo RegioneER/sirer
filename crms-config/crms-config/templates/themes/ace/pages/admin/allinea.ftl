@@ -1,0 +1,3 @@
+<pre>
+${model['body']}
+</pre>

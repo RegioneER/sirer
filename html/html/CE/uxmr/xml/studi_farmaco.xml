@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Farmaco" titolo="Farmaco" table="FARMACO"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	field_tb_show="ATC||' - '||SPECIALITA||' - '||PRINC_ATT"
+	tb_header="ATC - Specialita' - Principio Attivo"
+	F_TO_CALL="force_farmaci"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="FORCE_FARMACI" var_type="text" var_size="8" tb="no"></field>
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field type="hidden" var="COMBO1" var_type="text" var_size="1" compila="1" compila_condition_var="CATEGORIA|COMPARATORE_SEL" compila_condition_value="1|1" compila_op="||"></field>
+		
+		<field cols="2">
+			<txt_value><![CDATA[<td colspan="4"  class=titolo3 align=center><b>Farmaco in studio </b></td>]]></txt_value>
+		</field>
+		<field cols="2" type="radio" var="CATEGORIA" send="obbligatorio">
+			<txt_value><![CDATA[Categoria del trattamento farmacologico]]></txt_value>
+				<value val="1">Test</value>
+				<value val="2">Comparatore</value>
+		</field>
+		
+		<!--TOSCANA-51 nuova gestione PLACEBO-->
+		<field cols="2" type="radio" var="COMPARATORE_SEL" condition="CATEGORIA" condition_value="2" hide="yes" send="obbligatorio">
+			<txt_value><![CDATA[Selezionare il tipo di comparatore]]></txt_value>
+				<value val="1">Attivo</value>
+				<value val="2">Placebo</value>
+		</field>
+		<field cols="2" var="PLACE_DESCR" type="textarea" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="COMPARATORE_SEL" condition_value="2" send="obbligatorio">
+			<txt_value><![CDATA[Descrizione della motivazione dell'uso del placebo]]></txt_value>
+		</field>
+		<field cols="2" var="PLACE_FARM" type="textarea" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="COMPARATORE_SEL" condition_value="2" send="obbligatorio">
+			<txt_value><![CDATA[Per quali farmaci viene utilizzato]]></txt_value>
+		</field>
+		<field cols="2" var="PLACE_ADDON" type="textarea" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="COMPARATORE_SEL" condition_value="2" send="obbligatorio">
+			<txt_value><![CDATA[Add-On alla terapia standard]]></txt_value>
+		</field>
+		
+		<!--field cols="2">
+		<txt_value><![CDATA[<td colspan="4" align=left>Specificare la dose totale (valore e unit&agrave;) </td>]]></txt_value>
+		</field>
+		<field colspan="2" cols="1" type="textbox" var="DOSE_INIZIALE_FH_VAL" var_type="number" var_size="90" size="10" save="facoltativo">
+				<txt_value><![CDATA[valore&nbsp;]]></txt_value>
+		</field>
+		<field type="select" colspan="2" cols="1" var="DOSE_INIZIALE_FH_UNIT" show_selected="yes" bytb="UNITA_MISURA" bytbcode="CODE" BYTBDECODE="DECODE" BYTBORDERBY="DECODE ASC">  
+		</field>
+		<field colspan="4" cols="2" type="textbox" var="NR_SOMM" var_type="number" var_size="90" size="100" save="facoltativo">
+				<txt_value><![CDATA[Nr. di somministrazioni&nbsp;]]></txt_value>
+		</field-->
+		<!--field colspan="4" cols="2" type="textbox" var="DURATA" var_type="text" var_size="90" size="100" save="obbligatorio">
+				<txt_value><![CDATA[]]>Durata dello studio</txt_value>
+		</field-->
+		<field type="textarea" var="SCHEMA_TER" var_type="text" cols="2" rows="8" tcols="80" var_size="3900" size="3900" send="obbligatorio" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value>Schema terapeutico</txt_value>
+		</field>
+		<field cols="2" type="radio" var="NATURA_PA" send="obbligatorio" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Natura del principio attivo]]></txt_value>
+				<value val="1">Chimica</value>
+				<value val="2">Biologica</value>
+		</field>
+		<field type="textarea" var="NATURA_SPEC" var_type="text" cols="2" rows="8" tcols="80" var_size="3900" size="3900" send="obbligatorio" condition="NATURA_PA" condition_value="2" hide="yes">
+			<txt_value><![CDATA[Specificare la natura biologica]]></txt_value>
+		</field>
+		
+		<field cols="2" colspan="2" var="INFO_FARM" tb="no" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[<td colspan="4" class=titolo3 align=left><b> Terapia farmacologica&nbsp;&nbsp;
+				<a href="/errorejs.htm" onclick="window.open('sfoglia_farmaci_new.php?AIC6_SPEC=SPECIALITA&AIC=AIC&ATC_LIVELLO=ATC_LIVELLO&ATC_INN=ATC_INN&ATC_CODE=ATC&ATC_DECODE=DATC&AIC6_DSOST=PRINC_ATT&AIC6_CSOST=COD_PRINC_ATT&AIC6_DDITTA=D_TITOLARE_AIC&AIC6_CDITTA=TITOLARE_AIC&AIC9_CONF=CONFEZIONE','finestraindipendente','scrollbars=yes,resizable=yes,width=1000,height=600'); return false;"><b><i class="fa fa-folder-open-o"></i>&nbsp;Sfoglia</b></a> 
+					&nbsp;-&nbsp;
+				<a href="/errorejs.htm" onclick="window.open('cerca_specialita.php?SPECIALITA=SPECIALITA&AIC=AIC&ATC_LIVELLO=ATC_LIVELLO&ATC_INN=ATC_INN&ATC=ATC&DATC=DATC&COD_PRINC_ATT=COD_PRINC_ATT&PRINC_ATT=PRINC_ATT&TIT_AIC=D_TITOLARE_AIC&COD_TIT_AIC=TITOLARE_AIC&CONFEZIONE=CONFEZIONE','finestraindipendente','scrollbars=yes,resizable=yes,width=1000,height=600'); return false;"><b><i class="fa fa-search"></i>&nbsp;Ricerca</b></a></td>]]></txt_value>
+		</field>
+		<field type="textbox" var="ATC" var_type="text" var_size="80" size="15" send="obbligatorio" disabled_always="yes" cols="2" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[ATC]]></txt_value>
+		</field>
+		<field type="textbox" disabled="yes" var="DATC" var_type="text" var_size="80" size="80" send="obbligatorio" disabled_always="yes" cols="2" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[ATC descrizione]]></txt_value>	
+		</field>
+		<field type="hidden" var="ATC_LIVELLO" var_type="text" var_size="400"></field>
+		<field type="hidden" var="ATC_INN" disabled_always="yes" var_type="text" var_size="80" size="80"  DISABLED="yes">
+			<txt_value><![CDATA[ATC inn]]></txt_value>
+		</field>
+		<field type="checkbox" var="CHECK_ATC"  group="THIS_CHECK" cols="2" set_NA="ATC_LIVELLO,DATC,ATC,ATC_INN,SPECIALITA,AIC,CONFEZIONE,PRINC_ATT,COD_PRINC_ATT,D_TITOLARE_AIC,TITOLARE_AIC" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value>Non applicabile</txt_value>
+				<value val="CHECK_ATC"></value>
+		</field>
+		<field type="textbox" var="SOSTANZA" var_type="text" var_size="100" size="80" cols="2" send="obbligatorio" condition="CHECK_ATC" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Descrizione sostanza (in caso di mancanza dell'ATC)]]></txt_value>
+		</field>
+		<field cols="2" type="radio" var="AUTO_ITA" send="obbligatorio" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Il farmaco &egrave; in commercio?]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field>
+		<field cols="2" type="textarea" var="INDICAZIONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_ITA" condition_value="1" send="obbligatorio">
+			<txt_value><![CDATA[Se s&igrave;, con quale indicazione?]]></txt_value>
+		</field> 
+		<field cols="2" type="radio" var="AUTO_EST" send="obbligatorio" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Il farmaco &egrave; in commercio per l'indicazione in oggetto di studio all'estero?]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+				<value val="-9944">ND</value>
+		</field>
+		<field cols="2" type="textarea" var="PAESI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_EST" condition_value="1" send="obbligatorio">
+			<txt_value><![CDATA[Se s&igrave;, indicare in quali Paesi]]></txt_value>
+		</field>
+		<field cols="2" type="radio" var="AUTO_ITAAI" send="obbligatorio" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Il farmaco &egrave; in commercio per altre indicazioni in Italia?]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field>
+		<!--field cols="2" type="radio" var="AUTO_ESTAI">
+			<txt_value><![CDATA[Il farmaco &egrave; in commercio per altre indicazioni all'estero?]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field-->
+		<field type="textbox" disabled_always="yes" var="SPECIALITA" var_type="text" var_size="80" size="80" DISABLED="yes" cols="2" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Specialit&agrave; medicinale]]></txt_value>
+		</field>
+		<field type="textbox" var="AIC" var_type="text" var_size="20" size="20" disabled_always="yes" cols="2" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Codice AIC]]></txt_value>
+		</field>
+		<field type="textbox" var="CONFEZIONE" var_type="text" var_size="80" size="80" disabled_always="yes" cols="2" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Confezione]]></txt_value>
+		</field>
+		<field type="textbox" disabled="yes" var="PRINC_ATT" var_type="text" var_size="80" size="80" cols="2" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Principio attivo <br>]]></txt_value>
+		</field>
+		<field type="hidden" var="COD_PRINC_ATT" var_type="text" var_size="80"></field>
+		<field type="hidden" var="D_TITOLARE_AIC" disabled_always="yes" var_type="text" var_size="80" size="80" DISABLED="yes" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Titolare AIC]]></txt_value>
+		</field>
+		<field type="hidden" var="TITOLARE_AIC" var_type="text" var_size="80"></field>
+	  <field type="textarea" var="NOTE_FARMACI" var_type="text" cols="2"  rows="8" tcols="80" var_size="3900" size="3900" condition="COMBO1" condition_value="1" hide="yes">
+	  	<txt_value>Note</txt_value>
+	  </field>
+		<field cols="2" type="select" var="VIA_SOMMIN" show_selected="yes" bytb="VIE_SOMMIN" bytbcode="ID" BYTBDECODE="DESCRIZIONE" BYTBORDERBY="DESCRIZIONE ASC" send="obbligatorio">
+			<txt_value><![CDATA[Via di somministrazione  ]]></txt_value>
+		</field>
+		<field type="textbox" var="FORMA_FARM" var_type="text" var_size="80" size="80" cols="2">
+			<txt_value><![CDATA[Forma farmaceutica]]></txt_value>
+		</field>
+	
+	  <!--field cols="2" type="textbox" var="AIC" var_type="text" var_size="80" size="80" >
+	  	<txt_value><![CDATA[Codice AIC]]></txt_value>
+	  </field>
+		<field cols="2" type="textbox" var="MEDICINALE" var_type="text" var_size="80" size="80" >
+	  	<txt_value><![CDATA[Nome medicinale]]></txt_value>
+	  </field>
+		<field cols="2" type="textbox" var="DITTA_PROD" var_type="text" var_size="80" size="80" >
+	  	<txt_value><![CDATA[Ditta produttrice]]></txt_value>
+	  </field>
+		<field cols="2" type="textbox" var="PRINC_ATT" var_type="text" var_size="80" size="80" >
+	  	<txt_value><![CDATA[Principio attivo]]></txt_value>
+	  </field-->
+	 	
+	  <!--field cols="2" hide="yes" condition="AUTO_ITA" condition_value="1">
+			<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>NOTA ALI: Fare lo sfoglia ICD9 e quello delle patologie</b></td>]]></txt_value>
+		</field>
+	  <field cols="2" type="textarea" var="INDICAZIONI_ITA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+			<txt_value><![CDATA[Indicazioni registrate in Italia]]></txt_value>
+	  </field-->
+	  <!--field cols="2" type="textbox" var="ATC" var_type="text" var_size="10" size="20" ACTION_TYPE="onclick" DISABLED_ALWAYS="yes"	>
+			<txt_value><![CDATA[ATC <br><a href="/errorejs.htm" onclick="window.open('sfoglia_atc.php?CODE=ATC&amp;DECODE=DATC&amp;LIVELLO=LATC&amp;GROUP=GDATC','finestraindipendente','scrollbars=no,resizable=yes,width=400,height=600'); return false;">Ricerca nella banca dati...</a>]]></txt_value>
+		</field>
+		
+	  <field cols="2" type="textbox" var="DATC" var_type="text" var_size="80" size="80" DISABLED_ALWAYS="yes"	>
+			<txt_value><![CDATA[ATC descrizione]]></txt_value>
+	  </field>
+		<field cols="2" type="textbox" var="GDATC" var_type="text" var_size="80" size="80" DISABLED_ALWAYS="yes"	>
+			<txt_value><![CDATA[Gruppo ATC]]></txt_value>
+	  </field-->
+	
+		<!--field cols="2" type="radio" var="PLACEBO" send="obbligatorio">
+			<txt_value><![CDATA[E' previsto un confronto con placebo? ]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field>
+		<field cols="2" var="PLACE_DESCR" type="textarea" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="PLACEBO" condition_value="1" send="obbligatorio">
+			<txt_value><![CDATA[Descrizione della motivazione dell'uso del placebo]]></txt_value>
+		</field-->
+		
+		<field cols="2" type="radio" var="FARMACIA" send="obbligatorio" condition="COMBO1" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Il coinvolgimento della farmacia ospedaliera/territoriale &egrave; previsto per]]></txt_value>
+				<value val="1">la randomizzazione</value>
+				<value val="2">la preparazione del/i farmaco/i sperimentale/i</value>
+				<value val="4">attività istituzionale</value>
+				<value val="3">altro</value>
+		</field>
+		<field cols="2" type="checkbox_decode" var="COINV_FARMA" group="CHECK_FARMA" hide="yes" condition="FARMACIA" condition_value="2"  group_send="obbligatorio">
+			<txt_value>opzioni</txt_value>
+				<value val="FAT">esecuzione di studio di fattibilità/definizione della formulazione</value>
+				<value val="ALLE">allestimento del/i farmaco/i sperimentale/i</value>
+				<value val="RIC">ricostituzione/diluizione, anche in dose personalizzata</value>
+				<value val="CONF">confezionamento/mascheramento</value>
+				<value val="SMAL">eventuale smaltimento farmaci residui o scaduti</value>
+		</field>  
+		<field cols="2" var="ALTRO_FARM" type="textarea" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="FARMACIA" condition_value="3" send="obbligatorio">
+			<txt_value><![CDATA[Se altro, specificare]]></txt_value>
+		</field>
+    
+		<save>Salva</save>
+		<cancel>Annulla</cancel>
+	</form>

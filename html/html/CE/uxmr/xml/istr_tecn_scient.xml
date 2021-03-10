@@ -1,0 +1,1891 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Invio Studio" titolo="Invio Studio" table="ISTRUTTORIA_TS" 
+	FIELD_TB_SHOW="MODIFICA_DT,'&lt;div align=center&gt; &lt;a target=_blank href=index.php?mod_istruttoria_ts=yes&amp;ID_STUD='||ID_STUD||'&amp;VISITNUM='||VISITNUM||'&amp;VISITNUM_PROGR='||VISITNUM_PROGR||'&amp;PROGR='||PROGR||' &gt; &lt;i class=''btn btn-info btn-xs fa fa-file-word-o'' &gt; &lt;/i&gt; &lt;/a&gt; &lt;/div&gt;'"
+	TB_HEADER="Data,Genera scheda istruttoria"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]|and|exams=visite_exams.xml" 
+	cols="4"
+	load="$('[class=radio]').css({'float':'left','margin-top':'10px'}); $('[class=destra]').attr('colspan','6');"
+	load_close="$('[class=radio]').css({'float':'left','margin-top':'10px'}); $('[class=destra]').attr('colspan','6');"
+>
+
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="TIPO_SPER" var_type="text" var_size="40" bytb="REGISTRAZIONE" bytbcode="TIPO_SPER" bytbdecode="TIPO_SPER" bytbwhere="ID_STUD='[ID_STUD]'"></field>
+	<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10"></field>
+	<field type="hidden" var="MODIFICA_DT" var_type="date" ><value val="sysdate"></value></field>
+	<field type="hidden" var="TEMPLATE_TYPE" var_type="text" var_size="100" ><value val="istruttoria_ts"></value></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+	<!--STUDI INTERVENTISTICI CON FARMACO-->
+	<field cols="4" name="T1" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,4,5,6,12">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=center><b> Istruttoria Tecnico Scientifica - Elementi da valutare</b></td>]]></txt_value>
+	</field>
+	
+	<field type="data" var="RICH_DT" cols="4">
+		<txt_value>Data di rilascio parere CE coordinatore</txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="OSSC" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Inserito in osservatorio AIFA (OSsC)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MODULO_CTA" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Modulo di domanda (CTA Form - Appendice 5) generata da OsSC (se applicabile), firmato e datato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DOC_CONFORME" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Lista documentazione conforme (con riferimento a date e versioni) alla lista di controllo presente nella CTA Form generata dal nuovo OsSC o alla lista Ia e Ib (in caso di modalità transitoria)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PIP" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>La sperimentazione è parte di un Piano di Indagine Pediatrica (PIP)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PIP2" subtbcol="3" hide="yes" condition="PIP" condition_value="1">
+		<txt_value>Se sì al punto precedente, il protocollo è conforme al PIP?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="REV_SIST" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Esistono revisioni sistematiche e/o linee guida che sintetizzano le migliori evidenze disponibili (es. COCHRANE COLLABORATION, NICE, PUBMED, NATIONAL GUIDELINE CLEARINGHOUSE, GUIDELINES INTERNATIONAL NETWORK)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DB_PUB" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>
+			Il trial è registrato in un database pubblico che permette libero accesso ai risultati della ricerca (CLINICALTRIALSREGISTER.EU*; CLINICALTRIAL.GOV) *La registrazione è obbligatoria dal 21 Luglio 2014 (2012/C 302/03)
+		</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre note:]]></txt_value>
+	</field> 
+	
+	<!--MEDICINALE IMP-->
+	<field cols="4" name="T2" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> Dati sul medicinale sperimentale IMP:</b></td>]]></txt_value>
+	</field>
+	<field cols="4" type="textarea" var="CRITICITA72" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre note:]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="ORFANO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Si tratta di medicinale orfano per malattie rare (secondo il Regolamento (CE) n. 141/2000 del Parlamento europeo e del Consiglio)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ULTRARARE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Il medicinale è destinato all'uso di malattie ultra-rare (ossia destinati a soggetti affetti da malattie gravi, debilitanti e spesso potenzialmente letali che colpiscono non più di una persona su 50 000 nell'Unione)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="QUAL_IMP" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Le informazioni e i dati necessari a supportare la qualità dell'IMP sono adeguati (vedi presenza IMPD o IMPD semplificato o RCP)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="GMP" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Il promotore ha documentato che i prodotti in sperimentazione saranno preparati, gestiti e conservati nel rispetto delle Norme di Buona Fabbricazione (GMP) applicabili?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PRESUPPOSTI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Esistono presupposti solidi e rilevanti che giustificano l'avvio dello studio (NA per studi di fase I e II)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MIGLIORAMENTI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Lo studio consentirà di acquisire maggiori informazioni sull'IMP, di migliorare le procedure profilattiche, diagnostiche e terapeutiche o la comprensione dell'eziologia e della patogenesi delle malattie?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ETICHETTATURA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>L'etichettatura è conforme alle normative vigenti (valutabile se il richiedente è centro coordinatore)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA2" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre note:]]></txt_value>
+	</field> 
+	
+<!--PROTOCOLLO INTERVENTISTICI-->
+	<field cols="4" name="T3" hide="yes" condition="TIPO_SPER" condition_value="1,2">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> PROTOCOLLO CLINICO <BR></BR>Il protocollo viene valutato con lo SPIRIT Statement.: </b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="LISTA_CENTRI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Lista dei centri partecipanti e dei relativi responsabili (per studi multicentrici)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="LISTA_DOC" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Elenco della documentazione con versione e data?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="TITOLO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Nel titolo dello studio è descritto il disegno dello studio, la popolazione, gli interventi, e se applicabile, l'acronimo del trial?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BACKGROUND_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Nel background e razionale è descritto il quesito di ricerca e la giustificazione della conduzione dello studio, incluso il riassunto degli studi clinici rilevanti (pubblicati e non pubblicati) e la valutazione dei benefici e dei rischi per i pazienti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BACKGROUND1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Nel background e razionale è descritto il quesito di ricerca e la giustificazione della conduzione del trial, incluso il riassunto degli studi clinici rilevanti (pubblicati e non pubblicati) e la valutazione dei benefici e dei rischi per ogni intervento?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+		
+	<field type="radio" cols="4" var="BACKGROUND2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Nel background e razionale è spiegata la scelta dei confronti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>	
+	
+	<field type="radio" cols="4" var="BACKGROUND3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Nel background e razionale sono specificati gli obiettivi o le ipotesi di ricerca?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	
+	<field type="radio" cols="4" var="DISEGNO2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>E' descritto il disegno del trial includendo la tipologia (es. in doppio cieco, vs. placebo, a gruppi paralleli, fattoriale, crossover, singolo gruppo), il rapporto di allocazione e il contesto (es. superiorità, equivalenza, non inferiorità, esplorativo)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>	
+	
+	<field type="radio" cols="4" var="CONTESTO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>È descritto il contesto nel quale sarà condotto lo studio (es. territorio, ospedale) e la lista dei paesi dove saranno raccolti i dati. È fornita la lista dei siti in cui viene condotto lo studio, anche se presente in altri documenti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>	
+	
+	<field type="radio" cols="4" var="INC_ESC" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Sono definiti chiaramente i criteri di inclusione ed esclusione della popolazione partecipante allo studio? Se applicabile, sono indicati i criteri di eleggibilità per i centri partecipanti allo studio e gli individui che eseguiranno gli interventi (es. chirurghi, psicoterapeutici)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INTERVENTI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Gli interventi: Sono sufficientemente dettagliati gli interventi per ogni gruppo di partecipanti, in modo da permettere la riproducibilità dello studio, includendo modalità e tempi in cui saranno somministrati gli interventi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STANDARD" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Gli interventi: Sono ben definiti i criteri standard per sospendere o modificare l'allocazione degli interventi per un dato partecipante al trial (es. per ragioni di sicurezza come l'insorgenza di un danno in risposta ad un farmaco, e/o di efficacia del farmaco e/o dello stato di malattia come un miglioramento/peggioramento, e ritiro del consenso da parte del partecipante)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+		
+	<field type="radio" cols="4" var="STRATEGIE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Gli interventi: Sono definite le strategie per migliorare l'aderenza (ossia se il comportamento del partecipante corrisponde a quello previsto dallo studio) ai protocolli di intervento e le procedura per monitorare l'aderenza (es. riconsegna del blister di farmaco, test di laboratorio)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>	
+	
+	<field type="radio" cols="4" var="CURE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Gli interventi: E' riportata la lista delle cure concomitanti rilevanti e degli interventi permessi o proibiti durante il trial?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ESITI_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Sono ben definiti gli esiti primari, secondari e gli altri esiti dello studio, le modalità di analisi (es. cambiamento rispetto al basale, valore finale, tempo dell'evento), i metodi di aggregazione (es. mediana, proporzione) e il tempo in cui viene misurato ciascun esito?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ESITI1_BIO" subtbcol="3" hide="yes" condition="ESITI_BIO" condition_value="1">
+		<txt_value>Se applicabile, è presente un chiaro e conciso diagramma schematico del processo di studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ESITI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Sono ben definiti gli esiti primari, secondari e gli altri esiti dello studio, comprese le specifiche variabili di misura (es. pressione sanguigna sistolica), le modalità di analisi (es. cambiamento rispetto al basale, valore finale, tempo dell'evento), i metodi di aggregazione (es. mediana, proporzione) e il tempo in cui viene misurato ciascun esito. 
+			E' fornita la spiegazione della scelta degli esiti di efficacia e sicurezza da un punto di vista di rilevanza clinica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DIAGRAMMA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10" >
+		<txt_value>E' presente un chiaro e conciso diagramma schematico del processo di studio che dettagli la fase di pre-arruolamento, l'arruolamento, gli interventi (eventuali cross-over), le valutazioni e le visite per i partecipanti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STIMA_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>È indicata la stima del numero dei partecipanti e/o dei campioni biologici necessari per realizzare gli obiettivi dello studio e la modalità con cui è stato determinato questo numero, includendo riferimenti clinici e statistici a supporto di qualsiasi calcolo sulla dimensione del campione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STIMA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>E' indicata la stima del numero dei partecipanti necessari per realizzare gli obiettivi dello studio e la modalità con cui è stato determinato questo numero, includendo riferimenti clinici e statistici a supporto di qualsiasi calcolo sulla dimensione del campione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PRELIEVO_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Il protocollo specifica se il\la prelievo\raccolta del campione biologico è parte della pratica clinica corrente oppure è finalizzato\a alla realizzazione dello studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PEZZO_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Se trattasi di pezzo operatorio, il protocollo di studio riporta le informazioni necessarie per garantire che la raccolta del campione biologico non sottragga materiale per le indagini anatomopatologiche?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="METODI_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Sono descritti dettagliatamente i metodi per raccogliere i campioni biologici, le modalità di analisi (genetica, molecolare), di anonimizzazione dei dati confidenziali, il luogo e le modalità di conservazione del materiale (es. biobanche)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INFO_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Il protocollo riporta informazioni esaustive circa la polizza assicurativa, ovvero prevede una copertura assicurativa ad hoc nel caso in cui la raccolta del campione biologico esuli dalla pratica clinica e preveda una procedura invasiva?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="APPARECCHI_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Sono indicati gli apparecchi e la tipologia di strumenti utilizzati per l’analisi dei campioni biologici?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ANALISI_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Per studi che prevedono analisi genetiche è indicato se è il primo studio, se è una replicazione o entrambi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STRATEGIE2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Sono indicate le strategie per promuovere l'arruolamento di un adeguato numero di partecipanti per raggiungere il target previsto nella dimensione del campione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RANDOM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>E' descritto il metodo utilizzato per generare la sequenza di allocazione (es. numeri random generati dal computer), il rapporto di allocazione (1:1, 2:1, etc.) e la lista di qualsiasi fattore per la stratificazione (es. randomizzazione stratificata per età, per centro in caso il trial sia multicentrico etc).
+          Sono pianificate restrizioni (es. randomizzazione a blocchi) che impediscono agli sperimentatori di prevedere la sequenza di randomizzazione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RANDOM_SECRET" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>E' descritto il metodo usato per implementare la sequenza di allocazione (es. controllo telefonico centrale, buste opache, numerazione sequenziale, etc) e tutti gli step seguiti per mantenere nascosta la sequenza di allocazione sino all'assegnazione degli interventi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PERSONALE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>E' specificato il personale dello studio responsabile della generazione della sequenza di allocazione, dell'arruolamento dei partecipanti e della loro assegnazione a ciascun gruppo di intervento?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MASCHERAMENTO1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Mascheramento (cecità): E' descritto il soggetto o il gruppo di soggetti che saranno in cieco dopo l'assegnazione all'intervento (es. i partecipanti al trial, i professionisti sanitari, i valutatori degli esiti, gli analisti dei dati) e la modalità di ottenimento di questo requisito?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MASCHERAMENTO2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Mascheramento (cecità): Se lo studio è in cieco, sono descritte chiaramente le circostanze in cui è permessa l'apertura del cieco e le procedure per rivelare l'intervento a cui è stato sottoposto il partecipante durante il trial?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RACCOLTA1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Metodi di raccolta dati: Sono indicati i metodi per la valutazione e la raccolta dell'esito, del basale, o altri dati del trial, includendo qualsiasi processo correlato a promuovere la qualità dei dati (es. misurazioni doppie, formazione degli sperimentatori) e la descrizione degli strumenti di studio (ad esempio, questionari, test di laboratorio) con il loro relativo grado di affidabilità e validità, se noto.</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RACCOLTA1_BIS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Metodi di raccolta dati: E' possibile trovare il riferimento ad altri documenti diversi dal protocollo in cui sono disponibili queste informazioni?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RACCOLTA2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Metodi di raccolta dati: Sono indicati i metodi per promuovere la partecipazione dei soggetti e la completezza del follow-up, incluso un elenco di tutti i dati di esito che dovrebbero essere raccolti per i partecipanti che interrompono o deviano dal protocollo di intervento?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="GESTIONEDATI1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Gestione dei dati: Sono documentati i metodi di immissione dei dati, i processi di codifica, le misure di sicurezza es. per prevenire accessi non autorizzati, e le modalità di conservazione dei dati, inclusi eventuali processi correlati per promuovere la qualità dei dati (ad esempio, doppio inserimento dei dati, range di controllo dei valori dei dati)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="GESTIONEDATI2" subtbcol="3" hide="yes" condition="GESTIONEDATI1" condition_value="2">
+		<txt_value>Se queste informazioni non sono incluse nel protocollo, è riportato il riferimento alle procedure di gestione dei dati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICA1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Metodi statistici: Sono indicati esplicitamente i metodi statistici utilizzati per l'analisi degli esiti primari e secondari. Se queste informazioni non sono incluse nel protocollo, è riportato il riferimento ai documenti in cui può essere ritrovato il piano di analisi statistico?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICA2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Metodi statistici: Sono indicati esplicitamente i metodi utilizzati per le analisi statistiche aggiuntive (es. analisi per sottogruppi e aggiustate)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICA3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Metodi statistici: E' definita l'analisi della popolazione relativamente ai soggetti non aderenti al protocollo (esempio analisi Intention-To-Treat, modified Intention To Treat, o per protocol) e qualsiasi metodo statistico per trattare i dati mancanti (es. valutazioni multiple oggetto di successive analisi di sensitività)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MONITORAGGIO1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Monitoraggio dei dati: Se il trial prevede il controllo degli esiti durante lo studio da parte di un Comitato Indipendente di Monitoraggio dei Dati (IDMC), ne è indicata la composizione, una sintesi del suo ruolo e dei suoi rapporti con la struttura, una dichiarazione di indipendenza dallo sponsor e di conflitto di interesse, ed eventuali riferimenti documentali dove possono essere trovati altri dettagli, se non presente nel protocollo?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MONITORAGGIO2" subtbcol="3" hide="yes" condition="MONITORAGGIO1" condition_value="1,2,8,10,12">
+		<txt_value>Monitoraggio dei dati: Se il trial non prevede un IDMC, è riportata una spiegazione per il quale non è necessario?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MONITORAGGIO3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Monitoraggio dei dati: Sono descritte le analisi intermedie e le regole di interruzione dello studio, incluso chi avrà accesso a questi risultati intermedi e chi prenderà la decisione definitiva di terminare lo studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="SICUREZZA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Sicurezza: Sono descritte le procedure per la raccolta, la valutazione, la segnalazione e la gestione degli eventi avversi sia sollecitati che spontanei e di altri effetti indesiderati correlati alla partecipazione al trial?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="REVISIONE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Revisione (auditing): E' descritta la frequenza e le procedure periodiche di revisione dei processi e dei documenti presso i centri partecipanti al trial e se il processo è indipendente dagli sperimentatori e dallo sponsor?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DICH_APPR" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>E' presente la dichiarazione di ottenimento dell'approvazione dello studio clinico da parte di un Comitato Etico/Institutional Review Board (REC/IRB) e le modalità con cui viene richiesta la valutazione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="COMUNICAZIONE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>E' dichiarata e descritta la modalità di comunicazione di modifiche sostanziali al protocollo (es. cambiamento dei criteri di eleggibilità, analisi, outcome) alle parti coinvolte (promotore, partecipanti ai trial, comitato etico, etc)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+
+	
+	<field type="radio" cols="4" var="CONSENSO1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Consenso/assenso: E' indicato chi otterrà il consenso informato o l'assenso da parte di un potenziale partecipante al trial o di un tutore legale e come questo sarà ottenuto (dettagli del processo)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONSENSO2" subtbcol="3" hide="yes" condition="CONSENSO1" condition_value="1">
+		<txt_value> Se applicabile, è indicato il processo di ottenimento di un consenso informato aggiuntivo per la raccolta e l'utilizzo dei dati dei partecipanti e dei campioni biologici in studi ancillari?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INFO_RIS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>E' descritta la modalità e lo strumento con cui il personale dello studio raccoglierà, condividerà e manterrà riservate le informazioni sui dati personali dei soggetti eleggibili, prima, durante e dopo il trial?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INTERESSI_FIN" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Sono indicati gli interessi finanziari o di altra natura degli sperimentatori per ciascun sito di studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ACCORDO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>E' chiaro il personale che avrà accesso ai dati finali dello studio ed è indicata la presenza di un eventuale accordo contrattuale che limiterà l'accesso ai dati per gli sperimentatori?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="FORNITURA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>E' indicata la fornitura di cure ancillari e post studio ai partecipanti allo studio e la presenza di una polizza assicurativa per la copertura dei danni ai soggetti derivanti dalla partecipazione allo studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PUBBLICAZIONE1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Politiche di pubblicazione: E' delineato un processo e un calendario riguardante la diffusione dei risultati dello studio da parte degli sperimentatori e dello sponsor ai partecipanti del trial, ai professionisti sanitari, al pubblico, e ad altri gruppi rilevanti, includendo qualsiasi restrizione alla pubblicazione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PUBBLICAZIONE2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Politiche di pubblicazione: Sono indicati esplicitamente i contributi di ciascun autore (authorship) al disegno, alla conduzione, all'interpretazione ed al reporting dello studio clinico?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PUBBLICAZIONE3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Politiche di pubblicazione: E' indicata la modalità con cui vengono resi disponibili i dati dello studio al pubblico ed alle autorità competenti e i codici statistici utilizzati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CAMPIONI_BIO1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Campioni biologici: Se applicabile, sono descritti dettagliatamente i metodi per raccogliere i campioni biologici, le modalità di analisi (genetica, molecolare), di anonimizzazione dei dati confidenziali, il luogo e le modalità di conservazione del materiale (es. biobanche) e la presenza di un Comitato Etico del luogo di deposito?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CAMPIONI_BIO2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Campioni biologici: Sono descritti gli usi futuri del materiale conservato per altri studi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PLACEBO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>E' usato il placebo quale gruppo di controllo e ne è giustificato l'uso?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ANCILLARE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>E' presente un sottostudio (studio ancillare) di farmacogenetica/farmacogenomica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BENEFICI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>L'analisi dei benefici è favorevole rispetto ai rischi prevedibili (chiaramente indicati)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+		<field cols="4" type="textarea" var="CRITICITA71" var_type="text" rows="4" tcols="40" var_size="2000" size="2000"  hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati nell'analisi degli items o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="CRF2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="2,8,10,12">
+		<txt_value>Le informazioni che si vogliono raccogliere sono chiari e conformi a quanto riportato nella scheda di raccolta dati (CRF)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="GCP" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>Il protocollo è conforme alle GCP?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field cols="4" type="textarea" var="CRITICITA70" var_type="text" rows="4" tcols="40" var_size="2000" size="2000"  hide="yes" condition="TIPO_SPER" condition_value="2,8,10,12">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="EMA1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10">
+		<txt_value>Il protocollo è conforme alle linee guida EMA in materia?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="EMA2" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="EMA1" condition_value="1">
+		<txt_value><![CDATA[Se sì, citare i riferimenti :]]></txt_value>
+	</field> 
+	<field cols="4" name="T90" hide="yes" condition="TIPO_SPER" condition_value="1,2">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> INVESTIGATOR'S BROCHURE </b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="DOSSIER1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value>Il dossier dello sperimentatore risulta completo e adeguato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<!--field cols="4" type="textarea" var="DOSSIER2" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="DOSSIER1" condition_value="1">
+		<txt_value><![CDATA[Se sì, riportare versione e data:]]></txt_value>
+	</field--> 
+	
+	<field cols="4" type="textarea" var="CRITICITA3" var_type="text" rows="4" tcols="40" var_size="2000" size="2000"  hide="yes" condition="TIPO_SPER" condition_value="1">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+<!--**************** STUDI INTERVENTISTICI CON DISPOSITIVO MEDICO tipo_sper=3,7-->
+	
+	<!--PROTOCOLLO CLINICO DM-->
+	
+	
+	<field type="radio" cols="4" var="APPARECCHIATURE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Si tratta di grandi apparecchiature sanitarie? (se si, assicurarsi di avere la dichiarazione sui dati di collaudo e manutenzione)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+
+	<field cols="4" name="T11" hide="yes" condition="TIPO_SPER" condition_value="3">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=center><b> Dati sul Dispositivo Medico Pre-market </b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="DICH_MINSAL" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Dichiarazione di notifica dell'indagine clinica al Ministero della Salute (comunicazione di avvio indagine clinica pre market)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	
+	<field type="radio" cols="4" var="COM_AVVIO" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Dichiarazione di comunicazione dell'avvio dell'indagine clinica (comunicazione di avvio indagine clinica post market)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="DOSSIER_PI" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Dossier dello sperimentatore e/o schede tecniche scaricate dal Repertorio dei Dispositivi Medici (solo per studi post market)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MARCATURA_CE1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Marcato CE ma utilizzato secondo una indicazione d'uso diversa da quella certificata?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MARCATURA_CE2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Marcato CE ma modificato nella loro struttura?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field cols="4" name="T12" hide="yes" condition="TIPO_SPER" condition_value="3">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=center><b> Dati sul Dispositivo Medico Post-market </b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="MARCATURA_CE3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Munito di marcatura CE e con destinazione d'uso conforme alla marcatura ?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA11" var_type="text" rows="4" tcols="40" var_size="2000" size="2000"  hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	<field cols="4" name="T13" hide="yes" condition="TIPO_SPER" condition_value="3">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=center><b> Protocollo Clinico </b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="ISO14155" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il promotore dichiara la conformità al Codice di Buona pratica clinica per la pianificazione e lo svolgimento di indagini cliniche dei dispostivi medici (NORMA UNI EN ISO 14155:2012). Il promotore dichiara la conformità al Codice di Buona pratica clinica per la pianificazione e lo svolgimento di indagini cliniche dei dispostivi medici (NORMA UNI EN ISO 14155:2012)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="SPONSOR" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Lo sponsor è chiaramente identificato ?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="RIF_PI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono presenti i riferimenti del responsabile scientifico e degli sperimentatori coinvolti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="RIF_CENTRI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>E' presente l'elenco dei centri coinvolti nell'indagine clinica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="RIF_PIC" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>E' presente la sintesi del piano di indagine clinica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="DESC_DM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il dispositivo medico è identificato e descritto dettagliatamente (comprese le indicazioni per la tracciabilità, la procedura medica o chirurgica usata e la formazione agli utilizzatori)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="DM_NOCE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Per dispositivi non marcati CE, è presente una breve sintesi delle prove pre-cliniche eseguite con il dispositivo oggetto di studio e della eventuale esperienza clinica (discussi in modo più dettagliato nel dossier per lo sperimentatore)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="RISCHIDM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il rapporto rischio/beneficio per la popolazione è ben descritto e dettagliato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="RAZIONALE1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il razionale è supportato da informazioni chiare e attendibili?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="RAZIONALE2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il razionale è supportato da un'analisi critica della letteratura scientifica pertinente e dall'elenco della bibliografia?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="DISEGNO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il disegno dell'indagine e la tipologia sono ben descritti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="OBIETTIVI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Gli obiettivi primari e secondari sono coerenti con il razionale scientifico e chiaramente descritti in riferimento alla destinazione d'uso prevista dal dispositivo, alla popolazione alla quale è destinato, nonché ai rischi correlati all'uso del dispositivo?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="ENDPOINT" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Gli endpoint primari e secondari sono ben descritti e giustificati nella scelta?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="OUTCOME" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Gli outcome primari misurati sono di rilevanza clinica o correlabili a una misura clinicamente rilevante?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="VAR_MIS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Le variabili da misurare sono giustificate nella scelta e ben descritte (compresa la modalità per la raccolta, registrazione e analisi di tali variabili)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="ERRORI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono discusse le modalità di minimizzazione o esclusione degli errori sistematici?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="INC_ESCDM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>I criteri di inclusione/esclusione dei soggetti sono appropriati, chiari e ben definiti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="PAZTOT"  subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>E' indicato il numero totale dei pazienti che si prevede di arruolare e la previsione per ciascun centro (per indagini multicentriche)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="ARRUOLAM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>E' bene indicato il momento dell'arruolamento dei soggetti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="NRDM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>E' indicato il numero dei dispositivi medici sperimentali e dei prodotti di confronto (per centro ed in totale)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="DURSTUDIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>E' indicata la durata dello studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="FUP1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Le procedure medico-chirurgiche ed il follow-up a cui sono sottoposti i soggetti partecipanti sono descritti in modo dettagliato (compresi trattamenti concomitanti con farmaci, con altri dispositivi medici non sperimentali o trattamenti)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="FUP2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>E' descritto e giustificato il tempo di follow-up per ciascun soggetto?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="FATTORI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono elencati i fattori noti o prevedibili che possono compromettere gli esiti e l'interpretazione dei risultati (comprese le modalità di gestione degli stessi)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="RITIROPAZ" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono descritti i criteri e le procedure da effettuarsi in caso di interruzione e ritiro dei soggetti dalla indagine clinica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="SOSTPAZ" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono indicate le procedure di sostituzione dei soggetti arruolati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="PIANO_MON" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il piano di monitoraggio (procedure e azioni) della sperimentazione è ben descritto?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="SAE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono indicate le modalità di gestione degli eventi avversi seri/incidenti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="BD" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono indicate le modalità di gestione dei dati relativi allo studio, le procedure per la gestione delle banche dati, per il trattamento dei dati, per la verifica, l'archiviazione e la conservazione dei dati originali e la conservazione della documentazione dello studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="DEVIAZIONI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono descritte le procedure per la registrazione e la segnalazione di qualunque deviazione al protocollo clinico?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="EMEND" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono descritte le procedure per la comunicazione di emendamenti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="SOSP" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono descritte le procedure previste in caso di conclusione anticipata o sospensione temporanea della sperimentazione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="CRF" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Le informazioni che si vogliono raccogliere sono chiari e conformi a quanto riportato nella scheda di raccolta dati (CRF)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="STATISTICADM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono descritti i metodi statistici impiegati per l'analisi dei risultati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="DIM_CAMPIONE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono indicate le modalità della scelta della dimensione del campione, della potenza dello studio, del livello di significatività da utilizzare, i tassi di abbandono previsti, le procedure di registrazione degli scostamenti dal piano statistico, le modalità di trattamento dei dati mancanti o spuri, i criteri per la conclusione dell'indagine clinica e i criteri di selezione dei soggetti da includere nell'analisi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="ETICI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il promotore ha dichiarato la conformità ai principi etici riconosciuti per la sperimentazione clinica, ai principi di buona pratica clinica in materia di indagini cliniche di dispositivi medici e alle prescrizioni normative applicabili?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<!--field type="radio" cols="4" var="DOLOREDM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3">
+		<txt_value>Sono presenti misure per minimizzare il dolore, il disagio e la paura nel caso soprattutto di popolazione vulnerabile?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field-->
+	<field type="radio" cols="4" var="POP_DEBOLE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Sono descritte le procedure previste per la protezione della popolazione vulnerabile durante il corso e dopo il termine dell'indagine clinica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field type="radio" cols="4" var="PUBBLICAZIONI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il promotore dichiara di rendere disponibili per la pubblicazione i risultati dello studio o una loro sintesi e ne descrive le procedure?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<!--field type="radio" cols="4" var="RIGORE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Il disegno dello studio rispetta un rigore metodologico?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field-->
+	<field type="radio" cols="4" var="SAN_PUB" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Lo studio ha effettiva rilevanza in termini di sanità pubblica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<!--field type="radio" cols="4" var="DATI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>I dati che produrrà la sperimentazione saranno affidabili e robusti (secondo le scale di valutazione internazionalmente riconosciute)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field-->
+	<field cols="4" type="textarea" var="CRITICITA31" var_type="text" rows="4" tcols="40" var_size="2000" size="2000"  hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	
+	<!--FINE PROTOCOLLO CLINICO DM-->
+	
+<!--**************** STUDI OSSERVAZIONALI tipo_sper=5,6,7-->
+	
+	<!--PROTOCOLLO CLINICO OSSERVAZIONALI-->
+	<field type="radio" cols="4" var="AIFA_RSO" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="5">
+		<txt_value>Copia della notifica ad AIFA per la registrazione degli studi nel RSO (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+		<field type="radio" cols="4" var="APP_AIFA" subtbcol="1" hide="yes" condition="TIPO_SPER" condition_value="5">
+		<txt_value>Dichiarazione sulla natura osservazionale dello studio - Appendice 1 Determina AIFA del 20 marzo 2008 (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INDICAZIONI_OSF" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Solo per studi osservazionali farmacologici: 
+		Il medicinale è prescritto nelle indicazioni d'uso autorizzate dall'AIC; la prescrizione del farmaco è parte della normale pratica clinica;
+		la decisione di prescrivere il farmaco è indipendente dallo studio; 
+		e procedure diagnostiche e valutative sono corrispondenti alla pratica clinica (secondo la Determina AIFA del 20 MARZO 2008)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PASS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Solo per studi osservazionali farmacologici: Lo studio fa parte di un PASS o un PAES?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA50" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre note:]]></txt_value>
+	</field> 
+	
+	<field cols="4" name="T50" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=left><i> Il protocollo viene valutato con la checklist STROBE (Strengthening the Reporting of Observational Studies in Epidemiology) 2007 e/o STREGA (STrengthening The Reporting of Genetic Association Studies) 2007</i></td>]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="TITOLO_DISEGNO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Il titolo include il riferimento al disegno dello studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BACKGROUND4" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Il background fornisce gli elementi di contesto e sostiene il razionale dello studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="OBIETTIVI2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Gli obiettivi (primari e secondari) sono esplicitati e descritti in modo dettagliato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STUDI_GENETICI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Nel caso di studi genetici di associazione, è indicato lo stato dello studio ossia se è il primo, se è una replicazione o entrambi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DISEGNO3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Il disegno dello studio è definito/esplicitato in modo chiaro e dettagliato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="SETTING" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>E' descritto il setting, includente il luogo di reclutamento, il periodo di arruolamento, la durata del follow-up e tutte le informazioni che consentono la contestualizzazione e quindi la valutazione della generalizzabilità dei futuri risultati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POP_COORTE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Popolazione in studio: per Studi di Coorte — sono descritti i criteri di eleggibilità (criteri di inclusione ed esclusione), la fonte dei dati (registri di popolazione, schede di dimissione ospedaliera, ecc.), i metodi di reclutamento dei soggetti esposti e non esposti e le procedure di follow-up?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POP_CONTROLLO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Popolazione in studio: per Studi Caso controllo — sono descritti i criteri di eleggibilità, la fonte dei dati, i metodi e il razionale di reclutamento di casi e controlli?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POP_TRASVERSALI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Popolazione in studio: per Studi Trasversali— sono descritti i criteri di eleggibilità, la fonte dei dati e i metodi di selezione del campione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POP_COORTE2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Popolazione in studio: per Studi di Coorte — per studi appaiati (es. per età), sono forniti i criteri di appaiamento e il numero di esposti e non esposti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POP_CONTROLLO2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Popolazione in studio: per Studi Caso controllo — per studi appaiati sono forniti i criteri di appaiamento e il numero di controlli per singolo caso?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STUDI_GENETICI2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Nel caso di studi genetici di associazione, se applicabile, sono fornite informazioni sui criteri e sui metodi per la selezione dei sottogruppi di partecipanti provenienti da uno studio più ampio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="USCITA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Se applicabile, sono definiti i criteri di uscita (es. il ritiro del consenso)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="VARIABILI1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,712">
+		<txt_value>Variabili: Sono definiti chiaramente tutti gli esiti, i fattori di esposizione (di rischio o protettivi), i predittori, i potenziali fattori confondenti e i modificatori di effetto?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="VARIABILI2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,712">
+		<txt_value>Variabili: Se applicabile, sono esplicitamente riferiti i criteri diagnostici?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="VARIABILI3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Variabili: Se applicabile, sono definite chiaramente le esposizioni genetiche (varianti genetiche) utilizzando un sistema di nomenclatura diffuso e identificate le variabili che possono essere associate con la stratificazione della popolazione (confondimento per origine etnica)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MISURAZIONE1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,712">
+		<txt_value>Fonte dei dati/misurazione: Per ciascuna variabile di interesse, è indicata la fonte dei dati e i dettagli dei metodi di misurazione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MISURAZIONE2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Fonte dei dati/misurazione: E' valutata la confrontabilità dei metodi di misurazione nei diversi gruppi (in caso di gruppi multipli)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MISURAZIONE3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Fonte dei dati/misurazione: Nel caso di studi genetici di associazione, sono descritti i metodi di laboratorio, includendo l'origine e lo stoccaggio del DNA, i metodi di genotipizzazione e le piattaforme (tra cui l'algoritmo utilizzato per la chiamata dell'allele), i tassi di errore e i tassi di chiamate?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MISURAZIONE4" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Fonte dei dati/misurazione: E' descritto lo stato del laboratorio/centro dove viene fatta la  genotipizzazione; è descritta la comparabilità dei metodi di laboratorio, se vi è più di un gruppo?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="MISURAZIONE5" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Fonte dei dati/misurazione: Sono specificati se genotipi saranno assegnati utilizzando tutti i dati dallo studio simultaneamente o in piccoli lotti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="GENETICI_ASS_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Nel caso di studi genetici di associazione, è descritto lo stato del laboratorio/centro dove viene fatta la  genotipizzazione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="COMPARABILITA_BIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Nel caso di studi genetici di associazione, è descritta la comparabilità dei metodi di laboratorio, se vi è più di un gruppo?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="COMPARABILITA_BIO1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="12">
+		<txt_value>Sono specificati se i genotipi saranno assegnati utilizzando tutti i dati dallo studio simultaneamente o in piccoli lotti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BIAS1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Bias: Sono adottati accorgimenti per controllare le principali fonti di bias (bias di informazione: inerente la diversa definizione di esposizione e/o di esito nei gruppi a confronto; bias di selezione: inerente il rischio di arruolamento di casi preferenzialmente esposti [o viceversa])?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BIAS2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Bias: Nel caso di studi genetici di associazione, per le variabili di outcome quantitative, sono specificati se è stata effettuata qualche indagine di potenziale pregiudizio derivante dalla terapia farmacologica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BIAS3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Bias: Se del caso, è descritta la natura e l'entità del pregiudizio potenziale, e spiegato quale approccio è stato utilizzato per far fronte a questo?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RAZIONALE3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>E' fornito un razionale al calcolo della dimensione del campione (la dimensione campionaria deve essere calcolata in funzione della misura di esito primaria dichiarata)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="QUANTITATIVE1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Variabili quantitative: Sono pianificati i metodi di analisi delle variabili quantitative?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="QUANTITATIVE2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Variabili quantitative: Se applicabile, è descritto il razionale della categorizzazione/raggruppamento delle variabili continue e/o la scelta di eventuali cut-off?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="QUANTITATIVE3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Nel caso di studi genetici di associazione, se applicabile, è descritto come saranno affrontati gli effetti del trattamento?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: Sono descritti tutti i metodi statistici, inclusi quelli usati per il controllo dei fattori confondenti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: Nel caso di studi genetici di associazione, sono descritte le versioni del software utilizzate e le impostazioni scelte?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: Sono descritti i metodi usati per l'analisi dei sottogruppi e per l'identificazione di eventuali interazioni?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS4" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: E' pianificata una modalità di trattamento dei dati mancanti (missing)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS5" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: Studi di coorte—E' pianificata una modalità di gestione dei drop-out?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS6" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: E' pianificata una modalità di analisi coerente con la strategia di campionamento (casuale, stratificato, cluster etc)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS7" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: Studi caso controllo—Se applicabile, è pianificata una modalità di gestione dei dati appaiati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS8" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: Studi trasversali—E' pianificata una modalità di analisi coerente con la strategia di campionamento (casuale, stratificato, cluster etc)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STATISTICAOS9" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Metodi statistici: E' pianificata un'analisi di sensitività, cioè una verifica della persistenza dei risultati in funzione di diverse assunzioni e/o strategie analitiche?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ASS_GENETICA1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Per studi di associazione genetica: E' indicato se è stato considerato l'equilibrio di Hardy-Weinberg?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	<field cols="4" type="textarea" var="ASS_GENETICA1_SPEC" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="ASS_GENETICA" condition_value="1">
+		<txt_value><![CDATA[Se sì, specificare:]]></txt_value>
+	</field> 
+	
+	<field type="radio" cols="4" var="ASS_GENETICA2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Per studi di associazione genetica: Sono descritti i metodi utilizzati per inferring genotypes or haplotypes?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ASS_GENETICA3" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Per studi di associazione genetica: Sono descritti i metodi utilizzati per valutare o indirizzare la stratificazione della popolazione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ASS_GENETICA4" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Per studi di associazione genetica: Sono descritti i metodi utilizzati per affrontare confronti multipli o per controllare il rischio di risultati falsi positivi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ASS_GENETICA5" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Per studi di associazione genetica: Sono descritti i metodi utilizzati per affrontare e correggere le relazioni tra i soggetti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="FUPOS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Se applicabile, le visite di follow-up sono sostanzialmente corrispondenti alla pratica clinica corrente o a quanto descritto da linee guida nazionale e/o internazionali?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INFORMAZIONI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7,12">
+		<txt_value>Le informazioni che si vogliono raccogliere sono chiare e conformi a quanto riportato nella scheda di raccolta dati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="STRUMENTI" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value><![CDATA[Descrivere gli strumenti usati per raccogliere i dati (quali questionari, interviste, diari, scale di valutazione, esami ematochimici, valutazioni soggettive, indagini di economia sanitaria e farmacoeconomia):]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="CAMPIONIBIO1" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Campioni biologici: Se applicabile, sono descritti dettagliatamente i metodi per raccogliere i campioni biologici, le modalità di analisi (genetica, molecolare), di anonimizzazione dei dati confidenziali, il luogo e le modalità di conservazione del materiale (es. biobanche) e la presenza di un Comitato Etico del luogo di deposito?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CAMPIONIBIO2" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Campioni biologici: Sono descritti gli usi futuri del materiale conservato per altri studi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="FONTE_FINANZ" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>E' riportata la fonte e l'entità del finanziamento (vedi contratto)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONSENSOINF_OSS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>E' descritta la procedura di ottenimento del consenso informato, se applicabile?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="SAE_OS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Sono descritte le procedure di segnalazione degli eventi avversi, se applicabile?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="LIM_ACCESSO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>E' chiaramente definito chi avrà accesso ai dati finali dello studio ed è indicata la presenza di un eventuale accordo contrattuale che limiterà l'accesso ai dati per gli sperimentatori?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RAPPORTO_FINALE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>E' riportato l'impegno del promotore alla stesura di un rapporto finale e a rendere pubblici i risultati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONSENSO_ASSENSO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Se applicabile, è indicato il processo di ottenimento di un consenso informato/assenso allo studio e le modalità con cui saranno trattati i dati personali?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ADRS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Viene menzionata la modalità di raccolta/gestione postmarketing delle ADRs (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="GCP_OS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value>Il protocollo è conforme alle GCP?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA51" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="5,6,7">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre note:]]></txt_value>
+	</field> 
+	
+<!--FINE PROTOCOLLO CLINICO OSSERVAZIONALI-->
+
+<!--TOSCANA-51 QUADAS2 per tutti gli studi eccetto i campioni bilogici-->
+	<field cols="4" name="T60" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> PROTOCOLLO CLINICO <BR></BR>Il protocollo viene valutato con la checklist QUADAS-2 (Quality Assessment of Diagnostic Accuracy Studies) 2011</b></td>]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="DIAGNOSTICO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8">
+		<txt_value>Studio diagnostico?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DIAGRAMMA_OS" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' incluso un diagramma di flusso che facilita la lettura immediata del disegno di studio e di tutte le sue fasi di sviluppo (metodi di arruolamento dei partecipanti,  sequenza di esecuzione dei test,  numero dei partecipanti)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" name="T61" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> SELEZIONE DEI PAZIENTI</b></td>]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="SEL_PAZ" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Sono descritti i metodi di selezione dei pazienti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PAZ_INC" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Sono descritti i pazienti che verranno inclusi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PAZ_CAMPIONE" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' arruolato un campione di pazienti consecutivo o casuale?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="NO_CONTROLLO" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' evitato un disegno caso-controllo?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ESC_INAP" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Sono evitate esclusioni inappropriate (in rapporto alla condizione/malattia in studio, valutare l'appropriatezza delle esclusioni di pazienti con particolari spettri di gravità, con specifiche  caratteristiche demografiche, con quesiti di  diagnosi differenziale ei con co-morbidità)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PAZ_ARR" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>I pazienti arruolabili nello studio sono rappresentativi di coloro che ricevono il test nella pratica clinica (valutare la generalizzabilità in termini di severità di malattia, caratteristiche demografiche, diagnosi differenziali, co-morbidità, setting o precedenti test effettuati)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" name="T62" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> TEST INDEX</b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="INDEX_TEST" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' descritto l'index test e come questo sarà condotto e interpretato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INDEX_RIS" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' prevista una interpretazione dei risultati del test index in cieco  rispetto ai risultati del reference standard?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="VALORE_SOGLIA" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Se applicabile, è specificato il valore soglia del test?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INDEX_PROBLEMI" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Sono evitati problemi di generalizzabilità dello studio in termini di tecnologia (es. generazioni di TAC), esecuzione  o interpretazione del test (curve di apprendimento degli operatori)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" name="T63" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> REFERENCE STANDARD</b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="REFERENCE" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' descritto il reference standard e come questo sarà condotto e interpretato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="REFERENCE_COND" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Il reference standard classifica correttamente la condizione/malattia in studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="REFERENCE_RIS" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' prevista una interpretazione dei risultati del reference standard in cieco rispetto ai risultati del test index?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="REFERENCE_PROBLEMI" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Non esistono problemi di generalizzabilità dello studio in termini di definizione della condizione/malattia in studio?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+
+	<field cols="4" name="T64" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> FLUSSO E TEMPI</b></td>]]></txt_value>
+	</field>
+	<field type="radio" cols="4" var="NO_INDEX" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Sono descritti i pazienti che non ricevono l'index test o il reference standard e che sono esclusi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INDEX_TEMPI" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Sono descritti gli intervalli di tempo tra l'index test e il reference standard e qualsiasi intervento che può essere effettuato tra i due test?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INTERVALLO" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>E' previsto un adeguato intervallo temporale tra la somministrazione del test index e quella del reference standard (l'adeguatezza dipende dalla condizione/malattia in studio ed è funzione della storia naturale della malattia/condizione?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INDEX_TEMPO" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Un tempo intercorrente sufficientemente ampio da essere compatibile con la nuova insorgenza o con l'aggravamento della condizione/malattia, può distorcere le stime di accuratezza introducendo il 'disease progression bias')?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="REFERENCE_ALL" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Tutti i pazienti riceveranno lo stesso reference standard?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONFERMA_ALL" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Tutti i pazienti hanno una conferma diagnostica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INCLUSI_ALL" subtbcol="3" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value>Tutti i pazienti arruolati nello studio saranno inclusi nell'analisi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA60" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="DIAGNOSTICO" condition_value="1">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	
+<!--FINE PROTOCOLLO CLINICO OSSERVAZIONALI CON DM e SENZA FARMACO-->
+
+
+	<!--ASPETTI ETICI-->
+	<field cols="4" name="T4" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,12">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> ASPETTI ETICI </b></td>]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="OVIEDO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,5,6,8,10,12">
+		<txt_value>Il promotore e/o lo sperimentatore locale ha documentato con formale accettazione dello studio che lo stesso verrà condotto nel rispetto dei diritti fondamentali della dignità e dei diritti umani in conformità ai principi etici, che traggono la loro origine dalla Dichiarazione di Helsinki e dalla Convenzione di Oviedo nonché da tutte le normative internazionali applicabili?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="NORMATIVE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,5,6,8,10,12">
+		<txt_value>Il promotore dichiara il rispetto delle Good Clinical Practice nonché delle disposizione normative applicabili?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="VAL_RISCHI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,7,8,10,12">
+		<txt_value>I rischi e gli inconvenienti prevedibili sono stati soppesati rispetto al vantaggio per il soggetto incluso nella sperimentazione e per altri pazienti attuali e futuri?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="BENEFICI_RISCHI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,7,8,10,12">
+		<txt_value>I benefici previsti dalla sperimentazione, terapeutici e in materia di sanità pubblica, ne giustifichino i rischi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DIRITTI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>I diritti, la sicurezza e il benessere dei soggetti dello studio hanno costituito le considerazioni più importanti e sono prevalsi sugli interessi della scienza e della società?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RICERCA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>La ricerca su persone che non sono in grado di dare il loro consenso informato è giustificata?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DOLORE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,7,8,10,12">
+		<txt_value>Sono presenti misure per minimizzare il dolore, il disagio e la paura?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA4" var_type="text" rows="4" tcols="40" var_size="2000" size="2000"  hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	
+	
+	<!--INFORMAZIONE AI SOGGETTI E PROCEDURE PER IL CONSENSO INFORMATO-->
+	<field cols="4" name="T5" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,12">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> INFORMAZIONE AI SOGGETTI E PROCEDURE PER IL CONSENSO INFORMATO </b></td>]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="FOGLI_INFO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Se applicabile, i fogli informativi ed i moduli di assenso/consenso informato sono distinti per le diverse fasce di età pediatrica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="FASCE_ETA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Se applicabile, la descrizione dello studio è adeguata alle diverse fasce di età considerate?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="TEMPLATE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>L'informativa è conforme al template del Comitato Etico Regionale?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INFORMATIVA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,8,10,12">
+		<txt_value>Se applicabile, l'informativa risponde alle principali domande previste dal CE?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PROTOCOLLO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Le informazioni sono conformi al protocollo?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RECLUTAMENTO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Le procedure per il reclutamento sono chiare e complete?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="LINGUAGGIO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Il linguaggio utilizzato è chiaro, privo di termini tecnici e specialistici?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PROCEDURA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>La procedura da seguire per sottoporre al/i soggetto/i il consenso informato è ben descritta?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RISCHI_BEN" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Rischi e benefici sono ben descritti e congruenti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RESP_CONS"  subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Il responsabile della conservazione, l'utilizzo e la durata di uso dei campioni biologici sono aspetti ben descritti (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONSEGNA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>La data e l'ora di consegna del modulo informativo ai pazienti da parte del medico sono presenti, così come la data e l'ora di firma del consenso informato?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="ALTRO_MATERIALE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>E' presente altro materiale per i soggetti?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA5" var_type="text" rows="4" tcols="40" var_size="2000" size="2000"  hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONFIDEN" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>La protezione dei dati personali e la confidenzialità sono assicurati?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA6" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="PLS" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>E' presente la lettera al medico curante/pediatra di libera scelta (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field cols="4" type="textarea" var="CRITICITA7" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value><![CDATA[Eventuali elementi critici riscontrati o altre osservazioni (testo libero):]]></txt_value>
+	</field>
+	
+	<!--Strutture, personale ed aspetti economico-amministrativi-->
+	<field cols="4" name="T6" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,12">
+		<txt_value><![CDATA[<td colspan="8" class=titolo3 align=LEFT><b> STRUTTURE, PERSONALE ED ASPETTI ECONOMICO-AMMINISTRATIVI</b></td>]]></txt_value>
+	</field>
+	
+	<field type="radio" cols="4" var="CV_PI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>L'idoneità dello sperimentatore e dei suoi collaboratori è stata valutata dal Curriculum Vitae e dalla sua dichiarazione sul conflitto di interessi?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="DIR_GEN" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>L'adeguatezza della struttura sanitaria (in termini di personale, strutture e costi coinvolti nello studio secondo la specifica tipologia) è stata valutata dall'analisi di impatto aziendale fornita e riportante la firma del Direttore Generale?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	
+	
+	
+	<field type="radio" cols="4" var="POST_MAR" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="3,7">
+		<txt_value>Per le indagini cliniche post marketing, lo Sperimentatore responsabile localmente dello studio ha fornito la checklist per l'istruttoria aziendale, finalizzata alla valutazione delle modalità di acquisto del DM richiesti per indagini cliniche post marketing e a firma del Direttore della Farmacia Ospedaliera??</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="STRAORDINARI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Per studi profit, lo sperimentatore locale ha rilasciato dichiarazione attestante che il personale coinvolto svolgerà le relative attività oltre il normale orario di lavoro per tutto il personale coinvolto?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="NO_STRAORDINARI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Per studi no-profit, lo sperimentatore locale ha rilasciato dichiarazione attestante che il personale coinvolto potrà svolgere le relative attività nell'orario di lavoro, senza pregiudicare le normali attività assistenziali?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="NO_SSN" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Per studi no-profit: Lo sperimentatore locale ha rilasciato dichiarazione attestante che per lo studio non è previsto alcun contributo economico e che lo studio non comporterà aggravio di costi a carico del SSN in quanto i costi relativi agli esami strumentali e di laboratorio extraroutinari saranno sostenuti con fondi ad hoc o che il sostenimento di costi aggiuntivi sia autorizzato dalla Direzione Aziendale?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="CONTRIBUTO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Per studi no-profit: Lo sperimentatore locale ha rilasciato dichiarazione attestante che per lo studio è previsto un contributo economico e sono state dettagliatamente descritte le modalità di impiego dello stesso, al netto del sostenimento di eventuali costi, per le finalità proprie della ricerca?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="FINANZIAMENTO" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Esiste un finanziamento per lo studio clinico definito in un contratto tra promotore/supplier e centro clinico, e questo è stato concordato tra le parti (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<!--TOSCANA-51-->
+	<field type="radio" cols="4" var="VIS_SUPPLIER" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>E' stato visionato l'accordo economico fra promotore e supplier?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="RIMBORSO_SPESE" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,8,10,12">
+		<txt_value>L'eventuale rimborso spese per i partecipanti allo studio, secondo le modalità previste dal DM 21 dicembre 2007 o altre normative applicabili, è congruo (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="POLIZZA" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,7,8,10,12">
+		<txt_value>Sono presenti una Polizza ed un Certificato Assicurativo specifici per lo studio, in cui siano chiare le disposizioni previste in materia di risarcimento dei danni ai pazienti o di decesso imputabili alla sperimentazione clinica?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="IMPORTI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Sono stati valutati gli importi e le eventuali modalità di retribuzione o di compenso o di emolumenti di qualsiasi natura da corrispondersi agli sperimentatori (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="INDENNITA_PI" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,7,8,10,12">
+		<txt_value>Indennità per gli sperimentatori (se applicabile)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="REQUISITI_DM" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Nel caso di enti no-profit è stato accertato il rispetto dei requisiti previsti dal DM 17/12/2004 (come indicato dall'allegato 1)?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+	
+	<field type="radio" cols="4" var="PARTNERSHIP" subtbcol="3" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value>Lo studio presenta una partnership profit/no-profit, i cui interessi sono chiaramente definiti in un agreement?</txt_value>
+			<value val="1">Sì</value>
+			<value val="2">No</value>
+			<value val="3">NA</value>
+	</field>
+
+	<field cols="4" type="textarea" var="ALTRO_SPEC" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value><![CDATA[Altro, specificare:]]></txt_value>
+	</field>
+	
+	<field cols="4" type="textarea" var="ALTRI_ASPETTI" var_type="text" rows="4" tcols="40" var_size="2000" size="2000" hide="yes" condition="TIPO_SPER" condition_value="1,2,3,5,6,7,8,10,12">
+		<txt_value><![CDATA[Altri aspetti particolari che si ritiene di portare all'attenzione del Comitato Etico (testo libero): ]]></txt_value>
+	</field>
+	
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

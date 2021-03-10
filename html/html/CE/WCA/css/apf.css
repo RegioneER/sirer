@@ -1,0 +1,43 @@
+/*
+Questa roba non so a cosa serve
+*/
+.table{
+width: 100px;
+}
+.destra {
+  	background-color: #ffffff;
+  	vertical-align:text-top;
+  	text-align: right;
+	padding: 5px;
+	font-family: Verdana;
+	FONT-SIZE: 14px;
+	color: #282853;
+}
+.input {
+  background-color: #ffffff;
+	padding: 3px;
+	width: 100px;
+	font-family: Verdana;
+	FONT-SIZE: 14px;
+	color: #282853;
+}
+
+.sinistra {
+  padding: 5px;
+	font-family: Helvetica,Arial;
+	FONT-SIZE: 14px;
+	color: #282853;
+}
+
+/* I titoli dei vari specchietti usano questa classe*/
+.mttl {
+	font-family: Helvetica,Arial;
+	width:400px;
+	color: #282853;
+	padding-right: 5px; 
+	padding-left: 2px; 
+	font-weight: bold; 
+	font-size: 14px; 
+	/*background: url(../images/mttl_bar.gif) repeat-x ; */
+	border:1px solid #282853; 
+}

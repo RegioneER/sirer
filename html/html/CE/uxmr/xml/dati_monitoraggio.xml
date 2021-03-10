@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Dati monitoraggio" titolo="Dati monitoraggio" table="MONITOR"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|exams=visite_exams.xml"
+	cols="3"
+	f_to_call="action_avvio"
+	>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Dati di avvio dello studio </b></td>]]></txt_value>
+	</field>	
+	<!--field type="select" var="CENTRO" send="obbligatorio" cols="3">
+		<txt_value> Struttura partecipante </txt_value>
+			<value val="1"> Azienda Ulss 20 di Verona</value>
+			<value val="2"> P.O. lungodegenza di Marzana (VR)</value>
+			<value val="3"> Polo Ospedaliero dell'Est Veronese di San Bonifacio (VR)</value>
+			<value val="4"> Casa di Cura Chierego E Perbellini di Verona</value>
+			<value val="5"> Casa di Cura Villa Lieta di Verona</value>
+			<value val="6"> Casa di Cura San Francesco di Verona</value>
+			<value val="7"> Casa di Cura Villa S. Chiara di Verona</value>
+			<value val="8"> Osp. classif. S. Giuliana sorelle mis. di Verona</value>
+	</field>
+	<field type="select" var="PRINC_INV" send="obbligatorio" cols="3">
+		<txt_value> Sperimentatore responsabile</txt_value>
+			<value val="1"> Alessandro Adami</value>
+			<value val="2"> Maurizio Anselmi </value>
+			<value val="3"> Felice Bilone </value>
+	</field-->
+	<field type="radio" var="APERTO" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Il centro &egrave; stato aperto]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="data" var="APERTO_DT" cols="3" hide="yes" condition="APERTO" condition_value="1">
+		<txt_value>Data di apertura del centro (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="radio" var="ARRUOLAMENTO" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[E' stato arruolato il primo soggetto (firma del consenso informato)]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+ 	<field type="data" var="ARR_DT" cols="3" hide="yes" condition="ARRUOLAMENTO" condition_value="1">
+		<txt_value>Data di arruolamento del primo soggetto (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="textarea" var="NOTE" var_type="text" cols="3" rows="8" tcols="80" var_size="2000" size="2000">
+		<txt_value><![CDATA[Note ]]></txt_value>
+	</field> 
+	
+	<field
+		cols="3"
+		type="file_cme" 
+		var="AVVIO_FILE"
+		THREAD="File avvio" 
+		TOPIC="File avvio"
+		xmlTypeDefinition="cme/dati_monitoraggio.xml" 
+		auto_approve="yes"
+  >
+		<txt_value>File avvio</txt_value>
+	</field>
+	
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

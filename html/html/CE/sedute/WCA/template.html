@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="cache-control" content="no-cache">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link media="screen" href=css/iss.css rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="libs/js/bubble/bubble.css" />
+<!--refresh-->
+<script type="text/javascript" src="libs/js/fmweb.js"></script>
+<script type="text/javascript" src="libs/js/show_values.js"></script>
+<script type="text/javascript" src="libs/js/bubble/bubble.js"></script>
+<!--SCRIPT src="dyn_windows.js"></SCRIPT-->
+<script type="text/javascript" src="libs/js/<!--language-->/calendarDateInput.js"></script>
+
+<SCRIPT>
+
+
+ function createRequestObject() {
+			var ro;
+			var browser = navigator.appName;
+			if(browser == "Microsoft Internet Explorer"){
+				ro = new ActiveXObject("Microsoft.XMLHTTP");
+			}else{
+				ro = new XMLHttpRequest();
+			}
+			return ro;
+		}
+		
+		var http = createRequestObject();
+
+
+	var ritorno=true;
+
+function ajax_call(html_id, param) {
+		if (ritorno){
+			ritorno=false;
+			//alert (html_id+' - '+param);
+			//alert('-'+html_id+'-');<br>
+			document.getElementById(html_id).innerHTML='<img src="images/loading.gif">';
+			if(html_id.indexOf('user_id')!=-1 || html_id.indexOf('user_not_id')!=-1){				
+				call='ajax.php';
+				parameters='HTML_ID='+html_id+'&'+param;
+				//call='ajax.php?HTML_ID='+html_id+'&'+param;
+				//alert(call);
+				//document.getElementById('debug').innerHTML+=html_id+' - '+param+' - <a href="'+call+'" target="_new">debug</a>';
+				http.open('post', call);
+				http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				http.setRequestHeader("Content-length", parameters.length);
+				http.setRequestHeader("Connection", "close");
+				http.onreadystatechange = handleResponse;
+				http.send(parameters);
+			}
+			else{
+				call='ajax.php?HTML_ID='+html_id+'&'+param;
+				//alert(call);
+				//document.getElementById('debug').innerHTML+=html_id+' - '+param+' - <a href="'+call+'" target="_new">debug</a>';
+				http.open('get', call);
+				http.onreadystatechange = handleResponse;
+				http.send(null);
+			}
+		} else {
+			setTimeout('ajax_call("'+html_id+'", "'+param+'")', 10);
+		}
+	}
+		
+		function handleResponse() {
+			if(http.readyState == 4){
+				var response = http.responseText;
+				if (response.match("#DIV#")){
+					resp=response.split("#DIV#");
+					//alert('-'+resp[0]+'-');
+					//document.getElementById(resp[0]).innerHTML='<img src="images/loading.gif">';
+					document.getElementById(resp[0]).innerHTML = resp[1];
+					
+				}
+				if (response.match("#FORM#")){
+					resp=response.split("#FORM#");
+					//alert (resp[0]+' - '+resp[1]);
+					document.getElementById('select_'+resp[0]).innerHTML = resp[1];
+				}
+				if (response.match("#SELECT#")){
+					resp=response.split("#SELECT#");
+					//alert (resp[0]+' - '+resp[1]);
+					document.getElementById(resp[0]).innerHTML = resp[1];
+				}
+				ritorno=true;
+				}
+		}
+		
+		function show_bubble_help(event,testo_help){
+			
+			showToolTip_1(event,testo_help);
+		}
+
+</SCRIPT>
+<title>AIFA - Area di lavoro cooperativo - WCA</title>
+</head>
+<script>
+	
+	function show_hide(tag){
+			if (document.getElementById(tag).style.display=='') document.getElementById(tag).style.display='none';
+			else document.getElementById(tag).style.display=''; 
+		}
+<!--script-->	
+</script>
+
+<!--google_map-->
+
+
+</head>
+<body onload="//<!--onload-->">
+<!--body-->
+</body>
+</html>

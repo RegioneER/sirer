@@ -1,0 +1,29 @@
+<li class="dark-blue">
+	<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+		<i class="icon-plus"></i>
+		
+	</a>
+
+	<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
+		<li class="dropdown-header">
+			Aggiungi 
+			<span class="help-button" data-rel="tooltip" data-trigger="hover" data-placement="left"  title="Menu degli oggetti registrabili nel servizio">?</span>
+		</li>
+
+		<#list layout._topbar_actions.list as action >
+		<li>
+			<a href="${action.link}" class="no-hover dark-blue" >
+			<div class="clearfix">
+			<span class="pull-left">
+					<i class="no-hover ${action.icon}"></i> ${action.title}</span>
+					
+			</div>
+			</a>
+		</li>
+		</#list>
+		<li>
+			
+		</li>
+		
+	</ul>
+</li>

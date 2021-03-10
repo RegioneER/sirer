@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><md:EntityDescriptor xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata" ID="_7wp2seosi4kdbzkbl66lfovlk6f47hjm1ustd7w" entityID="https://sirer.progetto-sole.it/cas/idp" validUntil="2040-10-22T10:17:37.327Z">
+    <md:Extensions xmlns:alg="urn:oasis:names:tc:SAML:metadata:algsupport">
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha512"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha384"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#sha224"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha512"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha384"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/>
+        <alg:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/>
+    </md:Extensions>
+    <md:SPSSODescriptor AuthnRequestsSigned="true" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol urn:oasis:names:tc:SAML:1.0:protocol urn:oasis:names:tc:SAML:1.1:protocol">
+        <md:Extensions xmlns:init="urn:oasis:names:tc:SAML:profiles:SSO:request-init">
+            <init:RequestInitiator Binding="urn:oasis:names:tc:SAML:profiles:SSO:request-init" Location="https://sirer.progetto-sole.it/cas/login?client_name=ASMN+Reggio+Emilia"/>
+        </md:Extensions>
+        <md:KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDGzCCAgOgAwIBAgIJAP3Fbo4ASUzwMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNVBAMMGXNpcmVy
+MDMucHJpdmF0ZS5jaW5lY2EuaXQwHhcNMjAxMDIyMTAxNDQxWhcNMzAxMDIwMTAxNDQxWjAkMSIw
+IAYDVQQDDBlzaXJlcjAzLnByaXZhdGUuY2luZWNhLml0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEAivhzi29MHNk0IHshOOziNgkwkxWhq7yZp0Td/TLNQg6ydtPm3b0oTA/UObvRWUDB
+zuppswNpJI6aSgfl3HBBOHAnpn2pQ2+cHVfhTJADjlTH/8fuPL4keBT+0JNQfMXaMfGa5RZx6csI
+81Fha/SNZ6lDXUpWYD4VcDfbyYny6Rnj/8P002igBGbumABJkxvyLtnXoLzlACQREqBflEEephvT
+f0dYVP0ymGGuR1x7ypuQqFxTPEVZr2ym/WVnGbKl38MdFaapWtkzXfAKaLp8FF+GvlHavO9dHiZp
+nicypBizM0Pw8Rwj9XspJUmp8T990nU8sk79zw0MBWolcKOr3QIDAQABo1AwTjAdBgNVHQ4EFgQU
+WEYYvVCRJt0f2541YVirHcscBSYwHwYDVR0jBBgwFoAUWEYYvVCRJt0f2541YVirHcscBSYwDAYD
+VR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAB3Vhu79oK2H8XcLTarzkQOZkggRxoQe3idPL
+yF92e9OwjsuQJtcdjbGPBKnLNtLOoE/aMgj1LjpKkVLYiWEs6gqZYYsHY0F1OPOEvuCgheNFIGzO
+OiQMTEzkTwJFABEoRfMh9fphqyI0hpqVSvKh5dmT3zTxWEhNhpb+j+nMS+yFKqLmM9v13WayJmwR
+YOrRyc+aFDmKP6cXtnl5iVHJRxXeNNrVAbCp3iXUm+4GthsHA4Zwi6bHwltp1s/z32T2/I5SAuKu
+xgk4L38b3Z5nA1gGbheHD4fBkAnkeTlh6QP41vQn24Q1BXs120t4kLL+w6NjEjE+z/bLpdK6Aa4d
+Yg==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:KeyDescriptor use="encryption">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>MIIDGzCCAgOgAwIBAgIJAP3Fbo4ASUzwMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNVBAMMGXNpcmVy
+MDMucHJpdmF0ZS5jaW5lY2EuaXQwHhcNMjAxMDIyMTAxNDQxWhcNMzAxMDIwMTAxNDQxWjAkMSIw
+IAYDVQQDDBlzaXJlcjAzLnByaXZhdGUuY2luZWNhLml0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEAivhzi29MHNk0IHshOOziNgkwkxWhq7yZp0Td/TLNQg6ydtPm3b0oTA/UObvRWUDB
+zuppswNpJI6aSgfl3HBBOHAnpn2pQ2+cHVfhTJADjlTH/8fuPL4keBT+0JNQfMXaMfGa5RZx6csI
+81Fha/SNZ6lDXUpWYD4VcDfbyYny6Rnj/8P002igBGbumABJkxvyLtnXoLzlACQREqBflEEephvT
+f0dYVP0ymGGuR1x7ypuQqFxTPEVZr2ym/WVnGbKl38MdFaapWtkzXfAKaLp8FF+GvlHavO9dHiZp
+nicypBizM0Pw8Rwj9XspJUmp8T990nU8sk79zw0MBWolcKOr3QIDAQABo1AwTjAdBgNVHQ4EFgQU
+WEYYvVCRJt0f2541YVirHcscBSYwHwYDVR0jBBgwFoAUWEYYvVCRJt0f2541YVirHcscBSYwDAYD
+VR0TBAUwAwEB/zANBgkqhkiG9w0BAQsFAAOCAQEAB3Vhu79oK2H8XcLTarzkQOZkggRxoQe3idPL
+yF92e9OwjsuQJtcdjbGPBKnLNtLOoE/aMgj1LjpKkVLYiWEs6gqZYYsHY0F1OPOEvuCgheNFIGzO
+OiQMTEzkTwJFABEoRfMh9fphqyI0hpqVSvKh5dmT3zTxWEhNhpb+j+nMS+yFKqLmM9v13WayJmwR
+YOrRyc+aFDmKP6cXtnl5iVHJRxXeNNrVAbCp3iXUm+4GthsHA4Zwi6bHwltp1s/z32T2/I5SAuKu
+xgk4L38b3Z5nA1gGbheHD4fBkAnkeTlh6QP41vQn24Q1BXs120t4kLL+w6NjEjE+z/bLpdK6Aa4d
+Yg==</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </md:KeyDescriptor>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:persistent</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress</md:NameIDFormat>
+        <md:NameIDFormat>urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified</md:NameIDFormat>
+        <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="https://sirer.progetto-sole.it/cas/login?client_name=ASMN+Reggio+Emilia" index="0"/>
+    </md:SPSSODescriptor>
+</md:EntityDescriptor>

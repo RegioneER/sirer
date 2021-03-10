@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+ <QUERIES>
+ <QUERY ID="Q1_1" TYPE="TOTAL" DESC=""> 
+<VALUE>
+<![CDATA[ 
+
+select (case when nazione='Total' then '<a href="javascript: void pCond(''NAZIONE is not null'',''form1'');"   title="Global Recruitment per Center in All Countries ">'||NAZIONE||'</a>'
+ ELSE '<a href="javascript: void pCond(''NAZIONE=#'||NAZIONE||'#'',''form'');"   title="Global Recruitment per Center in Country: '||NAZIONE||' ">'||NAZIONE||'</a>'END ),N, PERC FROM(
+select 1 A,  nazione, count(codpat) n ,to_char(ratio_to_report(count(codpat)) over()*100,'990.0')PERC 
+from patients p,(select distinct to_number(substr(userid, 0,3))cent,nazione from ana_utenti_1
+where userid BETWEEN '001%' AND '899%')
+where  p.center=cent
+group by nazione
+UNION
+select 2 A,'Total'nazione, count(codpat) n ,to_char(ratio_to_report(count(codpat)) over()*100,'990.0') 
+from  patients p,(select distinct to_number(substr(userid, 0,3))cent,nazione from ana_utenti_1
+where userid BETWEEN '001%' AND '899%')
+where  p.center=cent and nazione is not null
+order by A,n desc)
+  ]]> 
+  </VALUE>
+  </QUERY>
+   <QUERY ID="R_Q1" TYPE="TOTAL" DESC="PATIENTS STATUS DISTRIBUTION"> 
+<VALUE>
+<![CDATA[ 
+select b, c,d, e,f,g from(
+SELECT 1 a,  to_char(MTAB1.QCEN) b,MTAB1.QCNAME c, 
+QC d,(case when (ct is null or ct=0) then '-' else TO_CHAR(ROUND(QC/ct,2),'990.0')end ) e,
+(case when (QC is null or QC=0) then  QCS||' ( - )' else QCS||' ('||to_char((QCS/QC)*100,'990.0')||')' end ) f,
+(case when (QC is null or QC=0) then (QC-QCS)||' ( - )' else (QC-QCS)||' ('||to_char(((QC-QCS)/QC)*100,'990.0')||')' end )g 
+ FROM 
+(SELECT COUNT(QUERY_DOC.id) AS QC,
+TAB1.C1 AS QCEN, 
+TAB1.NAME AS QCNAME
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB1,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1 
+GROUP BY TAB1.C1, TAB1.NAME
+) MTAB1,
+(SELECT  center, name ne, COUNT(codpat) ct
+FROM
+patients, 
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C2, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) B
+WHERE patients.center=B.C2 
+GROUP BY center, name
+) MTAB2,
+(
+SELECT COUNT(QUERY_DOC.id) AS QCS,
+TAB2.C1 AS QCEN, 
+TAB2.NAME AS QCNAME
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB2,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1 AND QUERY_DOC.ANSWERDT IS NOT NULL 
+GROUP BY TAB2.C1, TAB2.NAME
+) MTAB3
+WHERE MTAB1.QCEN=MTAB2.CENTER AND  MTAB1.QCEN=MTAB3.QCEN(+)
+union
+SELECT 2 a,'', 'Total', QC,(case when (ct is null or ct=0) then '-' else TO_CHAR(ROUND(QC/ct,2),'990.0')end ) e,
+(case when (QC is null or QC=0) then  QCS||' ( - )' else QCS||' ('||to_char((QCS/QC)*100,'990.0')||')' end ) f,
+(case when (QC is null or QC=0) then (QC-QCS)||' ( - )' else (QC-QCS)||' ('||to_char(((QC-QCS)/QC)*100,'990.0')||')' end ) 
+ FROM 
+(SELECT COUNT(QUERY_DOC.id) AS QC
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB1,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1 
+) MTAB1,
+(SELECT  COUNT(codpat) ct
+FROM
+patients, 
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C2, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) B
+WHERE patients.center=B.C2 
+) MTAB2,
+(SELECT COUNT(QUERY_DOC.id) AS QCS
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB2,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1 AND QUERY_DOC.ANSWERDT IS NOT NULL 
+) MTAB3
+order by a, d desc)
+  ]]> 
+  </VALUE>
+  </QUERY>
+
+<!-- <QUERY ID="R_Q2"  DESC="PATIENTS STATUS DISTRIBUTION"> 
+<VALUE>
+<![CDATA[ 
+SELECT ID, ALTNO, INITIALS, 
+(CASE WHEN TO_NUMBER(SUBSTR(QUERY_DOC.USERIDA,1,3))<999 THEN 'Investigator' ELSE 'Data Manager' END) nd ,
+(CASE WHEN ANSWERDT IS NULL THEN 'Outstanding' ELSE 'Solved' END) nc ,
+ CREATEDT,ANSWERDT
+FROM QUERY_DOC, patients
+WHERE
+QUERY_DOC.CODPAT=patients.CODPAT
+[[AND]]
+order by CREATEDT desc
+  ]]> 
+ </VALUE>
+ </QUERY>-->
+
+ <QUERY ID="R_Q3"  DESC="PATIENTS STATUS DISTRIBUTION"> 
+<VALUE>
+<![CDATA[
+
+
+select b,c,d,e,f,g,h from (
+SELECT 1 a,to_char(MTAB1.QCEN) b,MTAB1.QCNAME c,QC d,(case when (QC is null or QC=0) then QCS||' ( - )' else QCS||' ('||TO_CHAR(ROUND(QCS/QC,2)*100,'990.0')||')' end)e ,
+(case when MIN is null THEN ' - ' else MIN end)f,(case when MAX is null THEN ' - ' else MAX end) g, (case when MEAN is null THEN ' - ' else MEAN end) h FROM 
+(SELECT COUNT(QUERY_DOC.id) AS QC,
+TAB1.C1 AS QCEN, 
+TAB1.NAME AS QCNAME
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB1,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1
+GROUP BY TAB1.C1, TAB1.NAME
+) MTAB1,
+(SELECT COUNT(QUERY_DOC.id) AS QCS,
+TAB2.C1 AS QCEN, 
+TAB2.NAME AS QCNAME
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB2,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1
+AND QUERY_DOC.ANSWERDT IS NOT NULL
+GROUP BY TAB2.C1, TAB2.NAME
+) MTAB3,
+(SELECT 
+ TO_CHAR(ROUND(MIN(to_date(to_char(answerdt,'dd/mm/yyyy'),'dd/mm/yyyy')-to_date(to_char(createdt,'dd/mm/yyyy'),'dd/mm/yyyy'))))MIN,
+ TO_CHAR(ROUND(Max(to_date(to_char(answerdt,'dd/mm/yyyy'),'dd/mm/yyyy')-to_date(to_char(createdt,'dd/mm/yyyy'),'dd/mm/yyyy'))))MAX,
+ TO_CHAR(ROUND(avg(to_date(to_char(answerdt,'dd/mm/yyyy'),'dd/mm/yyyy')-to_date(to_char(createdt,'dd/mm/yyyy'),'dd/mm/yyyy'))))MEAN,
+TAB2.C1 AS QCEN, 
+TAB2.NAME AS QCNAME
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB2,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1
+AND QUERY_DOC.ANSWERDT IS NOT NULL 
+GROUP BY TAB2.C1, TAB2.NAME
+) MTAB4
+WHERE MTAB1.QCEN=MTAB3.QCEN(+) AND MTAB1.QCEN=MTAB4.QCEN(+) 
+union
+SELECT 2 a,' ','Total',QC,(case when (QC is null or QC=0) then QCS||' ( - )' else QCS||' ('||TO_CHAR(ROUND(QCS/QC,2)*100,'990.0')||')' end)e,MIN,MAX, MEAN FROM 
+(SELECT COUNT(QUERY_DOC.id) AS QC
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB1,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1
+) MTAB1,
+(SELECT COUNT(QUERY_DOC.id) AS QCS
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]] <AND_COND/>
+) TAB2,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1 AND QUERY_DOC.ANSWERDT IS NOT NULL
+) MTAB3,
+(SELECT 
+ TO_CHAR(ROUND(MIN(to_date(to_char(answerdt,'dd/mm/yyyy'),'dd/mm/yyyy')-to_date(to_char(createdt,'dd/mm/yyyy'),'dd/mm/yyyy'))))MIN,
+ TO_CHAR(ROUND(Max(to_date(to_char(answerdt,'dd/mm/yyyy'),'dd/mm/yyyy')-to_date(to_char(createdt,'dd/mm/yyyy'),'dd/mm/yyyy'))))MAX,
+ TO_CHAR(ROUND(avg(to_date(to_char(answerdt,'dd/mm/yyyy'),'dd/mm/yyyy')-to_date(to_char(createdt,'dd/mm/yyyy'),'dd/mm/yyyy'))))MEAN
+FROM
+(SELECT DISTINCT TO_NUMBER(SUBSTR(userid,1,3)) AS C1, azienda_ente AS name 
+FROM
+ANA_UTENTI_1
+WHERE userid BETWEEN '001%' AND '999%' [[AND]]<AND_COND/>
+) TAB2,
+QUERY_DOC
+WHERE QUERY_DOC.CENTER=C1 AND QUERY_DOC.ANSWERDT IS NOT NULL 
+) MTAB4
+order by a,d desc  )
+
+
+  ]]> 
+ </VALUE>
+ </QUERY>
+
+
+ <QUERY ID="Q2" TYPE="TOTAL" DESC="PATIENTS STATUS DISTRIBUTION"> 
+<VALUE>
+<![CDATA[ 
+SELECT b,a,ROUND(a*100/d,2),c FROM
+(SELECT COUNT(codpat) a,DECODE(gender,1,'Male',2,'Female') b,ROUND(AVG((SYSDATE-DOBDT)/365),2) c FROM PAZIENTI GROUP BY gender),
+(SELECT COUNT(codpat) d FROM PAZIENTI)
+UNION
+SELECT  '',COUNT(codpat),100,ROUND(AVG((SYSDATE-DOBDT)/365),2) FROM PAZIENTI
+  ]]> 
+  </VALUE>
+  </QUERY>  
+  <QUERY ID="Q3" TYPE="TOTAL" DESC="PATIENTS STATUS DISTRIBUTION"> 
+<VALUE>
+<![CDATA[ 
+SELECT distinct a,b,c,g,' <a href="javascript: void pCond(''a=#'||a||'# and b=#'||b||'# and c=#'||c||'# and g=#'||g||'#'',''form'');"title="reprot per categoria evento: '||a||' ">'||x||'</a>',y FROM
+
+(SELECT a,b,c,g, SUM(cc) x FROM
+(SELECT CAT a, SUBCAT b, SOC_NAME c, codpat cp, GRADE g, COUNT(cat) cc  FROM AE_SUB GROUP BY cat, subcat, grade, SOC_NAME, codpat
+ORDER BY cat, subcat, SOC_NAME, codpat)
+GROUP BY a,b,c, g
+),
+(SELECT a1,b1,c1, g1, COUNT(cp) y FROM
+(SELECT CAT a1, SUBCAT b1, SOC_NAME c1, codpat cp, GRADE g1, COUNT(cat) cc  FROM AE_SUB GROUP BY cat, subcat, grade, SOC_NAME, codpat
+ORDER BY cat, subcat, SOC_NAME, codpat)
+GROUP BY a1,b1,c1, g1
+)
+WHERE a=a1 AND b=b1
+
+  ]]> 
+  </VALUE>
+  </QUERY>   
+    <QUERY ID="Q4"  DESC="PATIENTS STATUS DISTRIBUTION"> 
+<VALUE>
+<![CDATA[ 
+SELECT  distinct a,  b, c,  g, codpat, nd
+
+FROM
+(
+SELECT CAT a, SUBCAT b, SOC_NAME c, GRADE g, codpat ,
+(CASE 
+    WHEN AE_REDTRC='OKOKOK' THEN TO_CHAR(AE_REDT-AE_OSDT) 
+	ELSE 'Not Resolv.'
+	END) nd
+FROM AE_SUB 
+)
+ [[WHERE]]
+ORDER BY a, b,c, codpat 
+
+  ]]> 
+  </VALUE>
+  </QUERY>   
+ <QUERY ID="Q5" TYPE="TOTAL" DESC="PATIENTS STATUS DISTRIBUTION"> 
+<VALUE>
+<![CDATA[ 
+SELECT 'On Screening', COUNT(cp) c1 FROM
+(
+SELECT codpat cp,MAX(visitnum) vn, CENTER  FROM COORDINATE 
+GROUP BY center, codpat 
+)
+WHERE vn<=1  <AND_COND/>
+UNION
+SELECT 'On Eligibility', COUNT(cp) c2 FROM
+(
+SELECT  codpat cp,MAX(visitnum) vn, CENTER FROM COORDINATE 
+GROUP BY center, codpat
+)
+WHERE vn<3 AND vn>1 <AND_COND/>
+UNION
+SELECT 'On Treatment', COUNT(cp) c3 FROM
+(
+SELECT codpat cp,MAX(visitnum) vn, CENTER FROM COORDINATE 
+GROUP BY center, codpat
+)
+WHERE vn>=3  <AND_COND/>
+
+UNION
+SELECT '', COUNT(cp) c4 FROM
+(
+SELECT codpat cp,MAX(visitnum) vn, CENTER FROM COORDINATE 
+GROUP BY center, codpat
+)
+<WHERE_COND/>
+
+
+  ]]> 
+  </VALUE>
+  </QUERY>
+
+ <QUERY ID="Q6" TYPE="TOTAL" DESC="PATIENTS DATA TIMELINE"> 
+<VALUE>
+<![CDATA[ 
+SELECT ae,pn,vn,fn,dd,dl FROM
+(
+SELECT DISTINCT azienda_ente ae, ALTNO pn, VISITNAME vn, FORMNAME fn,SNTDT sd, DUEDT dd, 
+(CASE 
+    WHEN DELAY=1 THEN '<B><font color="#FF0000">Yes</font></B>' 
+	ELSE '<B>No</B>'
+	END) dl,
+
+VISITNUM, ESAM
+ FROM 
+ ANA_UTENTI_1, PAZIENTI, DUE_DATE
+ WHERE
+ PAZIENTI.codpat=DUE_DATE.codpat
+ AND
+ DUE_DATE.SNTDT IS NULL AND DUE_DATE.DELAY=1
+ AND
+ PAZIENTI.center=TO_NUMBER(SUBSTR(ANA_UTENTI_1.USERID,1,3))
+ AND userid BETWEEN '001%' AND '999%'
+ORDER BY azienda_ente, altno, VISITNUM, ESAM,DUEDT
+)
+[[WHERE]]
+  ]]> 
+  </VALUE>
+  </QUERY>
+
+
+</QUERIES>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<study>
+	<dir_base>/http/servizi/siss-bundle-01/sirer.progetto-sole.it/html/CE/sedute</dir_base>
+	<configuration>
+		<field_lib>/http/servizi/siss-bundle-01/sirer.progetto-sole.it/html/CE/sedute/fields/</field_lib>
+		<entry-point>
+			<esam>0</esam>
+		</entry-point>
+		<prefix>GSE</prefix>
+		<pk_seq>PK_SEQ</pk_seq>
+		<pk_service>ID_SED</pk_service>
+		<labels>
+			<menu_paziente>Menu sedute</menu_paziente>
+			<lista_schede>Schede della seduta</lista_schede>
+			<patients_list>Lista sedute</patients_list>
+			<torna_lista_schede>Torna alle schede della seduta</torna_lista_schede>
+		</labels>
+	</configuration>
+	<center_view>
+		SELECT 
+			id_ce  AS center,
+    		azienda_ente AS denom,
+    		userid AS userid_resp
+  		FROM ana_utenti_2 where profilo='SGR'
+	</center_view>
+	<workflow>
+		<nome>CE SED WF 1</nome>
+		<attori>
+			<attore>
+				<id>1</id>
+				<nome>Unita di ricerca</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='URC'
+				</query>
+			</attore>
+			<attore>
+				<id>2</id>
+				<nome>Segreteria CE</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='SGR'
+				</query>
+			</attore>
+			<attore>
+				<id>3</id>
+				<nome>Componente CE</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='CMP'
+				</query>
+			</attore>
+			<attore>
+				<id>4</id>
+				<nome>Principal Investigator</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='PRI'
+				</query>
+			</attore>
+			<attore>
+				<id>5</id>
+				<nome>Direzione Amministrativa</nome>
+				<query>
+				select a.userid, c.center as center from ana_utenti_2 a, [CENTRI] c where a.id_ce=c.center and a.profilo='AMM'
+				</query>
+			</attore>
+		</attori>
+		<stati>
+			<stato>
+				<id>1</id>
+				<nome>Attivo</nome>
+				<actid>1</actid>
+			</stato>
+			<stato>
+				<id>2</id>
+				<nome>ReadOnly</nome>
+				<actid>2</actid>
+			</stato>
+		</stati>
+		<rami>
+			
+		</rami>
+	</workflow>
+	<substudies/>
+</study>

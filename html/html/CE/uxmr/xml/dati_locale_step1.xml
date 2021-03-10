@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Anagrafica Studio" titolo="Dati Gestione Locale" table="LOCALE01"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|exams"
+	cols="6"
+	field_tb_show="D_CENTRO||' - '||D_PRINC_INV"
+	tb_header="Centro - Principal Investigator"
+	load="liste('locale');"
+	f_to_call="allinea_centrilocali"
+>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+	<field type="hidden" var="TIPO_SPER" var_type="number" bytb="REGISTRAZIONE" bytbcode="TIPO_SPER" bytbdecode="TIPO_SPER" bytbwhere="ID_STUD='[ID_STUD]'"><value val="0"></value></field>
+	
+	<field type="hidden" var="COMBO1" var_type="text" var_size="1" compila="1" compila_condition_var="TIPO_SPER|TIPO_SPER" compila_condition_value="8|9" compila_op="||"></field>
+	
+	<field cols="6">
+		<txt_value><![CDATA[<td  colspan="12" class=titolo3 align=center><b> Centri e dati di gestione locale dello studio</b></td>]]></txt_value>
+	</field>
+	<field cols="6">
+		<txt_value><![CDATA[<td colspan="12" align=left><b> Dati del centro</b></td>]]></txt_value>
+	</field>
+	<field type="hidden" var="PC_KEY" cols="6" var_size="20" >
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	
+	<!--GIULIO CAMPI CHE PESCANO DALLA TABELLA CORRENTE-->
+	<!--field type="hidden" var="CENTRO" cols="6">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_CENTRO" cols="6">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="hidden" var="PRINC_INV" cols="6">
+		<txt_value> Principal Investigator</txt_value>
+	</field>
+	<field type="text" var="D_PRINC_INV" cols="6">
+		<txt_value> Principal Investigator</txt_value>
+	</field-->
+	<!--field type="radio" var="STRUTTURA" cols="6" save="obbligatorio" send="obbligatorio">
+		<txt_value>Selezionare la tipologia del centro</txt_value>
+			<value val="1">Struttura ospedaliera</value>
+			<value val="2">MMG/PLS</value>
+	</field-->
+	<field cols="6" type="checkbox_decode" var="STRUTTURA" group="STRUTTURA" group_send="obbligatorio" send="obbligatorio">
+		<txt_value><![CDATA[Tipo]]></txt_value>
+			<value val="OSP">Struttura ospedaliera</value>
+			<value val="MMG_PLS">MMG/PLS</value>
+	</field>
+	<!--GIULIO 25/01/2013 CAMPI CHE PESCANO IN TEMPO REALE DALLA TABELLA CENTRILOCALI-->
+	<field type="hidden" var="CENTRO" cols="6" var_size="20" bytb="CENTRILOCALI" bytbcode="CENTRO" bytbdecode="CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+	</field>
+	<field type="text" var="D_CENTRO" cols="6" var_size="200" bytb="CENTRILOCALI" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<!--field type="select" var="DIPARTIMENTO" save="obbligatorio" send="obbligatorio" cols="6" bytb="VENETO_DIP" bytbcode="distinct ID_DIP" BYTBDECODE="DESCR_DIP" show_selected="yes" bytbwhere="ID_REF_STR='[CENTRO]'" onchange="$('#cell_input_UNITA_OP select').empty();$('#cell_input_DIR_UO :text').val('');seleziona_compila('DIPARTIMENTO','UNITA_OP','DIR_DIPARTIMENTO');">
+		<txt_value><![CDATA[Dipartimento]]></txt_value>
+	</field>
+	<field type="textbox" var="DIR_DIPARTIMENTO" var_type="text"  var_size="70" size="70" cols="6">
+		<txt_value><![CDATA[Direttore Dipartimento]]></txt_value>
+	</field-->
+	<field type="select" var="UNITA_OP" save="obbligatorio" send="obbligatorio" cols="6" bytb="VENETO_DIP" bytbcode="distinct ID_UO" BYTBDECODE="DESCR_UO" show_selected="yes" bytbwhere="ID_REF_STR='[CENTRO]'" onchange="compila_text('UNITA_OP','DIR_UO');">
+		<txt_value><![CDATA[Unita' Operativa <br><a href="/uxmr/index.php?list=patients_list_UO.xml" target="_new"> Inserisci nuova UO in dizionario</a>]]></txt_value>
+	</field>
+	<field type="textbox" var="DIR_UO" var_type="text"  var_size="70" size="70" cols="6" send="obbligatorio">
+		<txt_value><![CDATA[Direttore U.O.]]></txt_value>
+	</field>
+	<field type="textbox" var="EMAILDIR_UO" var_type="text"  var_size="200" size="100" cols="6"> <!--send="obbligatorio"-->
+		<txt_value><![CDATA[Email Direttore U.O.]]></txt_value>
+	</field>
+	<field type="select" var="PRINC_INV" save="obbligatorio" send="obbligatorio" cols="6" bytb="VENETO_PRINC_INV" bytbcode="PROGR_PRINC_INV" BYTBDECODE="PRINC_INV" show_selected="yes" bytbwhere="ID_STR='[CENTRO]'" bytborderby="PRINC_INV ASC">
+		<txt_value><![CDATA[Principal Investigator <br><a href="/uxmr/index.php?list=patients_list_PI.xml" target="_new"> Inserisci nuovo PI in dizionario</a>]]></txt_value>
+	</field>
+	<!--field type="textbox" var="SPEC_PI" var_type="text" send="obbligatorio" var_size="70" size="70" cols="6" condition="PRINC_INV" condition_value="-9944" hide="yes">
+		<txt_value><![CDATA[Specificare il Principal Investigator]]></txt_value>
+	</field-->
+	<field type="textbox" var="TEL_PI" var_type="text" var_size="70" size="70" cols="6"> <!--send="obbligatorio"-->
+		<txt_value><![CDATA[Telefono Principal Investigator]]></txt_value>
+	</field>
+	<field type="textbox" var="EMAIL_PI" var_type="text"  var_size="70" size="70" cols="6"> <!--send="obbligatorio"-->
+		<txt_value><![CDATA[Email Principal Investigator]]></txt_value>
+	</field>
+	<field type="data" var="RICH_DT" cols="6" send="obbligatorio">
+		<txt_value>Data di richiesta del promotore</txt_value>
+	</field>
+	  
+  <!--field type="hidden" var="PRINC_INV" cols="6" var_size="20" bytb="CENTRILOCALI" bytbcode="PRINC_INV" bytbdecode="PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+	</field>
+  <field type="text" var="D_PRINC_INV" var_size="200" cols="6" bytb="CENTRILOCALI" bytbcode="D_PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=([VISITNUM_PROGR]+1)">
+		<txt_value> Principal Investigator</txt_value>
+	</field-->
+	
+	<!--field type="textbox" var="NRSC_CORSO" var_type="text"  var_size="30" size="30" cols="6">
+  	<txt_value><![CDATA[Numero sperimentazioni attualmente in corso]]></txt_value>
+  </field>
+  <field type="textbox" var="NRPAZ_CORSO" var_type="text"  var_size="30" size="30" cols="6">
+  	<txt_value><![CDATA[Numero pazienti coinvolti nelle sperimentazioni attualmente in corso]]></txt_value>
+  </field-->
+	 <!--field type="textbox" var="COD_INT_CE" var_type="text"  var_size="30" size="30" cols="6">
+  	<txt_value><![CDATA[Eventuale codice interno al CE]]></txt_value>
+  </field-->
+	
+	<!--field  type="radio" var="FARMACIA" send="obbligatorio" save="obbligatorio" cols="6">
+	<txt_value>Partecipazione della farmacia</txt_value>
+		<value val="1">Si</value>
+		<value val="2">No</value>
+	</field>
+	<field type="select" var="FARM_COINV" send="obbligatorio" condition="FARMACIA" condition_value="1" hide="yes" cols="6">
+		<txt_value> Tipo di coinvolgimento </txt_value>
+			<value val="1"> Coinvolgimento 1 </value>
+			<value val="2"> Coinvolgimento 2</value>
+			<value val="3"> Coinvolgimento 3</value>
+	</field>
+	<field type="textbox" var="FARMACISTA" var_type="text"  var_size="30" size="100" condition="FARMACIA" condition_value="1" hide="yes" cols="6">
+  	<txt_value><![CDATA[Farmacista referente]]></txt_value>
+  </field-->
+  <field type="textbox" var="PAZ_NUM" var_type="number"  var_size="30"  size="30" cols="6" send="obbligatorio" condition="COMBO1" condition_value="!1" hide="yes">
+  	<txt_value><![CDATA[Numero di pazienti da arruolare nel centro]]></txt_value>
+  </field>
+  <field type="textbox" var="DUR_SPER" var_type="number" var_size="13" size="10" cols="3" send="obbligatorio" save="facoltativo" colspan="2" condition="COMBO1" condition_value="!1" hide="yes"> <!--send="obbligatorio"-->
+  	<txt_value><![CDATA[Durata prevista dello studio nel centro&nbsp;]]></txt_value>
+  </field>
+  <field type="radio" var="DUR_SPER_UNIT" cols="3" colspan="2" subtbcol="4" condition="COMBO1" condition_value="!1">
+		<txt_value><![CDATA[Unit&agrave; di misura]]></txt_value>
+			<value val="1">Giorni</value>
+			<value val="2">Settimane</value>
+			<value val="3">Mesi </value>
+			<value val="4">Anni</value>
+	</field>
+	
+	<field type="textbox" var="DUR_ARR" var_type="number" var_size="13" size="10" cols="3" save="facoltativo" colspan="2" condition="COMBO1" condition_value="!1" hide="yes">
+  	<txt_value><![CDATA[Periodo di Arruolamento&nbsp;]]></txt_value>
+  </field>
+  <field type="radio" var="DUR_ARR_UNIT" cols="3" colspan="2" subtbcol="4" condition="COMBO1" condition_value="!1">
+		<txt_value><![CDATA[Unit&agrave; di misura]]></txt_value>
+			<value val="1">Giorni</value>
+			<value val="2">Settimane</value>
+			<value val="3">Mesi </value>
+			<value val="4">Anni</value>
+	</field>
+	
+	<field type="textbox" var="DUR_FUP" var_type="number" var_size="13" size="10" cols="3" save="facoltativo" colspan="2" condition="COMBO1" condition_value="!1" hide="yes">
+  	<txt_value><![CDATA[Periodo di Follow-up&nbsp;]]></txt_value>
+  </field>
+  <field type="radio" var="DUR_FUP_UNIT" cols="3" colspan="2" subtbcol="4" condition="COMBO1" condition_value="!1" >
+		<txt_value><![CDATA[Unit&agrave; di misura]]></txt_value>
+			<value val="1">Giorni</value>
+			<value val="2">Settimane</value>
+			<value val="3">Mesi </value>
+			<value val="4">Anni</value>
+	</field>
+	
+  <field type="radio" var="COORDINATORE" cols="6" save="facoltativo" send="obbligatorio" condition="COMBO1" condition_value="!1" hide="yes">
+		<txt_value>Il centro è coordinatore dello studio</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="SOTTOSTUDI" cols="6" send="obbligatorio" condition="COMBO1" condition_value="!1" hide="yes">
+		<txt_value>Il centro richiede di partecipare al/i sottosudio/i previsto/i dal protocollo?</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>		
+			<value val="-9911">Non applicabile</value>
+	</field>
+	<field type="textarea" var="SOTTOSTUDI_SPEC" var_type="text" cols="6" rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio" condition="SOTTOSTUDI" condition_value="1" hide="yes">
+  	<txt_value><![CDATA[Specificare se intende partecipare solo a uno o a più dei sottostudi previsti]]></txt_value>
+  </field> 
+	<field type="textbox" var="CORRISPETTIVO" var_type="number" send="obbligatorio" var_size="30" size="30" cols="6" condition="COMBO1" condition_value="!1" hide="yes" ASTERISCO="yes" >
+  	<txt_value><![CDATA[Eventuale contributo lordo a paziente proposto dal promotore (studi profit) (in Euro)]]></txt_value>
+  </field>
+		
+	<!--field cols="6">
+		<txt_value><![CDATA[<td colspan="12"   align=left><b> Dati di fattibilita' economica locale:</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="QUOTA" var_type="text" var_size="11" size="40"  cols="5">
+			<txt_value><![CDATA[Quota per il monitoraggio (in euro)]]></txt_value>
+	</field>
+	<field type="checkbox" var="QUOTANA"  group="THIS_CHECK"  set_NA="QUOTA" cols="1">
+		<txt_value>Assente</txt_value>
+			<value val="QUOTANA"></value>
+	</field>
+	<field type="textbox" var="QUOTA_TOT" var_type="text" var_size="11" size="40"  cols="5">
+		<txt_value><![CDATA[Quota dei compensi totali previsti dallo sponsor (in euro)]]></txt_value>
+	</field>
+	<field type="checkbox" var="QUOTA_TOTNA"  group="THIS_CHECK"  set_NA="QUOTA_TOT" cols="1">
+		<txt_value>Assente</txt_value>
+			<value val="QUOTA_TOTNA"></value>
+	</field>
+	<field type="textbox" var="QUOTA_EROU" var_type="text" var_size="11" size="40"  cols="5">
+		<txt_value><![CDATA[Quota dei costi extra routine (in euro)]]></txt_value>
+	</field>
+	<field type="checkbox" var="QUOTA_EROUNA"  group="THIS_CHECK"  set_NA="QUOTA_EROU" cols="1">
+		<txt_value>Assente</txt_value>
+			<value val="QUOTA_EROUNA"></value>
+	</field>
+	<field type="textbox" var="QUOTA_DIAG" var_type="text" var_size="11" size="40"  cols="5">
+		<txt_value><![CDATA[Quota per i servizi di diagnostica (in euro)]]></txt_value>
+	</field>
+	<field type="checkbox" var="QUOTA_DIAGNA"  group="THIS_CHECK"  set_NA="QUOTA_DIAG" cols="1">
+		<txt_value>Assente</txt_value>
+			<value val="QUOTA_DIAGNA"></value>
+	</field>
+	<field type="textbox" var="QUOTA_FARM" var_type="text" var_size="11" size="40"  cols="3">
+		<txt_value><![CDATA[Quota per il servizio di farmacia (in euro)]]></txt_value>
+	</field>
+	<field type="checkbox" var="QUOTA_FARMNA"  group="THIS_CHECK"  set_NA="QUOTA_FARM" cols="1">
+		<txt_value>Assente</txt_value>
+			<value val="QUOTA_FARMNA"></value>
+	</field>
+	<field type="checkbox" var="QUOTA_FARMOSP"  group="THIS_CHECK"   cols="1">
+		<txt_value>Farmacia ospedaliera</txt_value>
+			<value val="QUOTA_FARMOSP"></value>
+	</field>
+	<field type="checkbox" var="QUOTA_FARMTER"  group="THIS_CHECK"   cols="1">
+		<txt_value>Farmacia territoriale</txt_value>
+		<value val="QUOTA_FARMTER"></value>
+	</field>
+	<field type="textbox" var="QUOTA_ASL" var_type="text" var_size="11" size="40"  cols="5">
+		<txt_value><![CDATA[Quota per spese generali ASL (in euro)]]></txt_value>
+	</field>
+	<field type="checkbox" var="QUOTA_ASLNA"  group="THIS_CHECK"  set_NA="QUOTA_ASL" cols="1">
+		<txt_value>Assente</txt_value>
+			<value val="QUOTA_ASLNA"></value>
+	</field>
+	<field type="textbox" var="QUOTA_PERS" var_type="text" var_size="11" size="40"  cols="5">
+		<txt_value><![CDATA[Quota per il personale strutturato (in euro)]]></txt_value>
+	</field>
+	<field type="checkbox" var="QUOTA_PERSNA"  group="THIS_CHECK"  set_NA="QUOTA_PERS" cols="1">
+		<txt_value>Assente</txt_value>
+			<value val="QUOTA_PERSNA"></value>
+	</field-->
+	<!--personale-->
+	<!--field  cols="6" name="T2">
+		<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>Quote per personale</b></td>]]></txt_value>
+	</field>
+	<field type="select" var="NR_PERSONE" cols="6">
+		<txt_value> Indicare il numero di personale coinvolto nello studio </txt_value>
+			<value val="5">1</value>
+			<value val="4">2</value>
+			<value val="3">3</value>
+			<value val="2">4</value>
+			<value val="1">5</value>
+			<value val="2">4</value>
+			<value val="6">6</value>
+			<value val="7">7</value>
+			<value val="8">8</value>
+			<value val="9">9</value>
+			<value val="10">10</value>
+	</field>
+	<field  cols="6" name="T3" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+		<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>1</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="COGNOME" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+		<txt_value><![CDATA[Cognome]]></txt_value>
+	</field>
+	<field type="textbox" var="NOME" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+		<txt_value><![CDATA[Nome]]></txt_value>
+	</field>
+	<field type="select" var="QUALIFICA" cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+		<txt_value> Qualifica </txt_value>
+			<value val="1"> Medico</value>
+			<value val="2"> Prof.ssa</value>
+			<value val="3"> Dott.</value>
+			<value val="4"> Dott.ssa</value>
+	</field>
+	<field type="textbox" var="TEMPOST" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+		<txt_value><![CDATA[Tempo studio per paziente (in gg)]]></txt_value>
+	</field>
+	<field type="textbox" var="TEMPOAC" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+		<txt_value><![CDATA[Ulteriore tempo per attivita' correlate (in gg)]]></txt_value>
+	</field>
+	<field type="textbox" var="COMPENSO" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+		<txt_value><![CDATA[Quota di compenso prevista (in euro)]]></txt_value>
+	</field>
+	<field  cols="6" name="T4" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+		<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>2</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="COGNOME2" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+		<txt_value><![CDATA[Cognome]]></txt_value>
+	</field>
+	<field type="textbox" var="NOME2" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+		<txt_value><![CDATA[Nome]]></txt_value>
+	</field>
+	<field type="select" var="QUALIFICA2" cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+		<txt_value> Qualifica </txt_value>
+			<value val="1"> Prof.</value>
+			<value val="2"> Prof.ssa</value>
+			<value val="3"> Dott.</value>
+			<value val="4"> Dott.ssa</value>
+	</field>
+	<field type="textbox" var="TEMPOST2" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+		<txt_value><![CDATA[Tempo studio per paziente]]></txt_value>
+	</field>
+	<field type="textbox" var="TEMPOAC2" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+		<txt_value><![CDATA[Ulteriore tempo per attivita'' correlate]]></txt_value>
+	</field>
+	<field type="textbox" var="COMPENSO2" var_type="text" var_size="11" size="20"  cols="6"  hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+		<txt_value><![CDATA[Quota di compenso prevista (in euro)]]></txt_value>
+	</field>
+	
+	<field  cols="6" name="T5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+		<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>3</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="COGNOME3" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+		<txt_value><![CDATA[Cognome]]></txt_value>
+	</field>
+	<field type="textbox" var="NOME3" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+		<txt_value><![CDATA[Nome]]></txt_value>
+	</field>
+	<field type="select" var="QUALIFICA3" cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+		<txt_value> Qualifica </txt_value>
+			<value val="1"> Prof.</value>
+			<value val="2"> Prof.ssa</value>
+			<value val="3"> Dott.</value>
+			<value val="4"> Dott.ssa</value>
+	</field>
+	<field type="textbox" var="TEMPOST3" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+		<txt_value><![CDATA[Tempo studio per paziente]]></txt_value>
+	</field>
+	<field type="textbox" var="TEMPOAC3" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+		<txt_value><![CDATA[Ulteriore tempo per attivita'' correlate]]></txt_value>
+	</field>
+	<field type="textbox" var="COMPENSO3" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+		<txt_value><![CDATA[Quota di compenso prevista (in euro)]]></txt_value>
+	</field>
+	
+	<field cols="6" name="T6" hide="yes" condition="NR_PERSONE" condition_value="1,2">
+		<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>4</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="COGNOME4" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2">
+		<txt_value><![CDATA[Cognome]]></txt_value>
+	</field>
+	<field type="textbox" var="NOME4" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2">
+		<txt_value><![CDATA[Nome]]></txt_value>
+	</field>
+	<field type="select" var="QUALIFICA4" cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2">
+		<txt_value> Qualifica </txt_value>
+			<value val="1"> Prof.</value>
+			<value val="2"> Prof.ssa</value>
+			<value val="3"> Dott.</value>
+			<value val="4"> Dott.ssa</value>
+	</field>
+	<field type="textbox" var="TEMPOST4" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2">
+		<txt_value><![CDATA[Tempo studio per paziente]]></txt_value>
+	</field>
+	<field type="textbox" var="TEMPOAC4" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2">
+		<txt_value><![CDATA[Ulteriore tempo per attivita'' correlate]]></txt_value>
+	</field>
+	<field type="textbox" var="COMPENSO4" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1,2">
+		<txt_value><![CDATA[Quota di compenso prevista (in euro)]]></txt_value>
+	</field>
+	
+	<field  cols="6" name="T7" hide="yes" condition="NR_PERSONE" condition_value="1">
+		<txt_value><![CDATA[<td colspan="12"   align=LEFT><b>5</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="COGNOME5" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1">
+		<txt_value><![CDATA[Cognome]]></txt_value>
+	</field>
+	<field type="textbox" var="NOME5" var_type="text" var_size="11" size="30"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1">
+		<txt_value><![CDATA[Nome]]></txt_value>
+	</field>
+	<field type="select" var="QUALIFICA5" cols="6" hide="yes" condition="NR_PERSONE" condition_value="1">
+				<txt_value> Qualifica </txt_value>
+				<value val="1"> Prof.</value>
+				<value val="2"> Prof.ssa</value>
+				<value val="3"> Dott.</value>
+				<value val="4"> Dott.ssa</value>
+	</field>
+	<field type="textbox" var="TEMPOST5" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1">
+		<txt_value><![CDATA[Tempo studio per paziente]]></txt_value>
+	</field>
+	<field type="textbox" var="TEMPOAC5" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1">
+		<txt_value><![CDATA[Ulteriore tempo per attivita'' correlate]]></txt_value>
+	</field>
+	<field type="textbox" var="COMPENSO5" var_type="text" var_size="11" size="20"  cols="6" hide="yes" condition="NR_PERSONE" condition_value="1">
+		<txt_value><![CDATA[Quota di compenso prevista (in euro)]]></txt_value>
+	</field-->
+		
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

@@ -1,0 +1,47 @@
+<?php 
+$change_pwd['Titolo']['IT']="Cambio password";
+$change_pwd['Vecchia Password']['IT']="Password Corrente";
+$change_pwd['Nuova Password']['IT']="Nuova Password";
+$change_pwd['Commento Covezzoli']['IT']="Se si tratta del primo accesso, o di un cambio password , la Password Corrente coincide con quella appena ricevuta";
+$change_pwd['Reinserire Password']['IT']="Reinserire nuova Password";
+$change_pwd['Password non coincidono']['IT']="Le password inserite non coincidono";
+$change_pwd['Password Validation']['IT']="La password deve rispettare le seguenti regole";
+$change_pwd['Password malformate']['IT'][1]="deve essere di almeno 8 caratteri";
+$change_pwd['Password malformate']['IT'][2]="non deve contenere gruppi di caratteri consecutivi identici o tutti numerici o tutti alfabetici.";
+$change_pwd['Password malformate']['IT'][3]="deve contenere almeno un carattere speciale";
+$change_pwd['Password malformate']['IT'][4]="deve contenere almeno un numero";
+$change_pwd['Password malformate']['IT'][5]="deve cominciare con una lettera";
+$change_pwd['Password malformate']['IT'][6]="deve essere differente dalla vecchia password";
+$change_pwd['Password errata']['IT']="La vecchia password inserita non &egrave; valida";
+$change_pwd['Cambia Password']['IT']="Cambia Password";
+$change_pwd['Errore Password malformate']['IT']="Attenzione, la password inserita non rispetta le regole";
+$change_pwd['Compilare tutti i campi']['IT']="Campilare tutti i campi";
+$change_pwd['SUCCESS']['IT']="La password &egrave; stata cambiata con successo!";
+$change_pwd['CLOSEBROWSER']['IT']="Per motivi di sicurezza, si consiglia di chiudere tutte le finestre del browser.";
+$change_pwd['RELOGIN']['IT']="Clicca qui per effettuare il logout (necessario)";
+$change_pwd['Precauzioni']['IT']="<p align=center><i>Si raccomanda di adottare tutte le precauzioni onde evitare che tali informazioni vengano divulgate.<br/> Al riguardo si richiama l'attenzione sulle normative vigenti in tema di protezione di dati riservati e di segreto industriale, tra cui il Decreto Legislativo 19 marzo 1996 n.ro 198 (art.14).</i></p>";
+$change_pwd['Attenzione']['IT']="Attenzione";
+
+$change_pwd['Titolo']['EN']="Change Password";
+$change_pwd['Vecchia Password']['EN']="Current Password";
+$change_pwd['Commento Covezzoli']['EN']="If this is the first access, or change password, Current Password is the same of the one received";
+$change_pwd['Nuova Password']['EN']="New Password";
+$change_pwd['Reinserire Password']['EN']="Re-enter new Password";
+$change_pwd['Password non coincidono']['EN']="Password mismatch";
+$change_pwd['Password Validation']['EN']="Password must be compliant with the following rules";
+$change_pwd['Password malformate']['EN'][1]="must be at least 8 characters";
+$change_pwd['Password malformate']['EN'][2]="should be free of consecutive identical characters or all-numeric or all-alphabetical groups";
+$change_pwd['Password malformate']['EN'][3]="must contain at least one special character";
+$change_pwd['Password malformate']['EN'][4]="must contain at least one numeric character";
+$change_pwd['Password malformate']['EN'][5]="must begin with a letter";
+$change_pwd['Password malformate']['EN'][6]="cannot be the same as the previous password";
+$change_pwd['Password errata']['EN']="Old password entered is wrong";
+$change_pwd['Cambia Password']['EN']="Change Password";
+$change_pwd['Errore Password malformate']['EN']="Warning! The new password is not compliant with rules listed below";
+$change_pwd['Compilare tutti i campi']['EN']="All fields are mandatory";
+$change_pwd['SUCCESS']['EN']="Password changed correctly!";
+$change_pwd['CLOSEBROWSER'] ['EN'] = "For security reasons, it is recommended to close all browser windows.";
+$change_pwd['RELOGIN']['EN']="Click here to logout";
+$change_pwd['Precauzioni']['EN']="<p align=center><i>It is recommended to take all necessary precautions to prevent such information from being disclosed. <br/> In this regard, attention is drawn to the regulations in force concerning the protection of confidential information and trade secrets.</i></p>";
+$change_pwd['Attenzione']['EN']="Warning";
+?>

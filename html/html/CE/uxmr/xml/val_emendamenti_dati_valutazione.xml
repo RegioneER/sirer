@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Dati Valutazione" titolo="Dati Valutazione" table="EME_VALUTAZIONE"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]|and|ESAM=[ESAM]"
+	cols="3"
+	field_tb_show="'&lt;b&gt;'||D_RIS_DELIB||'&lt;/b&gt;',D_CENTRO,RIUNIONE_CE_DT,' &lt;div align=center&gt; &lt;a target=_blank href=index.php?mod_lettera_eme=yes&amp;ID_STUD='||ID_STUD||'&amp;VISITNUM='||VISITNUM||'&amp;VISITNUM_PROGR='||VISITNUM_PROGR||'&amp;PROGR='||PROGR||' &gt; &lt;i class=''btn btn-info btn-xs fa fa-file-word-o'' &gt; &lt;/i&gt; &lt;/a&gt; &lt;/div&gt;','&lt;div align=center&gt; &lt;a target=_new href=/pentaho/api/repos/%3Ahome%3Anet%3Ace_veneto%3Avalutazione_emendamento.prpt/viewer?ID_STUD='||ID_STUD||'&amp;VISITNUM_PROGR='||VISITNUM_PROGR||'&amp;PROGR='||PROGR||'&amp;ESAM='||ESAM||' &gt; &lt;i class=''btn btn-xs btn-info icon-zoom-in'' &gt; &lt;/i&gt; &lt;/a&gt; &lt;/div&gt;'"
+	tb_header="Esito parere,Centro,Data,Genera lettera di parere emendamento,Dettaglio rilievi generali"
+	f_to_call="emendamento_chiudi"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="CENTRO" var_type="number">
+		</field>
+ 		<field type="hidden" var="D_CENTRO" var_type="text" var_size="200">
+		</field>
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		
+ 	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Dati di parere del CE all'emendamento</b></td>]]></txt_value>
+	</field>
+
+	<field type="data" var="RIUNIONE_CE_DT"  send="obbligatorio" cols="3" bytb="REGISTRAZIONE rs,GSE_PRES_STUDI ps,GSE_REGISTRAZIONE r" bytbcode="MAX(r.DATA_SED_DT)" bytbdecode="MAX(r.DATA_SED_DT)" bytbwhere="rs.ID_STUD='[ID_STUD]' AND (ps.STUDI LIKE '%|[ID_STUD]|%' OR ps.STUDI_EMENDAMENTI LIKE '%|[ID_STUD]|%' OR ps.STUDI_SOSPESI LIKE '%|[ID_STUD]|%') AND ps.ID_SED = r.ID_SED ">
+	   <txt_value>Data della seduta di valutazione (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="radio" var="RIS_DELIB" send="obbligatorio"  cols="3">
+		<txt_value>Decisione del CE sull'emendamento</txt_value>
+		<value val="1">Emendamento approvato</value>
+		<value val="2">Emendamento non approvato</value>
+		<!--value val="10">Emendamento sospeso</value>
+		<value val="11">Emendamento sospeso formale</value-->
+			<value val="12">Emendamento presa d'atto</value>
+		<!--value val="4">Emendamento approvato a condizione</value-->
+		<value val="5">Emendamento approvato con commento</value>
+		<value val="9">Emendamento solo notificato</value>
+	</field>
+	<field type="textarea" var="COMM_MOT" var_size="1000" var_type="text" cols="3" tcols="80" rows="3" hide="yes" condition="RIS_DELIB" condition_value="4,5">
+		<txt_value><![CDATA[Descrizione della condizione o commento<i>(testo libero max 3900 caratteri)</i>]]></txt_value>
+	</field>
+	
+	
+	<field type="multicheck" var="MEMBRI_APPROV" cols="3" height_box="340" bytb="LISTA_COMP_INT_EXT" bytbcode="USERID" bytbdecode="COGNOME||' '||NOME" bytbwhere="CENTER=(select id_ce from ana_utenti_2 where userid='[USERID_INS]') and SUBPROFILO is null" bytborderby="COGNOME">
+			<txt_value><![CDATA[Selezionare i <b>componenti interni</b> <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'MEMBRI_APPROV_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		
+		<field type="multicheck" var="MEMBRI_ESTERNI" cols="3" height_box="200" bytb="ANA_UTENTI_2 a" bytbcode="USERID" bytbdecode="COGNOME||' '||NOME" bytbwhere="profilo='CMP' and a.ID_CE=(select id_ce from ana_utenti_2 where userid='[USERID_INS]') and SUBPROFILO in ('EXT', 'SPE')" bytborderby="COGNOME">
+			<txt_value><![CDATA[Selezionare i <b>membri esterni e speciali</b>]]></txt_value>
+		</field>
+		
+		<field type="multicheck" var="DOCS_VALUTATI_GEN" cols="3" height_box="340" bytb="DOCUMENTAZIONE" bytbcode="PROGR" bytbdecode="'&lt;b&gt;'||D_DOC_GEN||'&lt;/b&gt;'||'&lt;br/&gt; Data:'||DOC_DT||'&lt;br/&gt; Versione:'||DOC_VERS||'&lt;br/&gt; Altro:'||DOC_GEN_ALTRO||'&lt;br/&gt; Descrizione:'||DESCR_AGG||'&lt;hr/&gt;'" bytbwhere="ID_STUD=[ID_STUD]" >
+			<txt_value><![CDATA[Selezionare i documenti <b>generali</b> valutati <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'DOCS_VALUTATI_GEN_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		
+		<field type="multicheck" var="DOCS_VALUTATI_LOC" cols="3" height_box="340" bytb="DOCUM_CENTRO" bytbcode="VISITNUM_PROGR||'_'||PROGR" bytbdecode="'&lt;b&gt;'||D_DOC_LOC||'&lt;/b&gt;'||'&lt;br/&gt; Data:'||DOC_DT||'&lt;br/&gt; Versione:'||DOC_VERS||'&lt;br/&gt; Altro:'||DOC_LOC_ALTRO||'&lt;br/&gt; Descrizione:'||DESCR_AGG||'&lt;hr/&gt;'" bytbwhere="ID_STUD=[ID_STUD] AND VISITNUM_PROGR=[PROGR]-1" >
+			<txt_value><![CDATA[Selezionare i documenti <b>centro specifici</b> valutati <br/> <input type="checkbox" name="comp_ce" onclick="sel_clear_all(this.checked,'DOCS_VALUTATI_LOC_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+		
+		<field type="multicheck" var="DOCS_VALUTATI_EME" cols="3" height_box="340" bytb="DOCUM_EME" bytbcode="PROGR" bytbdecode="'&lt;b&gt;'||D_DOC_EME||'&lt;/b&gt;'||'&lt;br/&gt; Data:'||to_char(DOC_DT,'DD/MM/YYYY')||' - Versione:'||DOC_VERS||' - Altro:'||DOC_EME_ALTRO||'&lt;hr/&gt;'" bytbwhere="ID_STUD=[ID_STUD] and VISITNUM_PROGR=[VISITNUM_PROGR] and (riservato is null or riservato=0 or riservato=(select id_ce from ana_utenti_2 where userid='[USERID_INS]') )" >
+			<txt_value><![CDATA[Selezionare i documenti <b>emendamento</b> valutati <br/> <input type="checkbox" name="doc_eme" onclick="sel_clear_all(this.checked,'DOCS_VALUTATI_EME_MCHECK_')">Seleziona tutti]]></txt_value>
+		</field>
+	
+	
+	<field type="textarea" var="OBIETTIVO" var_type="text" cols="3"  rows="8" tcols="80" var_size="2000" size="2000"  send="obbligatorio">
+    	<txt_value><![CDATA[Aspetti partcolari considerati nella valutazione]]></txt_value>
+	</field> 
+	
+	<field cols="3"
+    type="file_cme" 
+    var="DOC_EME_PARERE"
+    THREAD="Parere emendamento CE" 
+    TOPIC="Parere emendamento CE"
+    xmlTypeDefinition="cme/val_emendamenti_dati_valutazione.xml" 
+    auto_approve="yes"
+   >
+    <txt_value>File Parere</txt_value>
+   </field>
+	<field type="textbox" var="REGISTRO_CE_EME" var_type="text" var_size="10" cols="3" size="10" send="obbligatorio">
+		<txt_value>Numero registro pareri emendamento </txt_value>
+	</field>
+	<field type="data" var="REGISTRO_CE_EME_DT" cols="3" send="obbligatorio">
+		<txt_value>Data registro pareri emendamenti (gg/mm/yyyy)</txt_value>
+	</field>
+
+		<field type="radio" var="PARERE_CECOORD" send="obbligatorio" cols="3">
+	<txt_value><![CDATA[Rilasciato parere del centro coordinatore?]]></txt_value>
+		<value val="1">Sì</value>
+		<value val="2">No</value>
+		<value val="-9933">Non Applicabile</value>
+	</field>
+	<field type="data" var="PARERE_CECOORD_DT" cols="2" condition="PARERE_CECOORD" condition_value="1" hide="yes">  
+		<txt_value>Data di rilascio del parere da parte del CE coordinatore (gg/mm/yyyy)</txt_value>
+	</field>
+	<send>Invia</send>
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

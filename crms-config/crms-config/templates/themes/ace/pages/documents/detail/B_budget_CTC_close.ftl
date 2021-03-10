@@ -1,0 +1,166 @@
+<#assign budget=el />
+<#assign center=el.getParent() />
+<#assign tabs=[] />
+<#assign tabsContent=[] />
+<#include "../helpers/MetadataTemplate.ftl"/>
+ <div class="row">
+   		<div class="col-xs-9">
+   		<div style="text-align:right">
+   		
+		<button class="btn btn-primary" id="clona"  onclick="openClone(${el.id},true);"><i class="icon-copy"></i> Copia</button>
+		<button class="btn btn-primary" id="clona_altro_centro"  onclick="openCloneOtherStudy(${el.id},true);"><i class="icon-copy"></i> Copia budget in altro centro</button>
+		<!--button class="btn btn-primary" id="nuovo" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.getParent().id}/${elType.id}';" >Crea nuovo budget</button-->
+   		 
+			<#include "../helpers/budgetActions.ftl"/>
+		
+		</div>
+		
+    <div style="display: block">	
+         
+   
+
+        <div id='centerElement' style='position:fixed;top:50vh;left:50vw;z-index:-100;opacity:0'></div>
+        <div id="tabs" class="tabbable">
+        <ul style='height:27px'  class="nav nav-tabs">
+        <li><a id='tab1' href="#tabs-1" data-toggle="tab" >Bracci</a></li>
+        <li><a id='tab4' href="#tabs-4" data-toggle="tab" >Prestazioni studio</a></li>
+        <li><a id='tab4' href="#tabs-7" data-toggle="tab" >Totali studio</a></li>
+        <li><a id='tab6' href="#tabs-6" data-toggle="tab" >Controllo versioni</a></li>
+        <!--li><a id='tab3' href="#tabs-3">Budget studio</a></li-->
+        </ul>
+        <div  class="tab-content" >
+        <div id="tabs-6" class="tab-pane">
+         	<#assign allBudgets=center.getChildrenByType('BudgetBracci') />
+        	<#include "../helpers/budget/tabellaVersioniBB.ftl"/>
+        </div>
+        <div id="tabs-1" class="tab-pane">
+        
+       		<#assign allBudgets=el.getChildrenByType('FolderSingoloBraccio')[0].getChildren() />
+        	<#include "../helpers/budget/tabellaVersioniBracci.ftl"/>
+
+        </div>
+        <#include "../helpers/budget/budgetRiassunto.ftl"/>
+        <div id="tabs-2" class="tab-pane">
+         <!--canvas id='grafico' width="1200" height="500" ></canvas-->
+         <div id='grafico' style="display:block"></div>
+         <div id='legenda'><span style="display:inline-block;width:10px;height:10px;background-color:lightblue;border:1px solid #a4a4a4;"></span><span style="display:inline-block;font-size:17px;font-weight:200;">&nbsp;&nbsp;prestazioni aggiuntive rimborsate dal promotore&nbsp;&nbsp;</span><br/><span style="display:inline-block;width:10px;height:10px;background-color:orange;border:1px solid #a4a4a4;"></span><span style="display:inline-block;font-size:17px;font-weight:200;">&nbsp;&nbsp;prestazioni routinarie ma nel caso specifico rimborsate dal promotore&nbsp;&nbsp;</span><br/><span style="display:inline-block;width:10px;height:10px;background-color:white;border:1px solid #a4a4a4;"></span><span style="display:inline-block;font-size:17px;font-weight:200;">&nbsp;&nbsp;prestazioni routinarie a carico SSN/SSR</span></div>
+         <div id='rimborsabilita'></div>
+        </div>
+        <div id="tabs-3" class="tab-pane" style="display:none">
+        
+            
+                
+            <br/><br/>
+            <h2>Budget non clinico</h2>
+            <div id="added-costs-3" class="ui-widget cost-table">
+	            <h1>Costi aggiuntivi per paziente:</h1>
+	            <table id="costs-3" class="ui-widget ui-widget-content">
+	            <thead>
+	            <tr class="ui-widget-header ">
+		            <th>Descrizione</th>
+		            <th>Categoria</th>
+		            <th>Transfer price (&euro;)</th>
+		            <th>Modifica</th>
+		            <th>Rimuovi</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            
+	            </tbody>
+	            </table>
+	        </div>
+	        <div id="added-costs-4" class="ui-widget cost-table">
+	            <h1>Costi aggiuntivi per studio:</h1>
+	            <table id="costs-4" class="ui-widget ui-widget-content">
+	            <thead>
+	            <tr class="ui-widget-header ">
+		            <th>Descrizione</th>
+		            <th>Categoria</th>
+		            <th>Transfer price (&euro;)</th>
+		            <th>Modifica</th>
+		            <th>Rimuovi</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            
+	            </tbody>
+	            </table>
+	        </div>
+	        <div id="added-costs-5" class="ui-widget cost-table">
+	            <h1>Rimborsi a pi&egrave; di lista:</h1>
+	            <table id="costs-5" class="ui-widget ui-widget-content">
+	            <thead>
+	            <tr class="ui-widget-header ">
+		            <th>Descrizione</th>
+		            <th>Transfer price (&euro;)</th>
+		            <th>Modifica</th>
+		            <th>Rimuovi</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            
+	            </tbody>
+	            </table>
+	        </div>
+            
+             <div id="totali-CTC" class="ui-widget cost-table">
+	            <h1>Totale budget:</h1>
+	            <table id="table-tot" class="ui-widget ui-widget-content">
+	            <thead>
+	            <tr class="ui-widget-header ">
+		            <th>Descrizione</th>
+		            <th>Transfer price (&euro;)</th>
+		            <th>Totale budget (&euro;)</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            
+	            </tbody>
+	            </table>
+	        </div>
+	        <div id="advised-markup" class="ui-widget cost-table">
+	            <h1>Markup stimato:</h1>
+	            <table id="table-advised-markup" class="ui-widget ui-widget-content">
+	            <thead>
+	            <tr class="ui-widget-header ">
+	            	<th>Tipologia</th>
+		            <th>Target</th>
+		            <th>Transfer price di confronto (&euro;)</th>
+		            <th>Markup stimato</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            
+	            </tbody>
+	            </table>
+	        </div>
+	        <div id='pazienti-tabs-3'></div>
+	        
+           	<div id="dialog-form-target" title="Aggiungi target">
+                
+                <form>
+                <fieldset>
+                <label for="target">Tipo di applicazione</label>
+                <select  name="target" id="target" class="text ui-widget-content ui-corner-all" onchange="prepareTargetForm();" />
+                    <option value="1">Per visita</option>
+                    <option value="2">Per paziente</option>
+                    <option value="3">Per studio</option>
+                </select>
+                <span id='target-form'></span>
+                </fieldset>
+                </form>
+	        </div>
+            
+        </div>
+        <#include "../helpers/budget/tabClinicoView2.ftl"/>
+        </div>
+        </div>
+        
+
+     <#include "../helpers/budget/cloneForms.ftl"/>
+  
+    </div>
+   
+    </div>
+<#include "../helpers/budgetStatusBar.ftl"/>
+ </div>

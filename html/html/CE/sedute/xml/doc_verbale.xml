@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="DOCUM_VERB" titolo="DOCUM_VERB" table="DOCUM_VERB"
+	FIELD_TB_SHOW="'&lt;b&gt;Tipologia:&lt;/b&gt; '||D_DOC_VERBALE|| case when DOC_VERBALE_ALTRO is not null then '&lt;br&gt;&lt;b&gt;Specificare:&lt;/b&gt; '||DOC_VERBALE_ALTRO end || case when DESCR_AGG is not null then '&lt;br&gt;&lt;b&gt;Descrizione aggiuntiva:&lt;/b&gt; '||DESCR_AGG end,DOC_DT,DOC_VERS"
+	TB_HEADER="Tipo,Data,N. di protocollo"
+	link_to="index.php?CENTER=[CENTER]|and|ID_SED=[ID_SED]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	FIELD_AGG="DOC_VERB"
+	FIELD_AGG_TXT="Scarica Doc."
+	TRASH="no"
+	DOC_FIELD="DOC_VERB"
+	HIDE_ALL_IN_BUTTON="yes"
+	F_TO_CALL="force_doc_verb"
+  >
+
+	<field type="hidden" var="ID_SED" var_type="number" pk="yes"> <value val="next"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+  <field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="INVIOCO" tb="no"></field>
+	<field type="hidden" var="CENTER" var_type="text" var_size="8"></field>
+	<field type="hidden" var="D_DOCUMENTO" var_type="text" var_size="400" ></field>
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	
+	<field type="hidden" var="FORCE_DOC_VERB" var_type="text" var_size="8" tb="no"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no">
+		</field>
+
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="4"  class=titolo3 align=center><b> Nuovo Documento</b></td>]]></txt_value>
+	</field>
+
+	<field type="select" var="DOC_VERBALE" show_selected="yes"  send="obbligatorio" save="obbligatorio" cols="2" bytb="DOC_VERBALE" bytbcode="ID" BYTBDECODE="DESCRIZIONE"  bytborderby="ID" >
+		<txt_value>Selezionare il documento</txt_value>
+	</field>
+	<field type="textbox" var="DOC_VERBALE_ALTRO" var_type="text"  var_size="30" size="80" condition="DOC_VERBALE" condition_value="99" hide="yes" cols="2">
+  	<txt_value><![CDATA[Se altro, specificare]]></txt_value>
+  </field>
+    
+    <field type="textbox" var="DESCR_AGG" cols="2" var_size="80" size="80">
+    	<txt_value>Descrizione aggiuntiva</txt_value>
+    </field>
+	
+		<field type="data" var="DOC_DT" cols="1">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="DOC_VERS" var_type="text"  var_size="30" size="30" send="obbligatorio" save="obbligatorio" cols="1">
+    	<txt_value><![CDATA[N. di protocollo <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    
+    <field cols="2"
+    type="file_cme" 
+    var="DOC_VERB"
+    TOPIC="Verbale"
+    xmlTypeDefinition="cme/doc_verbale.xml"
+    save="obbligatorio"
+    send="obbligatorio"
+    auto_approve="yes">
+    <txt_value>Attach</txt_value>
+   </field>
+   
+   <field cols="2" type="textarea" var="NOTE"  var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Note]]></txt_value>
+  </field> 
+	
+  	<save>Inserisci documento</save>
+	<cancel>Annulla</cancel>		
+</form>
+   
+		

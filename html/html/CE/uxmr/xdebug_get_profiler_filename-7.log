@@ -1,0 +1,1 @@
+select count(*) as conto from user_all_tables where TABLE_NAME in ('CEWF_ATTORI','CEWF_RAMI', 'CEWF_STATI') NULL

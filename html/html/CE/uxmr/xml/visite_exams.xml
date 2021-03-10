@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<visit_exam>
+	<group text="Studio">
+		<visit number="0" text="" short_txt="Dati Studio" >
+			<exam number="0" xml="registrazione.xml" mandatory="yes">
+				<text>Dati di identificazione dello studio</text>
+			</exam>
+			<exam number="8" xml="dati_clinicidm.xml">
+				<text>Riassunto dello studio interventistico con dispositivo medico</text>
+			</exam>
+			<!--exam number="14" xml="dati_clinicisdm.xml">
+				<text>Riassunto dello studio interventistico senza dispositivo medico</text>
+			</exam-->
+			<exam number="9" xml="dati_clinicinf.xml">
+				<text>Riassunto dello studio interventistico senza farmaco e dispositivo</text>
+			</exam>
+			<exam number="7" xml="studi_dispositivi.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Dispositivi medici</text>
+			</exam>
+			
+			<exam number="1" xml="dati_clinici.xml" mandatory="yes">
+				<text>Riassunto dello studio interventistico con farmaco</text>
+			</exam>
+			<exam number="6" xml="studi_farmaco.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Farmaci in studio interventistico</text>
+			</exam>
+			
+			<exam number="61" xml="studi_trattamento.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Trattamento in studio interventistico senza farmaco e dispositivo</text>
+			</exam>
+				
+			
+			<exam number="20" xml="dati_clinicitessu.xml">
+				<text>Riassunto dello studio con impiego di tessuti umani</text>
+			</exam>
+			<exam number="5" xml="studi_tessuto.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Utilizzo del tessuto umano</text>
+			</exam>
+			<exam number="13" xml="studi_genetica.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Studio di genetica</text>
+			</exam>
+			<exam number="11" xml="dati_clinicios.xml" mandatory="yes">
+				<text>Riassunto dello studio osservazionale con farmaco</text>
+			</exam>
+			
+			<exam number="15" xml="studi_farmacoos.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Farmaci in studio osservazionale</text>
+			</exam>
+			<exam number="16" xml="dati_cliniciossf.xml" mandatory="yes">
+				<text>Riassunto dello studio osservazionale senza farmaco e dispositivo</text>
+			</exam>
+			<exam number="62" xml="studios_trattamento.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Trattamento in studio osservazionale senza farmaco e dispositivo</text>
+			</exam>
+			<exam number="17" xml="dati_cliniciosdm.xml">
+				<text>Riassunto dello studio osservazionale con dispositivo medico</text>
+			</exam>
+			<!--exam number="14" xml="dati_clinicigene.xml">
+				<text>Riassunto dello studio di genetica</text>
+			</exam-->
+			
+			<exam number="19" xml="dati_cliniciocomp.xml">
+				<text>Riassunto di uso terapeutico</text>
+			</exam>
+			<exam number="21" xml="dati_cliniciocompdm.xml">
+				<text>Riassunto di uso terapeutico</text>
+			</exam>
+			<exam number="60" xml="studi_farmacoter.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Farmaci di uso terapeutico</text>
+			</exam>
+			<exam number="63" xml="studi_dispositiviter.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Dispositivo medico in uso compassionevole</text>
+			</exam>
+			<exam number="18" xml="studi_dispositivios.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Studi osservazionali con dispositivi medici</text>
+			</exam>
+			<!--exam number="19" xml="dati_cliniciossdm.xml">
+				<text>Riassunto dello studio osservazionale senza dispositivo medico</text>
+			</exam-->
+			
+			<exam number="121" xml="dati_clinicicb.xml" mandatory="yes">
+				<text>Riassunto dello studio con campioni biologici</text>
+			</exam>
+			
+			<exam number="24" xml="dati_clinicialtro.xml">
+				<text>Riassunto dello studio</text>
+			</exam>
+			
+			<exam number="12" xml="sottostudi.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" optional="yes">
+				<text>Sottostudi</text>
+			</exam>
+			<!-- 
+			<exam number="2" xml="reg_documentazione.xml" >
+				<text>Allegati documentali</text>
+			</exam>
+			-->
+			<exam number="10" xml="dati_centri.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes" mandatory="yes">
+				<text>Centri partecipanti locali</text>
+			</exam>		
+			
+		<!--exam number="13" xml="fattibilita.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Fattibilita' economica locale</text>
+			</exam-->
+				<exam number="2" xml="documentazione_core.xml" 
+				WCA_FIELDS="D_AREA_DOC,DOC_GEN||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione studio</text>
+			</exam>
+						
+		</visit>
+		<visit number="1" text="Dati Centro specifici" short_txt="Dati Centro specifici" progr="yes"
+			BUTTONS_DISABLED="yes"
+			BUTTONS_DELETE="yes"
+			BUTTONS_CLOSE="yes" 
+			DATA_TABLE="CENTRILOCALI|CENTRILOCALI|CENTRILOCALI" 
+			DATA_FIELD="D_CENTRO;UNITA_OPERATIVA_TEMP;D_PRINC_INV"
+			DATA_HEADER="Centro|UOC|PI"
+			DATA_ALIGN="left|left|left"
+			DATA_WIDTH="60%|20%|20%"
+			DATA_EXAM="0|0|10|X">
+		 <!-- DATA_EXAM="Visit|VisitProgr|Esam|EsamProgr" X per il progressivo visita -->
+			<!--exam number="21" xml="dati_locale.xml" progr="yes" next_enabled="no" all_in="yes" trash="no" default="yes">
+				<text>Dati gestione locale studio</text>
+			</exam-->		
+			<exam number="22" xml="dati_locale_step1.xml" all_in="yes" trash="no" default="yes" mandatory="yes">
+				<text>Dati di gestione locale dello studio</text>
+			</exam>		
+			
+			<exam number="23" xml="documentazione_centro.xml" 
+				WCA_FIELDS="D_AREA_DOC,VISITNUM_PROGR,D_CENTRO"
+				WCA_FIELDS_DECODE="Area,Visita Progressiva,Centro"
+				 default="yes" progr="yes" all_in="yes" trash="yes" mandatory="yes" >
+				<text>Documentazione centro specifica</text>
+			</exam>
+			
+			
+		</visit>
+		<visit number="2" text="Dati Verifica Segreteria CE" short_txt="Verifica Segreteria CE" progr="yes"
+			BUTTONS_DISABLED="yes" 
+			DATA_TABLE="CENTRILOCALI|CENTRILOCALI|CENTRILOCALI" 
+			DATA_FIELD="D_CENTRO;UNITA_OPERATIVA_TEMP;D_PRINC_INV"
+			DATA_HEADER="Centro|UOC|PI"
+			DATA_ALIGN="left|left|left"
+			DATA_WIDTH="60%|20%|20%"
+			DATA_EXAM="0|0|10|X">
+			<!-- Verifica segreteria-->
+			<exam number="1" xml="invio_per_valutazione.xml" mandatory="yes" progr="yes" QUICKACCESS="yes" default="yes" next_enabled="no" all_in="yes">
+				<text>Verifica documentazione</text>
+			</exam>		
+			<exam number="21" xml="istr_tecn_scient.xml" progr="yes" mandatory="yes" QUICKACCESS="yes" default="yes" next_enabled="yes" all_in="yes">
+				<text>Istruttoria tecnico-scientifica</text>
+			</exam>		
+						
+						
+						
+		</visit>
+		
+		<!-- Parere ce by segreteria-->
+		<visit number="4" text="Parere CE" short_txt="Parere CE" progr="yes"
+			BUTTONS_DISABLED="yes" 
+			DATA_TABLE="CENTRILOCALI|CENTRILOCALI|CENTRILOCALI" 
+			DATA_FIELD="D_CENTRO;UNITA_OPERATIVA_TEMP;D_PRINC_INV"
+			DATA_HEADER="Centro|UOC|PI"
+			DATA_ALIGN="left|left|left"
+			DATA_WIDTH="60%|20%|20%"
+			DATA_EXAM="0|0|10|X">
+			<exam number="1" xml="val_dati_valutazione.xml" progr="yes" QUICKACCESS="yes" next_enabled="no" all_in="yes" default="yes">
+				<text>Inserisci parere</text>
+			</exam>
+		</visit>
+		<visit number="10" text="Dati amministrativi per l'avvio - Centro specifici" short_txt="Dati amministrativi per l'avvio" progr="yes"
+			BUTTONS_DISABLED="yes" 
+			DATA_TABLE="VALUTAZIONE|VALUTAZIONE" 
+			DATA_FIELD="D_CENTRO;D_PRINC_INV"
+			DATA_HEADER="Centro|PI"
+			DATA_ALIGN="left|40%"
+			DATA_WIDTH="60%|40%"
+			DATA_EXAM="4|P|1|1" >
+		<!-- DATA_EXAM="Visit|VisitProgr|Esam|EsamProgr" X per il progressivo visita -->
+		<!-- <visit number="10" text="Dati amministrativi ed economici" short_txt="Dati amministrativi ed economici">-->
+			<!--exam number="1" xml="val_fattibilita_locale.xml">
+				<text>Valutazione fattibilita' locale</text>
+			</exam-->
+			<exam number="1" xml="val_richiesta_delibera.xml">
+				<text>Dati amministrativi per avvio studio </text>
+			</exam>
+			<!--exam number="2" xml="dati_convenzione.xml">
+				<text>Dati convenzione economica </text>
+			</exam>
+			<exam number="3" xml="pagamenti.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Pagamenti</text>
+			</exam-->
+		</visit>
+		<!--follow up studio-->
+		<visit number="5" text="Follow up studio - Centro specifico" short_txt="Follow up studio" progr="yes"
+			BUTTONS_DISABLED="yes" 
+			DATA_TABLE="VALUTAZIONE|VALUTAZIONE" 
+			DATA_FIELD="D_CENTRO;D_PRINC_INV"
+			DATA_HEADER="Centro|PI"
+			DATA_ALIGN="left|40%"
+			DATA_WIDTH="60%|40%"
+			DATA_EXAM="4|P|1|1" >
+		<!-- DATA_EXAM="Visit|VisitProgr|Esam|EsamProgr" X per il progressivo visita -->
+		<!-- <visit number="5" text="Follow up studio" short_txt="Follow up studio" > -->
+			<exam number="1" xml="dati_monitoraggio.xml">
+				<text>Avvio studio</text>
+			</exam>
+			<exam number="3" xml="rapporti.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Rapporti avanzamento studio</text>
+			</exam>
+			<exam number="2" xml="chiusura.xml">
+				<text>Conclusione studio nel centro</text>
+			</exam>
+		
+			<exam number="4" xml="risultati.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Pubblicazione risultati</text>
+			</exam>
+		</visit>
+		
+		<!--	
+		<visit number="8" text="Dati monitoraggio" short_txt="Monitoraggio" >
+		<!-/ Monitoraggio studio by Dir Ammin /->
+			<exam number="1" xml="monitoraggio.xml">
+				<text>Monitoraggio ammministrativo </text>
+			</exam>
+			
+		</visit>
+		-->
+		
+		<visit number="9" text="SAE/DSUR" short_txt="SAE/DSUR"  progr="yes"
+			BUTTONS_DISABLED="yes" 
+			DATA_TABLE="VALUTAZIONE|VALUTAZIONE" 
+			DATA_FIELD="D_CENTRO;D_PRINC_INV"
+			DATA_HEADER="Centro|PI"
+			DATA_ALIGN="left|40%"
+			DATA_WIDTH="60%|40%"
+			DATA_EXAM="4|P|1|1" >
+		
+		<exam number="2" xml="val_susar.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Eventi avversi seri farmaco/dispositivo</text>
+			</exam>
+			
+		<exam number="9" xml="val_susardm.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Eventi avversi seri</text>
+			</exam>
+		
+		<!--exam number="3" xml="val_susar_ext.xml" progr="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Eventi avversi seri esterni</text>
+			</exam-->
+			
+		<exam number="4" xml="rapportisic.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Rapporti di sicurezza</text>
+			</exam>
+		
+		</visit>
+		
+		
+		<visit number="22" text="Conclusione e risultati" short_txt="Conclusione e risultati" >
+		
+		<exam number="221" xml="conclusione_toto.xml">
+				<text>Conclusione in toto studio</text>
+		</exam>
+		
+		<exam number="222" xml="risultati_toto.xml" progr="yes"  QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Risultati studio</text>
+		</exam>
+		
+		<exam number="223" xml="pubblicazioni_toto.xml" progr="yes" QUICKACCESS="yes" next_enabled="yes" all_in="yes" trash="yes" default="yes">
+				<text>Pubblicazioni studio</text>
+		</exam>
+		
+		</visit>
+		
+		<!-- 
+		<visit number="20" text="EMENDAMENTI" short_txt="EMENDAMENTI" progr="yes"
+			DATA-TABLE="EMENDAMENTI"
+			DATA_FIELD="EMEND_CODE"
+			DATA_HEADER="Codice"
+			BUTTONS_DISABLED="yes" >
+		
+			<exam number="1" xml="val_emendamenti.xml" progr="no" next_enabled="no" next_cond_field="IN_EMENDAMENTO" next_cond_table="REGISTRAZIONE" all_in="yes" trash="yes" default="yes">
+				<text>Avvio Emendamento</text>
+			</exam>
+			
+			<exam number="2" xml="val_emendamenti_invio_per_valutazione.xml" progr="no" next_enabled="no" all_in="yes" trash="yes" default="yes">
+				<text>Parere CE Emendamento</text>
+			</exam>
+
+			<exam number="3" xml="val_emendamenti_dati_valutazione.xml" progr="no" next_enabled="no" all_in="yes" trash="yes" default="yes">
+				<text>Parere CE Emendamento</text>
+			</exam>
+			
+		</visit>
+		 -->
+		<visit number="20" text="EMENDAMENTI" short_txt="EMENDAMENTI" progr="yes"
+			BUTTONS_DISABLED="yes"
+			BUTTONS_CLOSE="yes" 
+			DATA_TABLE="EMENDAMENTI"
+			DATA_FIELD="EMEND_CODE"
+			DATA_HEADER="Codice"
+			DATA_ALIGN="left"
+			DATA_WIDTH="60%"
+			>
+
+			<exam number="1" xml="val_emendamenti.xml" default="yes">
+				<text>Dati Emendamento</text>
+			</exam>
+			
+			<exam number="10" xml="val_emendamenti_doc.xml" default="yes"
+				WCA_FIELDS="D_AREA_DOC,DOC_EME||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+				WCA_FIELDS_DECODE="Area,Tipo Documento"
+				 mandatory="yes" progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione Emendamento</text>
+			</exam>
+
+			<exam number="2" xml="val_emendamenti_invio_per_valutazione.xml" default="yes" progr="yes" QUICKACCESS="yes" all_in="yes" next_enabled="no">
+				<text>Verifica Documentazione Emendamento</text>
+			</exam>
+			
+			<exam number="5" xml="val_emendamenti_istr_tecn_scient.xml" progr="yes" QUICKACCESS="yes" default="yes" next_enabled="no" all_in="yes">
+				<text>Istruttoria tecnico-scientifica</text>
+			</exam>
+			
+			<exam number="4" xml="val_emendamenti_dati_sospensione.xml" default="yes" progr="yes" QUICKACCESS="yes" all_in="yes" next_enabled="no">
+				<text>Parere sospensivo Emendamento</text>
+			</exam>
+
+			<exam number="3" xml="val_emendamenti_dati_valutazione.xml" default="yes" progr="yes" QUICKACCESS="yes" all_in="yes" next_enabled="no">
+				<text>Parere definitivo Emendamento</text>
+			</exam>
+			
+			<exam number="6" xml="val_emendamenti_amministrativi.xml" default="yes" progr="yes" QUICKACCESS="yes" all_in="yes" next_enabled="no">
+				<text>Dati amministrativi</text>
+			</exam>
+			
+		</visit>
+		
+		<!--visit number="20" text="DOCUMENTAZIONE" short_txt="Documentazione" VIEWABLE_ON_CLOSE="yes">
+			
+			<exam number="0" xml="documentazione_core.xml" 
+			WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+			WCA_FIELDS_DECODE="Area,Tipo Documento"
+			 mandatory="yes" progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione CORE</text>
+			</exam>
+			<exam number="1" xml="documentazione_coord.xml" 
+			WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+			WCA_FIELDS_DECODE="Area,Tipo Documento"
+			progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione solo al CE Coordinatore</text>
+			</exam>
+			<exam number="2" xml="documentazione_sat.xml" optional="yes"
+			WCA_FIELDS="D_AREA_DOC,D_TIPO_DOC||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6"
+			WCA_FIELDS_DECODE="Area,Tipo Documento"
+			progr="yes" all_in="yes" trash="yes">
+				<text>Documentazione centro specifica</text>
+			</exam>
+		</visit-->
+		
+	</group>
+</visit_exam>

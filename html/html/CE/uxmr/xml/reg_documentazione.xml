@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Documentazione Studio" titolo="Documentazione Studio" table="REGDOCS" 
+	link_to="index.php?ID_STUD=[ID_STUD]|and|exams" 
+	cols="1"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+
+		<field type="hidden" var="CODICE" var_type="text" var_size="40" bytb="REGISTRAZIONE" bytbcode="CODICE" bytbdecode="CODICE" bytbwhere="ID_STUD='[ID_STUD]'" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+ <field>
+	<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b> Documentazione</b></td>]]></txt_value>
+	</field>
+ 		<field 
+				type="file_doc" 
+				var="ANNEX0_1_FILE" 
+				THREAD="Protocollo in italiano [CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Allegare il file del protocollo in italiano</txt_value>
+		</field>
+		<field type="data" var="ANNEX0_1_FILE_DT" send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="ANNEX0_1_FILE_VERS" var_type="text"  var_size="30" size="30"  send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    
+ 		<field 
+				type="file_doc" 
+				var="ANNEX0_2_FILE" 
+				THREAD="lettera di trasmissione[CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Allegare il file della lettera di trasmissione</txt_value>
+		</field>
+		<field type="data" var="ANNEX0_2_FILE_DT"  send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="ANNEX0_3_FILE_VERS" var_type="text"  var_size="30" size="30"  send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+ 		<field 
+				type="file_doc" 
+				var="ANNEX0_3_FILE" 
+				THREAD="Modulo di domanda [CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Allegare il file del modulo di domanda </txt_value>
+		</field>
+		<field type="data" var="ANNEX0_3_FILE_DT"  send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="ANNEX0_3_FILE_VERS" var_type="text"  var_size="30" size="30"  send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+ 		<field 
+				type="file_doc" 
+				var="ANNEX0_4_FILE" 
+				THREAD="Lettere di autorizzazione da parte del promotore[CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Allegare il file delle Lettere di autorizzazione da parte del promotore</txt_value>
+		</field>
+<field type="data" var="ANNEX0_4_FILE_DT" " send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="ANNEX0_4_FILE_VERS" var_type="text"  var_size="30" size="30" send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+	
+	
+ 		<field 
+				type="file_doc" 
+				var="ANNEX0_5_FILE" 
+				THREAD="Investigator Brochure[CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Allegare il file dell'Investigator Brochure</txt_value>
+		</field>
+<field type="data" var="ANNEX0_5_FILE_DT" send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		<field type="textbox" var="ANNEX0_5_FILE_VERS" var_type="text"  var_size="30" size="30" send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    
+    	<field 
+				type="file_doc" 
+				var="ANNEX0_6_FILE" 
+				THREAD="Parere altri centri[CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+		>
+				<txt_value>Allegare il file della copia del parere espresso da altri centri partecipanti (se disponibili)</txt_value>
+		</field>
+<field type="data" var="ANNEX0_6_FILE_DT" send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="ANNEX0_6_FILE_VERS" var_type="text"  var_size="30" size="30" send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    <field 
+				type="file_doc" 
+				var="ANNEX0_7_FILE" 
+				THREAD="Informazioni per il paziente[CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Allegare il file delle informazioni per il paziente</txt_value>
+		</field>
+<field type="data" var="ANNEX0_7_FILE_DT"  send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="ANNEX0_7_FILE_VERS" var_type="text"  var_size="30" size="30" send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    
+     <field 
+				type="file_doc" 
+				var="ANNEX0_8_FILE" 
+				THREAD="Scheda tecnica[CODICE]" 
+				TOPIC="Documenti Studio [CODICE]" 
+				send="obbligatorio"
+		>
+				<txt_value>Allegare il file della Scheda tecnica e certificato marchio CE (solo per dispositivo medico) NOTA ALI: lo mettiamo direttamente nella schedax i disp medici?)</txt_value>
+		</field>
+<field type="data" var="ANNEX0_8_FILE_DT" send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="ANNEX0_8_FILE_VERS" var_type="text"  var_size="30" size="30" send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    
+	<enable>
+      	<exam number="99" visitnum="0" visitnum_progr="0" progr="1"></exam>
+	</enable>
+		
+	<save>Salva</save>
+	<send>Procedi</send>
+	<cancel>Annulla</cancel>
+</form>

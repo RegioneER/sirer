@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<form fname="Presenze componenti" titolo="Presenze componenti" table="PRES_COMPONENTI"
+	link_to="index.php?ID_SED=[ID_SED]|and|VISITNUM=[VISITNUM]|and|exams"
+	cols="2"
+	f_to_call="componenti_merge"
+	load="if($('input[name=TIPO_SED]').val()!=3) {$('[name^=PRESENZE_TELE_MCHECK_]').attr('disabled', 'disabled'); $('[name^=PRESENZE_ESTERNI_TELE_MCHECK_]').attr('disabled', 'disabled'); $('[name^=PRESENZE_SGR_CE_TELE_MCHECK_]').attr('disabled', 'disabled');}"
+	>
+	<field type="hidden" var="ID_SED" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+	</field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="CENTER" var_type="number" />
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
+	<field type="hidden" var="TIPO_SED" tb="no" bytb="REGISTRAZIONE" bytbcode="TIPO_SED" bytbdecode="TIPO_SED" bytbwhere="ID_SED=[ID_SED]" />
+		
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b>Presenza componenti</b></td>]]></txt_value>
+	</field>
+	
+	<field type="multicheck" colspan="2" cols="1" var="PRESENZE" bytb="LISTA_COMP_INT_EXT" height_box="340" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME" default_bytb="SEL_COMPONENTI" default_bytbcode="ROWNUM" default_bytbdecode="CONVOCAZIONI" default_bytbwhere="ID_SED=[ID_SED] AND CENTER=[CENTER]" default_splitvalues="|">
+		<txt_value>Selezionare i componenti partecipanti in presenza</txt_value>
+	</field>
+	<field type="multicheck" colspan="2" cols="1" var="PRESENZE_TELE" bytb="LISTA_COMP_INT_EXT" height_box="340" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME">
+		<txt_value>Selezionare i componenti partecipanti in via telematica</txt_value>
+	</field>
+	<field type="multicheck" colspan="2" cols="1" var="PRESENZE_ESTERNI" height_box="200" bytb="LISTA_COMP_SPECIALI" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME" default_bytb="SEL_COMPONENTI" default_bytbcode="ROWNUM" default_bytbdecode="CONVOCAZIONI" default_bytbwhere="ID_SED=[ID_SED] AND CENTER=[CENTER]" default_splitvalues="|">
+		<txt_value>Selezionare i membri speciali</txt_value>
+	</field>
+	<field type="multicheck" colspan="2" cols="1" var="PRESENZE_ESTERNI_TELE" height_box="200" bytb="LISTA_COMP_SPECIALI" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME">
+		<txt_value>Selezionare i membri speciali partecipanti in via telematica</txt_value>
+	</field>
+	<field type="multicheck" colspan="2" cols="1" var="PRESENZE_SGR_CE" height_box="200" bytb="LISTA_SEGR_CE" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME" default_bytb="SEL_COMPONENTI" default_bytbcode="ROWNUM" default_bytbdecode="CONVOCAZIONI_SEGR_CE" default_bytbwhere="ID_SED=[ID_SED] AND CENTER=[CENTER]" default_splitvalues="|">
+		<txt_value>Selezionare i membri della segreteria</txt_value>
+	</field>
+	<field type="multicheck" colspan="2" cols="1" var="PRESENZE_SGR_CE_TELE" height_box="200" bytb="LISTA_SEGR_CE" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME">
+		<txt_value>Selezionare i membri della segreteria partecipanti in via telematica</txt_value>
+	</field>
+	<!--field type="multicheck" var="PRESENZE_SPERIMENTATORI" bytb="LISTA_SPERIMENTATORI" bytbcode="USERID" bytbdecode="NOME||' '||COGNOME" bytbwhere="CENTER=[CENTER]" bytborderby="COGNOME" default_bytb="SEL_COMPONENTI" default_bytbcode="ROWNUM" default_bytbdecode="CONVOCAZIONI" default_bytbwhere="ID_SED=[ID_SED] AND CENTER=[CENTER]" default_splitvalues="|" >
+		<txt_value>Selezionare gli sperimentatori:</txt_value>
+	</field--> 
+			
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>
+
+

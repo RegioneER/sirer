@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="CERCA PAZIENTE" titolo="CERCA PAZIENTE" table="STUDY_ANA_PAT" cols="3">
+  <field type="hidden" var="SEARCH" tb="no"><value val='1'></value></field>
+  <field type="hidden" var="TSEARCH" tb="no"><value val='1'></value></field>
+  <field type="hidden" var="FORM" tb="no" />
+     
+   
+	<field cols="3">
+		<txt_value><![CDATA[<tr><td colspan="6" class="titolo"><b>CERCA STUDIO</b></td></tr>]]></txt_value>
+	</field>
+
+	<!--field type="hidden" tb="no" var="CENTER" bytb="ANA_UTENTI_2" bytbcode="ID_CE" bytbdecode="ID_CE" byvar="ID_CE" bytbwhere="USERID='[remote_userid]'">
+		<txt_value>Centro</txt_value>
+	</field-->
+ 	
+ 	<field type="textbox" var="S_D_PRINC_INV" cols="3">
+		<txt_value><![CDATA[<b>Principal Investigator]]></txt_value>
+	</field>
+	
+	<field type="textbox" var="S_DELIB_NUM"  cols="3">
+		<txt_value><![CDATA[<b>Codice studio interno CE]]></txt_value>
+	</field>
+ 	
+	<field type="textbox" var="S_D_CENTRO"  cols="3">
+		<txt_value><![CDATA[<b>Struttura]]></txt_value>
+	</field>
+	
+	<field type="select" show_selected="yes" var="ID_CE" cols="3">      
+		<txt_value><![CDATA[<b>Sezione CE]]></txt_value>
+		<value val="1">CEAV Sud Est</value>           
+		<value val="2">CEAV Nord Ovest</value> 
+		<value val="3">CEAV Centro</value>     
+		<value val="4">CEP</value> 
+	</field>    
+	
+ 	<field type="textbox" var="S2_RIUNIONE_CE_DTD" cols="1"   size="3">
+		<txt_value><![CDATA[<b>Seduta CE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Giorno(gg)]]></txt_value>
+	</field>
+	<field type="textbox" var="S2_RIUNIONE_CE_DTM" cols="1" colspan="1" size="3">
+		<txt_value> Mese(mm) </txt_value>
+	</field>
+ 	<field type="textbox" var="S2_RIUNIONE_CE_DTY" cols="1" colspan="3" size="5">
+		<txt_value> Anno(aaaa) </txt_value>
+	</field>
+ 	<!--field type="textbox" var="S_ID_STUD" var_type="number">
+		<txt_value>ID Studio</txt_value>
+	</field>
+	<field type="textbox" var="S_CODICE_PROT">
+		<txt_value>Codice</txt_value>
+	</field>
+	<field type="textbox" var="S_TITOLO_PROT">
+		<txt_value>Titolo</txt_value>
+	</field>
+	<field type="select" show_selected="yes" var="S_TIPO_SPER" >      
+		<txt_value>Tipologia studio</txt_value>
+		<value val="1">Interventistico con farmaco</value>           
+		<value val="2">Interventistico senza farmaco e dispositivo</value> 
+		<value val="3">Interventistico con dispositivo medico</value>             
+		<value val="5">Osservazionale con farmaco</value>      
+		<value val="6">Osservazionale senza farmaco e dispositivo</value> 
+		<value val="7">Osservazionale con dispositivo medico</value> 
+		<value val="8">Uso Terapeutico</value>          
+		<value val="10">Studi con impiego di tessuti umani</value>        
+		<value val="-9900">Altro</value>        
+	</field>    
+	<field type="textbox" var="S_DESCR_SPONSOR">
+		<txt_value>Promotore</txt_value>
+	</field>
+   	<field type="data" var="S_FROM_DT_REGISTRAZIONE_DT">
+		<txt_value>Registrato da</txt_value>
+	</field>
+   	<field type="data" var="S_TO_DT_REGISTRAZIONE_DT">
+		<txt_value>Registrato a</txt_value>
+	</field-->
+	
+	<send>Cerca</send> 
+	<cancel>Cancella</cancel> 
+</form>
+	
+	
+	
+	
+	
+	
+	

@@ -1,0 +1,62 @@
+<#if page.footer?? >
+<#list page.footer as append >
+${append}
+</#list>
+</#if>
+
+<!-- basic scripts -->
+<@includeLayout layout._template.jquery />
+
+<script src="${path.assets}/js/bootstrap.min.js"></script>
+<script src="${path.assets}/js/typeahead-bs2.min.js"></script>
+<script>
+if(!console){var console={log:function(){return false;}};}
+</script>
+<script src="${path.custom.assets}/js/${page.layout}.js"></script>
+<!-- page specific plugin scripts -->
+<#--put IE only scripts here, currently we only use ExCanvas.js from time to time-->
+<#if page.ie_scripts??>
+	<#list page.ie_scripts as script >
+	<!--[if lte IE ${script.version}]>
+	  <script src="${path.assets}/js/${script.file_name}"></script>
+	<![endif]-->
+	</#list>
+</#if>
+
+<#if page.scripts??>
+	<#list page.scripts as script>
+		<#if scripts_map[script]??>
+		<#list scripts_map[script] as subScript>
+		<script src="${path.assets}/js/${subScript}"></script>
+		</#list>
+		</#if>
+		<#if statics_map[script]?? >
+		<#list statics_map[script] as subScript>
+		<script src="${path.custom.static}/${subScript}"></script>	
+		</#list>
+		</#if>
+		<#if scripts_custom_map[script]??>
+		<#list scripts_custom_map[script] as subScript>
+		<script src="${path.custom.assets}/js/${subScript}"></script>
+		</#list>
+		</#if>
+		<#if !scripts_map[script]?? && !statics_map[script]?? && !scripts_custom_map[script]?? >
+		<script src="${path.custom.assets}/js/${script}"></script>	
+		</#if>
+	</#list>
+</#if>
+
+<!-- ace scripts -->
+<script src="${path.assets}/js/ace-elements.min.js"></script>
+<script src="${path.assets}/js/ace.min.js"></script>
+
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+var baseUrl="${baseUrl}";
+<#if page.inline_scripts?? >
+<#list page.inline_scripts as inline_script >
+${inline_script}
+</#list>
+</#if>
+</script>

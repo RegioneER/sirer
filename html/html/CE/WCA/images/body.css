@@ -1,0 +1,62 @@
+A.LINK660000 {
+	COLOR: #660000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.LINK993333 {
+	COLOR: #993333; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 13px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.LINKGRIGIO {
+	COLOR: #666666; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 10px; TEXT-DECORATION: none
+}
+SPAN.TESTINO999999 {
+	COLOR: #999999; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-WEIGHT: normal; TEXT-TRANSFORM: none
+}
+SPAN.TITOLOROSSO {
+	COLOR: #993366; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 13px; FONT-WEIGHT: bold; TEXT-TRANSFORM: none
+}
+SPAN.TESTOPARAGRAFO {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-STYLE: normal
+}
+SPAN.TESTOBOLD {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+SPAN.TESTINOGRIGIO {
+	COLOR: #666666; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 10px; FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+SPAN.TITOLOAZZURRO {
+	COLOR: #99ccff; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+SPAN.TITOLO660000 {
+	COLOR: #660000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+A.LINKROSSO {
+	COLOR: #CC3366; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 14pt; FONT-WEIGHT: normal; TEXT-DECORATION: none
+}
+A.LINKTITOLOGRIGIO {
+	COLOR: #666666; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 15px; FONT-WEIGHT: bold; TEXT-DECORATION: none
+}
+A.LINKSERVIZI {
+	COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; TEXT-DECORATION: none
+}
+SPAN.VERSIONETESTO {
+	COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 14px; FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+SPAN.VERSIONETESTOBOLD {
+	COLOR: #000000; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 14px; FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+SPAN.TITOLINIVERDI {
+	COLOR: #CCFFCC; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-STYLE: normal; FONT-WEIGHT: normal
+}
+SPAN.TITOLOGRIGIO {
+	COLOR: #000000; FONT-FAMILY: Arial, Helvetica, sans-serif; FONT-SIZE: 14px; FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+SPAN.TITOLOVERDINO {
+	COLOR: #FFFFFF; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+SPAN.TESTINOGRIGIOBOLD {
+	COLOR: #666666; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; FONT-SIZE: 11px; FONT-STYLE: normal; FONT-WEIGHT: bold
+}
+.tit-macroarea {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt; font-weight: bold; color: #FFFFFF}
+a:hover {  color: #000000}
+.sottotit_giallone {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; color: #FFCC00; font-weight: bold}
+SPAN.TITOLOBIANCO {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; font-weight: bold; color: #FFFFFF}
+SPAN.TESTINOBIANCO {  font-family: "Arial Narrow", Helvetica, sans-serif; color: #FFFFFF; font-size: 10pt}

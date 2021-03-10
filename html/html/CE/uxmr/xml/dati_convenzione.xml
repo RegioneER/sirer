@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Dati convenzione" titolo="Dati convenzione" table="CONVENZIONE" 
+	link_to="index.php?ID_STUD=[ID_STUD]|and|exams" 
+	cols="5"
+	>
+	
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field cols="5">
+	<txt_value><![CDATA[<tr><td colspan="10"  class=titolo3 align=center><b> Dati convenzione economica</b></td></tr>]]></txt_value>
+	</field>
+	
+	
+	
+	<field cols="5" type="radio" var="CONVENZ_PARTI" >
+    	<txt_value><![CDATA[Indicare con chi si intende stipulare la convenzione economica]]></txt_value>
+    	<value val="1"><![CDATA[<b>Azienda Ospedaliera</b> (in tal caso il promotore deve obbligatoriamente allegare la lettera di impegno a sottoscrivere la convenzione economica secondo il modello aziendale)]]></value>
+    	<value val="2"><![CDATA[<b>Dipartimento Universitario</b> (in tal caso il promotore deve obbligatoriamente allegare la bozza della convenzione)]]></value>
+    </field>
+		
+		<field cols="5" type="radio" var="ASSICURAZIONE" >
+    	<txt_value><![CDATA[Nel caso di studio no-profit si prevede di utilizzare la polizza assicurativa stipulata per l'attivita' clinica generale o di ricerca della struttura?]]></txt_value>
+    	<value val="1">Si'</value>
+    	<value val="2">No</value>
+    </field>
+		
+		<field type="textbox" var="QUOTA_FISSA" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Quota fissa per il monitoraggio (in Euro): ]]></txt_value>
+	</field>
+	
+		<field type="textbox" var="QUOTA_TOT" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Quota totale (in Euro): ]]></txt_value>
+	</field>
+	<field type="textbox" var="RIM_ESAMI" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Rimborso esami (in Euro): ]]></txt_value>
+	</field>
+	<field type="textbox" var="QUOTA_PERSONALE" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Quota personale (in Euro): ]]></txt_value>
+	</field>
+	<field type="textbox" var="QUOTA_PAZ" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Quota per paziente (in Euro): ]]></txt_value>
+	</field>
+	<field type="textbox" var="CORRISP_PAZ" var_type="text" var_size="50" size="50"  cols="5" >
+			<txt_value><![CDATA[Corrispettivo a paziente proposto dal promotore nel caso di studio profit:]]></txt_value>
+		</field>
+		<field  cols="5" name="T2">
+	<txt_value><![CDATA[<tr><td colspan="10"   align=LEFT><b>Esami</b></td></tr>]]></txt_value>
+	</field>
+	
+	<field type="select" var="NR_ESAMI" cols="5" show_selected="yes">
+					<txt_value> Indicare il numero di esami </txt_value>
+					
+					<value val="5">1</value>
+					<value val="4">2</value>
+					<value val="3">3</value>
+					<value val="2">4</value>
+					<value val="1">5</value>
+					<value val="2">4</value>
+					<value val="6">6</value>
+					<value val="7">7</value>
+					<value val="8">8</value>
+					<value val="9">9</value>
+					<value val="10">10</value>
+		</field>
+	
+	<field  cols="5" name="T3" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4,5">
+	<txt_value><![CDATA[<tr><td colspan="10"   align=LEFT><b>1</b></td></tr>]]></txt_value>
+	</field>
+	<field type="textbox" var="ESAME" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Descrizione esame]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFAE" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Tariffa (in Euro)]]></txt_value>
+		</field>
+	<field type="textbox" var="NOTE" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Note]]></txt_value>
+		</field>
+	<field type="textbox" var="ESPZA" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Numero esami per paziente]]></txt_value>
+		</field>
+	
+	<field  cols="5" name="T4" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4">
+	<txt_value><![CDATA[<tr><td colspan="10"   align=LEFT><b></b></td></tr>]]></txt_value>
+	</field>
+	<field type="textbox" var="ESAME2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Descrizione esame]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFAE2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Tariffa (in Euro)]]></txt_value>
+		</field>
+	<field type="textbox" var="NOTE2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Note]]></txt_value>
+		</field>
+	<field type="textbox" var="ESPZA2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Numero esami per paziente]]></txt_value>
+		</field>
+	<field  cols="5" name="T5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3">
+	<txt_value><![CDATA[<tr><td colspan="10"   align=LEFT><b></b></td></tr>]]></txt_value>
+	</field>
+	<field type="textbox" var="ESAME3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3">
+			<txt_value><![CDATA[Descrizione esame]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFAE3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3">
+			<txt_value><![CDATA[Tariffa (in Euro)]]></txt_value>
+		</field>
+	<field type="textbox" var="NOTE3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3">
+			<txt_value><![CDATA[Note]]></txt_value>
+		</field>
+	<field type="textbox" var="ESPZA3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_ESAMI" condition_value="1,2,3">
+			<txt_value><![CDATA[Numero esami per paziente]]></txt_value>
+		</field>
+	
+	<field  cols="5" name="T6">
+	<txt_value><![CDATA[<tr><td colspan="10"   align=LEFT><b>Personale coinvolto presso la struttura proponente (per ogni qualifica indicare il nr. di persone coinvolte- dipendenti e non, personale medico e non)</b></td></tr>]]></txt_value>
+	</field>
+	
+	<field type="textbox" var="COLLABORATORI" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Collaboratore/i:]]></txt_value>
+	</field>
+	<field type="textbox" var="INFERMIERI" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Infermiere/i:]]></txt_value>
+	</field>
+	<field type="textbox" var="DATAMANAGER" var_type="text" var_size="50" size="70" send="obbligatorio" cols="5">
+		<txt_value><![CDATA[Data Manager:]]></txt_value>
+	</field>
+	<field type="select" var="NR_PERSONE" cols="5" show_selected="yes">
+					<txt_value> Indicare il numero di personale ed in seguito inserirne i dati</txt_value>
+					
+					<value val="5">1</value>
+					<value val="4">2</value>
+					<value val="3">3</value>
+					<value val="2">4</value>
+					<value val="1">5</value>
+					<value val="2">4</value>
+					<value val="6">6</value>
+					<value val="7">7</value>
+					<value val="8">8</value>
+					<value val="9">9</value>
+					<value val="10">10</value>
+		</field>
+	
+ 		<field  cols="5" name="T7" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+	<txt_value><![CDATA[<tr><td colspan="10"   align=LEFT><b>1</b></td></tr>]]></txt_value>
+	</field>
+		<field type="textbox" var="NOME" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Nome]]></txt_value>
+		</field>
+	<field type="textbox" var="COGNOME" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Cognome]]></txt_value>
+		</field>
+		<field type="textbox" var="PROFESSIONE" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Professione]]></txt_value>
+		</field>
+		<field type="textbox" var="REPARTO" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Reparto]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFA" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4,5">
+			<txt_value><![CDATA[Quota compenso previsto (in Euro)]]></txt_value>
+		</field>
+		
+		<field  cols="5" name="T8" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+	<txt_value><![CDATA[<tr><td colspan="10"   align=LEFT><b></b></td></tr>]]></txt_value>
+	</field>
+		<field type="textbox" var="NOME2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Nome]]></txt_value>
+		</field>
+	<field type="textbox" var="COGNOME2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Cognome]]></txt_value>
+		</field>
+		<field type="textbox" var="PROFESSIONE2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Professione]]></txt_value>
+		</field>
+		<field type="textbox" var="REPARTO2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Reparto]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFA2" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3,4">
+			<txt_value><![CDATA[Quota compenso previsto]]></txt_value>
+		</field>
+		<field  cols="5" name="T9" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+	<txt_value><![CDATA[<td colspan="10"   align=LEFT><b>1</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="NOME3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Nome]]></txt_value>
+		</field>
+	<field type="textbox" var="COGNOME3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Cognome]]></txt_value>
+		</field>		
+		<field type="textbox" var="PROFESSIONE3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Professione]]></txt_value>
+		</field>
+		<field type="textbox" var="REPARTO3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Reparto]]></txt_value>
+		</field>
+		<field type="textbox" var="TARIFFA3" var_type="text" var_size="50" size="50"  cols="5" hide="yes" condition="NR_PERSONE" condition_value="1,2,3">
+			<txt_value><![CDATA[Quota compenso previsto]]></txt_value>
+		</field>
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

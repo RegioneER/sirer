@@ -1,0 +1,90 @@
+<page titolo="CE Online">
+	<blocco titolo="Studi">
+		<link>
+			<testo><![CDATA[</a><b>Inserimento studi</b>]]></testo>
+		</link>
+		<link script="index.php" param="VISITNUM=0&amp;ESAM=0">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inserisci nuovo studio]]></testo>
+		</link>
+		
+		<!--link script="index.php" param="list=patients_list2.xml&amp;STATO=3" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=3 and R.CENTER=:center and L.ID_STUD=R.ID_STUD">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi in corso di compilazione]]></testo>
+		</link-->
+		<link script="index.php" param="list=patients_list_compilazione.xml" sql_count="select count(distinct R.ID_STUD) as num_row from CE_STUDI_COMPILAZIONE_SGR r where R.USERID=:remote_userid and r.id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi in corso di compilazione]]></testo>
+		</link>
+		<link script="index.php" param="list=patients_list_add.xml">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aggiungi centro a studio presente in banca dati]]></testo>
+		</link>
+		<link>
+			<testo><![CDATA[</a><b>Lista studi in istruttoria/parere</b>]]></testo>
+		</link>
+		<!--link script="index.php" param="list=patients_list.xml&amp;STATO=3&amp;NOT_USERID_INS=[USERID]&amp;INTEGRAZIONE=0" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=3 and R.CENTER=:center and L.ID_STUD=R.ID_STUD and USERID_INS!=:remote_userid">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuovi studi in arrivo da verificare]]></testo>
+		</link-->
+		<!--link script="index.php" param="list=patients_list.xml&amp;STATO=3&amp;INTEGRAZIONE=0" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=3 and R.CENTER=:center and L.ID_STUD=R.ID_STUD">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuovi studi in arrivo da verificare]]></testo>
+		</link-->
+		<link script="index.php" param="list=patients_list_istruttoria.xml" sql_count="select count(distinct R.ID_STUD) as num_row from CE_STUDI_ISTRUTTORIA_SGR r where R.USERID=:remote_userid and r.id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi con centri da verificare <i>(istruttoria)</i>]]></testo>
+		</link>
+		
+		<!--link script="index.php" param="list=patients_list.xml&amp;STATO=3&amp;NOT_USERID_INS=[USERID]&amp;NOT_INTEGRAZIONE=0" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=3 and R.CENTER=:center and L.ID_STUD=R.ID_STUD and USERID_INS!=:remote_userid and INTEGRAZIONE!=0">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuovi studi con integrazione]]></testo>
+		</link-->
+		<!--link script="index.php" param="list=patients_list.xml&amp;STATO=3&amp;NOT_INTEGRAZIONE=0" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=3 and R.CENTER=:center and L.ID_STUD=R.ID_STUD and INTEGRAZIONE!=0">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nuovi studi con integrazione]]></testo>
+		</link-->
+		
+		<!--link script="index.php" param="list=patients_list.xml&amp;STATO=5" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=5 and R.CENTER=:center and L.ID_STUD=R.ID_STUD">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi da portare in riunione (verificati)]]></testo>
+		</link-->
+		<link script="index.php" param="list=patients_list_parere.xml" sql_count="select count(distinct R.ID_STUD) as num_row from CE_STUDI_PARERE_SGR R where R.USERID=:remote_userid and r.id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi con centri da valutare <i>(parere)</i>]]></testo>
+		</link>
+		<!--link script="index.php" param="list=patients_list.xml&amp;STATO=6" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=6 and R.CENTER=:center and L.ID_STUD=R.ID_STUD">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi valutati]]></testo>
+		</link-->
+	
+		
+		<link>
+			<testo><![CDATA[</a><b>Lista studi valutati dal CE</b>]]></testo>
+		</link>
+		<link script="index.php" param="list=patients_list_sospesi.xml" sql_count="select count(distinct R.ID_STUD) as num_row from CE_STUDI_SOSPESI_SGR R where R.USERID=:remote_userid and r.id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi con centri sospesi]]></testo>
+		</link>
+		<link script="index.php" param="list=patients_list_approvati.xml" sql_count="select count(distinct R.ID_STUD) as num_row from CE_STUDI_APPROVATI_SGR R where R.USERID=:remote_userid and r.id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi con centri approvati]]></testo>
+		</link>
+		<link script="index.php" param="list=patients_list_non_approvati.xml" sql_count="select count(distinct R.ID_STUD) as num_row from CE_STUDI_NON_APPROVATI_SGR R where R.USERID=:remote_userid and r.id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi con centri non approvati]]></testo>
+		</link>
+		<!--link script="index.php" param="list=patients_list3.xml&amp;STATO=6&amp;IN_EMENDAMENTO=1" sql_count="select count(distinct R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where L.STATO=6 and R.IN_EMENDAMENTO=1 and R.CENTER=:center and L.ID_STUD=R.ID_STUD and r.id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi in emendamento]]></testo>
+		</link-->
+		<link script="index.php" param="list=patients_list_eme_valutazione.xml" sql_count="select count(ID_STUD) as num_row from CE_STUDI_EME_VALUTAZIONE where id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Studi con emendamenti da valutare]]></testo>
+		</link>
+		<link>
+			<testo><![CDATA[</a><b>Ricerca</b>]]></testo>
+		</link>
+		<link script="index.php" param="SEARCH=1&amp;FORM=1">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerca studi per info <u>studio</u> specifiche]]></testo>
+		</link>
+		<link script="index.php" param="SEARCH=1&amp;FORM=2">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cerca studi per info <u>centro</u> specifiche]]></testo>
+		</link>
+		<!--link script="index.php" param="list=patients_list.xml" sql_count="select count(R.ID_STUD) as num_row from CE_LISTA L,CE_REGISTRAZIONE R where R.CENTER=:center and L.ID_STUD=R.ID_STUD">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lista di tutti gli studi]]></testo>
+		</link-->
+		<link script="index.php" param="list=patients_list.xml" sql_count="select count(distinct ID_STUD) as num_row from CE_TUTTI_STUDI where id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lista di tutti gli studi]]></testo>
+		</link>
+		<link script="index.php" param="list=patients_list_ritirati.xml" sql_count="select count(distinct ID_STUD) as num_row from CE_STUDI_RITIRATI where id_stud in (select center from ce_utenti_centri where userid=:remote_userid)">
+			<testo><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lista degli studi ritirati]]></testo>
+		</link>
+		
+		
+	</blocco>
+
+</page>

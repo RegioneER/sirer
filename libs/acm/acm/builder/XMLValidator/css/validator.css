@@ -1,0 +1,268 @@
+/* Common Elements */
+
+/* Hr */
+
+hr{
+
+}
+
+a{
+color:#315091;
+text-decoration:none;
+}
+
+a:hover{
+text-decoration:underline;
+}
+
+/* Layout */
+body {
+background: #EEE url(../images/bg.gif);
+color: #444;
+font-family:"Lucida Grande",Arial,Helvetica,Verdana,sans-serif;
+font-size:12px;
+margin: 0px;
+}
+
+.main{
+width:80%;
+margin:auto;
+background:#fafafa;
+background: url(../images/bg-strip.gif) repeat;
+border:1px solid #dcdcdc;
+margin-top:20px;
+margin-bottom:20px;
+}
+
+/* Header container */
+.header-container{
+width:100%;
+margin:auto;
+background:#e5eaf1;
+border-left:1px solid #cccccc;
+border-top:1px solid #cccccc;
+border-right:1px solid #cccccc;
+}
+
+/* Corpo Header */
+.header-cx{
+width:100%;
+height:120px;
+background: url(../../images/cineca_logo.png) no-repeat;
+}
+
+/* Body container */
+.body-container{
+width:100%;
+background:#e5eaf1;
+padding-left:20px;
+padding-right:20px;
+padding-bottom:0px;
+border-left:1px solid #cccccc;
+border-right:1px solid #cccccc;
+border-bottom:1px solid #cccccc;
+}
+
+.body{
+width:100%;
+margin:0px;
+margin-bottom:20px;
+background:#fafafa;
+border-left:1px solid #cccccc;
+border-right:1px solid #cccccc;
+border-bottom:1px solid #cccccc;
+}
+
+/* Colonna sinistra 25% */
+.body-sx{
+width:25%;
+padding:10px;
+vertical-align:top;
+}
+
+/* Colonna centrale 65% */
+.body-cx{
+width:65%;
+padding:10px;
+vertical-align:top;
+}
+
+/* Navigation */
+.navigation{
+background:#fafafa;
+padding:5px;
+border-left:1px solid #cccccc;
+border-right:1px solid #cccccc;
+}
+
+/* Tabs */
+.tabs{
+width:100%;
+margin:0px;
+border-left:1px solid #cccccc;
+border-top:1px solid #cccccc;
+}
+
+.tab-active{
+height:40px;
+background:#fafafa;
+border-right:1px solid #cccccc;
+text-align:center;
+font-weight:bold;
+}
+
+.tab-inactive{
+height:40px;
+background:#eeeeee;
+border-right:1px solid #cccccc;
+border-bottom:1px solid #cccccc;
+text-align:center;
+font-weight:bold;
+}
+
+/* Corpo colonna sinistra Box form selezione file */
+.box-sx{
+margin:0px;
+padding:10px;
+background:#eeeeee;
+border:1px solid #b3b3b3;
+text-align:center;
+}
+
+/* Corpo colonna centrale Box risultato validazione*/
+.box-cx{
+margin:0px;
+background:#ffffff;
+border:1px solid #e5e5e5;
+padding:5px;
+}
+
+/* Validation Errors */
+.errors_box{
+margin:10px;
+background: url(../images/bg-strip.gif);
+border: 1px solid #6d84b4;
+border-left: 5px solid #6d84b4;
+margin-bottom: 12px;
+padding: 10px 10px;
+
+}
+
+/* List file per gestione */
+.list-file{
+width:60%;
+margin:auto;
+margin-top:10px;
+margin-bottom:10px;
+background:#ffffff;
+border:1px solid #cccccc;
+}
+
+/* Box per aggiungere file */
+.add-file{
+width:60%;
+margin:auto;
+margin-top:10px;
+margin-bottom:10px;
+background:#eeeeee;
+border:1px solid #b3b3b3;
+}
+
+/* File Info */
+.file_info{
+width:85%;
+border: 1px solid #6d84b4;
+margin:auto;
+margin-bottom:20px;
+}
+
+.file_info_header{
+text-align:center;
+font-weight:bold;
+background:#e5eaf1;
+}
+
+.file_info_left{
+background:#6d84b4;
+color:#ffffff;
+font-weight:bold;
+}
+
+.file_info_right{
+background:#fff;
+padding-left:2px;
+}
+
+/* Footer */
+.footer{
+margin:auto;
+width:80%;
+text-align:center;
+font-weight:bold;
+color:#393939;
+}
+
+/* Input Elements */
+
+/* Select */
+select{
+padding:1px;
+font-weight:bold;
+color: #254588;
+background-color: #e5eaf1;
+border: 1px solid #254588;
+}
+
+select:hover{
+padding:1px;
+font-weight:bold;
+color:#ffffff;
+background-color: #6d84b4;
+border: 1px solid #254588;
+}
+
+select:focus{
+padding:1px;
+font-weight:bold;
+color:#000000;
+background-color: #ffffff;
+border: 1px solid #254588;
+}
+
+/* Buttons */
+input[type=submit] {
+height:18px;
+font-weight:bold;
+background-color: #e5eaf1;
+color:#254588;
+border:1px solid #254588;
+text-align:center;
+}
+
+input[type=submit]:hover{
+height:18px;
+font-weight:bold;
+background-color: #6d84b4;
+color:#ffffff;
+border:1px solid #254588;
+text-align:center;
+}
+
+input[type=reset] {
+height:18px;
+font-weight:bold;
+background-color: #e5eaf1;
+color:#254588;
+border:1px solid #254588;
+text-align:center;
+}
+
+input[type=reset]:hover{
+height:18px;
+font-weight:bold;
+background-color: #6d84b4;
+color:#ffffff;
+border:1px solid #254588;
+text-align:center;
+}
+

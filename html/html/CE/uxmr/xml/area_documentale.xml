@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<!-- 	FIELD_TB_SHOW="D_TIPO_DOC||'&lt;br&gt;'||D_DOC_GEN||'&lt;br&gt;'||D_DOC_LOC,DOC_DT,DOC_VERS" -->
+<!--FIELD_TB_SHOW="'&lt;b&gt;Tipologia:&lt;/b&gt; '||D_DOC_GEN|| case when DOC_GEN_ALTRO is not null then '&lt;br&gt;&lt;b&gt;Specificare:&lt;/b&gt; '||DOC_GEN_ALTRO end || case when DESCR_AGG is not null then '&lt;br&gt;&lt;b&gt;Descrizione aggiuntiva:&lt;/b&gt; '||DESCR_AGG end,DOC_DT,(select insertdt from ce_coordinate c where c.id_stud=CE_DOCUMENTAZIONE.id_stud and c.esam=CE_DOCUMENTAZIONE.esam and c.progr=CE_DOCUMENTAZIONE.progr and c.visitnum=CE_DOCUMENTAZIONE.visitnum),(select moddt from ce_coordinate c where c.id_stud=CE_DOCUMENTAZIONE.id_stud and c.esam=CE_DOCUMENTAZIONE.esam and c.progr=CE_DOCUMENTAZIONE.progr and c.visitnum=CE_DOCUMENTAZIONE.visitnum),DOC_VERS"
+	  TB_HEADER="Tipo,Data doc., Data ins., Data  mod., Versione"-->
+	<form fname="AREA_DOCUMENTALE" titolo="AREA_DOCUMENTALE" table="AREA_DOCUMENTALE"
+	FIELD_TB_SHOW="''"
+	TB_HEADER=" "
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	FIELD_AGG="DOC_GEN|DOC_DT|DOC_VERS|DOC_CORE"
+	FIELD_AGG_TXT="Tipo|Data|Versione|Scarica Doc."
+	TRASH="no"
+	DOC_FIELD="DOC_CORE"
+	HIDE_ALL_IN_BUTTON="no"
+	F_TO_CALL="force_doc_gen"
+  >
+
+<!-- 	FIELD_TB_SHOW="D_TIPO_DOC||'&lt;br&gt;&lt;b&gt;'||case when TIPO_DOC = 1 then D_DOC_GEN else D_DOC_LOC end||'&lt;/b&gt;',DOC_DT,DOC_VERS"  -->
+
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"> <value val="next"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+  <field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="INVIOCO" tb="no"></field>
+	<field type="hidden" var="CENTER" var_type="text" var_size="8"></field>
+	<field type="hidden" var="CODE1" var_type="number"></field>
+	<field type="hidden" var="CODE2" var_type="number"></field>
+	<field type="hidden" var="CORE" var_type="number"></field>
+	<field type="hidden" var="COORD" var_type="number"></field>
+	<field type="hidden" var="CS" var_type="number"></field>
+	<field type="hidden" var="D_DOCUMENTO" var_type="text" var_size="400" ></field>
+
+	<field type="hidden" var="CODICE" var_type="text" var_size="40" bytb="REGISTRAZIONE" bytbcode="CODICE" bytbdecode="CODICE" bytbwhere="ID_STUD='[ID_STUD]'" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	
+	<field type="hidden" var="FORCE_DOC_GEN" var_type="text" var_size="8" tb="no"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="4"  class=titolo3 align=center><b> Nuovo Documento</b></td>]]></txt_value>
+	</field>
+
+	<field type="select" var="DOC_GEN" show_selected="yes"  send="obbligatorio" save="obbligatorio" cols="2"
+    		bytb="DOC_GEN" bytbcode="ID" BYTBDECODE="DESCRIZIONE"  bytborderby="DESCRIZIONE ASC" >
+		<txt_value>Selezionare il documento generale</txt_value>
+	</field>
+	  	<field type="textbox" var="DOC_GEN_ALTRO" var_type="text"  var_size="200" size="100" condition="DOC_GEN" condition_value="33" hide="yes" cols="2">
+    	<txt_value><![CDATA[Se altro, specificare]]></txt_value>
+    </field>
+    
+    <!--field type="select" var="AREA_DOC" show_selected="yes" save="obbligatorio" send="obbligatorio"
+    bytb="AREA_DOCUMENTI" bytbcode="ID" BYTBDECODE="TIPO_STUDIO"  bytborderby="ID">
+			<txt_value>Tipo di studio</txt_value>
+	  </field-->
+    <!--
+    <field type="select" var="TIPO_DOC_1" show_selected="yes" save="obbligatorio" send="obbligatorio"
+    condition="AREA_DOC" condition_value="1" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="ST_FARMACO13='1'">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_2" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="2" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=2" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_3" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="3" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=3" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_4" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="4" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=4" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_5" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="5" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=5" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_6" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="6" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=6" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="textbox" var="DESCR_AGG" var_size="80" size="80">
+    	<txt_value>Descrizione aggiuntiva</txt_value>
+    </field>-->
+    <field type="textbox" var="DESCR_AGG" cols="2" var_size="200" size="80">
+    	<txt_value>Descrizione aggiuntiva</txt_value>
+    </field>
+	
+		<field type="data" var="DOC_DT" cols="1">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="DOC_VERS" var_type="text"  var_size="30" size="12" send="obbligatorio" save="obbligatorio" cols="1">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    
+    <field cols="2"
+    type="file_cme" 
+    var="DOC_CORE"
+    TOPIC="Core"
+    xmlTypeDefinition="cme/documentazione_core.xml" 
+    save="obbligatorio"
+    send="obbligatorio"
+    auto_approve="yes">
+    <txt_value>Attach</txt_value>
+   </field>
+   
+   <field cols="2" type="textarea" var="NOTE"  var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Note]]></txt_value>
+  </field> 
+	
+  	<save>Inserisci documento</save>
+	<cancel>Annulla</cancel>		
+</form>
+   
+		

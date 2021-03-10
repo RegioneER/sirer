@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Studi con dispositivi" titolo="Studi con dispositivi" table="DISPOSITIVI"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="1"
+	field_tb_show="DISPOSITIVO"
+	tb_header="Dispositivo"
+	F_TO_CALL="force_dispositivi"
+	>
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10"></field>
+		<field type="hidden" var="FORCE_DISPOSITIVI" var_type="text" var_size="8" tb="no"></field>
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<field>
+			<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b> Dispositivi medici</b></td>]]></txt_value>
+		</field>
+		<field cols="1" type="radio" var="MARCHIOCE" send="obbligatorio">
+			<txt_value><![CDATA[Presenza del marchio CE]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field>
+	    
+		<field type="textbox" var="DISPOSITIVO" var_type="text"  var_size="200" cols="1" size="100" send="obbligatorio">
+			<txt_value><![CDATA[Nome del dispositivo <br><a href="/errorejs.htm" onclick="sbianca('DISPOSITIVO','DITTA_PROD','DESC_CARATT','CLASSIFICAZIONE_CND','DESCRIZIONE_CND'); window.open('sfoglia_disp_med.php?DISPOSITIVO=DISPOSITIVO&DITTA_PROD=DITTA_PROD&DESC_CARATT=DESC_CARATT&CLASSIFICAZIONE_CND=CLASSIFICAZIONE_CND&DESCRIZIONE_CND=DESCRIZIONE_CND','finestraindipendente','scrollbars=yes,resizable=yes,width=1000,height=600'); return false;"> <b>Ricerca nella Banca Dati...</b></a>]]></txt_value>
+		</field>
+		<field type="textbox" var="DITTA_PROD" var_type="text" var_size="200" size="100" send="obbligatorio">
+			<txt_value><![CDATA[Ditta produttrice]]></txt_value>
+		</field>
+		<field type="textbox" var="NUMERO_REPERTORIO" var_type="text" var_size="200" size="100" condition="MARCHIOCE" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Numero repertorio]]></txt_value>
+		</field>
+		<!--field type="textbox" var="PROGRESSIVO_DM_ASS" var_type="text" var_size="200" size="100" send="obbligatorio" condition="MARCHIOCE" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Codice repertorio]]></txt_value>
+		</field-->
+		<field cols="1" type="textarea" var="DESC_CARATT" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio" condition="MARCHIOCE" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Denominazione Commerciale]]></txt_value>
+		</field>
+		<field type="textbox" var="CLASSIFICAZIONE_CND" var_type="text" var_size="200" size="100" send="obbligatorio" condition="MARCHIOCE" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Classificazione CND]]></txt_value>
+		</field>
+		<field cols="1" type="textarea" var="DESCRIZIONE_CND"  var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio" condition="MARCHIOCE" condition_value="1" hide="yes">
+			<txt_value><![CDATA[Descrizione CND]]></txt_value>
+		</field>
+		<field cols="1" type="radio" var="IMPIANTABILE" send="obbligatorio">
+			<txt_value><![CDATA[Si tratta di un dispositivo impiantabile?]]></txt_value>
+				<value val="1">Si'</value>
+				<value val="2">No</value>
+		</field>
+	  
+		<!--field type="textbox" var="RESP_DISP" var_type="text" var_size="50" size="30">
+			<txt_value><![CDATA[Responsabile DispositivoVigilanza]]></txt_value>
+		</field>
+		<field type="textbox" var="MAIL_RESP_DISP" var_type="text" var_size="30" size="40">
+			<txt_value><![CDATA[Mail]]></txt_value>
+		</field>
+		<field type="textbox" var="TEL_RESP_DISP" var_type="text" var_size="30" size="40">
+			<txt_value><![CDATA[Telefono]]></txt_value>
+		</field-->
+		
+		<field cols="1" type="radio" var="CLASSE_RISCHIODM" send="obbligatorio">
+			<txt_value><![CDATA[Classe di rischio del DM]]></txt_value>
+				<value val="1">I</value>
+				<value val="2">IIa</value>
+				<value val="3">IIb</value>
+				<value val="4">III</value>
+				<value val="-9911">NA</value>
+		</field>
+		
+		<!--field cols="1" type="radio" var="DEST_USO" send="obbligatorio">
+			<txt_value><![CDATA[Impiego secondo destinazione d'uso]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+		</field>
+		<field cols="1" type="radio" var="GARA_FORN">
+			<txt_value><![CDATA[Dispositivo Medico gi&agrave; presente in gara di fornitura]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+		</field-->
+		<!--field type="textbox" var="PREZZO_COMM" var_type="text" var_size="15" size="20">
+			<txt_value><![CDATA[Con quale prezzo disponibile in commercio]]></txt_value>
+		</field-->
+		
+		<!--field cols="1" type="textarea" var="SEDE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+			<txt_value><![CDATA[Sede di utilizzo/impianto]]></txt_value>
+		</field--> 
+		<!--field cols="1" type="textarea" var="DESC_CARATT" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+		  	<txt_value><![CDATA[Descrizione delle caratteristiche, struttura e funzionamento del dispositivo]]></txt_value>
+		</field--> 
+		<!--field cols="1" type="textarea" var="RISCHI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+		  	<txt_value><![CDATA[Analisi dei rischi associati al dispositivo e/o alle procedure rispetto ai trattamenti gia' in uso]]></txt_value>
+		</field--> 
+
+   
+		
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>AxMR 2.5 Administrative Console</title>
+
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet">
+       	<link rel="stylesheet" href="builder/xmrbuilder.css" />
+        <style>
+			body {
+				padding-right: 0px;
+				padding-left: 0px;
+			}
+        </style>
+        
+		<!-- basic styles -->
+
+		<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<!-- <link href="/assets/css/font-awesome.css" rel="stylesheet"> -->
+		
+		<link rel="stylesheet" href="/assets/css/font-awesome-4.3.min.css" />
+ 
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+		<!-- page specific plugin styles -->
+
+		<!-- fonts -->
+
+		<link rel="stylesheet" href="/assets/css/openFont.css" />
+
+		<!-- ace styles -->
+
+		<link rel="stylesheet" href="/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+		<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+		
+		
+		<!-- forms additional css -->
+		<link rel="stylesheet" href="/assets/css/jquery-ui-1.10.3.custom.min.css" />
+		<link rel="stylesheet" href="/assets/css/chosen.css" />
+		<link rel="stylesheet" href="/assets/css/datepicker.css" />
+		<link rel="stylesheet" href="/assets/css/bootstrap-timepicker.css" />
+		<link rel="stylesheet" href="/assets/css/daterangepicker.css" />
+		<link rel="stylesheet" href="/assets/css/colorpicker.css" />
+		<link rel="stylesheet" href="/assets/css/dropzone.css" />
+		<link rel="stylesheet" href="./builder/codemirror/lib/codemirror.css">
+		<link rel="stylesheet" href="/assets/css/jquery.gritter.css">
+		<link rel="stylesheet" href="/assets/css/ui.jqgrid.css" />
+        <link rel="stylesheet" href="/assets/css/jQuery.jqGrid.fontAwesome4.css" />
+		
+		<!-- custom updated select2 -->
+		<link href="./select2-dist/css/select2.min.css" rel="stylesheet" />
+		
+		<!-- other styling -->
+		<style>
+		
+		.ui-jqgrid tr.jqgrow td {
+			white-space:normal;
+		}
+		.ui-jqgrid .ui-jqgrid-htable th div {
+			white-space:normal;
+			height:auto;
+			margin-bottom:3px;
+		}
+	
+		
+		.home-table .ui-jqgrid{
+			margin:10px;
+			
+		}
+		
+		tr.jqgrow{
+			cursor:pointer;
+		}
+		
+		.home-table {
+			float:left;
+		}
+		.infobox {
+			cursor:pointer;
+		}
+		
+		</style>
+		
+		
+		
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+
+		<script src="/assets/js/ace-extra.min.js"></script>
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+		<!--[if lt IE 9]>
+		<script src="/assets/js/html5shiv.js"></script>
+		<script src="/assets/js/respond.min.js"></script>
+		<![endif]-->
+		
+		<script src="js/utils.js"></script>
+
+		<!-- form builder grafico drag'n'drop -->
+		<link rel="stylesheet" href="builder/vendor/css/vendor.css" />
+        <link rel="stylesheet" href="builder/dist/formbuilder.css" />
+        <script src="builder/vendor/js/vendor.js"></script>
+        <script src="builder/dist/formbuilder.js"></script>
+        <!--page_js-->
+        <!--link rel="stylesheet" href="builder/xmrbuilder.css" />
+        <script src="builder/xmrbuilder.js"></script-->
+        <!-- Lasciare per ultimo il file di override main.css -->
+        <link rel="stylesheet" href="main.css" />
+	</head>
+	
+	<style>
+	
+	.navbar-header {
+    	background: rgba(0, 0, 0, 0) url("/images/demoService.png") no-repeat scroll 0 2px / 237px 40px;
+	    float: left;
+	    padding-left: 242px;
+	}
+	
+	</style>
+
+	<body onload="<!--onload-->">
+        <div class="navbar navbar-default " id="navbar">
+            <script type="text/javascript">
+				try {
+					ace.settings.check('navbar', 'fixed')
+				} catch(e) {
+				}
+            </script>
+            <!--navbar-->
+        </div>
+		<div class="main-container" id="main-container">
+		
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<!--sidebar-->
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try {
+								ace.settings.check('breadcrumbs', 'fixed')
+							} catch(e) {
+							} 
+						</script>
+						<!--breadcrumb-->
+
+						<div class="nav-search" id="nav-search">
+							<form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="fa fa-search nav-search-icon"></i>
+								</span>
+							</form>
+						</div><!-- #nav-search -->
+					</div>
+
+					<div class="page-content">
+						<div class="page-header">
+						<h1><!--page_title--></h1>
+						<div style="position: absolute; right: 22px; top: 60px;"><!--back_links--></div>
+						</div>
+						<!--system_messages-->
+						<div class="row">
+							<div class="col-xs-12">
+							<!--page_content-->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+			</div><!-- /.main-container-inner -->
+				
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="fa fa-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+			
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+
+		<script src="/assets/js/jquery-2.0.3.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="/assets/js/jquery-1.10.2.min.js"></script>
+<![endif]-->
+
+		
+
+		
+		<script type="text/javascript">
+			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+		<script src="/assets/js/typeahead-bs2.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<script src="/assets/js/fuelux/fuelux.wizard.min.js"></script>
+		<script src="/assets/js/jquery.validate.min.js"></script>
+		<script src="/assets/js/additional-methods.min.js"></script>
+		<script src="/assets/js/bootbox.min.js"></script>
+		<script src="/assets/js/jquery.maskedinput.min.js"></script>
+		<script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/assets/js/chosen.jquery.min.js"></script>
+		<script src="/assets/js/fuelux/fuelux.spinner.min.js"></script>
+		<script src="/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+		<script src="/assets/js/date-time/bootstrap-timepicker.min.js"></script>
+		<script src="/assets/js/date-time/moment.min.js"></script>
+		<script src="/assets/js/date-time/daterangepicker.min.js"></script>
+		<script src="/assets/js/bootstrap-colorpicker.min.js"></script>
+		<script src="/assets/js/jquery.knob.min.js"></script>
+		<script src="/assets/js/jquery.autosize.min.js"></script>
+		<script src="/assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
+		<script src="/assets/js/jquery.maskedinput.min.js"></script>
+		<script src="/assets/js/bootstrap-tag.min.js"></script>
+		<script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/assets/js/markdown/markdown.min.js"></script>
+		<script src="/assets/js/markdown/bootstrap-markdown.min.js"></script>
+		<script src="/assets/js/jquery.hotkeys.min.js"></script>
+		<script src="/assets/js/bootstrap-wysiwyg.min.js"></script>
+		<script src="/assets/js/bootbox.min.js"></script>
+		<script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+		<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/assets/js/jquery.slimscroll.min.js"></script>
+		<script src="/assets/js/jquery.dataTables.min.js"></script>
+		<script src="/assets/js/jquery.dataTables.bootstrap.js"></script>
+		<script src="/assets/js/dropzone.min.js"></script>
+		<script src="/assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="/assets/js/jqGrid/jquery.jqGrid.min.js"></script>
+		<script src="/assets/js/jqGrid/i18n/grid.locale-en.js"></script>
+        <script type="text/javascript" src="/assets/js/jQuery.jqGrid.fontAwesome4.js"></script>
+        <script src="/assets/js/jquery.gritter.min.js"></script>
+		<!--
+		<script src="/assets/js/jqGrid/i18n/grid.locale-it.js"></script>
+		<script src="/assets/js/jqGrid/i18n/grid.locale-de.js"></script>
+		-->
+		
+		<!-- codemirror -->
+		
+		<script src="./builder/codemirror/lib/codemirror.js"></script>
+		<script src="./builder/codemirror/mode/xml/xml.js"></script>
+		<script src="./builder/codemirror/addon/hint/show-hint.js"></script>
+		<script src="./builder/codemirror/addon/hint/xml-hint.js"></script>
+		<script src="./builder/codemirror/addon/formatting/formatting.js"></script>
+		<!-- ace scripts -->
+
+		<script src="/assets/js/ace-elements.min.js"></script>
+
+		<!-- ace scripts -->
+
+		<script src="/assets/js/ace-elements.min.js"></script>
+		<script src="/assets/js/ace.min.js"></script>
+
+		<script src="/assets/js/jquery.nestable.min.js"></script>
+		<!-- inline scripts related to this page -->
+		
+		<!-- custom updated select2 library -->
+		<script src="./select2-dist/js/select2.min.js"></script>
+		
+		<!-- end -->
+	</body>
+</html>

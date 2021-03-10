@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Richiesta valutazione delibera" titolo="Richiesta/Valutazione/Delibera" table="RICHIESTA_DELIBERA" 
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]|and|exams=visite_exams.xml"
+	cols="3"
+	f_to_call="open_conduzione_studio"
+	>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10"></field>
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+	<!--field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3">
+		<txt_value>First Name </txt_value>
+	</field-->
+	
+	<field type="hidden" var="PROFIT" tb="no" var_type="text" var_size="40" bytb="INFO_STUDIO" bytbcode="PROFIT" bytbdecode="PROFIT" bytbwhere="ID_STUD='[ID_STUD]'"></field>
+	
+	<field cols="3">
+		<txt_value><![CDATA[<tr><td colspan="6"  class=titolo3 align=center><b> Dati amministrativi per l'avvio dello studio</b></td></tr>]]></txt_value>
+	</field>
+	<field type="hidden" var="PC_KEY" cols="2" var_size="20" >
+		<txt_value> Progressivo centri </txt_value>
+	</field>
+	<field type="hidden" var="CENTRO" cols="3" var_size="100">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_CENTRO" cols="3" var_size="200">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	
+	<field cols="3">
+		<txt_value><![CDATA[<tr><td colspan="6" class=titolo3 align=left><b> Provvedimento amministrativo</b></td></tr>]]></txt_value>
+	</field>
+	<field type="radio" var="DELIB" save="obbligatorio" send="obbligatorio" cols="3">
+		<txt_value>Provvedimento amministrativo rilasciato</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+			<value val="3">Silenzio assenso</value>
+	</field>
+	<field type="radio" var="DELIB_TIPO" save="obbligatorio" send="obbligatorio" cols="3" condition="DELIB" condition_value="1" hide="yes">
+		<txt_value>Tipo di provvedimento amministrativo </txt_value>
+			<value val="1">Delibera</value>
+			<value val="2">Notifica di sottoscrizione del contratto</value>
+			<!--value val="3">Comunicazione</value-->
+			<value val="4">Provvedimento</value>
+	</field>	
+	<field type="data" var="DELIB_DT" cols="3" condition="DELIB" condition_value="1" hide="yes" send="obbligatorio">
+		<txt_value>Data del provvedimento amministrativo</txt_value>
+	</field>
+	<field cols="3" type="textbox" var="PROT_NUM" var_type="text"  var_size="30" size="100" condition="DELIB" condition_value="1" hide="yes" send="obbligatorio">
+		<txt_value>Numero protocollo del provvedimento amministrativo</txt_value>
+	</field>	
+	<field condition="DELIB" condition_value="1,3" hide="yes"
+		cols="3"
+		type="file_cme" 
+		var="DELIB_FILE"	
+		THREAD="Delibera amministrativa"
+		TOPIC="Delibera amministrativa"
+		xmlTypeDefinition="cme/delib_amministrativa.xml"
+		auto_approve="yes"
+	>
+		<txt_value><![CDATA[Eventuale allegato documentale del provvedimento amministrativo]]></txt_value>
+	</field>
+	
+	<field cols="3">
+		<txt_value><![CDATA[<tr><td colspan="6" class=titolo3 align=left><b> Contratto tra promotore e rappresentante legale del centro clinico o suo delegato</b></td></tr>]]></txt_value>
+	</field>
+	<field type="checkbox" var="CONTRATTO_NA_CHECK" group="THIS_CHECK" cols="3">
+		<txt_value>Non applicabile</txt_value>
+			<value val="CONTRATTO_NA"></value>
+	</field>
+	<field type="data" var="STIPULA_DT" cols="3"  condition="CONTRATTO_NA" condition_value="!1" hide="yes" send="obbligatorio">
+		<txt_value><![CDATA[Data di stipula del contratto tra promotore e rappresentante legale del centro clinico o suo delegato <br><b><small>(obbligatoria per studi profit)</small></b>]]></txt_value>
+	</field>		
+	<field
+		cols="3"
+		type="file_cme" 
+		var="STIPULA_FILE"	
+		THREAD="Stipula contratto"
+		TOPIC="Stipula contratto"
+		xmlTypeDefinition="cme/delib_amm_stipula.xml"
+		auto_approve="yes"
+	 condition="CONTRATTO_NA" condition_value="!1" hide="yes">
+		<txt_value>
+			<![CDATA[Eventuale allegato documentale del contratto tra promotore e rappresentante legale del centro clinico o suo delegato]]>
+		</txt_value>
+	</field>		
+	
+	<field cols="3">
+		<txt_value><![CDATA[<tr><td colspan="6" class=titolo3 align=left><b> Polizza assicurativa</b></td></tr>]]></txt_value>
+	</field>
+	<field type="radio" var="CHECK_POLIZZA" save="obbligatorio" send="obbligatorio" cols="3">
+		<txt_value>E' prevista una polizza assicurativa?</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="textbox" var_type="text" var_size="100" size="100" var="ASSICURAZIONE" cols="3" send="obbligatorio" condition="CHECK_POLIZZA" condition_value="!2" hide="yes">
+		<txt_value>Assicurazione</txt_value>
+	</field>
+	<field
+		cols="3"
+		type="file_cme" 
+		var="ASS_FILE"	
+		THREAD="Assicurazione"
+		TOPIC="Assicurazione"
+		xmlTypeDefinition="cme/delib_amm_ass.xml"
+		auto_approve="yes"
+	 condition="CHECK_POLIZZA" condition_value="!2" hide="yes">
+		<txt_value><![CDATA[Eventuale allegato di assicurazione]]>
+		</txt_value>
+	</field>		
+	<field cols="3" type="textarea" var="POLIZZA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio"  condition="CHECK_POLIZZA" condition_value="!2" hide="yes">
+		<txt_value><![CDATA[Polizza]]></txt_value>
+	</field> 
+  <field 
+		cols="3"
+		type="file_cme"
+		var="DOC_POLIZZA"
+		THREAD="Polizza"
+		TOPIC="Polizza"
+		xmlTypeDefinition="cme/delib_amm_pol.xml"
+		auto_approve="yes"
+	 condition="CHECK_POLIZZA" condition_value="!2" hide="yes">
+		<txt_value>Documento di polizza</txt_value>
+	</field>
+	<field type="data" var="SCADENZA_DT" cols="3" send="obbligatorio" condition="CHECK_POLIZZA" condition_value="!2" hide="yes">
+		<txt_value>Data di scadenza polizza</txt_value>
+	</field>
+	<!--field type="data" var="APPROVAZIONE_DT" cols="1">
+		<txt_value>Data di approvazione del CE coordinatore</txt_value>
+	</field>
+	<field type="select" show_selected="yes" var="DELIBERA" cols="1" >      
+		<txt_value>Delibera amministrativa</txt_value>
+			<value val="1">Positiva</value>           
+			<value val="2">Negativa</value>         
+	</field>    
+	<field type="data" var="DELIBERA_DT" cols="1">
+		<txt_value>Delibera amministrativa rilasciata il</txt_value>
+	</field>
+	<field type="text" var_size="200" var="TITOLO"  cols="1" bytb="REGISTRAZIONE" bytbcode="TITOLO" bytbdecode="TITOLO" bytbwhere="id_stud=[ID_STUD]" >
+		<txt_value>Titolo sperimentazione</txt_value>
+	</field>
+	<field type="text" var_size="200" var="PROTOCOLLO" cols="1" bytb="FATTIBILITA_LOCALE" bytbcode="PROTOCOLLO" bytbdecode="PROTOCOLLO" bytbwhere="id_stud=[ID_STUD]" >
+		<txt_value>Nr. Protocollo</txt_value>
+	</field>
+	<field type="text" var_size="200" var="EUDRACT" cols="1" bytb="FATTIBILITA_LOCALE" bytbcode="EUDRACT" bytbdecode="EUDRACT" bytbwhere="id_stud=[ID_STUD]" >
+		<txt_value>Codice Eudract</txt_value>
+	</field-->
+	
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

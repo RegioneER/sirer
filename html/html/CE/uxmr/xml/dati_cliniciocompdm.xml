@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Anagrafica Studio" titolo="Dati Clinici" table="RIASSUNTOCP" 
+	link_to="index.php?ID_STUD=[ID_STUD]|and|exams" 
+	cols="3"
+	>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200"></field>
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Dati di riassunto del protocollo terapeutico</b></td>]]></txt_value>
+	</field>
+ 	<!--field type="textarea" var="TITOLO_PROT" var_type="text" cols="3" rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio">
+		<txt_value><![CDATA[Titolo dello studio]]></txt_value>
+	</field-->
+	<field cols="3" type="checkbox_decode" var="ORIGINE" group="CHECK_ORIGINE" group_send="obbligatorio" send="obbligatorio">
+		<txt_value><![CDATA[Richiesta di uso compassionevole deriva da:]]></txt_value>
+			<value val="FAB">Fabbricante</value>
+			<value val="MED">Medico</value>
+	</field>
+	<field type="textbox" var="SPONSOR" var_type="text" var_size="200" cols="3" size="100" send="obbligatorio">
+		<txt_value><![CDATA[Denominazione del fabbricante]]></txt_value>
+	</field>
+	<field type="textarea" var="INDICAZ_TERAP" var_type="text" cols="3" rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio">
+		<txt_value><![CDATA[Motivazione della richiesta di uso compassionevole del dispositivo medico]]></txt_value>
+	</field>
+	<field type="radio" var="ASSICURAZIONE" cols="3" send="obbligatorio">
+		<txt_value>Prevista copertura assicurativa</txt_value>
+			<value val="1">Si</value>
+			<value val="2">No</value>
+	</field>
+	
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

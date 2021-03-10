@@ -1,0 +1,15 @@
+<list titolo="Lista Unita' operative">
+
+	<col tipo="hidden" nome="ID_UO" var="CE_VENETO_DIP.ID_UO" table="CE_VENETO_DIP"  order_by="desc"></col>
+	
+	<col tipo="testo" nome="DENOM" var="CE_VENETO_USERID_CE.DESCRIZIONE" table="CE_VENETO_USERID_CE" where="CE_VENETO_DIP.ID_REF_STR=CE_VENETO_USERID_CE.ID and CE_VENETO_USERID_CE.USERID=[remote_userid]" order_by="asc" ord_arrow="yes">Struttura</col>
+	
+	<col tipo="testo" nome="DESCR_UO" var="CE_VENETO_DIP.DESCR_UO" table="CE_VENETO_DIP" ord_arrow="yes">Unita' Operativa</col>
+	
+	<col tipo="hidden" nome="ID_REF_STR" var="CE_VENETO_DIP.ID_REF_STR" table="CE_VENETO_DIP"></col>
+ 
+	</list>
+
+
+
+ 

@@ -1,0 +1,113 @@
+<#setting locale="it_IT">
+
+<#setting number_format="computer">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Axmr 3.0 &#174; | Document Managment</title>
+    <link href="${baseUrl}/int/css/redmond/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+    <script src="${baseUrl}/int/js/jquery-1.9.1.js"></script>
+    <script src="${baseUrl}/int/js/jquery-ui-1.10.3.custom.js"></script>
+    <script type="text/javascript" src="${baseUrl}/int/js/jquery.tokeninput.js"></script>
+    <script type="text/javascript" src="${baseUrl}/int/js/ajaXmrTab.js"></script>
+    <script type="text/javascript" src="${baseUrl}/int/js/jquery.dropdown.js"></script>
+    <script src="${baseUrl}/int/js/jquery.colorpicker.js"></script>
+    <script src="${baseUrl}/int/js/i18n/jquery.ui.colorpicker-en.js"></script>
+    <script src="${baseUrl}/int/js/swatches/jquery.ui.colorpicker-pantone.js"> </script>
+    <script src="${baseUrl}/int/js/parts/jquery.ui.colorpicker-rgbslider.js"> </script>
+    <script src="${baseUrl}/int/js/parts/jquery.ui.colorpicker-memory.js">    </script>
+    <script src="${baseUrl}/int/js/parsers/jquery.ui.colorpicker-cmyk-parser.js"> </script>
+    <script src="${baseUrl}/int/js/parsers/jquery.ui.colorpicker-cmyk-percentage-parser.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="${baseUrl}/int/css/jquery.dropdown.css" />
+    <link rel="stylesheet" href="${baseUrl}/int/css/token/token-input.css" type="text/css" />
+    <link rel="stylesheet" href="${baseUrl}/int/css/token/token-input-facebook.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="${baseUrl}/int/css/defaultStyle.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="${baseUrl}/int/css/adminConsoleStyle.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="${baseUrl}/int/css/mainMenu.css" media="screen" />
+    <link type="text/css" rel="stylesheet" href="${baseUrl}/int/css/jquery.colorpicker.css">
+
+<style>
+
+.info, .success, .warning, .error, .validation {
+border: 1px solid;
+margin: 10px 0px;
+padding:15px 10px 15px 50px;
+background-repeat: no-repeat;
+background-position: 10px center;
+min-width: 92%;
+position: fixed;
+top: 0px;
+z-index: 10000;
+}
+.info {
+color: #00529B;
+background-color: #BDE5F8;
+}
+.success {
+color: #4F8A10;
+background-color: #DFF2BF;
+}
+.warning {
+color: #9F6000;
+background-color: #FEEFB3;
+}
+.error {
+color: #D8000C;
+background-color: #FFBABA;
+}
+
+</style>
+<script>
+    $(document).ready(function(){
+        $(window).keydown(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+        $('.datePicker').datepicker({ dateFormat: 'dd/mm/yy' });
+        $('.colorpicker').colorpicker({
+            regional: 'en',
+            ok: function (color){
+
+                console.log(color);
+                console.log($(this).val());
+                $(this).css("background-color", "#"+$(this).val());
+            }
+        });
+        $('.colorpicker').each(function(){
+            $(this).css('background-color', '#'+$(this).val());
+
+        });
+    });
+
+
+
+</script>
+<#include "lib/stdIncludes.ftl">
+<#include "lib/macros.ftl">
+<#include "documents/js/jsLoader.js.ftl"/>
+</head>
+<body>
+<#include "topBanner.ftl">
+<#if userDetails??>
+    <#include "mainMenu.ftl">
+</#if>
+    <#include mainContent>
+
+
+<div class="modal">
+    <span class="modalblock"><img id="modalImg" width="48px"/><span id="modalMessage"/></span>
+</div>
+<div class="info" style="display:none">Info message</div>
+
+<div class="success" style="display:none">Successful operation message</div>
+
+<div class="warning" style="display:none">Warning message</div>
+
+<div class="error" style="display:none">Error message</div>
+
+
+</body>
+</html>

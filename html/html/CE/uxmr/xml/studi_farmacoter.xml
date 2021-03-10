@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Farmaco" titolo="Farmaco" table="FARMACO"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	field_tb_show="PRINC_ATT_DESCR"
+	tb_header="Descrizione del principio attivo"
+	>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+	</field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="4"  class=titolo3 align=center><b>Farmaco in protocollo di uso terapeutico</b></td>]]></txt_value>
+	</field>
+	<!--field colspan="4" cols="2" type="textbox" var="MEDICINALE" var_type="text" var_size="90" size="100" send="obbligatorio">
+		<txt_value><![CDATA[Medicinale che si intende utilizzare &nbsp;]]></txt_value>
+	</field-->
+	<!--field cols="2" type="textbox" var="ATC" var_type="text" var_size="10" size="20" ACTION_TYPE="onclick" DISABLED_ALWAYS="yes">
+		<txt_value><![CDATA[ATC <br><a href="/errorejs.htm" onclick="window.open('sfoglia_atc.php?CODE=ATC&amp;DECODE=DATC&amp;LIVELLO=LATC&amp;GROUP=GDATC','finestraindipendente','scrollbars=no,resizable=yes,width=1000,height=600'); return false;"><b>Ricerca nella banca dati</b></a>]]></txt_value>
+	</field>
+	<field cols="2" type="textbox" var="LATC" var_type="text" var_size="20" size="5" DISABLED_ALWAYS="yes"	>
+		<txt_value><![CDATA[ATC livello]]></txt_value>
+	</field>
+	<field cols="2" type="textbox" var="DATC" var_type="text" var_size="80" size="80" DISABLED_ALWAYS="yes"	>
+		<txt_value><![CDATA[ATC descrizione]]></txt_value>
+	</field>
+	<field cols="2" type="textbox" var="GDATC" var_type="text" var_size="80" size="80" DISABLED_ALWAYS="yes"	>
+		<txt_value><![CDATA[Gruppo ATC]]></txt_value>
+	</field>
+	<field cols="2"> 
+		<txt_value><![CDATA[<td colspan="4" align=left>Specificare la dose totale (valore e unit&agrave;) </td>]]></txt_value>
+	</field>
+	<field colspan="2" cols="1" type="textbox" var="DOSE_INIZIALE_FH_VAL" var_type="number" var_size="90" size="10" save="facoltativo">
+		<txt_value><![CDATA[valore&nbsp;]]></txt_value>
+	</field>
+	<field type="select" colspan="2" cols="1" var="DOSE_INIZIALE_FH_UNIT" show_selected="yes" bytb="UNITA_MISURA" bytbcode="CODE" BYTBDECODE="DECODE" BYTBORDERBY="DECODE ASC">  
+	</field>
+	<field colspan="4" cols="2" type="textbox" var="NR_SOMM" var_type="number" var_size="90" size="100" save="facoltativo">
+		<txt_value><![CDATA[Nr. di somministrazioni&nbsp;]]></txt_value>
+	</field>
+	<field cols="2" >
+		<txt_value></txt_value>
+	</field>
+	<field colspan="4" cols="2" type="textbox" var="PRODUTTORE" var_type="text" var_size="90" size="100">
+		<txt_value><![CDATA[Impresa produttrice &nbsp;]]></txt_value>
+	</field>
+	<field cols="2" type="select" var="VIA_SOMMIN" show_selected="yes" bytb="VIE_SOMMIN" bytbcode="ID" BYTBDECODE="DESCRIZIONE" BYTBORDERBY="DESCRIZIONE ASC" >  
+		<txt_value><![CDATA[Via di somministrazione]]></txt_value>
+	</field-->
+	<!--field cols="2" type="radio" var="CATEGORIA">
+		<txt_value><![CDATA[Categoria del trattamento farmacologico]]></txt_value>
+			<value val="1">Test</value>
+			<value val="2">Comparatore</value>
+	</field>
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="4" align=left>Specificare la dose totale (valore e unita') </td>]]></txt_value>
+	</field>
+	<field colspan="2" cols="1" type="textbox" var="DOSE_INIZIALE_FH_VAL" var_type="text" var_size="90" size="10">
+		<txt_value><![CDATA[]]></txt_value>
+	</field>
+	<field type="select" colspan="2" cols="1" var="DOSE_INIZIALE_FH_UNIT" show_selected="yes" bytb="UNITA_MISURA" bytbcode="CODE" BYTBDECODE="DECODE" BYTBORDERBY="DECODE ASC">  
+	</field>
+	<field colspan="4" cols="2" type="textbox" var="NR_SOMM" var_type="text" var_size="90" size="100">
+		<txt_value><![CDATA[]]>Nr. di somministrazioni</txt_value>
+	</field-->
+	<!--field colspan="4" cols="2" type="textbox" var="DURATA" var_type="text" var_size="90" size="100">
+		<txt_value><![CDATA[]]>Durata dello studio</txt_value>
+	</field-->
+	<field cols="2" type="textarea" var="PRINC_ATT_DESCR" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio">
+		<txt_value><![CDATA[Descrizione del principio attivo]]></txt_value>
+	</field>
+	<field cols="2" type="textarea" var="SCHEMA_TER" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio">
+		<txt_value><![CDATA[Schema terapeutico]]></txt_value>
+	</field>	
+	<field cols="2" type="radio" var="AUTO_ITA">
+		<txt_value><![CDATA[Il farmaco &egrave; in commercio]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field cols="2" type="textarea" var="INDICAZIONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_ITA" condition_value="1">
+		<txt_value><![CDATA[Se s&igrave; con quale indicazione]]></txt_value>
+	</field> 
+	<field cols="2" type="textarea" var="PAESIITA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_ITA" condition_value="1">
+		<txt_value><![CDATA[Se s&igrave; indicare in quali Paesi]]></txt_value>
+	</field>
+	<field cols="2" type="radio" var="INDIC_DIFF" hide="yes" condition="AUTO_ITA" condition_value="2">
+		<txt_value><![CDATA[Se il farmaco non e' in commercio o lo si vuole utilizzare per un'indicazione diversa da quella per cui e' registrato, indicare se]]></txt_value>
+			<value val="1">il farmaco per l'indicazione d'uso e' sottoposto a sperimentazione clinica di fase III, in corso o conclusa</value>
+			<value val="2">il farmaco per l'indicazione d'uso e' sottoposto a sperimentazione clinica di fase II conclusa</value>
+	</field>
+	
+	<field cols="2" type="textarea" var="PAESI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="AUTO_EST" condition_value="1">
+		<txt_value><![CDATA[Se s&igrave; indicare in quali Paesi]]></txt_value>
+  </field> 
+    <field cols="2" type="textarea" var="INDICAZIONE_PROP" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000">
+    	<txt_value><![CDATA[Indicazione proposta per l'uso del farmaco]]></txt_value>
+  </field>
+  <!--field cols="2" type="radio" var="FARMACIA_COINV">
+		<txt_value><![CDATA[L'uso terapeutico del farmaco prevede il coinvolgimento diretto della Farmacia Ospedaliera nella preparazione]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field-->
+	<field cols="2" type="radio" var="FARMACIA">
+			<txt_value><![CDATA[Il coinvolgimento della farmacia ospedaliera/territoriale &egrave; previsto per]]></txt_value>
+				<value val="1">la randomizzazione</value>
+				<value val="2">la preparazione del/i farmaco/i sperimentale/i</value>
+				<value val="3">altro</value>
+		</field>
+		<field cols="2" type="checkbox_decode" var="COINV_FARMA" group="CHECK_FARMA" hide="yes" condition="FARMACIA" condition_value="2" send="obbligatorio" group_send="obbligatorio">
+			<txt_value>opzioni</txt_value>
+				<value val="FAT">esecuzione di studio di fattibilità/definizione della formulazione</value>
+				<value val="ALLE">allestimento del/i farmaco/i sperimentale/i</value>
+				<value val="RIC">ricostituzione/diluizione, anche in dose personalizzata</value>
+				<value val="CONF">confezionamento/mascheramento</value>
+				<value val="SMAL">eventuale smaltimento farmaci residui o scaduti</value>
+		</field>  
+		<field cols="2" var="ALTRO_FARM" type="textarea" var_type="text" rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="FARMACIA" condition_value="3" send="obbligatorio">
+			<txt_value><![CDATA[Se altro, specificare]]></txt_value>
+		</field>
+	
+	<field cols="2" type="radio" var="USO_FARMACO" send="obbligatorio">
+		<txt_value><![CDATA[L'uso del farmaco e' rivolto a]]></txt_value>
+			<value val="1">pazienti non trattati nell'ambito di studi clinici</value>
+			<value val="2">pazienti che hanno partecipato ad una sperimentazione clinica che ha dimostrato un profilo di efficacia e tollerabilita' tale da configurare la necessita' di poter continuare a fuire, con la massima tempestivita', dei risultati ottenuti</value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI" var_type="text" var_size="13" size="13" send="obbligatorio" cols="2" hide="yes" condition="USO_FARMACO" condition_value="1">
+		<txt_value><![CDATA[Iniziali nome e cognome]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO" cols="2" send="obbligatorio" hide="yes" condition="USO_FARMACO" condition_value="1">
+		<txt_value>Sesso</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT" def="(gg/mm/aaaa)" send="obbligatorio" hide="yes" condition="USO_FARMACO" condition_value="1">
+		<txt_value>Data di nascita</txt_value>
+	</field>
+	
+	<!--field type="textbox" var="INIZIALI_MULTI_1" var_type="text" var_size="13" size="13" send="obbligatorio" cols="2" hide="yes" condition="USO_FARMACO" condition_value="2">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 1]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_1" cols="2" send="obbligatorio" hide="yes" condition="USO_FARMACO" condition_value="2">
+		<txt_value>Sesso paziente 1</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_1" def="(gg/mm/aaaa)" send="obbligatorio" hide="yes" condition="USO_FARMACO" condition_value="2">
+		<txt_value>Data di nascita paziente 1</txt_value>
+	</field-->
+	
+	<field type="textbox" var="INIZIALI_MULTI_2" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 2]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_2" cols="2" hide="yes" condition="INIZIALI" condition_value="!">
+		<txt_value>Sesso paziente 2</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_2" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI" condition_value="!">
+		<txt_value>Data di nascita paziente 2</txt_value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI_MULTI_3" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI_MULTI_2" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 3]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_3" cols="2" hide="yes" condition="INIZIALI_MULTI_2" condition_value="!">
+		<txt_value>Sesso paziente 3</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_3" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI_MULTI_2" condition_value="!">
+		<txt_value>Data di nascita paziente 3</txt_value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI_MULTI_4" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI_MULTI_3" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 4]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_4" cols="2" hide="yes" condition="INIZIALI_MULTI_3" condition_value="!">
+		<txt_value>Sesso paziente 4</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_4" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI_MULTI_3" condition_value="!">
+		<txt_value>Data di nascita paziente 4</txt_value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI_MULTI_5" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI_MULTI_4" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 5]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_5" cols="2" hide="yes" condition="INIZIALI_MULTI_4" condition_value="!">
+		<txt_value>Sesso paziente 5</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_5" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI_MULTI_4" condition_value="!">
+		<txt_value>Data di nascita paziente 5</txt_value>
+	</field>
+	
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

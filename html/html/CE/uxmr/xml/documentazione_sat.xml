@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="DOCUMENTAZIONE" titolo="DOCUMENTAZIONE" table="DOCUMENTAZIONE"
+	FIELD_TB_SHOW="'#b#Area: #/b#' ||D_AREA_DOC ||' #br# #b#Tipo: #/b# '||D_TIPO_DOC_1||D_TIPO_DOC_2||D_TIPO_DOC_3||D_TIPO_DOC_4||D_TIPO_DOC_5||D_TIPO_DOC_6||'#br# #b#Descrizione: #/b#' ||DESCR_AGG" TB_HEADER="tipologia"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	 cols="1"
+>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"> <value val="next"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+  <field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="INVIOCO" tb="no"></field>
+	<field type="hidden" var="CENTER" var_type="text" var_size="8"></field>
+	<field type="hidden" var="CODE1" var_type="number"></field>
+	<field type="hidden" var="CODE2" var_type="number"></field>
+	<field type="hidden" var="CORE" var_type="number"></field>
+	<field type="hidden" var="COORD" var_type="number"></field>
+	<field type="hidden" var="CS" var_type="number"></field>
+	<field type="hidden" var="D_DOCUMENTO" var_type="text" var_size="400" ></field>
+
+	<field type="hidden" var="CODICE" var_type="text" var_size="40" bytb="REGISTRAZIONE" bytbcode="CODICE" bytbdecode="CODICE" bytbwhere="ID_STUD='[ID_STUD]'" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+
+	<field>
+	<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Nuovo Documento</b></td>]]></txt_value>
+	</field>
+    
+    <field type="select" var="AREA_DOC" show_selected="yes"  send="obbligatorio"
+    bytb="AREA_DOCUMENTI" bytbcode="ID" BYTBDECODE="AREA" bytbwhere="CS=1" bytborderby="ID">
+			<txt_value>Area del documento </txt_value>
+	  </field>
+    
+    <field type="select" var="TIPO_DOC_1" show_selected="yes"  send="obbligatorio" 
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO"
+    condition="AREA_DOC" condition_value="1" hide="yes"
+    bytbwhere="CS=1 and CODE1=1" bytborderby="CODE2"> 
+		<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+		</field>
+		
+		<field type="select" var="TIPO_DOC_2" show_selected="yes"  send="obbligatorio" 
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO"
+    condition="AREA_DOC" condition_value="2" hide="yes"
+    bytbwhere="CS=1 and CODE1=2" bytborderby="CODE2"> 
+		<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+		</field>
+		
+		<field type="select" var="TIPO_DOC_3" show_selected="yes"  send="obbligatorio" 
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO"
+    condition="AREA_DOC" condition_value="3" hide="yes"
+    bytbwhere="CS=1 and CODE1=3" bytborderby="CODE2"> 
+		<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+		</field>
+		
+		<field type="select" var="TIPO_DOC_4" show_selected="yes"  send="obbligatorio" 
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO"
+    condition="AREA_DOC" condition_value="4" hide="yes"
+    bytbwhere="CS=1 and CODE1=4" bytborderby="CODE2"> 
+		<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+		</field>
+		
+		<field type="select" var="TIPO_DOC_5" show_selected="yes"   send="obbligatorio" 
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO"
+    condition="AREA_DOC" condition_value="5" hide="yes"
+    bytbwhere="CS=1 and CODE1=5" bytborderby="CODE2"> 
+		<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+		</field>
+		
+		<field type="select" var="TIPO_DOC_6" show_selected="yes"  send="obbligatorio" 
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO"
+    condition="AREA_DOC" condition_value="6" hide="yes"
+    bytbwhere="CS=1 and CODE1=6" bytborderby="CODE2"> 
+		<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+		</field>
+		
+		<field type="textbox" var="DESCR_AGG" cols="2" var_size="80" size="80">
+    	<txt_value>Descrizione aggiuntiva</txt_value>
+    </field>
+	
+		<field type="data" var="DOC_DT"  send="obbligatorio">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="DOC_VERS" var_type="text" var_size="30" size="30"  send="obbligatorio">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+		
+		
+	<field type="multicheck" var="SAT" send="obbligatorio" bytb="CENTRI_SC" bytbcode="CE_USERID" bytbdecode="CE_DENOM" bytbwhere="ID_SPER=[ID_SPER]">
+		<txt_value>Selezionare i centri:</txt_value>
+	</field>
+		
+		<field 
+    type="file_doc" 
+    var="DOC_SAT"
+    THREAD="Documentazione centro specifica" 
+    TOPIC="Centro Specifica"
+    send="obbligatorio">
+    <txt_value>Attach</txt_value>
+   </field>
+	
+  	<save>Inserisci documento</save>
+	<cancel>Annulla</cancel>		
+</form>
+   
+		

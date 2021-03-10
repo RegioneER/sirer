@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title><!-- titolo --></title>
+<!--link rel="shortcut icon" href="LOGIN/images/favicon.ico" type="image/x-icon" /-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Description" content="Cineca WEB Login" />
+<!-- link rel="stylesheet" type="text/css" href="LOGIN/css/login.css" /-->
+<link rel="stylesheet" type="text/css" href="<!-- css -->" />
+<script type="text/javascript" src="LOGIN/js/login.js"></script>
+</head>
+<body>
+
+<center>
+<table class="main-box" cellpadding="0" cellspacing="0">
+	<!-- START - ROW TOP SX -->
+	<tr>
+		<td class="main-top-sx"></td>
+		<td class="main-top"></td>
+		<td class="main-top-dx"></td>
+	</tr>
+	<!-- FINE - ROW TOP SX -->
+	
+	<!-- START - ROW CORPO -->
+	<tr>
+		<td class="main-sx"></td>
+		<td class="main-cx">
+		
+			<!-- START - Login Box -->
+			<div class="login-box">
+				<!-- START - Input Box -->
+				<center>
+				<div class="input-box">
+					<form action="<!-- action -->" method="post">
+					<!-- hiddens -->
+					<table class="input-tb">
+						<tr>
+							<td style="height:70px;"><!-- <img src="images/cineca-logo-box.gif" /> --></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td style="text-align:right;"><label for="j_username" class="bold"><!-- username -->&nbsp;&raquo;</label></td>
+							<td class="center">
+								<table style="margin:0 auto;" cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="textbox-sx-user"></td>
+										<td class="textbox-cx"><input type="text" class="textbox" id="j_username" name="j_username"/></td>
+										<td class="textbox-dx"></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td style="text-align:right;"><label for="j_password" class="bold"><!-- password -->&nbsp;&raquo;</label></td>
+							<td class="center">
+								<table style="margin:0 auto;" cellpadding="0" cellspacing="0">
+									<tr>
+										<td class="textbox-sx-pass"></td>
+										<td class="textbox-cx"><input type="password" class="textbox" id="j_password" name="j_password"/></td>
+										<td class="textbox-dx"></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="2" class="center">
+								<table style="margin:0 auto;" cellpadding="0" cellspacing="0">
+									<tr>
+										<td id="TD-LOGIN-SX" class="button-sx"></td>
+										<td id="TD-LOGIN-CX" class="button-cx">
+											<input onmousedown="change_img('TD-LOGIN-SX', 'LOGIN/images/button-sx-dark-down.gif');change_img('TD-LOGIN-CX', 'LOGIN/images/button-cx-dark-down.gif');change_img('TD-LOGIN-DX', 'LOGIN/images/button-dx-dark-down.gif');" onmouseover="change_img('TD-LOGIN-SX', 'LOGIN/images/button-sx-dark-hover.gif');change_img('TD-LOGIN-CX', 'LOGIN/images/button-cx-dark-hover.gif');change_img('TD-LOGIN-DX', 'LOGIN/images/button-dx-dark-hover.gif');" onmouseout="change_img('TD-LOGIN-SX', 'LOGIN/images/button-sx-dark.gif');change_img('TD-LOGIN-CX', 'LOGIN/images/button-cx-dark.gif');change_img('TD-LOGIN-DX', 'LOGIN/images/button-dx-dark.gif');" type="submit" class="button" id="LOGIN" name="LOGIN" value="<!-- login-button -->"/>
+										</td>
+										<td id="TD-LOGIN-DX" class="button-dx"></td>
+										
+										<td>&nbsp;</td>
+										<td>&nbsp;</td>
+										
+										<td id="TD-PASS-SX" class="button-sx"></td>
+										<td id="TD-PASS-CX" class="button-cx">
+											<input onmousedown="change_img('TD-PASS-SX', 'LOGIN/images/button-sx-dark-down.gif');change_img('TD-PASS-CX', 'LOGIN/images/button-cx-dark-down.gif');change_img('TD-PASS-DX', 'LOGIN/images/button-dx-dark-down.gif');" onmouseover="change_img('TD-PASS-SX', 'LOGIN/images/button-sx-dark-hover.gif');change_img('TD-PASS-CX', 'LOGIN/images/button-cx-dark-hover.gif');change_img('TD-PASS-DX', 'LOGIN/images/button-dx-dark-hover.gif');" onmouseout="change_img('TD-PASS-SX', 'LOGIN/images/button-sx-dark.gif');change_img('TD-PASS-CX', 'LOGIN/images/button-cx-dark.gif');change_img('TD-PASS-DX', 'LOGIN/images/button-dx-dark.gif');" type="reset" class="button" id="CANCELLA" name="CANCELLA" value="<!-- cancel-button -->"/>
+										</td>
+										<td id="TD-PASS-DX" class="button-dx"></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr><td colspan="2" style="text-align:center;font-weight:bold;font-size:16px;color:#e60000;"><!-- login-error --></td></tr>
+						<tr><td colspan="2" style="text-align:left;">&nbsp;&nbsp;&nbsp;<a class="link" href="forget_password/"><!-- lost-password --></a></td></tr>
+					</table>
+					</form>
+				</div>
+				</center>
+				<!-- FINE - Input Box -->
+			</div>
+			<!-- FINE - Login Box -->
+		</td>
+		<td class="main-dx"></td>
+	</tr>
+	<!-- FINE - ROW CORPO -->
+	
+	<!-- START - ROW BOTTOM -->
+	<tr>
+		<td class="main-bottom-sx"></td>
+		<td class="main-bottom"></td>
+		<td class="main-bottom-dx"></td>
+	</tr>
+	<!-- FINE - ROW BOTTOM -->
+</table>
+</center>
+<div class="footer">&copy; <!-- siss --> 2010 - <!-- reserved -->.</div>
+<!-- out_code -->
+</body>
+</html>

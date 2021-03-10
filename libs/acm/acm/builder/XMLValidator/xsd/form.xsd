@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid XML Studio Developer Edition (Trial) 8.1.4.2482 (http://www.liquid-technologies.com)-->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="form">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+                    <xs:complexType>
+                    	<xs:sequence minOccurs="0">
+                            <xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:string">
+                                            <xs:attribute name="val" type="xs:string" use="optional" />
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="rangecheck" minOccurs="0" maxOccurs="unbounded">
+                            	<xs:complexType>
+                                    <xs:sequence  minOccurs="0">
+                                        <xs:element name="checkValue" type="xs:string" minOccurs="1" />
+                                        <xs:element name="message" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	                                </xs:sequence>
+	                                <xs:attribute name="comparator" type="xs:string" use="required" />
+                                    <xs:attribute name="level" type="xs:string" use="required" />
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="txt_value" type="xs:string" minOccurs="0" maxOccurs="1">
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="type" type="xs:string" use="optional" />
+                        <xs:attribute name="upper" type="xs:string" use="optional" />
+                        <xs:attribute name="var" type="xs:string" use="required" />
+                        <xs:attribute name="var_type" type="xs:string" use="optional" />
+                        <xs:attribute name="pk" type="xs:string" use="optional" />
+                        <xs:attribute name="var_size" type="xs:unsignedInt" use="optional" />
+                        <xs:attribute name="bytbnoprefix" type="xs:string" use="optional" />
+                        <xs:attribute name="bytb" type="xs:string" use="optional" />
+                        <xs:attribute name="bytbcode" type="xs:string" use="optional" />
+                        <xs:attribute name="bytbdecode" type="xs:string" use="optional" />
+                        <xs:attribute name="bytbwhere" type="xs:string" use="optional" />
+                        <xs:attribute name="bytborderby" type="xs:string" use="optional" />
+                        <xs:attribute name="sec_progr" type="xs:string" use="optional" />
+                        <xs:attribute name="tb" type="xs:string" use="optional" />
+                        <xs:attribute name="cols" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="colspan" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="subtbcol" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="multirec" type="xs:string" use="optional" />
+                        <xs:attribute name="size" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="min" type="xs:string" use="optional" />
+                        <xs:attribute name="max" type="xs:string" use="optional" />
+                        <xs:attribute name="crypto" type="xs:string" use="optional" />
+                        <xs:attribute name="onclick" type="xs:string" use="optional" />
+                        <xs:attribute name="onclick_rubber" type="xs:string" use="optional" />
+                        <xs:attribute name="condition" type="xs:string" use="optional" />
+                        <xs:attribute name="condition_value" type="xs:string" use="optional" />
+                        <xs:attribute name="compila_condition_var" type="xs:string" use="optional" />
+                        <xs:attribute name="compila_condition_value" type="xs:string" use="optional" />
+                        <xs:attribute name="compila_condition_op" type="xs:string" use="optional" />
+                        <xs:attribute name="compila" type="xs:string" use="optional" />
+                        <xs:attribute name="hide" type="xs:string" use="optional" />
+                        <xs:attribute name="fm_code" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="dspec" type="xs:string" use="optional" />
+                        <xs:attribute name="dcont" type="xs:string" use="optional" />
+                        <xs:attribute name="send" type="xs:string" use="optional" />
+                        <xs:attribute name="save" type="xs:string" use="optional" />
+                        <xs:attribute name="description" type="xs:string" use="optional" />
+                        <xs:attribute name="on_Blur" type="xs:string" use="optional" />
+                        <xs:attribute name="on_action" type="xs:string" use="optional" />
+                        <xs:attribute name="action_type" type="xs:string" use="optional" />
+                        <xs:attribute name="tcols" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="rows" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="show_vis" type="xs:string" use="optional" />
+                        <xs:attribute name="show_selected" type="xs:string" use="optional" />
+                        <xs:attribute name="field_align" type="xs:string" use="optional" />
+                        <xs:attribute name="txt_align" type="xs:string" use="optional" />
+                        <xs:attribute name="label_js" type="xs:string" use="optional" />
+                        <xs:attribute name="def" type="xs:string" use="optional" />
+                        <xs:attribute name="disabled" type="xs:string" use="optional" />
+                        <xs:attribute name="disabled_always" type="xs:string" use="optional" />
+                        <xs:attribute name="main" type="xs:string" use="optional" />
+                        <xs:attribute name="hide_this" type="xs:string" use="optional" />
+                        <xs:attribute name="hidevis" type="xs:string" use="optional" />
+                        <xs:attribute name="value" type="xs:string" use="optional" />
+                        <xs:attribute name="disabled_val" type="xs:string" use="optional" />
+                        <xs:attribute name="checked" type="xs:string" use="optional" />
+                        <xs:attribute name="group" type="xs:string" use="optional" />
+                        <xs:attribute name="value_group" type="xs:string" use="optional" />
+                        <xs:attribute name="nday" type="xs:string" use="optional" />
+                        <xs:attribute name="nndayvalue" type="xs:string" use="optional" />
+                        <xs:attribute name="nnmonthvalue" type="xs:string" use="optional" />
+                        <xs:attribute name="rangecheck_operator" type="xs:string" use="optional" />
+						<xs:attribute name="browse" type="xs:string" use="optional" />
+                        <xs:attribute name="search" type="xs:string" use="optional" />
+						<xs:attribute name="browse_param" type="xs:string" use="optional" />
+                        <xs:attribute name="search_param" type="xs:string" use="optional" />
+                        <xs:attribute name="hide_label" type="xs:string" use="optional" />
+						<xs:attribute name="span" type="xs:string" use="optional" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:sequence>
+                	<xs:choice minOccurs="0" maxOccurs="unbounded">
+                    	<xs:element name="save" type="xs:string" minOccurs="0" />
+                    	<xs:element name="send" type="xs:string" minOccurs="0" />
+                    	<xs:element name="cancel" type="xs:string" minOccurs="0" />
+	    			</xs:choice>
+	    			<xs:element name="enable" minOccurs="0">
+                        <xs:complexType>
+                            <xs:choice>
+                                <xs:element name="exam" minOccurs="0" maxOccurs="unbounded">
+                                    <xs:complexType>
+                                        <xs:simpleContent>
+                                            <xs:extension base="xs:string">
+                                                <xs:attribute name="number" type="xs:unsignedByte" />
+                                                <xs:attribute name="visitnum" type="xs:unsignedByte" />
+                                            </xs:extension>
+                                        </xs:simpleContent>
+                                    </xs:complexType>
+                                </xs:element>
+                            </xs:choice>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+            </xs:sequence>
+            <xs:attribute name="fname" type="xs:string" use="required" />
+            <xs:attribute name="titolo" type="xs:string" use="required" />
+            <xs:attribute name="table" type="xs:string" use="required" />
+            <xs:attribute name="link_to" type="xs:string" use="required" />
+            <xs:attribute name="link_to_send" type="xs:string" use="optional" />
+            <xs:attribute name="cols" type="xs:unsignedByte" use="optional" />
+            <xs:attribute name="load" type="xs:string" use="optional" />
+            <xs:attribute name="js_function" type="xs:string" use="optional" />
+            <xs:attribute name="js_onsave" type="xs:string" use="optional" />
+            <xs:attribute name="f_to_call" type="xs:string" use="optional" />
+            <xs:attribute name="main_field" type="xs:string" use="optional" />
+            <xs:attribute name="main_field_value" type="xs:string" use="optional" />
+            <xs:attribute name="field_tb_show" type="xs:string" use="optional" />
+            <xs:attribute name="tb_header" type="xs:string" use="optional" />
+            <xs:attribute name="table_sub" type="xs:string" use="optional" />
+            <xs:attribute name="main_form_file_name" type="xs:string" use="optional" />
+            <xs:attribute name="sub_form_file_name" type="xs:string" use="optional" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

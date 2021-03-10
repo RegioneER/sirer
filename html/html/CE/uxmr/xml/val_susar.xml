@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Susar" titolo="Susar" table="SUSAR"
+	link_to="index.php?ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]"
+	cols="3"
+	field_tb_show="D_CENTRO||' - '||EVENTO_DT||' - '||D_GRAVITA||' - '||DESC_EVENTO"
+	tb_header="Centro - Data evento - Tipologia - Descrizione"
+	f_to_call="action_susar"
+>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+	<!--field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3" send="obbligatorio">
+			<txt_value>First Name </txt_value>
+  </field-->
+ 
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Eventi avversi seri farmaco/dispositivo </b></td>]]></txt_value>
+	</field>
+	<field type="text" var="D_CENTRO" cols="3"  bytb="CENTRILOCALI" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_PRINC_INV" cols="3" var_size="200" bytb="CENTRILOCALI" bytbcode="D_PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value>Principal Investigator</txt_value>
+	</field>
+	<field type="hidden" var="PRINC_INV" cols="3" var_size="20" bytb="CENTRILOCALI" bytbcode="PRINC_INV" bytbdecode="PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value> Sperimentatore responsabile</txt_value>
+	</field>
+	<field type="textbox" var="ID_PAZ" var_type="text"  var_size="30" size="30" cols="1" send="obbligatorio">
+		<txt_value>Codice Paziente</txt_value>
+	</field>
+	<field type="radio" var="SESSO" cols="1" send="obbligatorio">
+		<txt_value>Sesso Paziente</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field type="textbox" var="ETA_PAZ" var_type="number" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="1">
+		<txt_value>Eta' Paziente</txt_value>
+	</field>
+	<field type="data" var="EVENTO_DT" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value>Data dell'evento (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="data" var="RIC_EVENTO_DT" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value>Data del ricevimento (gg/mm/yyyy)</txt_value>
+	</field>
+	<field type="multicheck" var="SUSPECT_DRUG" bytb="LISTA_FARMACI" bytbcode="PAIR_FARM" bytbdecode="OGGETTO_STUDIO" bytbwhere="ID_STUD=[ID_STUD]" cols="3" save="obbligatorio" send="obbligatorio">
+		<txt_value><![CDATA[Selezionare i farmaci/dispositivi]]></txt_value>
+	</field>
+	<field type="textbox" var="DOSE_SINGOLA2" var_type="text" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="3">
+		<txt_value>Dose singola assunta dal paziente</txt_value>
+	</field>
+	<field type="textbox" var="DOSE_TOT2" var_type="text" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="3">
+		<txt_value>Dose totale assunta dal paziente</txt_value>
+	</field>
+	<!--field type="multicheck" var="SUSPECT_DRUG" bytb="LISTA_FARMACI" bytbcode="PAIR_FARM" bytbdecode="OGGETTO_STUDIO" bytbwhere="ID_STUD=[ID_STUD]" cols="3" save="obbligatorio" send="obbligatorio">
+		<txt_value><![CDATA[Selezionare i faramaci/dispositivi]]></txt_value>
+	</field>
+	<field type="textbox" var="DOSE_SINGOLA" var_type="number" save="facoltativo" send="facoltativo" var_size="30" size="30" cols="3">
+		<txt_value>Dose singola assunta dal paziente</txt_value>
+	</field>
+	<field type="textbox" var="DOSE_TOT" var_type="number" save="facoltativo" send="facoltativo" var_size="30" size="30" cols="3">
+		<txt_value>Dose totale assunta dal paziente</txt_value>
+	</field-->
+	<field type="textarea" var="DESC_EVENTO" var_size="1000" var_type="text" tcols="80" rows="3" cols="3">
+		<txt_value><![CDATA[Descrizione evento<i>(testo libero max 3900 caratteri)</i>]]></txt_value>
+	</field>
+	<field type="radio" var="GRAVITA" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Gravit&agrave; evento]]></txt_value>
+			<value val="1">Grave</value>
+			<value val="2">Non grave</value>
+			<value val="3">Risultati anomali di laboratorio</value>
+	</field>
+	<field type="select" var="TIPOLOGIA" cols="3" show_selected="yes" send="obbligatorio" hide="yes" condition="GRAVITA" condition_value="1">
+		<txt_value>Tipologia di evento grave</txt_value>
+			<value val="1">Decesso</value>
+			<value val="2">Ospedalizzaizone o prolungamento ospedaliero</value>
+			<value val="3">Invalidita' grave o permanente</value>
+			<value val="4">Ha messo in pericolo di vita</value>
+			<value val="5">Anomalia congenita</value>
+			<value val="6">Importante evento clinico</value>
+			<value val="7">Altro</value>
+	</field>
+	<field type="textbox" var="ALTRO_SPEC" var_type="text" condition="TIPOLOGIA" condition_value="7" hide="yes" var_size="30" size="30" cols="3" send="obbligatorio">
+		<txt_value>Se altro, specificare</txt_value>
+	</field>
+	<field type="select" var="AZIONI_INT" cols="3" show_selected="yes" send="obbligatorio">
+		<txt_value>Azioni intraprese</txt_value>
+			<value val="1">Nessuna</value>
+			<value val="2">Dose ridotta</value>
+			<value val="3">Trattamento interrotto temporaneamente</value>
+			<value val="4">Trattamento sospeso definitivamente</value>
+	</field>
+	<field type="select" var="OUTCOME" cols="3" show_selected="yes" send="obbligatorio">
+		<txt_value>Esito clinico</txt_value>
+			<value val="1">Fatale</value>
+			<value val="2">Non guarito/Non risolto</value>
+			<value val="3">Guarito/Risolto</value>
+			<value val="4">Guarito/Risolto con sequele</value>
+			<value val="5">In guarigione/Risoluzione</value>
+			<value val="6">Non noto</value>
+	</field>
+	<field type="textbox" var_type="text" var_size="100" size="100" var="SEGNALATORE2" cols="3" send="obbligatorio">
+		<txt_value>Segnalatore</txt_value>
+	</field>
+	<field type="select" var="NESSO" cols="3" show_selected="yes" send="obbligatorio">
+		<txt_value><![CDATA[Nesso di casualita]]></txt_value>
+			<value val="1">Nessun collegamento</value>
+			<value val="2">Improbabile</value>
+			<value val="3">Possibile</value>
+			<value val="4">Probabile</value>
+			<value val="5">Certo</value>
+			<value val="6">Non rilevabile</value>
+	</field>
+	<field cols="3" type="textarea" var="ALTRO_SAE" var_size="1000" var_type="text" tcols="80" rows="3">
+		<txt_value><![CDATA[Altre informazioni</i>]]></txt_value>
+	</field>
+	
+	<field cols="3"
+    type="file_cme" 
+    var="SAE_FILE"
+    THREAD="Eventuale allegato documentale SAE"
+    TOPIC="Eventuale allegato documentale SAE"
+    xmlTypeDefinition="cme/val_susar.xml"
+    auto_approve="yes"
+	>
+		<txt_value><![CDATA[Allegato documentale (ad es. CIOMS)]]></txt_value>
+	</field>	
+	
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

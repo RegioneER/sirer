@@ -1,0 +1,204 @@
+body{
+	margin: 0px;
+	padding: 0px; 
+	font-size: 40%;
+	font-family: "Trebuchet MS", tahoma, arial, sans-serif;
+	color: #404040;
+	background:#ffffff url(../images/login-box.jpg) no-repeat top left;
+}
+
+/* Table Layout */
+.main-box{
+	margin: 0 auto;
+	margin-top:0px; 
+	width:30px;
+	vertical-align:top;
+	height:110px;
+	//background:#ffffff url(../images/login-box.jpg) no-repeat top;
+	//background:#f7f67f  no-repeat top;
+	
+}
+
+.main-top-sx{
+	width:2px;
+	height:2px;
+	background:#ffffff url(../images/main-top-sx.gif) no-repeat bottom right;
+}
+
+.main-top{
+	height:2px;
+	background:#ffffff url(../images/main-top.gif) repeat-x bottom;
+}
+
+.main-top-dx{
+	width:2px;
+	height:2px;
+	background:#ffffff url(../images/main-top-dx.gif) repeat-x bottom left;
+}
+
+.main-sx{
+	width:2px;
+	background:#ffffff url(../images/main-sx.gif) repeat-y;
+}
+
+.main-dx{
+	width:2px;
+	background:#ffffff url(../images/main-dx.gif) repeat-y;
+}
+
+.main-bottom-sx{
+	width:2px;
+	height:2px;
+	background:#ffffff url(../images/main-bottom-sx.gif) no-repeat;
+}
+
+.main-bottom{
+	height:2px;
+	background:#ffffff url(../images/main-bottom.gif) repeat-x;
+}
+
+.main-bottom-dx{
+	width:2px;
+	height:2px;
+	background:#ffffff url(../images/main-bottom-dx.gif) repeat-x;
+}
+
+/* Login body */
+.login-box{
+	margin: 0;
+	width: 100%;
+	padding-top:0px;
+	padding-bottom:22%;
+}
+
+.input-box{
+	margin: 0 auto;
+	//width:326px;
+	height:10px;
+	/* background:transparent url(../images/input-box.png) no-repeat; */
+}
+
+.input-tb{
+	margin: 0 auto;
+	margin-top:0px;
+	width:5%;
+}
+
+/* Text */
+.center{
+	text-align:center;
+}
+
+.bold{
+	color:#191970;
+	font-weight:bold;
+}
+
+/* Footer */
+.footer{
+	//font-size:0.8em;
+	font-size:5pt;
+	//font-weight:bold;
+	text-align:center;
+}
+
+/* FieldText */
+.textbox{
+	height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	padding:0px;
+	padding-left:0px;
+	padding-top:0px;
+	background: transparent;
+}
+
+/* Userid image */
+.textbox-sx-user{
+	width:2px;
+	height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-user.gif") no-repeat;
+}
+
+/* Password image */
+.textbox-sx-pass{
+	width:2px;
+	height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-pass.gif") no-repeat;
+}
+
+/* Mail image */
+.textbox-sx-mail{
+	width:2px;
+	height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-sx-mail.gif") no-repeat;
+}
+
+.textbox-cx{
+	height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-cx.gif") repeat-x;
+}
+
+.textbox-dx{
+	width:2px;
+	height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/textbox-dx.gif") no-repeat;
+}
+
+
+/* Buttons */
+.button{
+	border: 0px;
+	margin:0px;
+	padding:7px;
+	padding-right: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color:#fafafa;
+	font-size:80%;
+	background: transparent;
+	
+}
+
+.button-sx{
+	width:5%;
+	//height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/button-sx-dark.gif") no-repeat;
+}
+
+.button-cx{
+	//height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	padding:0px;
+	background: transparent url("../images/button-cx-dark.gif") repeat-x;
+}
+
+.button-dx{
+	width:10%;
+	//height:12px;
+	border: 0px;
+	margin:0px;
+	padding:0px;
+	background: transparent url("../images/button-dx-dark.gif") no-repeat;
+}

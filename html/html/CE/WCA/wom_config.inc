@@ -1,0 +1,1087 @@
+<?
+
+/* Tipologie di WCA
+ * 1 => standard
+ * 2 => monitoraggio ( No Toolbar, No user details )
+ */
+$WCA['type'] = "STANDARD";
+
+$testo_nome_progetto="comitati etici veneto";
+$testo_config['language']="it";
+$testo_config['Calendario_email']='comitatieticiveneto@cineca.it';
+$testo_config['Document_Area_email']='comitatieticiveneto@cineca.it';
+$testo_config['Forum_From_email']='comitatieticiveneto@cineca.it';
+
+$banner_config['image']="images/banner3c.png";
+$banner_config['href']="/WCA";
+$banner_config['pdf_image']="";
+
+if(strtoupper($testo_config['language'])=="EN"||!isset($testo_config['language'])){
+	// Menu principale
+
+	$testo_config['Menu_principale_riunione']='International Meetings';
+	$testo_config['Menu_principale_Area_Documentale']='Document Area';
+	$testo_config['Menu_principale_Risorse']='Platform Settings';
+	$testo_config['Menu_principale_Contatti']='Contacts';
+	$testo_config['Menu_principale_Editing_Pubblicazione']='Online Editing';
+	$testo_config['Menu_principale_Forum']='Forum';
+	$testo_config['Menu_principale_Messaggistica']='Private Messenger';
+	$testo_config['Menu_principale_Guida']='Guide';
+	$testo_config['Menu_principale_riunione_wbr']='International<br>Meetings';
+	$testo_config['Menu_principale_Area_Documentale_wbr']='Document<br> Area';
+	$testo_config['Menu_principale_Risorse_wbr']='Platform<br>Settings';
+	$testo_config['Menu_principale_Contatti_wbr']='Contacts<br>&nbsp;';
+	$testo_config['Menu_principale_Editing_Pubblicazione_wbr']='Online<br>Editing';
+	$testo_config['Menu_principale_Forum_wbr']='Forum<br>&nbsp;';
+	$testo_config['Menu_principale_Messaggistica_wbr']='Private<br>Messenger';
+	$testo_config['Menu_principale_Guida_wbr']='Guide<br>&nbsp;';
+	$testo_config['Help_Topic']='Help';
+	$testo_config['Link_stampa']='Print';
+	$help_topic['Link_stampa']='Click here to generate a pdf version of the page';
+	$testo_config['MORE']='More...';
+	$testo_config['Tasto_Cancella']='Cancel';
+	//Workspaces
+	$testo_config['Workspaces']='Workspaces';
+	$testo_config['all_site']='';
+
+
+	//Controlli JAVASCRIPT
+	$testo_config['File_mancante']='Please specify a file';
+	$testo_config['Titolo_doc_mancante']='Please specify a title for this document';
+	$testo_config['file_edit_mancante']='Please attach a file or edit a new document';
+	$testo_config['titolo_thread_alert']='Please specify documental thread name';
+	$testo_config['Forum_oggetto_mancante']='Please specify a subject';
+	$testo_config['Forum_testo_mancante']='Please specify a text for this Topic';
+	$testo_config['Utente_select_mancante']='Please specify a user';
+	$testo_config['Utente_rule_mancante']='Please specify a role';
+	$testo_config['Gruppo_nome_mancante']='Please specify a name for the new group';
+	$testo_config['Doc_Area_nome_mancante']="Please specify a name for the new document area";
+	$testo_config['Forum_nome_mancante']='Please specify a name for the nuw Forum';
+	$testo_config['Forum_mod_mancante']='Please specify a moderator for this Forum';
+	$testo_config['Approv_intra_area_comm']='Please insert a comment';
+	$testo_config['confirm_delete_doc']='Are you sure do you want to delete this document?';
+	//BUTTONS
+
+	$testo_config['Calendario_Tasto_Modifica_Riunione']='Edit';
+	$testo_config['button_show_hide']='Show/hide';
+	$testo_config['Profili_user']='Profile Details';
+	$testo_config['Button_Doc_Area_add']='As Users';
+	$testo_config['Button_Riunioni_add']='Participants';
+	$testo_config['Button_Forum_add']='As Users';
+	$testo_config['Button_Doc_Area_rem']='Remove';
+	$testo_config['Button_Riunioni_rem']='Participants';
+	$testo_config['Button_Forum_rem']='Remove';
+	$testo_config['Button_Doc_Area_observer']='As Observers';
+	$testo_config['Button_Forum_observer']='As Observers';
+	$testo_config['Calendario_Tasto_Pubblica']='Publish';
+	$testo_config['Calendario_Tasto_Conferma_Presenza']='Confirm your attendance';
+	$testo_config['Calendario_Tasto_Annulla_Presenza']='Cancel your attendance';
+
+	// Dati utente
+
+	$testo_config['Dati_Utente']='User Data';
+	$testo_config['Dati_Utente_Nome']='Name';
+	$testo_config['Dati_Utente_Organizzazione']='Organization';
+	$testo_config['Dati_Utente_E-mail']='E-mail';
+	$testo_config['Dati_Utente_Profilo']='Profile';
+
+	//users online
+
+	$testo_config['users_online']='Users Online';
+	//GENERALE
+	$testo_config['Area_documetale_email_check']='Notify by email';
+	//CALENDARIO
+
+	$testo_config['Calendario_Fisso_Titolo']='Calendar';
+	$testo_config['Calendario_Mese_Gennaio']='January';
+	$testo_config['Calendario_Mese_Febbraio']='February';
+	$testo_config['Calendario_Mese_Marzo']='March';
+	$testo_config['Calendario_Mese_Aprile']='April';
+	$testo_config['Calendario_Mese_Maggio']='May';
+	$testo_config['Calendario_Mese_Giugno']='June';
+	$testo_config['Calendario_Mese_Luglio']='July';
+	$testo_config['Calendario_Mese_Agosto']='August';
+	$testo_config['Calendario_Mese_Settembre']='September';
+	$testo_config['Calendario_Mese_Ottobre']='October';
+	$testo_config['Calendario_Mese_Novembre']='November';
+	$testo_config['Calendario_Mese_Dicembre']='December';
+
+	$testo_config['Calendario_Giorno_Corto_lun']='Mon';
+	$testo_config['Calendario_Giorno_Corto_mar']='Tue';
+	$testo_config['Calendario_Giorno_Corto_mer']='Wed';
+	$testo_config['Calendario_Giorno_Corto_gio']='Thu';
+	$testo_config['Calendario_Giorno_Corto_ven']='Fri';
+	$testo_config['Calendario_Giorno_Corto_sab']='Sat';
+	$testo_config['Calendario_Giorno_Corto_dom']='Sun';
+
+	$testo_config['Calendario_Mese_Corto_Gennaio']='Jan';
+	$testo_config['Calendario_Mese_Corto_Febbraio']='Feb';
+	$testo_config['Calendario_Mese_Corto_Marzo']='Mar';
+	$testo_config['Calendario_Mese_Corto_Aprile']='Apr';
+	$testo_config['Calendario_Mese_Corto_Maggio']='May';
+	$testo_config['Calendario_Mese_Corto_Giugno']='Jun';
+	$testo_config['Calendario_Mese_Corto_Luglio']='Jul';
+	$testo_config['Calendario_Mese_Corto_Agosto']='Aug';
+	$testo_config['Calendario_Mese_Corto_Settembre']='Sep';
+	$testo_config['Calendario_Mese_Corto_Ottobre']='Oct';
+	$testo_config['Calendario_Mese_Corto_Novembre']='Nov';
+	$testo_config['Calendario_Mese_Corto_Dicembre']='Dec';
+
+
+	$testo_config['Calendario_Giorno_lun']='Monday';
+	$testo_config['Calendario_Giorno_mar']='Tuesday';
+	$testo_config['Calendario_Giorno_mer']='Wednesday';
+	$testo_config['Calendario_Giorno_gio']='Thursday';
+	$testo_config['Calendario_Giorno_ven']='Friday';
+	$testo_config['Calendario_Giorno_sab']='Saturday';
+	$testo_config['Calendario_Giorno_dom']='Sunday';
+
+
+	$testo_config['Calendario_Giorni_Riunione']='Meetings';
+	$testo_config['Calendario_Giorni_Oggi']='Today';
+	$testo_config['Calendario_Giorni_selezionata']='Selected';
+	$testo_config['Calendario_Giorni_WE']='Weekend';
+	$testo_config['Calendario_Giorni_mese']='Month';
+	$testo_config['Calendario_Giorni_anno']='Year';
+	$testo_config['Calendario_Giorni_Vai_a']='Go to';
+
+	// Sezione Calendario
+	$testo_config['Calendario_button_next']='&gt;&gt;';
+	$testo_config['Calendario_button_prev']='&lt;&lt;';
+	$testo_config['Calendario_Area_Titolo']='Calendar';
+	$testo_config['Calendario_Area_Visione_Giornaliera']='Day';
+	$testo_config['Calendario_Area_Visione_Settimanale']='Week';
+	$testo_config['Calendario_Area_Visione_Mensile']='Month';
+	$testo_config['Calendario_Area_Visione_Annuale']='Year';
+	$testo_config['Calendario_Area_Tipo_riunione']='Meeting tipology';
+	$testo_config['Calendario_Area_Mostra_Come']='Show as';
+	$testo_config['Calendario_Area_Oggi']='Today';
+	$testo_config['Calendario_Crea_Riunione']='Create Event';
+	$testo_config['Calendario_Inserisci_Riunione']='Insert New Event';
+	$testo_config['GMT']='<font size="1" color="red"></b>(CET)</b></font>';
+
+	//Messaggistinca interna
+
+	$testo_config['Mess_int_confirm']='Are you sure you want to send this message?';
+	$testo_config['Back_all_site_forum_areas']='Back to all site forum list';
+	$testo_config['Back_all_site_docs_areas']='Back to all site docs list';
+
+
+
+	//Dettagli riunione
+	$testo_config['Riunione']='Event ';
+	$testo_config['Dati_Riunione']='Event Details';
+	$testo_config['Calendario_Area_Da']='From';
+	$testo_config['Calendario_Area_A']='To';
+	$testo_config['Calendario_Oggetto']='Event Name';
+	$testo_config['Calendario_Commenti']='Description';
+	$help_topic['Calendario_Commenti']='A short description of the event';
+	$testo_config['Calendar_owner_riunione']='Meeting Organizer';
+	$testo_config['Calendario_Area_Tipologia_riunione']="Meeting Category";
+	$testo_config['Calendar_non_da_pubblicare']='No events to be published';
+	$testo_config['Calendar_da_pubblicare']='Events to be published';
+	$testo_config['Calendar_Prossime']='Upcoming Events';
+	$testo_config['Calendar_no_Prossime']='No Upcoming Events';
+	$testo_config['Calendario_Skype_conference']='Start Skype Web Conference';
+	$help_topic['Calendario_Skype_conference']='Click here to start a skype conference.<br>Only users who confirmed their attendance and that has an active skype account will be contacted';
+
+	$testo_config['Calendario_Cancella_Riunione']='Cancel event';
+	$testo_config['Calendario_Cancella_Riunione_Confirm']='Do you really want to cancel this Event?';
+	$testo_config['Calendario_Rimuovi_Utente']='Cancel User';
+	$testo_config['Add_User']='Add user';
+
+	$testo_config['Calendario_Luogo']='Location';
+	$testo_config['Calendario_Luogo_Stato']='Nation';
+	$testo_config['Calendario_ODG']='Agenda';
+	$testo_config['Calendario_Luogo_Citta']='City';
+	$testo_config['Calendario_Luogo_Area']='Area';
+	$testo_config['Calendario_Luogo_Indirizzo']='Address';
+	$testo_config['Calendario_Luogo_Sala']='Room';
+	$testo_config['Calendar_check_applica']='Check Availability';
+	$testo_config['Calendario_da_pubblicare']='To be published';
+	$testo_config['Calendario_Riunione_pubblica_color']='#B7BCC1';
+	$testo_config['Calendario_Tasto_Mostra_Mappa']='Show on the map';
+
+	$testo_config['Calendario_Confirm_Pubblica']='An e-mail will be sent to the meeting participants, including invitations to new guests and updates to existing guests will be sent. Would you like to continue?';
+
+
+	$testo_config['controlli_data']='End date not applicable, it should be later than start date';
+	$testo_config['controlli_ora']='End time not applicable, it should be later start time';
+
+	$testo_config['Calendario_Submenu_Dati_Riunione']='Event data';
+
+	$testo_config['Calendario_Submenu_Partecipanti']='Participants';
+	$testo_config['Calendario_gruppiutenti']='Groups';
+	$testo_config['Calendario_filtra']='Filter';
+	$testo_config['Calendario_aggiungi_gruppo']='Add group';
+	$testo_config['Calendario_aggiungi_utente']='Add user';
+	$testo_config['Calendario_rimuovi_utente']='Remove user';
+
+	$testo_config['Calendario_Invite_Users']='Invite users';
+	$testo_config['Calendario_Invited']='Invited users';
+	$testo_config['Calendario_not_Invited']='Users not invited';
+	$testo_config['Calendario_Visibilita']='Meeting visibility';
+
+	$testo_config['Calendario_Submenu_Disponibilità']='Availability';
+	$testo_config['Calendario_Submenu_Documentazione_Allegata']='Attached documents';
+
+
+	//Sezione Documentale
+	$testo_config['To_docs_area']='to this document Area';
+	$testo_config['Area_documentale_status']='Status';
+	$testo_config['Doc_Area_to_be_approved']='To be approved';
+	$testo_config['Doc_Area_approved_by']='Approved by';
+	$testo_config['Doc_Area_approv_confirm']='Are you sure you want to approved this document?';
+
+	$testo_config['Document_Attach_File']='Insert a new File';
+	$testo_config['Document_Edit']='Edit a new Document';
+	$testo_config['Area_documentale_Titolo']='Document area';
+	$testo_config['Area_documentale_Titolo_Thread']='Title';
+	$testo_config['Area_documentale_no_alc']='No document area available';
+	$testo_config['Area_documentale_aggiungi_area_documentale']='Add a new document area';
+	$testo_config['Area_documentale_allega_nuova_documentazione']='Insert a new document';
+	$testo_config['Area_documentale_send_nuova_documentazione']='Save and insert document';
+	$testo_config['Area_documentale_allega_file']='Insert a file';
+	$testo_config['Area_documentale_documento']='Document';
+	$testo_config['Area_documentale_add']='Add new area';
+	$testo_config['Area_documentale_name']='Document area name';
+	$testo_config['Area_documentale_users_nro']='Users';
+	$testo_config['Area_documentale_docs_nro']='Documents';
+	$testo_config['Area_documentale_visited']='Visited';
+	$testo_config['Area_documentale_downloaded']='Downloaded';
+	$testo_config['Area_documentale_create']='Create area';
+	$testo_config['Area_documentale_new']='New document area';
+	$testo_config['Area_documentale_gruppi_da_abilitare']='Enabled groups';
+	$testo_config['Area_documentale_cancel_confirm']='Do you really want to reset the form?';
+	$testo_config['New_document']='New Document';
+	$testo_config['Area_documentale_revisione']='Insert a new revision';
+
+	$testo_config['Nome']='Name';
+	$testo_config['Autore']='Author';
+	$testo_config['Area_documentale_nome_file']='File name';
+	$testo_config['Data']='Date';
+	$testo_config['Inserito_da']='Inserted by';
+	$testo_config['Commenti']='Comments';
+
+	$testo_config['Approvazioni_area']='Approval Area';
+	$testo_config['Approvazioni_area_docs_sent']='Documents sent for approval';
+	$testo_config['Approvazioni_area_docs_rec']='Documents to be approved';
+	$testo_config['Approvazioni_area_docs_to_be_approved']='Pending';
+	$testo_config['Approvazioni_area_docs_approved']='Approved';
+	$testo_config['Approvazioni_area_docs_not_approved']='Not approved';
+	$testo_config['Approvazioni_area_inviato_da']='Sent by';
+	$testo_config['Approvazioni_area_inviato_a']='Sent to';
+	$testo_config['Approvazioni_area_inviato_il']='Sent date';
+	$testo_config['Approvazioni_area_nome_file']='File Name';
+	$testo_config['Approvazioni_area_autore']='Author';
+	$testo_config['Approvazioni_area_stato']='Status';
+	$testo_config['Approvazioni_area_download']='Download';
+	$testo_config['Approvazioni_area_da_approvare']='Pending';
+	$testo_config['Approvazioni_area_non_approvato']='Not approved';
+	$testo_config['Approvazioni_area_approvato']='Approved';
+	$testo_config['Approvazioni_area_data_approvazione']='Approval date';
+	$testo_config['Approvazioni_area_approva']='Approve';
+	$testo_config['Approvazioni_area_non_approva']='Not Approve';
+	$testo_config['Approvazioni_area_send_to']='Send for approval';
+	$testo_config['Approvazioni_area_gia_inviato']='Already sent to approval area';
+	$testo_config['Approvazione_area_commenti']='Comments';
+
+
+	// Sezione Risorse
+
+	$testo_config['Risorse_Nuovo_Gruppo']='Add a new group';
+	$testo_config['Crea']='Create';
+	$testo_config['Risorse_Aggiungi_utente']='Add a new user';
+	$testo_config['Risorse_Aggiungi_utente_button']='Add user';
+	$testo_config['Nome_utente']='User name';
+	$testo_config['Risorse_Elmina_utente']='Delete a new user';
+	$testo_config['Risorse_Lista_Utenti']='Users List';
+	$testo_config['Risorse_Utenti_Gruppo']='Users in the Group';
+	$testo_config['New_Group']='New group';
+	$testo_config['Nome_Group']='Group name';
+	$testo_config['Gruppi_utenti']='Users\' groups';
+	$testo_config['Contatti_user_skype']='Skype ID';
+	$testo_config['Contatti_user_publication']="Publication";
+	$testo_config['Contatti_user_cv']="Curriculum vitae";
+
+	$testo_config['SuperUser']='System Administrators';
+	$testo_config['Utenti_abilitati']='Enabled Users';
+	$testo_config['Utente']='User';
+	$testo_config['Ruolo']='Role';
+	$testo_config['Utenti_ereditati']='Inherited Users';
+
+	$testo_config['Ruolo_utente']='User';
+	$testo_config['Ruolo_Amministratore']='Coordinator';
+	$testo_config['Ruolo_visitatore']='Observer';
+	$testo_config['Ruolo_1']='User';
+	$testo_config['Ruolo_2']='Coordinator';
+	$testo_config['Ruolo_0']='Observer';
+
+	// Sezione Editing e pubblicazione
+
+	$testo_config['Editing_Nuovo_Documento']='New document';
+	$testo_config['Editing_Titolo_Documento']='Document title';
+	$testo_config['Editing_pubblica']='publish';
+	$testo_config['Editing_pubblica_in']='publish in';
+	$testo_config['Editing_Mostra_Ver']='Show all version';
+	$testo_config['Editing_pubblicato']='published';
+	$testo_config['Editing_modificato']='modified';
+	$testo_config['Editing_revisione']='review of ';
+
+
+
+
+	// Sezione Forum
+
+	$testo_config['To_forum']='to this forum Area';
+	$testo_config['Forum_Lista']='Forum list';
+	$testo_config['Forum_area_invia_messaggio']='Send message';
+	$testo_config['Forum_Lista_empty']='No Forum Available';
+	$testo_config['Forum_Aggiungi']='Add Forum';
+	$testo_config['Forum_Crea']='Create Forum';
+	$testo_config['Forum_Mostra_testo']='Show / Hide message';
+	$testo_config['Forum_Inviato_il']='Sent date';
+	$testo_config['Forum_Rispondi']='Reply';
+	$testo_config['Forum_New_Testo']='New Message';
+	$testo_config['Forum_New_Topic']='New Topic';
+	$testo_config['Forum_New_reply']='New reply';
+	$testo_config['Forum_Testo_Oggetto']='Subject';
+	$testo_config['Forum_Testo_Da']='Sent by';
+	$testo_config['Forum_Testo_Data']='Date';
+	$testo_config['Forum_back_topic_list']='Back to Topic list';
+	$testo_config['Forum_back_forum_list']='Back to Forum list';
+	$testo_config['Forum_doc_link']='Linked document';
+	$testo_config['Forum_Testo']='Message';
+	$testo_config['Forum_Nuovo']='Add new Forum';
+	$testo_config['Forum_Nome']='Forum name';
+	$testo_config['Forum_User_nro']='Users';
+	$testo_config['Forum_Topics']='Topics';
+	$testo_config['Forum_Topic']='Topic';
+	$testo_config['Forum_Posted_by']='Posted by';
+	$testo_config['Forum_no_topics']='No Topics';
+	$testo_config['Forum_Mod_User']='Moderator';
+	$testo_config['Forum_Replies']='Replies';
+	$testo_config['Forum_visited']='Visited';
+	$testo_config['link_as']="as";
+	$testo_config['Forum_group_utenti']='Enabled Users\' Groups';
+	$testo_config['tipo_doc']='Kind of Document';
+	$testo_config['Forum_Subscribe']='Subscribe';
+	$testo_config['Forum_Testo_rimuovi_sottoscrizione']='Are you sure you want to unscribe this topic?';
+	$testo_config['Forum_Testo_sottoscrizione']='Are you sure you want to subscribe this topic?';
+
+	// Sezione Messaggistica
+
+	$testo_config['Messaggi_Destinatario']='Send to';
+	$testo_config['Messaggi_Lista_Messaggi']='List of messages';
+	$testo_config['Messaggi_Inviato_a']='Sent to';
+	$testo_config['Messaggi_Inviato_da']='Sent by';
+	$testo_config['Messaggi_Messaggio']='Message';
+	$testo_config['Messaggi_Invia']='Send';
+	$testo_config['Messaggi_Last']='Last Messages';
+
+	//Sezione contatti
+	/*
+	Per disabilitare i campi dalla form basta commentare le relative variabili con l'unica accortezza che i dati
+	relativi all'indirizzo sono un blocco unico, quindi commentando la variabile $testo_config['Contatti_user_via']
+	non verranno mostrate
+	$testo_config['Contatti_user_via']
+	$testo_config['Contatti_user_cap']
+	$testo_config['Contatti_user_citta']
+	$testo_config['Contatti_user_nazione']
+	$testo_config['Contatti_user_prov']
+	*/
+
+	$testo_config['Filtri_Contatti']='Filters';
+	$testo_config['Contatti_nome']='Name';
+	$testo_config['Contatti_ente']='Organization';
+	$testo_config['Contatti_profilo']='Profile';
+	$testo_config['Contatti_email']='Email';
+	$testo_config['Contatti_telefono']='Phone';
+	$testo_config['Contatti_details']='Details';
+	$testo_config['Contatti_user_details']='User details';
+	$testo_config['Contatti_user_nome']='Name';
+	$testo_config['Contatti_user_cognome']='Surname';
+	$testo_config['Contatti_user_email']='Email';
+	$testo_config['Contatti_user_suffix']='Suffix';
+	$testo_config['Contatti_user_birth']='Date of Birth';
+	//	$testo_config['Contatti_user_job_title']='Job Title';
+	$testo_config['Contatti_user_ente']='Organization';
+	$testo_config['Contatti_group']='Project Group';
+	$testo_config['Contatti_user_via']='Address';
+	$testo_config['Contatti_user_cap']='Postal code';
+	$testo_config['Contatti_user_citta']='City';
+	$testo_config['Contatti_user_nazione']='Country';
+	$testo_config['Contatti_user_prov']='County';
+	//	$testo_config['Contatti_user_tel_home']='Tel. Home';
+	$testo_config['Contatti_user_telefono']='Tel. Business';
+	$testo_config['Contatti_user_tel_mobile']='Tel. Mobile';
+	$testo_config['Contatti_user_fax']='Business Fax';
+	$testo_config['Contatti_user_url']='Url';
+	$testo_config['Contatti_user_foto']='Image file';
+
+	$testo_config['Contatti_presenza']='Attendance';
+	$testo_config['Contatti_presenza_confermata']='confirmed';
+	//$testo_config['Contatti_presenza_confermata']='confermato';
+	$testo_config['Contatti_presenza_effettiva']='effective';
+
+
+	$testo_config['Gruppi_modifica_nome']='edit';
+	$help_topic['Gruppi_modifica_nome']='Click here to edit group name';
+	$testo_config['Gruppi_modifica_save']='Save changes';
+
+
+
+	//	$testo_config['Calendario_logo']='/http/www/neat/html/WCS/images/logo_neat.jpg';
+	$testo_config['Calendar_mail_insert_subject']=$testo_nome_progetto." - Meeting invitation";
+	$testo_config['Calendar_mail_update_subject']=$testo_nome_progetto." - Meeting update";
+	$testo_config['Calendar_mail_cancel_subject']="Meeting cancelled";
+	$testo_config['Calendar_mail_insert_body']="You have been invited to the following meeting/event";
+	$testo_config['Calendar_mail_update_body']="There has been an update about the following meeting/event";
+	$testo_config['Calendar_mail_cancel_body']="The following meeting/event has been cancelled";
+	$testo_config['Calendar_mail_confirm']="Please confirm your attendance to the meeting by clicking the following link:";
+
+	$testo_config['Document_Area_subject']=$testo_nome_progetto." - Document notification insert/update - Document name: ";
+	$testo_config['Document_Area_body']='A new document has been shared on the platform called ';
+	$testo_config['Document_Area_body_end']='It\' not an attachment -- it\'s stored online at <b>'.$testo_nome_progetto.'</b> portal.<br>To access to this document, just click the link above.';
+	$testo_config['Forum_Topic_Subscription_subject']='A new reply as been inserted in topic: <<oggetto>> ';
+	$testo_config['Forum_Topic_Subscription_body']='
+	Forum name: <b><<forum_name>></b><br>
+	A new reply as been inserted in topic: <b><<oggetto>></b><br>
+	from user: <b><<username>></b><br>
+	<br>Click here to view topic:
+	<<href>><br><br>
+	';
+	$testo_config['Forum_New_Topic_body']='
+	Forum name: <b><<forum_name>></b><br>
+	A new topic has been inserted with the following subject: <b><<oggetto>></b><br>
+	From user: <b><<username>></b><br>
+	<br>Click here to view the topic:
+	<<href>><br><br>
+';
+	$testo_config['Forum_New_Topic_subject']=$testo_nome_progetto.'- A new topic has been inserted in the following forum: <<forum_name>> ';
+
+
+
+
+	$testo_config['NO_REPLY_MESSAGE']='
+	##################################<br>
+	#This is an automatically generated email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#<br>
+	#Please do not reply to this message &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#<br>
+	##################################';
+	//REPORT
+	$testo_config['statistiche_accesso']='Access statistics';
+	$testo_config['statistiche_utenti']='Users';
+}
+else if(strtoupper($testo_config['language'])=="IT"){
+	// Menu principale
+
+	$testo_config['Menu_principale_riunione']='Riunioni';
+	$testo_config['Menu_principale_Area_Documentale']='Area Documentale';
+	$testo_config['Menu_principale_Risorse']='Strumenti Amministrativi';
+	$testo_config['Menu_principale_Contatti']='Contatti';
+	$testo_config['Menu_principale_Editing_Pubblicazione']='Scrittura Online';
+	$testo_config['Menu_principale_Forum']='Forum';
+	$testo_config['Menu_principale_Messaggistica']='Messaggistica Privata';
+	$testo_config['Menu_principale_Guida']='Guida';
+	$testo_config['Menu_principale_riunione_wbr']='Riunioni<br>&nbsp;';
+	$testo_config['Menu_principale_Area_Documentale_wbr']='Area<br>Documentale';
+	$testo_config['Menu_principale_Risorse_wbr']='Strumenti<br>Amministrativi';
+	$testo_config['Menu_principale_Contatti_wbr']='Contatti<br>&nbsp;';
+	$testo_config['Menu_principale_Editing_Pubblicazione_wbr']='Scrittura<br>Online';
+	$testo_config['Menu_principale_Forum_wbr']='Forum<br>&nbsp;';
+	$testo_config['Menu_principale_Messaggistica_wbr']='Messaggistica<br>Privata';
+	$testo_config['Menu_principale_Guida_wbr']='Guida<br>&nbsp;';
+	$testo_config['Help_Topic']='Help';
+	$testo_config['Link_stampa']='Stampa';
+	$help_topic['Link_stampa']='Clicca per generare il pdf della pagina';
+	$testo_config['MORE']='Vedi il resto...';
+	$testo_config['Tasto_Cancella']='Annulla';
+	//Workspaces
+	$testo_config['Workspaces']='Gruppi di lavoro';
+	$testo_config['all_site']='';
+
+	//Controlli JAVASCRIPT
+	$testo_config['File_mancante']='Per favore, selezionate un file';
+	$testo_config['Titolo_doc_mancante']='Per favore, specificate un titolo per questo documento';
+	$testo_config['file_edit_mancante']='Per favore, allegate un file o editate un nuovo documento';
+	$testo_config['titolo_thread_alert']='Per favore, specificate il nome del thread documentale';
+	$testo_config['Forum_oggetto_mancante']='Per favore, specificate un oggetto';
+	$testo_config['Forum_testo_mancante']='Per favore, specificate un testo per questo oggetto';
+	$testo_config['Utente_select_mancante']='Per favore, specificate un utente';
+	$testo_config['Utente_rule_mancante']='Per favore, specificate un ruolo';
+	$testo_config['Gruppo_nome_mancante']='Per favore, specificate un nome per il nuovo gruppo';
+	$testo_config['Doc_Area_nome_mancante']="Per favore, specificate un nome per la nuova area documentale";
+	$testo_config['Forum_nome_mancante']='Per favore, specificate un nome per il nuovo Forum';
+	$testo_config['Forum_mod_mancante']='Per favore, specificate un moderatore per questo Forum';
+	$testo_config['Approv_intra_area_comm']='Per favore, inserite un commento';
+	$testo_config['confirm_delete_doc']='Siete sicuri di voler cancellare questo documento?';
+
+	//BUTTONS
+
+	$testo_config['Calendario_Tasto_Modifica_Riunione']='Edita';
+	$testo_config['button_show_hide']='Mostra/Nascondi';
+	$testo_config['Profili_user']='Dettagli Profilo';
+	$testo_config['Button_Doc_Area_add']='Come Utente';
+	$testo_config['Button_Riunioni_add']='Partecipanti';
+	$testo_config['Button_Forum_add']='Come Utente';
+	$testo_config['Button_Doc_Area_rem']='Rimuovi';
+	$testo_config['Button_Riunioni_rem']='Partecipanti';
+	$testo_config['Button_Forum_rem']='Rimuovi';
+	$testo_config['Button_Doc_Area_observer']='Come Osservatori';
+	$testo_config['Button_Forum_observer']='Come Osservatori';
+	$testo_config['Calendario_Tasto_Pubblica']='Pubblica';
+	$testo_config['Calendario_Tasto_Conferma_Presenza']='Confermate la vostra partecipazione';
+	$testo_config['Calendario_Tasto_Annulla_Presenza']='Disdite la vostra partecipazione';
+
+	// Dati utente
+
+	$testo_config['Dati_Utente']='Dati Utente';
+	$testo_config['Dati_Utente_Nome']='Nome';
+	$testo_config['Dati_Utente_Organizzazione']='Ente';
+	$testo_config['Dati_Utente_E-mail']='E-mail';
+	$testo_config['Dati_Utente_Profilo']='Profilo';
+
+	//users online
+
+	$testo_config['users_online']='Utenti Collegati';
+	//GENERALE
+	$testo_config['Area_documetale_email_check']='Notifica via mail';
+
+	//CALENDARIO
+
+	$testo_config['Calendario_Fisso_Titolo']='Calendario';
+	$testo_config['Calendario_Mese_Gennaio']='Gennaio';
+	$testo_config['Calendario_Mese_Febbraio']='Febbraio';
+	$testo_config['Calendario_Mese_Marzo']='Marzo';
+	$testo_config['Calendario_Mese_Aprile']='Aprile';
+	$testo_config['Calendario_Mese_Maggio']='Maggio';
+	$testo_config['Calendario_Mese_Giugno']='Giugno';
+	$testo_config['Calendario_Mese_Luglio']='Luglio';
+	$testo_config['Calendario_Mese_Agosto']='Agosto';
+	$testo_config['Calendario_Mese_Settembre']='Settembre';
+	$testo_config['Calendario_Mese_Ottobre']='Ottobre';
+	$testo_config['Calendario_Mese_Novembre']='Novembre';
+	$testo_config['Calendario_Mese_Dicembre']='Dicembre';
+
+	$testo_config['Calendario_Giorno_Corto_lun']='Lun';
+	$testo_config['Calendario_Giorno_Corto_mar']='Mar';
+	$testo_config['Calendario_Giorno_Corto_mer']='Mer';
+	$testo_config['Calendario_Giorno_Corto_gio']='Gio';
+	$testo_config['Calendario_Giorno_Corto_ven']='Ven';
+	$testo_config['Calendario_Giorno_Corto_sab']='Sab';
+	$testo_config['Calendario_Giorno_Corto_dom']='Dom';
+
+	$testo_config['Calendario_Mese_Corto_Gennaio']='Gen';
+	$testo_config['Calendario_Mese_Corto_Febbraio']='Feb';
+	$testo_config['Calendario_Mese_Corto_Marzo']='Mar';
+	$testo_config['Calendario_Mese_Corto_Aprile']='Apr';
+	$testo_config['Calendario_Mese_Corto_Maggio']='Mag';
+	$testo_config['Calendario_Mese_Corto_Giugno']='Giu';
+	$testo_config['Calendario_Mese_Corto_Luglio']='Lug';
+	$testo_config['Calendario_Mese_Corto_Agosto']='Ago';
+	$testo_config['Calendario_Mese_Corto_Settembre']='Set';
+	$testo_config['Calendario_Mese_Corto_Ottobre']='Ott';
+	$testo_config['Calendario_Mese_Corto_Novembre']='Nov';
+	$testo_config['Calendario_Mese_Corto_Dicembre']='Dic';
+
+	$testo_config['Calendario_Giorno_lun']='Lunedì';
+	$testo_config['Calendario_Giorno_mar']='Martedì';
+	$testo_config['Calendario_Giorno_mer']='Mercoledì';
+	$testo_config['Calendario_Giorno_gio']='Giovedì';
+	$testo_config['Calendario_Giorno_ven']='Venerdì';
+	$testo_config['Calendario_Giorno_sab']='Sabato';
+	$testo_config['Calendario_Giorno_dom']='Domenica';
+
+
+
+	$testo_config['Calendario_Giorni_Riunione']='Riunioni';
+	$testo_config['Calendario_Giorni_Oggi']='Oggi';
+	$testo_config['Calendario_Giorni_selezionata']='Selezionata';
+	$testo_config['Calendario_Giorni_WE']='Weekend';
+	$testo_config['Calendario_Giorni_mese']='Mese';
+	$testo_config['Calendario_Giorni_anno']='Anno';
+	$testo_config['Calendario_Giorni_Vai_a']='Vai a';
+
+	// Sezione Calendario
+	$testo_config['Calendario_button_next']='&gt;&gt;';
+	$testo_config['Calendario_button_prev']='&lt;&lt;';
+	$testo_config['Calendario_Area_Titolo']='Calendario';
+	$testo_config['Calendario_Area_Visione_Giornaliera']='Giorno';
+	$testo_config['Calendario_Area_Visione_Settimanale']='Settimana';
+	$testo_config['Calendario_Area_Visione_Mensile']='Mese';
+	$testo_config['Calendario_Area_Visione_Annuale']='Anno';
+	$testo_config['Calendario_Area_Tipo_riunione']='Tipo di riunione';
+	$testo_config['Calendario_Area_Mostra_Come']='Mostra come';
+	$testo_config['Calendario_Area_Oggi']='Oggi';
+	$testo_config['Calendario_Crea_Riunione']='Crea un evento';
+	$testo_config['Calendario_Inserisci_Riunione']='Inserisci un nuovo evento';
+	$testo_config['GMT']='<font size="1" color="red"></b> (GMT +01.00(CET))</b></font>';
+	$testo_config['legenda_invited']='Eventi in cui è stata richiesta la tua presenza';
+	$testo_config['legenda_not_invited']='Altri&nbsp;eventi';
+	$testo_config['legenda_draft']='Eventi in attesa di conferma';
+	$testo_config['Go_to_button']='Conferma';
+
+	//Messaggistinca interna
+
+	$testo_config['Mess_int_confirm']='Siete sicuri di voler mandare il presente messaggio?';
+	$testo_config['Back_all_site_forum_areas']='Torna alla lista completa dei forum';
+	$testo_config['Back_all_site_docs_areas']='Torna alla lista completa delle aree documentali';
+
+	//Dettagli riunione
+
+	$testo_config['Riunione']='Riunione ';
+	$testo_config['Dati_Riunione']='Dettagli Riunione';
+	$testo_config['Calendario_Area_Da']='Da';
+	$testo_config['Calendario_Area_A']='A';
+	$testo_config['Calendario_Oggetto']='Oggetto Riunione';
+	$testo_config['Calendario_Commenti']='Descrizione';
+	$help_topic['Calendario_Commenti']='Sintetica descrizione della riunione';
+	$testo_config['Calendar_owner_riunione']='Organizzatore';
+	$testo_config['Calendario_Area_Tipologia_riunione']="Categoria della riunione";
+	$testo_config['Calendar_non_da_pubblicare']='Nessuna riunione da pubblicare';
+	$testo_config['Calendar_da_pubblicare']='Riunioni da  pubblicare';
+	$testo_config['Calendar_Prossime']='Prossime Riunioni';
+	$testo_config['Calendar_no_Prossime']='Nessuna riunione in programma<br>';
+	$testo_config['Calendario_Skype_conference']='Inizia una conferenza con Skype';
+	$help_topic['Calendario_Skype_conference']='Clicca per iniziare una conferenza con Skype.<br>Saranno contattati solo gli utenti che hanno confermato la partecipazione e che sono collegati a Skype.';
+
+	$testo_config['Calendario_Cancella_Riunione']='Annulla la riunione';
+	$testo_config['Calendario_Cancella_Riunione_Confirm']='Volete realmente annullare la riunione?';
+	$testo_config['Calendario_Rimuovi_Utente']='Rimuovi Utente';
+	$testo_config['Add_User']='Aggiungi Utente';
+
+	$testo_config['Calendario_Luogo']='Luogo';
+	$testo_config['Calendario_Luogo_Stato']='Nazione';
+	$testo_config['Calendario_ODG']='Ordine del giorno';
+	$testo_config['Calendario_Luogo_Citta']='Città';
+	$testo_config['Calendario_Luogo_Area']='Area';
+	$testo_config['Calendario_Luogo_Indirizzo']='Indirizzo';
+	$testo_config['Calendario_Luogo_Sala']='Stanza';
+	$testo_config['Calendar_check_applica']='Verifica Disponibilità';
+	$testo_config['Calendario_da_pubblicare']='Da pubblicare';
+	$testo_config['Calendario_Riunione_pubblica_color']='#B7BCC1';
+	$testo_config['Calendario_Tasto_Mostra_Mappa']='Mostra sulla mappa';
+
+	$testo_config['Calendario_Confirm_Pubblica']='Verrà mandata un\\&#39;email a tutti i partecipanti: compreso l\\&#39;invito a tutti i nuovi partecipanti e una notifica di aggiornamento a tutti gli utenti precedentemente invitati. Si vuole continuare?';
+
+
+	$testo_config['controlli_data']='Data di fine riunione non valida: dovrebbe essere successiva alla data di inizio';
+	$testo_config['controlli_ora']='Ora di fine riunione non valida: dovrebbe essere successiva all\\\'ora di inizio';
+
+	$testo_config['Calendario_Submenu_Dati_Riunione']='Dati Riunione';
+
+	$testo_config['Calendario_Submenu_Partecipanti']='Partecipanti';
+	$testo_config['Calendario_gruppiutenti']='Gruppi';
+	$testo_config['Calendario_filtra']='Filtri';
+	$testo_config['Calendario_aggiungi_gruppo']='Aggiungi gruppo';
+	$testo_config['Calendario_aggiungi_utente']='Aggiungi Utente';
+	$testo_config['Calendario_rimuovi_utente']='Rimuovi Utente';
+
+	$testo_config['Calendario_Invite_Users']='Invita utenti';
+	$testo_config['Calendario_Invited']='Utenti invitati';
+	$testo_config['Calendario_not_Invited']='Utenti non invitati';
+	$testo_config['Calendario_Visibilita']='Visibilità della riunione';
+
+	$testo_config['Calendario_Submenu_Disponibilità']='Disponibilità';
+	$testo_config['Calendario_Submenu_Documentazione_Allegata']='Documenti Allegati';
+	$testo_config['review']="ATTENZIONE! RILEGGERE IL SOMMARIO PRIMA DI PUBBLICARE.";
+	$testo_config['preview']='Anteprima';
+
+
+
+
+
+
+	//Sezione Documentale
+	$testo_config['back_to_doc_area']="Ritorna all'area documentale";
+	$testo_config['visto']="Visto";
+	$testo_config['by']="da";
+	$testo_config['scaricato']="Scaricato";
+	$testo_config['pubblicato']="Pubblicato";
+	$testo_config['nessuno']="Nessuno";
+	$testo_config['ultima_versione']="Ultima Versione";
+	$testo_config['versione_originale']="Versione Originale";
+	$testo_config['doc_topic']='Oggetto';
+	$testo_config['keywords']='Parole Chiave';
+	$testo_config['comma']='separate da virgola';
+	$testo_config['edit_participants']='Edita i partecipanti';
+	$testo_config['back_to_doc']='Torna alla lista delle aree documentali';
+	$testo_config['back_to_doc_mon']='Torna alla lista delle aree comuni';
+	$testo_config['ultimi_tre_doc']='Ultime tre aree documentali aggiornate';
+	$testo_config['To_docs_area']='alla presente area documentale';
+	$testo_config['Area_documentale_status']='Stato';
+	$testo_config['Doc_Area_to_be_approved']='Da approvare';
+	$testo_config['Doc_Area_approved_by']='Approvato da';
+	$testo_config['Doc_Area_approv_confirm']='Siete sicuri di voler approvare il presente documento?';
+
+	$testo_config['Document_Attach_File']='Inserisci un nuovo documento';
+	$testo_config['Document_Edit']='Edita un nuovo documento';
+	$testo_config['Area_documentale_Titolo']='Area Documentale';
+	$testo_config['Area_documentale_Titolo_Thread']='Titolo';
+	$testo_config['Area_documentale_no_alc']='Nessuna area disponibile';
+	$testo_config['Area_documentale_aggiungi_area_documentale']='Aggiungi un area documentale';
+	$testo_config['Area_documentale_allega_nuova_documentazione']='Inserisci una nuova documentazione';
+	$testo_config['Area_documentale_send_nuova_documentazione']='Salva e inserisci il documento';
+	$testo_config['Area_documentale_allega_file']='Inserisci un documento';
+	$testo_config['Area_documentale_documento']='Documento';
+	$testo_config['Area_documentale_add']='Aggiungi un\'area';
+	$testo_config['Area_documentale_name']='Nome area documentale';
+	$testo_config['Area_documentale_users_nro']='Utenti';
+	$testo_config['Area_documentale_docs_nro']='Documenti';
+	$testo_config['Area_documentale_visited']='Visite';
+	$testo_config['Area_documentale_downloaded']='Download';
+	$testo_config['Area_documentale_create']='Crea un\'area';
+	$testo_config['Area_documentale_new']='Nuova area documentale';
+	$testo_config['Area_documentale_gruppi_da_abilitare']='Gruppi abilitati';
+	$testo_config['Area_documentale_cancel_confirm']='Volete realmente resettare la form?';
+	$testo_config['New_document']='Nuovo Documento';
+	$testo_config['Area_documentale_revisione']='Inserisci una nuova revisione';
+
+	$testo_config['Nome']='Nome';
+	$testo_config['Autore']='Autore';
+	$testo_config['Area_documentale_nome_file']='Nome file';
+	$testo_config['Data']='Data';
+	$testo_config['Inserito_da']='Inserito da';
+	$testo_config['Commenti']='Commenti';
+
+	$testo_config['Approvazioni_area']='Area d\'approvazione';
+	$testo_config['Approvazioni_area_docs_sent']='Documenti inviati per approvazione';
+	$testo_config['Approvazioni_area_docs_rec']='Documenti da approvare';
+	$testo_config['Approvazioni_area_docs_to_be_approved']='In sospeso';
+	$testo_config['Approvazioni_area_docs_approved']='Approvato';
+	$testo_config['Approvazioni_area_docs_not_approved']='Non approvato';
+	$testo_config['Approvazioni_area_inviato_da']='Inviato da';
+	$testo_config['Approvazioni_area_inviato_a']='Inviato a';
+	$testo_config['Approvazioni_area_inviato_il']='Data d\'invio';
+	$testo_config['Approvazioni_area_nome_file']='Nome del file';
+	$testo_config['Approvazioni_area_autore']='Autore';
+	$testo_config['Approvazioni_area_stato']='Stato';
+	$testo_config['Approvazioni_area_download']='Download';
+	$testo_config['Approvazioni_area_da_approvare']='In sospeso';
+	$testo_config['Approvazioni_area_non_approvato']='Non approvato';
+	$testo_config['Approvazioni_area_approvato']='Approvato';
+	$testo_config['Approvazioni_area_data_approvazione']='Data di approvazione';
+	$testo_config['Approvazioni_area_approva']='Approva';
+	$testo_config['Approvazioni_area_non_approva']='Non approvare';
+	$testo_config['Approvazioni_area_send_to']='Inviato per approvazione';
+	$testo_config['Approvazioni_area_gia_inviato']='Già inviato per approvazione';
+	$testo_config['Approvazione_area_commenti']='Commenti';
+
+
+	// Sezione Risorse
+
+	$testo_config['Risorse_Nuovo_Gruppo']='Aggiungi nuovo gruppo';
+	$testo_config['Crea']='Crea';
+	$testo_config['Risorse_Aggiungi_utente']='Aggiungi nuovo utente';
+	$testo_config['Risorse_Aggiungi_utente_button']='Aggiungi un utente';
+	$testo_config['Nome_utente']='Nome utente';
+	$testo_config['Risorse_Elmina_utente']='Cancella un nuovo utente';
+	$testo_config['Risorse_Lista_Utenti']='Lista Utenti';
+	$testo_config['Risorse_Utenti_Gruppo']='Utenti del gruppo';
+	$testo_config['New_Group']='Nuovo Gruppo';
+	$testo_config['Nome_Group']='Nome del gruppo';
+	$testo_config['Gruppi_utenti']='Gruppi di utenti';
+	$testo_config['Contatti_user_skype']='ID Skype';
+	$testo_config['Contatti_user_publication']="Pubblicazione";
+	$testo_config['Contatti_user_cv']="Curriculum vitae";
+
+	$testo_config['SuperUser']='Amministratori di sistema';
+	$testo_config['Utenti_abilitati']='Utenti abilitati';
+	$testo_config['Utente']='Utente';
+	$testo_config['Ruolo']='Ruolo';
+	$testo_config['Utenti_ereditati']='Utenti ereditati';
+
+	$testo_config['Ruolo_utente']='Utente';
+	$testo_config['Ruolo_Amministratore']='Coordinatore';
+	$testo_config['Ruolo_visitatore']='Osservatore';
+	$testo_config['Ruolo_1']='Utente';
+	$testo_config['Ruolo_2']='Coordinatore';
+	$testo_config['Ruolo_0']='Osservatore';
+
+	// Sezione Editing e pubblicazione
+
+	$testo_config['Editing_Nuovo_Documento']='Nuovo Documento';
+	$testo_config['Editing_Titolo_Documento']='Titolo del documento';
+	$testo_config['Editing_pubblica']='pubblica';
+	$testo_config['Editing_pubblica_in']='pubblica in';
+	$testo_config['Editing_Mostra_Ver']='Mostra tutte le versioni';
+	$testo_config['Editing_pubblicato']='pubblicato';
+	$testo_config['Editing_modificato']='modificato';
+	$testo_config['Editing_revisione']='revisione di ';
+
+
+
+
+	// Sezione Forum
+
+	$testo_config['ultimi_tre_forum']='Ultimi tre forum aggiornati';
+	$testo_config['To_forum']='al presente forum';
+	$testo_config['Forum_Lista']='Lista forum';
+	$testo_config['Forum_area_invia_messaggio']='Invia messaggio';
+	$testo_config['Forum_Lista_empty']='Nessun forum disponibile';
+	$testo_config['Forum_Aggiungi']='Aggiungi Forum';
+	$testo_config['Forum_Crea']='Crea Forum';
+	$testo_config['Forum_Mostra_testo']='Mostra / Nascondi messaggio';
+	$testo_config['Forum_Inviato_il']='Data d\'invio';
+	$testo_config['Forum_Rispondi']='Rispondi';
+	$testo_config['Forum_New_Testo']='Nuovo Messaggio';
+	$testo_config['Forum_New_Topic']='Nuovo Oggetto';
+	$testo_config['Forum_New_reply']='Nuova Risposta';
+	$testo_config['Forum_Testo_Oggetto']='Oggetto';
+	$testo_config['Forum_Testo_Da']='Inviato da';
+	$testo_config['Forum_Testo_Data']='Date';
+	$testo_config['Forum_Testo_Data']='Data';
+	$testo_config['Forum_back_topic_list']='Torna alla lista degli Oggetti';
+	$testo_config['Forum_back_forum_list']='Torna alla lista dei Forum';
+	$testo_config['Forum_doc_link']='Documento Linkato';
+	$testo_config['Forum_Testo']='Messaggio';
+	$testo_config['Forum_Nuovo']='Aggiungi un nuovo Forum';
+	$testo_config['Forum_Nome']='Nome del Forum';
+	$testo_config['Forum_User_nro']='Utenti';
+	$testo_config['Forum_Topics']='Oggetti';
+	$testo_config['Forum_Topic']='Oggetto';
+	$testo_config['Forum_Posted_by']='Inviato da';
+	$testo_config['Forum_no_topics']='Nessun Oggetto';
+	$testo_config['Forum_Mod_User']='Moderatore';
+	$testo_config['Forum_Replies']='Risposte';
+	$testo_config['Forum_visited']='Visite';
+	$testo_config['link_as']="come";
+	$testo_config['Forum_group_utenti']='Gruppi di utenti abilitati';
+	$testo_config['tipo_doc']='Tipo di documento';
+	$testo_config['Forum_Subscribe']='Iscriviti';
+	$testo_config['Forum_Testo_rimuovi_sottoscrizione']='Siete sicuri di voler disiscrivervi dal presente oggetto?';
+	$testo_config['Forum_Testo_sottoscrizione']='Siete sicuri di voler iscrivervi al presente oggetto?';
+
+	// Sezione Messaggistica
+
+	$testo_config['Messaggi_Destinatario']='Invia a';
+	$testo_config['Messaggi_Lista_Messaggi']='Lista dei messaggi';
+	$testo_config['Messaggi_Inviato_a']='Inviato a';
+	$testo_config['Messaggi_Inviato_da']='Inviato da';
+	$testo_config['Messaggi_Messaggio']='Messaggio';
+	$testo_config['Messaggi_Invia']='Invia';
+	$testo_config['Messaggi_Last']='Messaggi Recenti';
+
+	//Sezione contatti
+	/*
+	Per disabilitare i campi dalla form basta commentare le relative variabili con l'unica accortezza che i dati
+	relativi all'indirizzo sono un blocco unico, quindi commentando la variabile $testo_config['Contatti_user_via']
+	non verranno mostrate
+	$testo_config['Contatti_user_via']
+	$testo_config['Contatti_user_cap']
+	$testo_config['Contatti_user_citta']
+	$testo_config['Contatti_user_nazione']
+	$testo_config['Contatti_user_prov']
+	*/
+	$testo_config['enti']='Enti';
+	$testo_config['tutti_i']='Tutti i';
+	$testo_config['tutti']='Tutti&nbsp;i/gli';
+	$testo_config['select_all']='Seleziona&nbsp;tutti';
+	$testo_config['send_to_all']='Invia un\'email a tutti gli utenti';
+	$testo_config['send_to_selected']='Invia un\'email agli utenti selezionati';
+	$testo_config['Filtri_Contatti']='Filtri';
+	$testo_config['Contatti_nome']='Nome';
+	$testo_config['Contatti_ente']='Ente';
+	$testo_config['Contatti_profilo']='Profilo';
+	$testo_config['Contatti_email']='Email';
+	$testo_config['Contatti_telefono']='Telefono';
+	$testo_config['Contatti_details']='Dettagli';
+	$testo_config['Contatti_user_details']='Dettagli utente';
+	$testo_config['Contatti_user_nome']='Nome';
+	$testo_config['Contatti_user_cognome']='Cognome';
+	$testo_config['Contatti_user_email']='Email';
+	$testo_config['Contatti_user_suffix']='Suffisso';
+	$testo_config['Contatti_user_birth']='Data di nascita';
+	//$testo_config['Contatti_user_job_title']='Job Title';
+	$testo_config['Contatti_user_ente']='Ente';
+	$testo_config['Contatti_group']='Gruppo di Progetto';
+	$testo_config['Contatti_user_via']='Indirizzo';
+	$testo_config['Contatti_user_cap']='C.A.P.';
+	$testo_config['Contatti_user_citta']='Città';
+	$testo_config['Contatti_user_nazione']='Paese';
+	$testo_config['Contatti_user_prov']='Provincia';
+	//$testo_config['Contatti_user_tel_home']='Tel. Home';
+	$testo_config['Contatti_user_telefono']='Tel. Ufficio';
+	$testo_config['Contatti_user_tel_mobile']='Tel. Mobile';
+	$testo_config['Contatti_user_fax']='Fax Ufficio';
+	$testo_config['Contatti_user_url']='Url';
+	$testo_config['Contatti_user_foto']='Immagine';
+
+	$testo_config['Contatti_presenza']='Partecipazione';
+	$testo_config['Contatti_presenza_confermata']='confermato';
+	$testo_config['Contatti_presenza_effettiva']='effettiva';
+
+
+	$testo_config['Gruppi_modifica_nome']='edita';
+	$help_topic['Gruppi_modifica_nome']='Clicca per editare il nome del gruppo';
+	$testo_config['Gruppi_modifica_save']='Salva i cambiamenti';
+
+
+
+	$testo_config['Calendar_mail_insert_subject']=$testo_nome_progetto." - Invito a una riunione";
+	$testo_config['Calendar_mail_update_subject']=$testo_nome_progetto." - Aggiornamento di una riunione";
+	$testo_config['Calendar_mail_cancel_subject']="Riunione annullata";
+	$testo_config['Calendar_mail_insert_body']="Sei stato invitato alla seguente riunione";
+	$testo_config['Calendar_mail_update_body']="C'è stata una modifica alla seguente riunione";
+	$testo_config['Calendar_mail_cancel_body']="La seguente riunione è stata annullata";
+	$testo_config['Calendar_mail_confirm']="Per favore, conferma la tua presenza alla riunione cliccando il seguente link:";
+
+	$testo_config['Document_Area_subject']=$testo_nome_progetto." - Notifica d'inserimento di un nuovo documento - Nome del documento: ";
+	$testo_config['Document_Area_body']='Sulla piattaforma è stato condiviso un nuovo documento chiamato ';
+	$testo_config['Document_Area_body_end']='Il documento non è un allegato -- è disponibile online sul portale <b>'.$testo_nome_progetto.'</b>.<br>Per accedere al file cliccare il link sovrastante.';
+	$testo_config['Forum_Topic_Subscription_subject']='E\' stata inviata una nuova risposta all\'oggetto: <<oggetto>> ';
+	$testo_config['Forum_Topic_Subscription_body']='
+	Nome forum: <b><<forum_name>></b><br>
+	E\' stata inviata una nuova risposta all\'oggetto: <b><<oggetto>></b><br>
+	dall\'utente: <b><<username>></b><br>
+	<br>Clicca per vedere il messaggio:
+	<<href>><br><br>
+';
+	$testo_config['Forum_New_Topic_body']='
+	E\' stato inserito un nuovo messaggio nel forum "<b><<forum_name>></b>" dall\'utente "<b><<username>></b>"
+	<br><br>	
+	Oggetto: <b><<oggetto>></b><br>
+	
+	<br>Cliccare qui per leggere il messaggio:
+	<<href>><br><br>
+';
+	$testo_config['Forum_New_Topic_subject']=$testo_nome_progetto.'- E\' stato inserito un nuovo oggetto nel seguente forum: <<forum_name>> ';
+
+
+
+	$testo_config['NO_REPLY_MESSAGE']='
+###############################################################################################<br>
+Questa è un\'email generata automaticamente<br>
+Si prega di non rispondere a questo messaggio.<br>
+Per eventuali problemi o segnalazioni  utilizzare il link presente nella home del servizio<br>
+###############################################################################################';
+
+	//REPORT
+	$testo_config['statistiche_accesso']='Statistiche d&#39;accesso';
+	$testo_config['statistiche_utenti']='Utenti';
+}
+
+$priv_user_create=3;
+
+
+$prj=$in['prj']=1;
+
+$img_tabs[0]="btn_home.gif";
+//$tabs[0]="Home<br>Private Area&nbsp;";
+$tabs[0]="Home<br>Area Privata&nbsp;";
+//$tabs[1]=$testo_config['Menu_principale_riunione_wbr'];
+//$img_tabs[1]="btn_eventi.gif";
+$tabs[3]=$testo_config['Menu_principale_Area_Documentale_wbr'];
+$img_tabs[3]="btn_document.gif";
+//$tabs[22]="Approval<br>Area";
+//$img_tabs[22]="btn_aprov.gif";
+$img_tabs[15]="btn_contact.gif";
+$tabs[15]=$testo_config['Menu_principale_Contatti_wbr'];
+$tabs[13]=$testo_config['Menu_principale_Forum_wbr'];
+$img_tabs[13]="btn_forum.gif";
+//$tabs[12]=$testo_config['Menu_principale_Messaggistica_wbr'];
+//$img_tabs[12]="btn_message.gif";
+$tabs[14]=$testo_config['Menu_principale_Guida_wbr'];
+$img_tabs[14]="btn_guida.gif";
+//$tab_link[14]="index.php?tab=0";
+$tabs[4]=$testo_config['Menu_principale_Risorse_wbr'];
+$img_tabs[4]="btn_ammin.gif";
+//$tabs[20]="Centro Studi SIC<br>Home";
+//$img_tabs[20]="btn_neat.gif";
+//$tab_link[20]="/index.php";
+$img_tabs[23]="btn_search.gif";
+//$tabs[23]="Search<br>&nbsp;";
+$tabs[23]="Cerca<br>&nbsp;";
+//$img_tabs[24]="btn_polling.gif";
+//$tabs[24]="Survey<br>&nbsp;";
+////$img_tabs[25]="btn_protocol.gif";
+////$tabs[25]="Protocol<br>Development";
+//$img_tabs[26]="btn_stats.gif";
+//$tabs[26]="Reports<br>&nbsp;";
+//$img_tabs[27]="btn_link.gif";
+//$tabs[27]="Links<br>&nbsp;";
+//$tabs[21]="Print <br>page";
+//$img_tabs[21]="pdf.jpg";
+
+//Mappa
+//$testo_config['Mappa_logo_default']='<img src=\'images/aifa4.jpg\' width=80  height=80>';
+//$testo_config['Mappa_testo_fumetto_default']="<b>Aifa</b><br><a href='http://www.agenziafarmaco.it/' target='_blank'>http://www.agenziafarmaco.it</a><br>Via Sierra Nevada 60<br>Roma, Italy<br>";
+//$testo_config['Mappa_indirizzo_default']="Via Sierra nevada 60, Roma, Roma, It";
+//$google_key="ABQIAAAA0or-kVSZi8Zct9gjTediHBR8Hm4RF0C3OlXzpA4ntj9wD9_UFhQIDnQrqwcZemK0D2cbnAnls4573g";
+
+//Paging
+$paging['Contatti']=20;
+$paging['Topic']=10;
+$paging['Docs']=5;
+$config_document['RATING']=1;
+$config_document['No_Status']=1;
+
+
+//Alert Javascript
+
+//chiave dell'array = alert_[nome_campo]_[valore_campo] solo per radio
+//$testo_config['alert_tipo_visibilita_0']='testo alert visibilità scelta 0';
+//$testo_config['alert_tipo_visibilita_1']='testo alert visibilità scelta 1';
+//$testo_config['alert_tipo_riunioni_0']='testo alert tipo riunioni scelta 0';
+//$testo_config['alert_tipo_riunioni_1']='testo alert tipo riunioni scelta 1';
+
+//Fumetto help
+/*
+Definire una varibile $help_topic[chiave]='contenuto del fumetto di help';
+la vhiave deve essere la stessa del testo a qui fa riferimento l'help
+Es.
+
+$testo_config['Calendario_Commenti']='Description';
+$help_topic['Calendario_Commenti']='A short description of the event';
+
+
+
+*/
+
+
+
+
+//COLORI
+$testo_config['Calendario_Availibility_busy_color']='#F07800';
+$testo_config['Calendario_Availibility_not_conf_color']='#FFD2A6';
+$testo_config['Calendario_Availibility_out_of_office_color']='#FFFF77';
+$testo_config['Calendario_Availibility_free_color']='#E3E8EF';
+$testo_config['Calendario_Availibility_out_of_range_color']='#A3D773';
+$testo_config['Colore_header']='#9DADC4';
+$testo_config['Colore_free']='#FFFFFF';
+$testo_config['Colore_non_definitiva']='#FFAE5E';
+$testo_config['Colore_busy']='#668CD9';
+
+
+
+
+
+//CONFIGURAZIONI
+
+$config_forum['notify_new_topic']=true;
+$config_search['no_range']='configuro la ricerca senza range temporale';
+$config_document['RATING']=0;
+$config_calendar['mostra_tab']=1;
+$config_calendar['visione_default']='year';
+$config_calendar['to_dt']=1;
+$config_calendar['ora_fine']=1;
+$config_calendar['min_fine']=1;
+$config_calendar['luogo']=0;
+//$config_calendar['disponibilità']=1;
+//$config_calendar['ordine_del_giorno']=1;
+$config_calendar['users']=1;
+$config_calendar['presenze']=1;
+$config_calendar['tipo_visibilita']=1;#public
+$testo_config['Utenti_partner']='Partner';
+$config_calendar['NATION']='IT';
+//$config_calendar['disable emails']=TRUE;
+$config_mess_int['check_invio_mail_per_nuovo_mess']=1;
+$config_calendar['check_invio_mail_per_riunione']=1;
+$config_document['check_invio_mail_per_nuovo_doc_riunione']=1;//commentare per togliere il check valore 1=checked valore 0=unchecked
+$config_document['check_invio_mail_per_revisione_riunione']=0;
+$config_document['check_invio_mail_per_nuovo_doc']=1;//commentare per togliere il check valore 1=checked valore 0=unchecked
+$config_document['check_invio_mail_per_revisione']=0;
+
+// Creazione gallerie immagini => 0 Solo SuperUser, 1 Tutti gli utenti
+$config_gallery['create_all']=0;
+?>

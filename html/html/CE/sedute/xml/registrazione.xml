@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Anagrafica Riunione" titolo="Anagrafica Riunione" table="REGISTRAZIONE" 
+	link_to="index.php?ID_SED=[ID_SED]|and|exams" 
+	cols="1"
+	f_to_call="registra_riunione"
+>
+	<field type="hidden" var="ID_SED" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+	</field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+
+	<field type="hidden" var="CENTER" var_type="number" />
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+
+	<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
+
+	<field type="hidden" var="IN_EMENDAMENTO" var_type="number" var_size="1" />
+	<field type="hidden" var="IN_EMENDAMENTO_APPROVAZIONE" var_type="number" var_size="1" />
+	<field type="hidden" var="EMENDAMENTO_DT" var_type="date" /> <!-- Date accessorie -->
+
+	<field type="hidden" var="MEETING_URL" var_type="text" var_size="2000" />
+	<field type="hidden" var="MEETING_SCOID" var_type="text" var_size="2000" />
+		
+	<field>
+		<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Inserimento nuova riunione</b></td>]]></txt_value>
+	</field>
+ 	<!--field type="textbox" var="CODICE_SED" var_type="text"  var_size="20" cols="1" size="20" send="obbligatorio">
+		<txt_value>Codice</txt_value>
+	</field-->
+	<field type="select" show_selected="yes" var="TIPO_SED"  send="obbligatorio" cols="1" >      
+		<txt_value>Tipo</txt_value>
+			<value val="1">Riunione CE Programmata</value>           
+			<value val="2">Riunione CE Straordinaria</value>    
+			<value val="3">Riunione CE Telematica</value>       
+			<!--value val="10">Riunione</value-->
+			<!-- <value val="99">Altro</value> -->
+	</field>    
+	<field type="textbox" var="DESCRIZIONE" var_type="text"  var_size="200" cols="1" size="100" >
+		<txt_value>Descrizione</txt_value>
+	</field>
+	<field type="data" var="DATA_SED_DT" var_type="text"  var_size="200" cols="1" size="40" def=" (gg/mm/aaa)" send="obbligatorio">
+		<txt_value>Data riunione</txt_value>
+	</field>
+	<field type="ora" var="ORA_INIZIO" cols="1" size="40" def=" (HH:MM)" send="obbligatorio">
+		<txt_value>Ora inizio</txt_value>
+	</field>
+ 	<field type="ora" var="ORA_FINE" cols="1" size="40" def=" (HH:MM)">
+		<txt_value>Ora fine</txt_value>
+  	</field>
+ 	<field type="textbox" var="LUOGO" var_type="text"  var_size="1000" cols="1" size="80" >
+		<txt_value>Luogo</txt_value>
+  	</field>
+	<!--field type="textbox" var="TIPO_OTHER" var_type="text" var_size="200" cols="1" size="40" condition="TIPO" condition_value="99" hide="yes" show_vis="yes"  send="obbligatorio">
+		<txt_value>Se Altro, specificare:</txt_value>				
+	</field-->
+	
+	<enable>
+		<exam number="1" visitnum="0" visitnum_progr="0" progr="1"></exam>
+		<exam number="2" visitnum="0" visitnum_progr="0" progr="1"></exam>
+		<exam number="10" visitnum="0" visitnum_progr="0" progr="1"></exam>
+	</enable>
+	
+	<send>Procedi</send>
+	<cancel>Annulla</cancel>
+</form>

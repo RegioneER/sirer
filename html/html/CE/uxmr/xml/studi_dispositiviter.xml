@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="Dispositivo medico" titolo="Farmaco" table="DISPOSITIVI"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]"
+	cols="2"
+	field_tb_show="DISPOSITIVO"
+	tb_header="Denominazione del Dispositivo medico"
+	>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+	</field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="4"  class=titolo3 align=center><b>Dispositivo medico in protocollo di uso terapeutico</b></td>]]></txt_value>
+	</field>
+	
+	<field type="textbox" var="DISPOSITIVO" var_type="text"  var_size="200" cols="2" size="100" send="obbligatorio">
+		<txt_value><![CDATA[Denominazione del dispositivo medico (modello/i)]]></txt_value>
+	</field>
+	<field cols="2" type="textarea" var="DESC_CARATT" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" send="obbligatorio">
+		<txt_value><![CDATA[Descrizione del dispositivo medico e della sua azione principale]]></txt_value>
+	</field>
+	<field cols="2" type="radio" var="MARCHIOCE" send="obbligatorio">
+		<txt_value><![CDATA[E' presente marchio CE per indicazione diversa da quella richiesta?]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field cols="2" type="textarea" var="INDICAZIONE" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="MARCHIOCE" condition_value="1">
+		<txt_value><![CDATA[Se s&igrave; quale?]]></txt_value>
+	</field> 
+	<field cols="2" type="radio" var="FARMACIA">
+		<txt_value><![CDATA[L'uso terapeutico del dispositivo medico prevede il coinvolgimento della Farmacia Ospedaliera?]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field cols="2" type="radio" var="IMPIANTABILE" send="obbligatorio">
+		<txt_value><![CDATA[Si tratta di un dispositivo impiantabile?]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field cols="2" type="radio" var="CLASSE_RISCHIODM" send="obbligatorio">
+		<txt_value><![CDATA[Classe di rischio del DM]]></txt_value>
+			<value val="1">I</value>
+			<value val="2">IIa</value>
+			<value val="3">IIb</value>
+			<value val="4">III</value>
+			<value val="-9911">NA</value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI" var_type="text" var_size="13" size="13" send="obbligatorio" cols="2">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 1]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO" cols="2" send="obbligatorio">
+		<txt_value>Sesso</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT" def="(gg/mm/aaaa)" send="obbligatorio">
+		<txt_value>Data di nascita</txt_value>
+	</field>
+	
+	<!--field type="textbox" var="INIZIALI_MULTI_1" var_type="text" var_size="13" size="13" send="obbligatorio" cols="2" hide="yes" condition="USO_FARMACO" condition_value="2">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 1]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_1" cols="2" send="obbligatorio" hide="yes" condition="USO_FARMACO" condition_value="2">
+		<txt_value>Sesso paziente 1</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_1" def="(gg/mm/aaaa)" send="obbligatorio" hide="yes" condition="USO_FARMACO" condition_value="2">
+		<txt_value>Data di nascita paziente 1</txt_value>
+	</field-->
+	
+	<field type="textbox" var="INIZIALI_MULTI_2" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 2]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_2" cols="2" hide="yes" condition="INIZIALI" condition_value="!">
+		<txt_value>Sesso paziente 2</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_2" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI" condition_value="!">
+		<txt_value>Data di nascita paziente 2</txt_value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI_MULTI_3" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI_MULTI_2" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 3]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_3" cols="2" hide="yes" condition="INIZIALI_MULTI_2" condition_value="!">
+		<txt_value>Sesso paziente 3</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_3" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI_MULTI_2" condition_value="!">
+		<txt_value>Data di nascita paziente 3</txt_value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI_MULTI_4" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI_MULTI_3" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 4]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_4" cols="2" hide="yes" condition="INIZIALI_MULTI_3" condition_value="!">
+		<txt_value>Sesso paziente 4</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_4" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI_MULTI_3" condition_value="!">
+		<txt_value>Data di nascita paziente 4</txt_value>
+	</field>
+	
+	<field type="textbox" var="INIZIALI_MULTI_5" var_type="text" var_size="13" size="13" cols="2" hide="yes" condition="INIZIALI_MULTI_4" condition_value="!">
+		<txt_value><![CDATA[Iniziali nome e cognome paziente 5]]></txt_value>
+	</field>
+	<field type="radio" var="SESSO_MULTI_5" cols="2" hide="yes" condition="INIZIALI_MULTI_4" condition_value="!">
+		<txt_value>Sesso paziente 5</txt_value>
+			<value val="1">Maschio</value>
+			<value val="2">Femmina</value>
+	</field>
+	<field cols="2" type="data" var="NASCITA_DT_MULTI_5" def="(gg/mm/aaaa)" hide="yes" condition="INIZIALI_MULTI_4" condition_value="!">
+		<txt_value>Data di nascita paziente 5</txt_value>
+	</field>
+	
+	
+	
+	<save>Salva</save>
+	<cancel>Annulla</cancel>
+</form>

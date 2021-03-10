@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="RELAZIONI" titolo="RELAZIONI" table="RELAZIONI"
+ 	FIELD_TB_SHOW="DOC_DT,( SELECT nome||' '||cognome FROM ana_utenti_1 WHERE userid = gse_relazioni.userid_ins),ID_STUD,(select titolo_stud from DOC_VIEW_STUDI where pair=GSE_RELAZIONI.id_stud||'_'||GSE_RELAZIONI.progr_centro),(select codice_ce from DOC_VIEW_STUDI where pair=GSE_RELAZIONI.id_stud||'_'||GSE_RELAZIONI.progr_centro),(select pi from DOC_VIEW_STUDI where pair=GSE_RELAZIONI.id_stud||'_'||GSE_RELAZIONI.progr_centro),TITOLO"
+ 	TB_HEADER="Data,Autore,Studio,Titolo studio,Codice Interno CE, PI,Titolo documento"
+  	link_to="index.php?CENTER=[CENTER]|and|ID_SED=[ID_SED]|and|VISITNUM=[VISITNUM]|and|clista=studi"
+	cols="1"
+	FIELD_AGG="RELAZ_FILE"
+	FIELD_AGG_TXT="Scarica Doc."
+	TRASH="no"
+	DOC_FIELD="RELAZ_FILE"
+	HIDE_ALL_IN_BUTTON="yes"
+	f_to_call="action_relazione"
+  >
+
+	<field type="hidden" var="ID_SED" var_type="number" pk="yes"> <value val="next"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+  <field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="INVIOCO" tb="no"></field>
+	<field type="hidden" var="CENTER" var_type="text" var_size="8"></field>
+	<field type="hidden" var="CODE1" var_type="number"></field>
+	<field type="hidden" var="CODE2" var_type="number"></field>
+	<field type="hidden" var="CORE" var_type="number"></field>
+	<field type="hidden" var="COORD" var_type="number"></field>
+	<field type="hidden" var="CS" var_type="number"></field>
+	<field type="hidden" var="D_DOCUMENTO" var_type="text" var_size="400" ></field>
+
+	<field type="hidden" var="ID_STUD" var_type="number" ></field>
+	<field type="hidden" var="PROGR_CENTRO" var_type="number" ></field>
+
+	<field>
+	<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b> Inserisci relazione</b></td>]]></txt_value>
+	</field>
+
+	<field type="text" var_size="100" size="100" var="ID_STUDIO" cols="1" tb="no" bytb="DOC_VIEW_STUDI" bytbcode="ID_STUD" bytbdecode="ID_STUD" bytbwhere="PAIR=[ID_STUD]||'_'||[PROGR_CENTRO]" bytbnoprefix="yes" >
+			<txt_value>ID Studio</txt_value>
+  	</field>
+		
+	<field type="text" var_size="100" size="100" var="CODICE_STUDIO" cols="1" tb="no" bytb="DOC_VIEW_STUDI" bytbcode="COD_STUD" bytbdecode="COD_STUD" bytbwhere="PAIR=[ID_STUD]||'_'||[PROGR_CENTRO]" bytbnoprefix="yes" >
+			<txt_value>Codice Studio</txt_value>
+  	</field>
+  	
+	<field type="text" var_size="100" size="100" var="TITOLO_STUDIO" cols="1" tb="no" bytb="DOC_VIEW_STUDI" bytbcode="TITOLO_STUD" bytbdecode="TITOLO_STUD" bytbwhere="PAIR=[ID_STUD]||'_'||[PROGR_CENTRO]" bytbnoprefix="yes" >
+			<txt_value>Titolo Studio</txt_value>
+  	</field>
+	
+	<field type="data" var="DOC_DT" save="obbligatorio" send="obbligatorio">
+		<txt_value>Data</txt_value>
+	</field>
+		
+	<field type="textbox" var_size="100" var_type="text" size="100" var="TITOLO" cols="1">
+		<txt_value>Titolo documento</txt_value>
+  	</field>
+
+		<!--field type="textbox" var_size="100" size="100" var="TITOLO_STUDIO" cols="1" bytb="CE_REGISTRAZIONE" bytbcode="TITOLO_PROT" bytbdecode="TITOLO_PROT" bytbwhere="ID_STUD=[ID_STUD]" bytbnoprefix="yes" >
+			<txt_value>Studio:</txt_value>
+  	</field-->
+   
+   <field cols="1"
+    type="file_cme" 
+    var="RELAZ_FILE"
+    THREAD="Documentazione Relazione Studi"
+    TOPIC="Documentazione Relazione Studi"
+    xmlTypeDefinition="cme/relazione_studi.xml"
+    ALL_IN="yes"
+    auto_approve="yes"
+    >
+    <txt_value>Attach</txt_value>
+   </field>	
+   
+   <field cols="1" type="textarea" var="NOTE"  var_type="text"  rows="8" tcols="80" save="obbligatorio" send="obbligatorio">
+    	<txt_value><![CDATA[Elementi di rilievo/criticit&agrave;]]></txt_value>
+  </field> 
+	
+  	<save>Inserisci relazione</save>
+	<cancel>Annulla</cancel>		
+</form>
+   
+		

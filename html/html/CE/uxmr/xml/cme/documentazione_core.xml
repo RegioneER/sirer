@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<document queryName="DOC_CORE_CME" >
+  <field type="hidden" var="ID_STUD" var_type="number" pk="yes"></field>
+  <field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"/>
+  <field type="hidden" var="ESAM" var_type="number" />
+  <field type="hidden" var="VISITNUM" var_type="number" />
+  <field type="hidden" var="VISITNUM_PROGR" var_type="number"  value="0" pk="yes"/>
+  <field type="hidden" var="CENTER" var_type="text" var_size="40"/>
+  <field type="hidden" var="PROGR"  var_type="number" pk="yes">
+    <value val="1"></value>
+  </field>
+  <field type="hidden" var="ID" var_type="number"/>
+  <field type="hidden" var="ID_REF" var_type="number"/>
+  <field type="hidden" var="VAR_NAME" var_type="text" var_size="40" pk="yes" >
+ 	<value val="1"></value>
+  </field>
+  <field type="hidden" var="TOPIC" var_type="text" var_size="500" />
+
+
+
+		<!--field type="select" var="AREA_DOC" show_selected="yes" save="obbligatorio" send="obbligatorio"
+    bytb="AREA_DOCUMENTI" bytbcode="ID" BYTBDECODE="AREA" bytbwhere="CORE=1" bytborderby="ID">
+			<txt_value>Area del documento</txt_value>
+	  </field>
+    
+    <field type="select" var="TIPO_DOC_1" show_selected="yes" save="obbligatorio" send="obbligatorio"
+    condition="AREA_DOC" condition_value="1" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=1" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_2" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="2" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=2" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_3" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="3" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=3" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_4" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="4" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=4" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_5" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="5" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=5" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_6" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="6" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=6" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field>
+	  
+	  <field type="select" var="TIPO_DOC_7" show_selected="yes" save="obbligatorio" send="obbligatorio"
+	  condition="AREA_DOC" condition_value="7" hide="yes"
+    bytb="TIPO_DOCUMENTI" bytbcode="ID" BYTBDECODE="D_DOCUMENTO" 
+    bytbwhere="CORE='1' and CODE1=7" bytborderby="CODE2">
+			<txt_value><![CDATA[Tipo documento<font color=red><b>*</b></font>]]></txt_value>
+	  </field-->
+	  
+	  <field type="select" var="DOC_GEN" show_selected="yes"  send="obbligatorio" cols="2"
+    		bytb="DOC_GEN" bytbcode="ID" BYTBDECODE="DESCRIZIONE"  bytborderby="DESCRIZIONE ASC" >
+		<txt_value>Selezionare il documento generale</txt_value>
+	</field>
+	  	<field type="textbox" var="DOC_GEN_ALTRO" var_type="text"  var_size="200" size="100" condition="DOC_GEN" condition_value="23" hide="yes" cols="2">
+    	<txt_value><![CDATA[Se altro, specificare]]></txt_value>
+    </field>
+	  
+	 <field type="textbox" var="DESCR_AGG" cols="2" var_size="200" size="100">
+    	<txt_value>Descrizione aggiuntiva</txt_value>
+    </field>
+	
+		<field type="data" var="DOC_DT" send="obbligatorio" cols="1">
+			<txt_value>Data</txt_value>
+		</field>
+		
+		<field type="textbox" var="DOC_VERS" var_type="text"  var_size="30" size="30" send="obbligatorio" cols="1">
+    	<txt_value><![CDATA[Versione <br><a href="#" onclick="document.forms[0].DOC_VERS.value='NON APPLICABILE';return false;">Non Applicabile</a>]]></txt_value>
+    </field>
+    
+ 
+</document>

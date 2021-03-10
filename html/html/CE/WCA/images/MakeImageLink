@@ -1,0 +1,21 @@
+#!/usr/bin/ksh
+
+# Creazione link simbolici alle immagini di Gest_area
+####################################################
+
+ln -s /http/lib/gest-area/images/back.jpg      back.jpg     
+ln -s /http/lib/gest-area/images/check.gif     check.gif    
+ln -s /http/lib/gest-area/images/excel.gif     excel.gif    
+ln -s /http/lib/gest-area/images/g_line.gif    g_line.gif   
+ln -s /http/lib/gest-area/images/gif.gif       gif.gif      
+ln -s /http/lib/gest-area/images/htm.gif       htm.gif      
+ln -s /http/lib/gest-area/images/iabothom.jpg  iabothom.jpg 
+ln -s /http/lib/gest-area/images/info4.gif     info4.gif    
+ln -s /http/lib/gest-area/images/jpeg.gif      jpeg.gif     
+ln -s /http/lib/gest-area/images/new.gif       new.gif      
+ln -s /http/lib/gest-area/images/none.gif      none.gif     
+ln -s /http/lib/gest-area/images/pdf.gif       pdf.gif      
+ln -s /http/lib/gest-area/images/ppt.gif       ppt.gif      
+ln -s /http/lib/gest-area/images/punto.gif     punto.gif    
+ln -s /http/lib/gest-area/images/text.gif      text.gif     
+ln -s /http/lib/gest-area/images/word.gif      word.gif     

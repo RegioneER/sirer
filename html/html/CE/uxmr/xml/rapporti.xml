@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Rapporti" titolo="Rapporti" table="RAPPORTI"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]|and|VISITNUM_PROGR=[VISITNUM_PROGR]"
+	cols="3"
+	field_tb_show="D_CENTRO||' '||RELAZ_DT"
+	tb_header="Centro - Data relazione"
+	f_to_call="action_rapporti"
+>
+	<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+	<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+	
+	<!--field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3">
+		<txt_value>First Name </txt_value>
+  </field-->
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Rapporti sullo stato di avanzamento dello studio</b></td>]]></txt_value>
+	</field>
+	<field type="text" var="D_CENTRO" cols="3"  bytb="CENTRILOCALI" bytbcode="D_CENTRO" bytbdecode="D_CENTRO" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value> Struttura partecipante </txt_value>
+	</field>
+	<field type="text" var="D_PRINC_INV" cols="3" var_size="200" bytb="CENTRILOCALI" bytbcode="D_PRINC_INV" bytbdecode="D_PRINC_INV" bytbwhere="ID_STUD='[ID_STUD]' AND PROGR=[VISITNUM_PROGR]+1">
+		<txt_value>Principal Investigator</txt_value>
+	</field>
+	<field type="data" var="PERIODO1" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value><![CDATA[Periodo di riferimento del rapporto<br> Dal (gg/mm/yyyy)]]></txt_value>
+  </field>
+	<field type="data" var="PERIODO2" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value>Al (gg/mm/yyyy)</txt_value>
+	</field>
+	
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="12" class=titolo3 align=left><b> Casistica dall'inizio dello studio</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="PREVISTI_NUM" var_type="number" var_size="30" size="30" save="facoltativo" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Numero pazienti previsti]]></txt_value>
+	</field>	
+	<field type="textbox" var="ARR_NUM" var_type="number" var_size="30" size="30" save="facoltativo" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Numero pazienti arruolati]]></txt_value>
+	</field>
+	<field type="textbox" var="USCITI_NUM" var_type="number" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti usciti dallo studio]]></txt_value>
+	</field>
+	<field type="textbox" var="SCRENATI" var_type="number" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti screenati]]></txt_value>
+	</field>
+	<!--field type="textbox" var="PAZ_REALLY" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti effettivamente arruolati]]></txt_value>
+	</field-->
+	<field type="textbox" var="PAZ_COMPLETATI" var_type="number" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti completati]]></txt_value>
+	</field>
+	<!--field type="textbox" var="PAZ_COMPLETI_CON" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti completati al momento della conclusione dello studio]]></txt_value>
+	</field-->
+	<!--field type="textbox" var="DROPOUT_NUM" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti drop-out valutabili ai fini dello studio]]></txt_value>
+	</field>
+	<field type="textbox" var="DROPOUT_NUMNV" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti drop-out non valutabili ai fini dello studio]]></txt_value>
+	</field-->
+	<field type="radio" var="ARRUOL_COMP" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Arruolamento competitivo]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>	
+	<field cols="3" type="textarea" var="PROBLEMI" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" >
+		<txt_value><![CDATA[Eventuali problemi insorti relativi all'andamento dello studio:]]></txt_value>
+	</field>
+	<field type="data" var="RELAZ_DT" cols="3" send="obbligatorio">
+		<txt_value><![CDATA[Data della relazione (es. relazioni annuali) (gg/mm/yyyy)]]></txt_value>
+	</field>
+	<field cols="3"
+	  type="file_cme" 
+	  var="RELAZIONE_FILE"
+	  THREAD="File della relazione" 
+	  TOPIC="File della relazione"
+	  xmlTypeDefinition="cme/rapporti.xml" 
+	  auto_approve="yes"
+	>
+		<txt_value>File della relazione</txt_value>
+	</field>
+		
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

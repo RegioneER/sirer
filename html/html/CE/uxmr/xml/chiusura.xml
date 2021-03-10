@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Conclusione studio nel centro" titolo="Conclusione studio nel centro" table="CHIUSURA"
+	link_to="index.php?CENTER=[CENTER]|and|ID_STUD=[ID_STUD]|and|VISITNUM=[VISITNUM]|and|exams=visite_exams.xml"
+	cols="3"
+	f_to_call="action_conclusione"
+>
+
+		<field type="hidden" var="ID_STUD" var_type="number" pk="yes"><value val="next"></value></field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no"><value val="0"></value></field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes"><value val="0"></value></field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'"></field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+		<field type="hidden" var="EMENDAMENTO" var_type="number" var_size="10" />
+		<field type="hidden" var="RIAPRISCHEDADM" var_type="text" tb="no"></field>
+		
+		<!--field type="textbox" var="CODICE" crypto="yes" var_type="text"  var_size="3" cols="1" size="3">
+			<txt_value>First Name </txt_value>
+		</field-->
+		
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="6"  class=titolo3 align=center><b> Conclusione dello studio nel centro</b></td>]]></txt_value>
+	</field>
+	<!--field type="select" var="CENTRO" cols="3">
+		<txt_value> Struttura partecipante </txt_value>
+			<value val="1"> Azienda Ulss 20 di Verona</value>
+			<value val="2"> P.O. lungodegenza di Marzana (VR)</value>
+			<value val="3"> Polo Ospedaliero dell'Est Veronese di San Bonifacio (VR)</value>
+			<value val="4"> Casa di Cura Chierego E Perbellini di Verona</value>
+			<value val="5"> Casa di Cura Villa Lieta di Verona</value>
+			<value val="6"> Casa di Cura San Francesco di Verona</value>
+			<value val="7"> Casa di Cura Villa S. Chiara di Verona</value>
+			<value val="8"> Osp. classif. S. Giuliana sorelle mis. di Verona</value>
+	</field>
+	<field type="select" var="PRINC_INV" cols="3">
+		<txt_value> Sperimentatore responsabile</txt_value>
+			<value val="1"> Alessandro Adami</value>
+			<value val="2"> Maurizio Anselmi </value>
+			<value val="3"> Felice Bilone </value>
+	</field-->
+	
+	<field type="data" var="CONCLUS_DT" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value><![CDATA[Data di conclusione nel centro (gg/mm/yyyy)]]></txt_value>
+	</field>
+	<field type="data" var="FINE_FUP_DT" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value><![CDATA[Data di conclusione dell'arruolamento (data di arruolamento dell'ultimo paziente) (gg/mm/yyyy)]]></txt_value>
+	</field>
+	<field type="data" var="FINE_TRAT_DT" cols="3" save="facoltativo" send="obbligatorio">
+		<txt_value><![CDATA[Data di fine trattamento (gg/mm/yyyy)]]></txt_value>
+	</field>
+	<field cols="3">
+		<txt_value><![CDATA[<td colspan="12" class=titolo3 align=left><b> Casistica dall'inizio dello studio</b></td>]]></txt_value>
+	</field>
+	<field type="textbox" var="PREVISTI_NUM" var_type="number" var_size="30" size="30" save="facoltativo" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Numero pazienti previsti]]></txt_value>
+	</field>
+	<field type="textbox" var="ARR_NUM" var_type="number" var_size="30" size="30" save="facoltativo" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Numero di soggetti arruolati nel centro (inclusi nello studio)]]></txt_value>
+	</field>
+	<field type="textbox" var="USCITI_NUM" var_type="number" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti usciti dallo studio]]></txt_value>
+	</field>
+	<field type="textbox" var="SCRENATI" var_type="number" save="facoltativo" send="obbligatorio" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti screenati]]></txt_value>
+	</field>
+	<!--field type="textbox" var="PAZ_REALLY" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti effettivamente arruolati]]></txt_value>
+	</field>
+	<field type="textbox" var="PAZ_COMPLETATI" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti completati]]></txt_value>
+	</field-->
+	<field type="textbox" var="PAZ_COMPLETI_CON" var_type="number" save="facoltativo" send="facoltativo" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti completati al momento della conclusione dello studio]]></txt_value>
+	</field>
+	<!--field type="textbox" var="DROPOUT_NUM" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti drop-out valutabili ai fini dello studio]]></txt_value>
+	</field>
+	<field type="textbox" var="DROPOUT_NUMNV" var_type="text" var_size="30" size="30" cols="3">
+		<txt_value><![CDATA[Numero pazienti drop-out non valutabili ai fini dello studio]]></txt_value>
+	</field-->
+	<field type="radio" var="ARRUOL_COMP" send="obbligatorio" cols="3">
+		<txt_value><![CDATA[Arruolamento competitivo]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="ANTICIPATO" send="obbligatorio" cols="3">
+		<txt_value>Conclusione anticipata dello studio nel centro:</txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_SICUREZZA" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Ragioni di sicurezza]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_EFFICACIA" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Mancanza di efficacia]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_IMP" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Aspetti collegati alla qualità dell'IMP]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_DIFF_RECLUTA" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Difficoltà di reclutamento]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_NOAVVIO" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Mancato inizio della sperimentazione]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_REVOCA_AIFA" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Revoca definitiva dell'autorizzazione da parte di AIFA]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_REVOCA_ISS" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Revoca definitiva dell'autorizzazione da parte di ISS]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_REVOCA_PU" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Revoca definitiva del parere unico]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_REVOCA_PU_DEFIN" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Revoca definitiva del parere nel centro]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field type="radio" var="MOT_REVOCA_PU_TEMPOR" send="obbligatorio" cols="3" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Revoca temporanea]]></txt_value>
+			<value val="1">Si'</value>
+			<value val="2">No</value>
+	</field>
+	<field cols="3" type="textarea" var="MOT_SPEC_REVOCA_PU_TEMPOR" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="MOT_REVOCA_PU_TEMPOR" condition_value="1">
+		<txt_value><![CDATA[Specificare il tipo di revoca temporanea:]]></txt_value>
+	</field>
+	
+	<field cols="3" type="textarea" var="MOT_ALTRO_SPEC" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" hide="yes" condition="ANTICIPATO" condition_value="1">
+		<txt_value><![CDATA[Altre motivazioni per la conclusione anticipata:]]></txt_value>
+	</field>
+	<!--field cols="3" type="textarea" var="GIACENZA" var_type="text"  rows="8" tcols="80" var_size="2000" size="2000" >
+		<txt_value><![CDATA[Eventuali informazioni relative alla giacenza dei farmaci da rendere alla farmacia/ditta committente:]]></txt_value>
+	</field-->
+  <field cols="3"
+    type="file_cme" 
+    var="CONCLUSIONE_FILE"
+    THREAD="File conclusione" 
+    TOPIC="File conclusione"
+    xmlTypeDefinition="cme/chiusura.xml" 
+    auto_approve="yes"
+  >
+    <txt_value>File conclusione</txt_value>
+	</field>
+	
+	<save>Salva</save>
+	<send>Invia</send>
+	<cancel>Annulla</cancel>
+</form>

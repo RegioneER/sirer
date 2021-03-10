@@ -1,0 +1,13 @@
+<list titolo="Lista Studi">
+	<col tipo="testo" nome="ID_STUD" var="[patients_table].ID_STUD" table="[patients_table]" order_by="asc" ord_arrow="yes">ID Studio</col>
+	<col tipo="testo" nome="CODICE_PROT" var="CE_TUTTI_STUDI.CODICE_PROT" table="CE_TUTTI_STUDI" where="CE_TUTTI_STUDI.ID_STUD = [patients_table].ID_STUD" ord_arrow="yes">Codice Studio</col>
+	<col tipo="testo" nome="TITOLO_PROT" var="CE_TUTTI_STUDI.TITOLO_PROT" table="CE_TUTTI_STUDI" ord_arrow="yes">Titolo Studio</col>
+	<col tipo="testo" nome="EUDRACT_NUM" var="CE_TUTTI_STUDI.EUDRACT_NUM" table="CE_TUTTI_STUDI" ord_arrow="yes">Eudract number</col>
+	<col tipo="hidden" nome="TIPO_SPER" var="CE_TUTTI_STUDI.TIPO_SPER" table="CE_TUTTI_STUDI">Tipo</col>
+	<col tipo="testo" nome="D_TIPO_SPER" var="CE_TUTTI_STUDI.D_TIPO_SPER" table="CE_TUTTI_STUDI" ord_arrow="yes">Tipo</col>
+	<col tipo="testo" nome="DESCR_SPONSOR" var="CE_TUTTI_STUDI.DESCR_SPONSOR" table="CE_TUTTI_STUDI" ord_arrow="yes">Sponsor</col>
+	<col tipo="testo" nome="STATO_DEC" var="CE_LISTA.STATO_DEC" table="CE_LISTA" ord_arrow="yes">Stato</col>
+	<col tipo="testo" nome="USERID_INS" var="(select azienda_ente from ana_utenti_2 where userid = userid_ins)" table="" ord_arrow="yes">Inserito da</col>
+	<col tipo="hidden" nome="STATO" var="CE_LISTA.STATO" table="CE_LISTA" where="[patients_table].ID_STUD = CE_LISTA.ID_STUD and [patients_table].ID_STUD not in (select id_stud from ce_coordinate where visitnum=0 and esam=10 and nvl(visitclose,0)=0)" ord_arrow="yes">Stato</col>
+	<col tipo="lente" nome="ID_STUD_1" var="[patients_table].ID_STUD" script="index.php" param="ID_STUD,VISITNUM=0,ESAM=10,form=dati_centri.xml,AUTOPROGR,FORCE_CENTRO=yes" img="add.png" >Aggiungi centro</col>
+</list>
