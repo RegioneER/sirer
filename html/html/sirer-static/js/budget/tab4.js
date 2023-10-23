@@ -252,10 +252,10 @@ function buildCostiAggiuntiviTable(bootboxClose){
             var td4=$('<td>');
             var td5=$('<td>');
             var td6=$('<td>');
-            var categoria=costiAggiuntivi[i].metadata.CostoAggiuntivo_Tipologia[0].split('###')[1] || '';
-            var previsto=null;
-            if (costiAggiuntivi[i].metadata.CostoAggiuntivo_Previsto && costiAggiuntivi[i].metadata.CostoAggiuntivo_Previsto[0])
-            previsto=costiAggiuntivi[i].metadata.CostoAggiuntivo_Previsto[0].split('###')[1] || '';
+            var categoria=costiAggiuntivi[i].metadata.CostoAggiuntivo_Tipologia && costiAggiuntivi[i].metadata.CostoAggiuntivo_Tipologia[0] && costiAggiuntivi[i].metadata.CostoAggiuntivo_Tipologia[0].split('###')[1] || '';
+            //var previsto=null;
+            //if (costiAggiuntivi[i].metadata.CostoAggiuntivo_Previsto && costiAggiuntivi[i].metadata.CostoAggiuntivo_Previsto[0])
+            //previsto=costiAggiuntivi[i].metadata.CostoAggiuntivo_Previsto[0].split('###')[1] || '';
             var descrizione=costiAggiuntivi[i].metadata.CostoAggiuntivo_OggettoPrincipale || '';
             var copertura=costiAggiuntivi[i].metadata.CostoAggiuntivo_Copertura[0].split('###')[1] || '';
             var quantita=costiAggiuntivi[i].metadata.CostoAggiuntivo_Quantita[0] || '0';
@@ -267,7 +267,7 @@ function buildCostiAggiuntiviTable(bootboxClose){
             }
             totCostiAgg+=tprice;
             td1.append(categoria);
-            td2.append(previsto);
+            //td2.append(previsto);
             td3.append(copertura);
 
             td4.append(tprice.toFixed(2)+" &euro;");
@@ -305,7 +305,7 @@ function buildCostiAggiuntiviTable(bootboxClose){
 
                     var tipologia = el.metadata.CostoAggiuntivo_Tipologia[0] || '';
                     var descrizione = el.metadata.CostoAggiuntivo_OggettoPrincipale || '';
-                    var previsto = el.metadata.CostoAggiuntivo_Previsto[0];
+                    var previsto = el.metadata.CostoAggiuntivo_Previsto!==undefined && el.metadata.CostoAggiuntivo_Previsto[0]!==undefined ? el.metadata.CostoAggiuntivo_Previsto[0] : '';
                     var quantita = el.metadata.CostoAggiuntivo_Quantita[0] || '0';
                     var copertura = el.metadata.CostoAggiuntivo_Copertura[0];
                     quantita = quantita ? quantita : '0';
@@ -313,13 +313,21 @@ function buildCostiAggiuntiviTable(bootboxClose){
                     if (el.metadata.CostoAggiuntivo_Costo && el.metadata.CostoAggiuntivo_Costo[0]) {
                         tprice = el.metadata.CostoAggiuntivo_Costo[0] - 0;
                     }
-
-                    $('#dialog-form-ca [name=CostoAggiuntivo_Tipologia-select]').val(tipologia).trigger("change");
+                    tipologiaSplitted=tipologia.split("###");
+                    tipologiaAltro="";
+                    if(tipologiaSplitted[0]=="-9999"){
+                        tipologia="-9999###Altro";
+                        tipologiaAltro=tipologiaSplitted[1];
+                    }
+                    $('#dialog-form-ca [name=CostoAggiuntivo_Tipologia-select]').val(tipologia).change();
+                    if(tipologiaAltro!=""){
+                        $('#dialog-form-ca [name=CostoAggiuntivo_Tipologia-altro]').val(tipologiaAltro);
+                    }
                     $('#dialog-form-ca [name=CostoAggiuntivo_OggettoPrincipale]').val(descrizione);
                     $('#dialog-form-ca [name=CostoAggiuntivo_Previsto][value="' + previsto + '"]').prop("checked", true);
                     $('#dialog-form-ca [name=CostoAggiuntivo_Quantita]').val(quantita);
                     $('#dialog-form-ca [name=CostoAggiuntivo_Costo]').val(tprice);
-                    $('#dialog-form-ca [name=CostoAggiuntivo_Copertura-select]').val(copertura);
+                    $('#dialog-form-ca [name=CostoAggiuntivo_Copertura-select]').val(copertura).change();
                     $('#dialog-form-ca form').attr('data-type', 'update');
                     $('#dialog-form-ca form').attr('data-id', elId);
                 });
@@ -331,7 +339,7 @@ function buildCostiAggiuntiviTable(bootboxClose){
             td5.append(modlink);
             td6.append(deletelink);
             row.append(td1);
-            row.append(td2);
+            //row.append(td2);
             row.append(td3);
             row.append(td4);
             row.append(td5);

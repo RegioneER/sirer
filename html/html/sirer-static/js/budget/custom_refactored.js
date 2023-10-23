@@ -2627,11 +2627,6 @@ $(function() {
                         passed=false;
                         return;
                     }
-                    if($("#CostoAggiuntivo_Costo").val()=='') {
-                        bootbox.alert('Attenzione inserire il Totale Valore');
-                        passed=false;
-                        return;
-                    }
                     if($("#CostoAggiuntivo_Copertura").val()===undefined || $("#CostoAggiuntivo_Copertura").val()=='') {
                         bootbox.alert('Attenzione inserire la Copertura oneri finanziari');
                         passed=false;

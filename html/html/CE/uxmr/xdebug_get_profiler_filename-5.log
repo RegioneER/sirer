@@ -1,1 +1,0 @@
-select count(*) as segreteria from CE_COORDINATE where id_stud=7148 and visitnum=2NULL

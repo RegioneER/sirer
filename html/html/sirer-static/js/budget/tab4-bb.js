@@ -190,8 +190,16 @@ function buildCostiAggiuntiviTable(bootboxClose){
                 if (el.metadata.CostoAggiuntivo_Costo && el.metadata.CostoAggiuntivo_Costo[0]) {
                     tprice = el.metadata.CostoAggiuntivo_Costo[0] - 0;
                 }
-
-                $('#dialog-form-ca [name=CostoAggiuntivo_Tipologia-select]').val(tipologia).trigger("change");
+                tipologiaSplitted=tipologia.split("###");
+                tipologiaAltro="";
+                if(tipologiaSplitted[0]=="-9999"){
+                    tipologia="-9999###Altro";
+                    tipologiaAltro=tipologiaSplitted[1];
+                }
+                $('#dialog-form-ca [name=CostoAggiuntivo_Tipologia-select]').val(tipologia).change();
+                if(tipologiaAltro!=""){
+                    $('#dialog-form-ca [name=CostoAggiuntivo_Tipologia-altro]').val(tipologiaAltro);
+                }
                 $('#dialog-form-ca [name=CostoAggiuntivo_OggettoPrincipale]').val(descrizione);
                 $('#dialog-form-ca [name=CostoAggiuntivo_Quantita]').val(quantita);
                 $('#dialog-form-ca [name=CostoAggiuntivo_Costo]').val(tprice);

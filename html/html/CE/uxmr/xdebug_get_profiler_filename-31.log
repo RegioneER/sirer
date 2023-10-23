@@ -1,5 +1,0 @@
-select min(visitclose) as closed
-			from CE_coordinate where visitnum=0
-			and ID_STUD=7148
-			
-			NULL

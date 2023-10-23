@@ -1,4 +1,0 @@
-
-			SELECT NVL (s.id_stato, 1) AS stato, ss.DECODE AS stato_dec
-			FROM   CE_registrazione r, CEwf_stato s, CEwf_stati ss
-			WHERE  s.pk_service(+) = r.ID_STUD AND ss.id = NVL (s.id_stato, 1) AND r.ID_STUD='7148'NULL
