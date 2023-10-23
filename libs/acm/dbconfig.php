@@ -33,14 +33,6 @@ for($i = 0; $i < count ( $ammin_config_line ); $i ++) {
 $db_user=rtrim($db_user);
 $db_pwd=rtrim($db_pwd);
 $db_host=rtrim($db_host);
-#die($db_host."# - #".$db_user."# - #".$db_pwd."#");
-#DB username
-#$db_user = "demogst_dev";
-#DB password
-#$db_pwd = "gst0318!";
-#DB host
-#$db_host = "(DESCRIPTION = (ADDRESS_LIST= (LOAD_BALANCE = ON) (FAILOVER = ON) (ADDRESS=(PROTOCOL=tcp)(HOST=cman01-ext.dbc.cineca.it)(PORT=5555)) (ADDRESS=(PROTOCOL=tcp)(HOST=cman02-ext.dbc.cineca.it)(PORT=5555)) ) (CONNECT_DATA = (SERVICE_NAME = db41_ext.pdv.cineca.it)))";
-#$db_host = "siss_devel_v2";
 #DB database name
 $db_name = $db_user;
 #DB type
