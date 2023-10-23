@@ -1,0 +1,68 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #444;
+	font-family: sans-serif;
+}
+
+.fb-main {
+	background-color: #fff;
+	border-radius: 5px;
+	min-height: 600px;
+}
+
+input[type=text] {
+	height: 26px;
+	margin-bottom: 3px;
+}
+
+select {
+	font-size: 14px;
+	margin-bottom: 5px;
+}
+
+#study_structure {
+    max-width: none;
+    min-height: 400px;
+}
+
+.structLoader .modal-footer {
+	border-top: none;
+	background-color: white;
+}
+
+.structLoader .modal-title {
+	font-weight: bold;
+}
+
+.fb-save-wrapper{
+	background-color:#fff;
+    z-index: 99;
+    left: 330px!important;
+}
+
+
+cover, cover:before, cover:after {
+    
+    float: none;
+}
+
+ .control-label {
+    text-align: right;
+}
+ .control-label, .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+    margin-bottom: 0;
+    margin-top: 0;
+    /*padding-top: 7px;*/
+}
+
+.build-col-sm-5 td{
+	
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    
+
+}

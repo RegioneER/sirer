@@ -1,0 +1,25 @@
+.panel-body:before, .panel-body:after {
+	content: none;
+}
+
+.ui-jqgrid tr.jqgrow td {
+    font-size: 13px;
+    padding: 6px;
+}
+
+.ui-icon-seek-next {
+    content: "&gt;";
+}
+
+.ui-search-input input[type="text"] {
+    line-height: 1;
+    font-size: 12px;
+    /* height: 30px; */
+    /* margin-bottom: 2px; */
+}
+.ui-jqgrid-htable tr.ui-search-toolbar th div {
+    padding-top: 4px;
+}
+.select2-container{
+	width: 90%!important;
+}
