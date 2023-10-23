@@ -1,0 +1,96 @@
+#!/usr/bin/env bash
+
+echo "Imposto i permessi alla cartella /opt/application/crpms"
+chmod oug+rw /opt/application/crpms/* -R
+echo "Imposto i permessi alla cartella /opt/application/crpms/.git"
+chmod oug+rw /opt/application/crpms/.git -R
+chmod oug+rw /opt/application/crpms/.gitignore
+rm -rf /deployments/${warname}/WEB-INF/classes/log4j.properties
+cp /opt/application/log4j.properties /deployments/${warname}/WEB-INF/classes/log4j.properties
+
+echo "Applico configurazioni alla webapp"
+
+sed -i 's/\__DB_USER__/'$DB_USER'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__DB_PASS__/'$DB_PASS'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__DB_HOST__/'$DB_HOST'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__DB_PORT__/'$DB_PORT'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__DB_SERVICENAME__/'$DB_SERVICENAME'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__APP_URL__/'$APP_URL'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__WARNAME__/'$warname'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__INDEX_PREFIX__/'$INDEX_PREFIX'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__FIELDINDEX__/'$FIELDINDEX'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__FULLINDEX__/'$FULLINDEX'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__FULLINDEX_WITH_PARENT__/'$FULLINDEX_WITH_PARENT'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__CRMS__/'$XCDM_PREFIX'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+sed -i 's/\__USERID_AUTHZ_HEADER__/'$USERID_AUTHZ_HEADER'/g' /deployments/${warname}/WEB-INF/classes/configuration.properties
+
+sed -i 's/\__DB_USER__/'$DB_USER'/g' /deployments/${warname}/WEB-INF/classes/log4j.properties
+sed -i 's/\__DB_PASS__/'$DB_PASS'/g' /deployments/${warname}/WEB-INF/classes/log4j.properties
+sed -i 's/\__DB_HOST__/'$DB_HOST'/g' /deployments/${warname}/WEB-INF/classes/log4j.properties
+sed -i 's/\__DB_PORT__/'$DB_PORT'/g' /deployments/${warname}/WEB-INF/classes/log4j.properties
+sed -i 's/\__INT_LOG_LEVEL__/'$INT_LOG_LEVEL'/g' /deployments/${warname}/WEB-INF/classes/log4j.properties
+sed -i 's/\__BASE_LOG_LEVEL__/'$BASE_LOG_LEVEL'/g' /deployments/${warname}/WEB-INF/classes/log4j.properties
+sed -i 's/\__DB_SERVICENAME__/'$DB_SERVICENAME'/g' /deployments/${warname}/WEB-INF/classes/log4j.properties
+
+echo -e "\n" >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+
+if [ ! -z $INDEX_PREFIX ]
+then
+    echo -e '\n' >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'elk.indexPrefix='$INDEX_PREFIX >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'elk.hosts='$warname'-elasticsearch:9300' >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'elk.clusterName=elasticsearch' >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'elk.fullIndexWithParentsObjs='$FULLINDEX_WITH_PARENT >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'elk.fullIndexObjs='$FULLINDEX >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'elk.fieldIndexObjs='$FIELDINDEX >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+fi
+
+if [ ! -z $EXTERNAL_INDEXER ]
+then
+    echo -e "\n" >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    if [ ! -z $INDEXER_URL ]
+    then
+      echo 'externalIndexerUrl=http://'$INDEXER_URL >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    else
+      echo 'externalIndexerUrl=http://'$warname'-indexer' >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    fi
+fi
+
+if [! -z $BASENAMEORASTRATEGY]
+then
+    echo -e "\n" >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'baseNameOraStrategy='$BASENAMEORASTRATEGY >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+fi
+
+if [ ! -z $KEYCLOAK_URL ]
+then
+    echo -e "\n" >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'keycloak.url='$KEYCLOAK_URL >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'keycloak.realm='$KEYCLOAK_REALM >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'keycloak.client='$KEYCLOAK_CLIENT >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'keycloak.secret='$KEYCLOAK_SECRET >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+fi
+
+if [ ! -z $OIDC_URL ]
+then
+    echo -e "\n" >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'openid.wellKwnown='$OIDC_URL'.well-known/openid-configuration' >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'opeind.clientSecret='$OIDC_CLIENT >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+    echo 'opeind.clientId='$OIDC_SECRET >>/deployments/${warname}/WEB-INF/classes/configuration.properties
+fi
+
+echo -e '<?php \n$dbUser="'$DB_USER'";\n$dbPass="'$DB_PASS'";\n$dbHost="'$DB_HOST'";\n$dbPort="'$DB_PORT'";\n$dbServiceName="'$DB_SERVICENAME'";\n$elasticUrl="'$warname'-elasticsearch-client:9200";\n$fieldIndex="'$FIELDINDEX'";\n$fullIndex="'$FULLINDEX'";\n$fullIndexWithParent="'$FULLINDEX_WITH_PARENT'";\n$indexBase="'$INDEX_PREFIX'";\n$warname="'$warname'";'> /opt/application/crpms/dbCoord.inc
+
+echo "Avvio tomcat"
+
+if [ "$DEV_MODE" == "ON" ]
+then
+    git config --global user.email "c.contino@cineca.it" && git config --global user.name "Carlo Contino" && \
+    cd /opt/application/crpms && git remote set-url origin $GIT_REPO && \
+    cd /opt/application &&  wget -q https://github.com/cdr/code-server/releases/download/2.1523-vsc1.38.1/code-server2.1523-vsc1.38.1-linux-x86_64.tar.gz && \
+    tar -xvzf code-server2.1523-vsc1.38.1-linux-x86_64.tar.gz && mv /opt/application/code-server2.1523-vsc1.38.1-linux-x86_64 /opt/application/code-server && rm /opt/application/code-server2.1523-vsc1.38.1-linux-x86_64.tar.gz && \
+    /opt/application/code-server/code-server --host 0.0.0.0 --port 9090 &
+
+fi
+
+exec $JWS_HOME/bin/launch.sh

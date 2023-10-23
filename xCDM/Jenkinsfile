@@ -1,0 +1,50 @@
+  pipeline {
+        environment {
+            COMMIT_MSG="${sh(returnStdout: true,script: 'git log -1 --pretty=%B')}"
+        }
+        agent {
+            node {
+                label 'master'
+            }
+        }
+        stages {
+            stage('Build root project ..') {
+                steps {
+                    sh 'mvn clean install -PAll'
+                }
+            }
+            stage('Build and Deploy CTMS(paas) webapp ...'){
+                when {
+                    expression {
+                        return env.BRANCH_NAME.equals("devel-merge") && env.COMMIT_MSG.contains("[warName: CTMS-paas]")
+                    }
+                }
+                steps {
+                    sh "cd prototypes/AxmrDoc && mvn clean install deploy -Dconfiguration=gemelli_devel_paas -DwarName=CTMS-paas -PIanus -Pdevel -PCTMS-paas"
+                    sh 'curl -XPOST "https://osmaster-prod-1.cineca.it:8443/oapi/v1/namespaces/siss-generici-build/buildconfigs/ctc-gemelli-be-devel/webhooks/mZDaauI8p6lnYm_lP_tL/generic" --insecure'
+                }
+            }
+            stage('Build and Deploy crms-toscana(paas) webapp ...'){
+                when {
+                    expression {
+                        return env.BRANCH_NAME.equals("devel-merge") && env.COMMIT_MSG.contains("[warName: crms-toscana-paas]")
+                    }
+                }
+                steps {
+                    sh "cd prototypes/AxmrDoc && mvn clean install deploy -Dconfiguration=toscana_dev_paas -DwarName=crms-toscana-paas -PIanus -Pdevel -Pcrms-toscana-paas"
+                    sh 'curl -XPOST "https://osmaster-prod-1.cineca.it:8443/oapi/v1/namespaces/siss-generici-build/buildconfigs/crms-toscana-devel/webhooks/gkSXcUv4bw2-He79diTq/generic" --insecure'
+                }
+            }
+            stage('Build and Deploy refil(paas) webapp ...'){
+                when {
+                    expression {
+                        return env.BRANCH_NAME.equals("devel-merge") && env.COMMIT_MSG.contains("[warName: formazione-paas]")
+                    }
+                }
+                steps {
+                    sh "cd prototypes/AxmrDoc && mvn clean install deploy -Dconfiguration=refil_dev_paas -DwarName=formazione-paas -PIanus -Pdevel -Pformazione-paas"
+                    sh 'curl -XPOST "https://osmaster-prod-1.cineca.it:8443/oapi/v1/namespaces/siss-generici-build/buildconfigs/refil-devel/webhooks/rXLAqXNQczrvJEamlFPP/generic" --insecure'
+                }
+            }
+        }
+  }

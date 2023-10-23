@@ -1,0 +1,13 @@
+User-Hibernate
+
+* Specifiche di progetto
+
+    Modulo di persistenza hibernate per gli utenti da servire tramite bean UserService per Spring-Security
+
+** Diagramma Entity
+
+[images/diagram.png]
+
+** Configurazione
+
+Il modulo contiene al suo interno la configurazione hibernate applicationContext.xml che registra il bean di autenticazione Spring-Security

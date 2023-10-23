@@ -1,0 +1,17 @@
+{"query":
+  {"and":[
+    {
+      "bool":{
+        "should":[
+          {
+            "terms" : { "viewableByUsers" : ["ccontino","*"] }
+          },
+          {
+            "terms" : { "viewableByGroups" : ["tech-admin","ctc"] }
+          }              ]
+      }
+    },
+    {"missing": {"field" : "metadata.statoValidazioneCentro"}}
+  ]
+  }
+,"sort":[{"id":{"order":"asc"}}]}

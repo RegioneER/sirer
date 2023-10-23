@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>axmr3</artifactId>
+        <groupId>it.cineca.siss</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <name>Autenticazione</name>
+    <description>Moduli per la gestione dell'autenticazione</description>
+    <groupId>it.cineca.siss.axmr3</groupId>
+    <artifactId>authentication</artifactId>
+    <packaging>pom</packaging>
+
+  <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+    
+    <modules>
+        <module>addOns</module>
+    </modules>
+    <profiles>
+        <profile>
+            <id>All</id>
+            <modules>
+                <module>user-hibernate</module>
+            </modules>
+        </profile>
+    </profiles>
+
+</project>

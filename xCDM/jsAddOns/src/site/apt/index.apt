@@ -1,0 +1,33 @@
+Add Ons
+
+* Specifiche di progetto
+
+   Modulo con librerie Jquery e TinyMCE
+
+   Inoltre contiene la configurazione spring-mvc per la gestione delle risorse statiche (js, immagini e css) pacchettizate
+   Le risorse vengono mappate dalle seguenti sorgenti nel seguente ordine
+
+    * js -> WEB-INF/resources/js,classpath:js/
+
+    * css -> WEB-INF/resources/css/,classpath:css/
+
+    * images -> WEB-INF/resources/images/,classpath:images/
+
+Per un corretto funzionamento bisogna definire la servlet nel file web.xml della webapp nel seguente modo:
+
+--------------------------------------------------------------------------------------------
+  <servlet>
+          <servlet-name>InternalStatic</servlet-name>
+          <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+          <init-param>
+              <param-name>contextConfigLocation</param-name>
+              <param-value>classpath*:internalResources.xml</param-value>
+          </init-param>
+      </servlet>
+
+      <servlet-mapping>
+          <servlet-name>InternalStatic</servlet-name>
+          <url-pattern>/int/*</url-pattern>
+      </servlet-mapping>
+--------------------------------------------------------------------------------------------
+

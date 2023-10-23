@@ -1,0 +1,160 @@
+AXMR3 Document Management
+
+* Sepcifiche di progetto
+
+[images/diagram.png]
+
+** Diagramma Entity
+
+[images/entities.png]
+
+** Configurazione
+
+-------
+
+    <context:annotation-config/>
+
+    <import resource="classpath:passwordEncoders/plain.xml"/>
+    <import resource="classpath:UsernamePasswordAuthenticationProvider.xml"/>
+
+    <!--Impostazione file properties per specifiche DB -->
+
+    <bean id="propertyCongigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:UserServer.mysql.properties"></property>
+    </bean>
+
+    <!-- impostazione path per eseguibile dot (graphviz) -->
+    <bean id="dotPath" class="java.lang.String">
+        <constructor-arg value="C:\Program Files (x86)\Graphviz2.30\bin\"/>
+    </bean>
+
+    <!-- parametri per hibernate --->
+    <util:properties id="hibernateProperties">
+        <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+        <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+        <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+    </util:properties>
+
+    <!--Definizione Datasources -->
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/axmr3"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+    <bean id="DocDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!-- Definizione alis per dataSource utilizzato da UserService -->
+    <alias name="dataSource" alias="UserDataSource"/>
+
+    <!--SessionFactory Hibernate per le entità specifiche del progetto -->
+    <bean id="docSessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="DocDataSource"></property>
+        <property name="packagesToScan">
+            <list>
+                <value>it.cineca.siss.axmr3.doc.entities</value>
+            </list>
+        </property>
+        <property name="hibernateProperties" ref="hibernateProperties"/>
+    </bean>
+
+    <!--Configurazione security -->
+
+    <security:global-method-security secured-annotations="enabled"/>
+
+    <security:http use-expressions="true" pattern="/rest/userService/**">
+        <security:intercept-url pattern="/rest/**" access="isAuthenticated()" />
+        <security:http-basic/>
+    </security:http>
+
+    <security:http use-expressions="true">
+        <security:intercept-url pattern="/app/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/int/**" access="permitAll"/>
+        <security:intercept-url pattern="/authz/**" access="permitAll"/>
+        <security:form-login login-page="/authz/login" authentication-failure-url="/authz/login?error=true"/>
+        <security:remember-me user-service-ref="userDetailsService" key="remberMe"/>
+        <security:logout/>
+    </security:http>
+
+    <bean id="org.springframework.security.authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+        <property name="providers">
+            <list>
+                <ref local="authenticationProvider"/>
+            </list>
+        </property>
+    </bean>
+
+    <!--Configurazione Gestore Transazioni DB -->
+
+    <bean id="axm3TX" class="it.cineca.siss.axmr3.transactions.Axmr3TXManager" destroy-method="destroy" scope="request">
+        <aop:scoped-proxy/>
+        <property name="sessionFactories">
+            <map>
+             <entry key="doc" value-ref="docSessionFactory"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- Bean di inizializzazione DB -->
+
+    <bean id="dbInit" class="it.cineca.siss.axmr3.web.servlet.DbInit"/>
+
+    <!-- Registrazione Servizi -->
+
+    <bean id="documentService" class="it.cineca.siss.axmr3.doc.web.services.DocumentService" scope="request">
+        <aop:scoped-proxy/>
+    </bean>
+
+    <bean id="adminService" class="it.cineca.siss.axmr3.doc.web.services.AdminService" scope="request">
+        <aop:scoped-proxy/>
+    </bean>
+
+    <!-- Configurazione per gestione di form multipart -->
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="2097152"/>
+    </bean>
+
+
+-------
+
+    Configurazione per servlet docApp
+
+-----
+
+ <context:component-scan base-package="it.cineca.siss.axmr3.doc.web.controllers" />
+    <mvc:annotation-driven />
+
+    <mvc:interceptors>
+        <bean class="it.cineca.siss.axmr3.common.mvc.handlers.ControllerHandler" />
+    </mvc:interceptors>
+
+    <bean id="freemarkerConfig"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/templates/" />
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="cache" value="true" />
+        <property name="prefix" value="" />
+        <property name="suffix" value=".ftl" />
+        <property name="contentType" value="text/html;charset=UTF-8" />
+
+    </bean>
+
+    <bean id="jacksonObjectMapper" class="it.cineca.siss.axmr3.doc.json.CustomObjectMapper"/>
+
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+        <property name="supportedMediaTypes" value="application/json" />
+        <property name="objectMapper" ref="jacksonObjectMapper" /> <!-- defined in CustomObjectMapper -->
+    </bean>
+
+ ------

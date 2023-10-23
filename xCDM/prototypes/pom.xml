@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>axmr3</artifactId>
+        <groupId>it.cineca.siss</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it.cineca.siss.axmr3</groupId>
+    <artifactId>prototypes</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>AxmrDoc</module>
+    </modules>
+    <name>Prototipi</name>
+    <description>Prototipi di sistemi AXMR3</description>
+    <properties>
+        <warName>${project.artifactId}</warName>
+    </properties>
+    <build>
+        <finalName>${artifactId}</finalName>
+        <plugins>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>7.0.2.v20100331</version>
+                <configuration>
+                    <webAppConfig>
+                        <contextPath>/${warName}</contextPath>
+                    </webAppConfig>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>9095</port>
+                        </connector>
+                        <connector implementation="org.eclipse.jetty.ajp.Ajp13SocketConnector">
+                            <port>9009</port>
+                        </connector>
+                    </connectors>
+
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-ajp</artifactId>
+                        <version>7.0.2.v20100331</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+
+        </plugins>
+    </build>
+
+</project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="contextSource"
+          class="org.springframework.security.ldap.DefaultSpringSecurityContextSource">
+        <constructor-arg value="${ldap.url}/${ldap.base}"/>
+        <property name="userDn" value="${ldap.userDn}"/>
+        <property name="password" value="${ldap.password}"/>
+    </bean>
+
+
+    <bean id="UserDetailsLdapTemplate" class="org.springframework.ldap.core.LdapTemplate">
+        <constructor-arg ref="contextSource"/>
+        <property name="ignorePartialResultException" value="true"/>
+    </bean>
+
+    <bean id="userDetailsService" class="it.cineca.siss.axmr3.authentication.LdapUserService">
+        <property name="ldapTemplate" ref="UserDetailsLdapTemplate"/>
+    </bean>
+
+    <bean id="authenticationProvider" class="it.cineca.siss.axmr3.authentication.providers.LdapProvider">
+        <constructor-arg value="${ldap.domain}"/>
+        <constructor-arg value="${ldap.url}"/>
+        <constructor-arg ref="userDetailsService"/>
+        <property name="convertSubErrorCodesToExceptions" value="true"/>
+        <property name="useAuthenticationRequestCredentials" value="true"/>
+    </bean>
+
+</beans>

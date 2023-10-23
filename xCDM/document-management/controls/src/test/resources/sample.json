@@ -1,0 +1,100 @@
+{
+	"submitButtons": [{
+		"name": "salva",
+		"fields": ["fieldId-1", "fieldId-2", "fieldId-3", "fieldId-4", "fieldId-5", "fieldId-6"],
+        "label": "salva",
+        "faIcon": "pencil"
+	}, {
+		"name": "salva-tutto",
+		"fields": ["fieldId-1", "fieldId-2", "fieldId-3", "fieldId-4", "fieldId-5", "fieldId-6", "fieldId-7", "fieldId-8", "fieldId-9"],
+        "label": "save and continue",
+        "bkgrgb": [229,151,41],
+        "txtrgb": [255,255,255],
+        "faIcon": "play"
+	}],
+	"rules": [
+		{
+			"rule": "rule-0",
+			"fields": ["fieldId-5"],
+			"buttons": ["salva", "salva-tutto"],
+			"criteria": {
+				"mandatory": {"always": true}
+			}
+
+		},
+
+		{
+		"rule": "rule-1",
+		"fields": ["fieldId-1", "fieldId-8", "fieldId-9"],
+		"buttons": ["salva", "salva-tutto"],
+		"criteria": {
+			"empty": {
+				"conditions": {
+					"or": [{
+						"and": [{
+							"leftHandField": "fieldId-2",
+							"check": "gt",
+							"rightHandFields": ["fieldId-3"],
+							"rightHandValues": [4]
+						}, {
+							"leftHandField": "fieldId-1",
+							"check": "eq",
+							"rightHandFields": ["fieldId-3"],
+							"rightHandValues": [4, 3, 2]
+						}]
+					}, {
+						"and": [{
+							"leftHandField": "fieldId-2",
+							"check": "eq",
+							"rightHandValues": [10]
+						}]
+					}]
+				},
+				"hide": true
+			},
+			"disable": {},
+			"mandatory": {
+				"conditions": {
+					"or": [{
+						"and": [{
+							"leftHandField": "fieldId-2",
+							"check": "gt",
+							"rightHandFields": ["fieldId-3"],
+							"rightHandValues": [4]
+						}, {
+							"leftHandField": "fieldId-1",
+							"check": "ne",
+							"rightHandFields": ["fieldId-3"],
+							"rightHandValues": [4, 3, 2]
+						}]
+					}]
+				}
+			},
+			"confirm": {},
+			"warning": {},
+			"validity": {
+				"conditions": {
+					"or": [{
+						"and": [{
+							"leftHandField": "fieldId-2",
+							"check": "gt",
+							"rightHandFields": ["fieldId-3"],
+							"rightHandValues": [4]
+						}, {
+							"leftHandField": "fieldId-1",
+							"check": "ne",
+							"rightHandFields": ["fieldId-3"],
+							"rightHandValues": [4, 3, 2]
+						}]
+					}]
+				},
+				"message": {
+					"it": "Field ... must be greater than [fieldId-2] and different from [fieldId-3]",
+					"en": "Field ... deve essere più grande di [fieldId-2] e diverso da [fieldId-3]"
+				}
+			}
+		}
+	}
+
+	]
+}

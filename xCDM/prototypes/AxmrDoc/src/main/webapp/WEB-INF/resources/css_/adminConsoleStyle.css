@@ -1,0 +1,85 @@
+.admin-home-main{
+    background: none repeat scroll 0 0 white;
+    display: inline-block;
+    padding: 10px;
+    width: 100%;
+    -moz-box-sizing: border-box;
+    margin-top:70px;
+}
+
+
+.pSchema {
+}
+
+.pSchema th:first-child{
+    border-left:none!important;
+}
+
+.pSchema th{
+    border-left:1px ridge #4D80B4;
+    border-bottom:1px solid #4D80B4;
+    background-color: #ffffff;
+    color: #5D8DBE;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.pSchema td{
+    text-align: center;
+}
+
+.pSchema td:first-child, .pSchema td:last-child{
+    text-align: left;
+}
+
+.pSchema tr:nth-child(odd) td {
+    background-color: #EEEEEE;
+}
+
+.pSchema tr:nth-child(even) td {
+    background-color: #E8EFF3;
+}
+
+
+
+
+.grid {
+    text-align: center;
+    cursor: pointer;
+    width:100%;
+}
+
+.grid ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.grid ul li {
+    border: 1px solid #808080;
+     float: left;
+     height: 80px;
+     margin: 2px;
+     padding: 2px;
+}
+
+.link-back{
+    background: url("../images/leftArrow.png") no-repeat scroll 0 0 / 18px auto transparent;
+    padding-left: 18px;
+    padding-top:2px;
+    padding-bottom: 2px;
+    color:#3572B0;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.link-back :hover{
+    color:#438CD6;
+
+}
+
+.link-back :visited{
+    color:#438CD6;
+
+}

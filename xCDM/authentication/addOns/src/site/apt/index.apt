@@ -1,0 +1,40 @@
+Add Ons
+
+* Specifiche di progetto
+
+    Modulo di integrazione dello spring-security che fornisce i seguenti elementi:
+
+[images/diagram.png]
+
+** Java Class
+
+     * providers/UsernamePasswordProvider: Provider di autenticazione
+
+     * services/SissUserService: implementazione di UserDetailsService (Spring-Security)
+
+     * web/LoginController: controller MVC per la pagina di Login
+
+** Java Resources
+
+     * login.xml: configurazione Spring-MVC per la servlet di login
+
+     * UsernamePasswordAuthenticationProvider.xml: configurazione spring-security per il provider di autenticazione
+
+** Configurazione
+
+    Per la registrazione del controller mvc bisogna aggiungere la seguente servlet al web.xml
+
+--------------------------------------------------------------------------------------------
+<servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:login.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/authz/*</url-pattern>
+    </servlet-mapping>
+--------------------------------------------------------------------------------------------

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>document-management</artifactId>
+        <groupId>it.cineca.siss.axmr3</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>it.cineca.siss.axmr3.document-management</groupId>
+    <artifactId>scheduler-plugin</artifactId>
+    <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-oracle</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-weblogic</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jboss</artifactId>
+            <version>2.1.7</version>
+        </dependency>
+        -->
+    </dependencies>
+
+</project>

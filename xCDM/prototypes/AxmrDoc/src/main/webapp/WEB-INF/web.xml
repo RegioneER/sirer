@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  <display-name>Axmr3 | Document Management</display-name>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:applicationContext.xml
+        </param-value>
+    </context-param>
+    <context-param>
+        <description>Vaadin production mode</description>
+        <param-name>productionMode</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <filter>
+        <filter-name>charsetFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>charsetFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter>
+        <filter-name>mdcFilter</filter-name>
+        <filter-class>it.cineca.siss.axmr3.filters.MDCFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>mdcFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <listener>
+        <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+    </listener>
+
+    <context-param>
+        <param-name>defaultHtmlEscape</param-name>
+        <param-value>true</param-value>
+    </context-param>
+
+    <filter>
+        <filter-name>UIFilter</filter-name>
+        <filter-class>it.cineca.siss.axmr3.activiti.ExplorerFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>UIFilter</filter-name>
+        <url-pattern>/pconsole/*</url-pattern>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>Vaadin Application Servlet</servlet-name>
+        <servlet-class>org.activiti.explorer.servlet.ExplorerApplicationServlet</servlet-class>
+        <init-param>
+            <param-name>widgetset</param-name>
+            <param-value>org.activiti.explorer.CustomWidgetset</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- Restlet adapter, used to expose modeler functionality through REST -->
+    <servlet>
+        <servlet-name>RestletServlet</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <!-- Application class name -->
+            <param-name>org.restlet.application</param-name>
+            <param-value>it.cineca.siss.axmr3.activiti.ExplorerRestApplication</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Vaadin Application Servlet</servlet-name>
+        <url-pattern>/pconsole/ui/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Vaadin Application Servlet</servlet-name>
+        <url-pattern>/ui/pconsole/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RestApi</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <!-- Application class name -->
+            <param-name>org.restlet.application</param-name>
+            <param-value>it.cineca.siss.axmr3.activiti.ActivitiRestServicesApplication</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>RestApiBasic</servlet-name>
+        <servlet-class>org.restlet.ext.servlet.ServerServlet</servlet-class>
+        <init-param>
+            <!-- Application class name -->
+            <param-name>org.restlet.application</param-name>
+            <param-value>it.cineca.siss.axmr3.activiti.ActivitiRestServicesApplication</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet>
+        <servlet-name>docServicesBasic</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:docServices.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>docServicesBasic</servlet-name>
+        <url-pattern>/services/dm/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>docInternalServices</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:docServices.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>docInternalServices</servlet-name>
+        <url-pattern>/internal-services/*</url-pattern>
+    </servlet-mapping>
+
+
+    <!-- Catch all requests -->
+    <servlet-mapping>
+        <servlet-name>RestApi</servlet-name>
+        <url-pattern>/process-engine/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>RestApiBasic</servlet-name>
+        <url-pattern>/services/process-engine/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Vaadin Application Servlet</servlet-name>
+        <url-pattern>/VAADIN/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Catch all service requests -->
+    <servlet-mapping>
+        <servlet-name>RestletServlet</servlet-name>
+        <url-pattern>/pconsole/service/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>InternalStatic</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:internalResources.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InternalStatic</servlet-name>
+        <url-pattern>/int/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:login.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/authz/*</url-pattern>
+    </servlet-mapping>
+	<servlet>
+		<servlet-name>userServices</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		 <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:userServices.xml</param-value>
+        </init-param>
+	</servlet>
+    <servlet>
+        <servlet-name>docApp</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath*:docApp.xml</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>docApp</servlet-name>
+        <url-pattern>/app/*</url-pattern>
+    </servlet-mapping>
+
+    
+    <servlet-mapping>
+        <servlet-name>userServices</servlet-name>
+        <url-pattern>/uService/*</url-pattern>
+    </servlet-mapping>
+    
+</web-app>

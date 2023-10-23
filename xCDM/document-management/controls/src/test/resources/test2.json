@@ -1,0 +1,98 @@
+{
+  "submitButtons": [{
+    "name": "salva",
+    "fields": ["caseRegistration_urgentCase", "caseRegistration_diagnosisAge", "caseRegistration_sex", "caseRegistration_question", "caseRegistration_check01"],
+    "label": "save and continue",
+    "bkgrgb": [67, 142, 185],
+    "txtrgb": [255,255,255],
+    "faIcon": "play"
+  }
+  ],
+  "rules": [
+    {
+      "rule": "rule-1",
+      "fields": ["caseRegistration_urgentCase", "caseRegistration_diagnosisAge", "caseRegistration_sex", "caseRegistration_question"],
+      "buttons": ["salva"],
+      "criteria": {
+        "empty": {},
+        "disable": {},
+        "mandatory": {"always": true},
+        "confirm": {},
+        "warning": {},
+        "validity": {}
+      }
+    },
+    {
+      "rule": "rule-2.1",
+      "fields": ["caseRegistration_sex"],
+      "criteria":{
+        "empty": {
+          "conditions": {
+            "or": [{
+              "and": [
+                {
+                  "leftHandField": "caseRegistration_diagnosisAge",
+                  "check": "lt",
+                  "rightHandValues": [4]
+                }
+              ]
+            }
+            ]
+          },
+          "hide": true
+        }
+      }
+
+    },
+    {
+      "rule": "rule-2.2",
+      "fields": ["caseRegistration_check01"],
+      "criteria":{
+        "empty": {
+          "conditions": {
+            "or": [{
+              "and": [
+                {
+                  "leftHandField": "caseRegistration_diagnosisAge",
+                  "check": "gt",
+                  "rightHandValues": [4]
+                }
+              ]
+            }
+            ]
+          },
+          "hide": true
+        }
+      }
+
+    },
+    {
+      "rule": "rule-2",
+      "fields": ["caseRegistration_diagnosisAge"],
+      "buttons": ["salva"],
+      "criteria": {
+        "disable": {},
+        "mandatory": {},
+        "confirm": {
+          "conditions": {
+            "or": [{
+              "and": [
+                {
+                  "leftHandField": "caseRegistration_diagnosisAge",
+                  "check": "lt",
+                  "rightHandValues": [4]
+                }
+              ]
+            }
+            ]
+          },
+          "message": {
+            "it":"Hai inserito nel campo ... un numero di mesi inferiore a 4, sei sicuro di voler procedere?"
+          }
+        },
+        "warning": {},
+        "validity": {}
+      }
+    }
+  ]
+}

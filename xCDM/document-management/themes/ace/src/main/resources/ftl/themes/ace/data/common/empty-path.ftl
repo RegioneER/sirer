@@ -1,0 +1,19 @@
+<#global path={
+	"assets":"",
+	"base":"",
+	"_shared":"",
+	"_template":"",
+	"sidenav":"",
+	"topbar":"",
+	"data":"",
+	"commonData":"",
+	"pageData":"",
+	"pages":"",
+	"layouts":"",
+	"custom":{
+		"assets":"",
+		"baseUrl":"",
+		"static":""
+	}
+}
+/>

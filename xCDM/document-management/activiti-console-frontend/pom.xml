@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>document-management</artifactId>
+        <groupId>it.cineca.siss.axmr3</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>it.cineca.siss.axmr3.document</groupId>
+    <artifactId>activiti-console-frontend</artifactId>
+     <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
+
+    <dependencies>
+        <!-- Activiti -->
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-explorer</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-modeler</artifactId>
+            <version>${activiti.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>xalan</groupId>
+                    <artifactId>xalan</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-diagram-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-simple-workflow</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin.addons</groupId>
+            <artifactId>dcharts-widget</artifactId>
+            <version>0.10.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-common-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-rest</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>it.cineca.siss.axmr3.services</groupId>
+            <artifactId>activiti-identity</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.cineca.siss.axmr3.authentication</groupId>
+            <artifactId>addOns</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-svggen</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.xmlgraphics</groupId>
+            <artifactId>batik-awt-util</artifactId>
+            <version>1.7</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>rt</artifactId>
+            <version>1.5.0_06</version>
+        </dependency-->
+    </dependencies>
+
+
+</project>

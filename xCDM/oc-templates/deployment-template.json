@@ -1,0 +1,277 @@
+
+{
+
+  "apiVersion": "v1",
+  "kind": "Template",
+  "message": "A xcdm service has been created in your project",
+  "metadata": {
+    "annotations": {
+      "description": "xcdm service, without persistent storage.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
+      "iconClass": "icon-php",
+      "tags": "instant-app,xcdm,cineca"
+    },
+    "name": "pais.xcdm"
+  },
+  "objects": [
+    {
+      "apiVersion": "apps.openshift.io/v1",
+      "kind": "DeploymentConfig",
+      "metadata": {
+        "annotations": {
+          "openshift.io/display-name": "Applicazione di ${APP_NAME}"
+        },
+        "labels": {
+          "app": "${APP_NAME}",
+          "type": "xCDM",
+          "solution": "CRMS"
+        },
+        "name": "${APP_NAME}"
+      },
+      "spec": {
+        "replicas": 2,
+        "selector": {
+          "app": "${APP_NAME}",
+          "deploymentconfig": "${APP_NAME}"
+        },
+        "strategy": {
+          "activeDeadlineSeconds": 21600,
+          "resources": { },
+          "rollingParams": {
+            "intervalSeconds": 5,
+            "maxSurge": "25%",
+            "maxUnavailable": "25%",
+            "timeoutSeconds": 180,
+            "updatePeriodSeconds": 5
+          },
+          "type": "Rolling"
+        },
+        "template": {
+          "metadata": {
+            "annotations": {
+              "openshift.io/display-name": "Template"
+            },
+            "creationTimestamp": null,
+            "labels": {
+              "app": "${APP_NAME}",
+              "deploymentconfig": "${APP_NAME}"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "env": [
+                  {
+                    "name": "JAVA_OPTS",
+                    "value": " -Xms4096m -Xmx8196m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
+                  }
+                ],
+                "livenessProbe": {
+                  "failureThreshold": 3,
+                  "httpGet": {
+                    "path": "/sample/",
+                    "port": 8080,
+                    "scheme": "HTTP"
+                  },
+                  "initialDelaySeconds": 120,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 10
+                },
+                "name": "${APP_NAME}-be",
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "protocol": "TCP"
+                  }
+                ],
+                "readinessProbe": {
+                  "failureThreshold": 3,
+                  "httpGet": {
+                    "path": "/sample/",
+                    "port": 8080,
+                    "scheme": "HTTP"
+                  },
+                  "initialDelaySeconds": 60,
+                  "periodSeconds": 10,
+                  "successThreshold": 1,
+                  "timeoutSeconds": 10
+                },
+                "resources": {
+                  "limits": {
+                    "cpu": "4",
+                    "memory": "4Gi"
+                  },
+                  "requests": {
+                    "cpu": "500m",
+                    "memory": "1Gi"
+                  }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                  {
+                    "mountPath": "/opt/application/crpms",
+                    "name": "shared"
+                  }
+                ]
+              },
+              {
+                "env": [
+                  {
+                    "name": "jenkins_label",
+                    "value": "${APP_NAME}-paas-${AMBIENTE}"
+                  },
+                  {
+                    "name": "master",
+                    "value": "${JENKINS_MSTER}"
+                  },
+                  {
+                    "name": "username",
+                    "value": "${JENKINS_USERNAME}"
+                  },
+                  {
+                    "name": "password",
+                    "value": "${JENKINS_PASSWORD}"
+                  }
+                ],
+                "name": "${APP_NAME}-slave",
+                "resources": {
+                  "limits": {
+                    "cpu": "4",
+                    "memory": "4Gi"
+                  },
+                  "requests": {
+                    "cpu": "100m",
+                    "memory": "512Mi"
+                  }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File",
+                "volumeMounts": [
+                  {
+                    "mountPath": "/opt/application/crpms",
+                    "name": "shared"
+                  }
+                ]
+              }
+            ],
+            "volumes": [
+              {
+                "name": "shared"
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": { },
+            "terminationGracePeriodSeconds": 30
+          }
+        },
+        "triggers": [
+          {
+            "type": "ConfigChange"
+          },
+          {
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "${APP_NAME}-be"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "name": "${APP_NAME}:${AMBIENTE}",
+                "namespace": "${NAMESPACE}-build"
+              }
+            },
+            "type": "ImageChange"
+          },
+          {
+            "imageChangeParams": {
+              "automatic": true,
+              "containerNames": [
+                "${APP_NAME}-slave"
+              ],
+              "from": {
+                "kind": "ImageStreamTag",
+                "name": "php71-jenkins-slave:latest",
+                "namespace": "${NAMESPACE}-build"
+              }
+            },
+            "type": "ImageChange"
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "openshift.io/generated-by": "OpenShiftNewApp"
+        },
+        "labels": {
+          "app": "${APP_NAME}"
+        },
+        "name": "${APP_NAME}"
+      },
+      "spec": {
+        "ports": [
+          {
+            "name": "fe",
+            "port": 8080,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "app": "${APP_NAME}",
+          "deploymentconfig": "${APP_NAME}"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+      },
+      "status": {
+        "loadBalancer": { }
+      }
+    }
+  ],
+  "parameters": [
+    {
+      "description": "NAMESPACE",
+      "displayName": "NAMESPACE",
+      "name": "NAMESPACE",
+      "value": "siss-generici"
+    },
+    {
+      "description": "AMBIENTE",
+      "displayName": "AMBIENTE",
+      "name": "AMBIENTE",
+      "value": "devel"
+    },
+    {
+      "description": "Image name",
+      "displayName": "Image name",
+      "name": "APP_NAME",
+      "value": "ctc-gemelli-be"
+    },
+    {
+      "description": "Jenkins master",
+      "displayName": "Jenkins master",
+      "name": "JENKINS_MSTER",
+      "value": "http://siss20.private.cineca.it:8080"
+    },
+    {
+      "description": "Jenkins slave username",
+      "displayName": "Jenkins slave username",
+      "name": "JENKINS_USERNAME",
+      "value": "slaves"
+    },
+    {
+      "description": "Jenkins slave password",
+      "displayName": "Jenkins slave password",
+      "name": "JENKINS_PASSWORD",
+      "value": "sissfarm-slaves"
+    }
+  ]
+
+}

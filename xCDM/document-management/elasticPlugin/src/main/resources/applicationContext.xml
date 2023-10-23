@@ -1,0 +1,17 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="elkService" class="it.cineca.siss.axmr3.doc.elk.ElkService">
+        <property name="elkHosts" value="${elk.hosts}"/>
+        <property name="clusterName" value="${elk.clusterName}"/>
+        <property name="indexPrefix" value="${elk.indexPrefix}"/>
+        <property name="fieldIndexObjs" value="${elk.fieldIndexObjs:}"/>
+        <property name="fullIndexObjs" value="${elk.fullIndexObjs:}"/>
+        <property name="fullIndexWithParentsObjs" value="${elk.fullIndexWithParentsObjs:}"/>
+    </bean>
+
+    <bean id="processElk" class="it.cineca.siss.axmr3.doc.elk.ElkProcessBean"/>
+
+</beans>

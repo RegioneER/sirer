@@ -1,0 +1,16 @@
+Common
+
+* Specifiche di progetto
+
+    Librerie comuni
+
+** Java Class
+
+     * common.mvc.handlers.ControllerHandler: Handler per la gestione delle chiamate MVC
+
+     * hibernate.BaseEntity: Struttura base per le Entity Hibernate
+
+     * hibernate.BaseDao: DAO base per le Entity
+
+     * transactions.Axmr3TXManager: gestore transazione DB
+

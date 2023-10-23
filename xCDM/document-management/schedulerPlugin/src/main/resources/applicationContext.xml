@@ -1,0 +1,44 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" depends-on="quartzDbInitializer">
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        <property name="applicationContextSchedulerContextKey" value="applicationContext" />
+        <property name="transactionManager">
+            <ref bean="txManager"/>
+        </property>
+        <property name="quartzProperties">
+            <props>
+                <prop key="org.quartz.jobStore.tablePrefix">${xCDM.quartzPrefix:QDOC_}</prop>
+                <prop key="org.quartz.jobStore.isClustered">true</prop>
+                <prop key="org.quartz.scheduler.instanceId">AUTO</prop>
+                <prop key="org.quartz.scheduler.instanceName">XCDM</prop>
+                <prop key="org.quartz.jobStore.driverDelegateClass">org.quartz.impl.jdbcjobstore.oracle.OracleDelegate</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="quartzDbInitializer" class="org.springframework.jdbc.datasource.init.DataSourceInitializer">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="enabled" value="true"/>
+        <property name="databasePopulator">
+            <bean class="it.cineca.siss.axmr3.doc.scheduler.DbPopulator">
+                <property name="prefix" value="${xCDM.quartzPrefix:QDOC_}"/>
+                <property name="jdbcDriverClassName" value="${jdbc.driverClassName}"/>
+            </bean>
+        </property>
+    </bean>
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="WakeUpStatusJob" class="it.cineca.siss.axmr3.doc.scheduler.WakeUpStatusJob">
+        <property name="instanceName" value="${xCDM.prefix}"/>
+    </bean>
+
+</beans>

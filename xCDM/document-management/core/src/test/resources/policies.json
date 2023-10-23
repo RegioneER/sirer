@@ -1,0 +1,103 @@
+{"policies": [
+    {
+      "name": "Attore WF",
+      "description": null,
+      "policyValue": 2569,
+      "policy": {
+        "canView": true,
+        "canCreate": false,
+        "canUpdate": false,
+        "canAddComment": true,
+        "canModerate": false,
+        "canDelete": false,
+        "canChangePermission": false,
+        "canAddChild": false,
+        "canRemoveCheckOut": false,
+        "canLaunchProcess": true,
+        "canEnableTemplate": false,
+        "canBrowse": true,
+        "ftlTemplates": null
+      }
+    },
+    {
+      "name": "CTC",
+      "description": null,
+      "policyValue": 4095,
+      "policy": {
+        "canView": true,
+        "canCreate": true,
+        "canUpdate": true,
+        "canAddComment": true,
+        "canModerate": true,
+        "canDelete": true,
+        "canChangePermission": true,
+        "canAddChild": true,
+        "canRemoveCheckOut": true,
+        "canLaunchProcess": true,
+        "canEnableTemplate": true,
+        "canBrowse": true,
+        "ftlTemplates": null
+      }
+    },
+    {
+      "name": "Data Entry",
+      "description": "Modifica/Inserimento dati",
+      "policyValue": 2191,
+      "policy": {
+        "canView": true,
+        "canCreate": true,
+        "canUpdate": true,
+        "canAddComment": true,
+        "canModerate": false,
+        "canDelete": false,
+        "canChangePermission": false,
+        "canAddChild": true,
+        "canRemoveCheckOut": false,
+        "canLaunchProcess": false,
+        "canEnableTemplate": false,
+        "canBrowse": true,
+        "ftlTemplates": null
+      }
+    },
+    {
+      "name": "Full",
+      "description": null,
+      "policyValue": 4095,
+      "policy": {
+        "canView": true,
+        "canCreate": true,
+        "canUpdate": true,
+        "canAddComment": true,
+        "canModerate": true,
+        "canDelete": true,
+        "canChangePermission": true,
+        "canAddChild": true,
+        "canRemoveCheckOut": true,
+        "canLaunchProcess": true,
+        "canEnableTemplate": true,
+        "canBrowse": true,
+        "ftlTemplates": null
+      }
+    },
+    {
+      "name": "Read Only",
+      "description": null,
+      "policyValue": 2057,
+      "policy": {
+        "canView": true,
+        "canCreate": false,
+        "canUpdate": false,
+        "canAddComment": true,
+        "canModerate": false,
+        "canDelete": false,
+        "canChangePermission": false,
+        "canAddChild": false,
+        "canRemoveCheckOut": false,
+        "canLaunchProcess": false,
+        "canEnableTemplate": false,
+        "canBrowse": true,
+        "ftlTemplates": null
+      }
+    }
+  ]
+}

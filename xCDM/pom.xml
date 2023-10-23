@@ -1,0 +1,505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>it.cineca.siss</groupId>
+    <artifactId>axmr3</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+
+	<modules>
+        <module>common</module>
+        <module>web-common</module>
+        <module>services</module>
+        <module>authentication</module>
+        <module>jsAddOns</module>
+        <module>document-management</module>
+	</modules>
+
+    <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>3.1.1.RELEASE</spring.version>
+        <spring-security.version>3.1.1.RELEASE</spring-security.version>
+        <hsqldb.version>2.2.4</hsqldb.version>
+        <hibernate.version>4.1.7.Final</hibernate.version>
+        <activiti.version>5.14</activiti.version>
+        <warName>xCDM</warName>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+
+    <distributionManagement>
+        <site>
+            <name>test</name>
+            <id>test</id>
+            <url>http://localhost</url>
+        </site>
+    </distributionManagement>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>net.lingala.zip4j</groupId>
+            <artifactId>zip4j</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+
+        <!-- Jetty -->
+        <dependency>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>jetty</artifactId>
+            <version>LATEST</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.11</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/log4j/apache-log4j-extras -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>apache-log4j-extras</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+
+        <!-- Json -->
+        <dependency>
+            <groupId>net.minidev</groupId>
+            <artifactId>json-smart</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.9</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-lgpl</artifactId>
+            <version>1.9.9</version>
+
+        </dependency>
+
+        <!-- Hibernate dependencies -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.1.0.Final</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.12.1.GA</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4.0</version>
+        </dependency>
+
+        <!-- c3p0 dependency -->
+        <dependency>
+            <groupId>c3p0</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>0.9.1.2</version>
+
+        </dependency>
+
+
+        <!-- Spring 3 dependencies -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+
+        </dependency>
+
+        <!-- Spring security -->
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security.version}</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
+            <version>${spring-security.version}</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${spring-security.version}</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-ldap</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-acl</artifactId>
+            <version>${spring-security.version}</version>
+
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <!-- Http Client -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+
+        </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+            <version>1.1</version>
+
+        </dependency>
+        <!-- Freemarker -->
+        <dependency>
+            <groupId>org.freemarker</groupId>
+            <artifactId>freemarker</artifactId>
+            <version>2.3.23</version>
+
+        </dependency>
+
+        <!-- CGLIB -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-ajp</artifactId>
+            <version>7.0.2.v20100331</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jaxen-core</artifactId>
+            <version>1.0-FCS</version>
+        </dependency>
+
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>full</version>
+        </dependency>
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+	      <groupId>jexcelapi</groupId>
+	      <artifactId>jxl</artifactId>
+	      <version>2.4.2</version>
+	    </dependency>
+        <dependency>
+            <groupId>org.docx4j</groupId>
+            <artifactId>docx4j-ImportXHTML</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+
+        <plugins>
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <id>default</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <target>
+                                <echo message="Applico le JRebel"/>
+                                <echo message="Copio il file context.xml nella cartella src/main/resources" />
+                                <delete file="src/main/resources/rebel-remote.xml"/>
+                                <copy file="${basedir}/rebel-remote-base.xml" tofile="src/main/resources/rebel-remote.xml"/>
+                                <replace token= "__warname__" value="${warName}" file="src/main/resources/rebel-remote.xml"/>
+                            </target>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.1</version>
+                        <configuration>
+                            <source>1.8</source>
+                            <target>1.8</target>
+                        </configuration>
+                    </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!--filtering>true</filtering-->
+            </resource>
+        </resources>
+    </build>
+
+
+
+    <profiles>
+        <profile>
+            <id>All</id>
+            <modules>
+                <module>prototypes</module>
+            </modules>
+        </profile>
+        <profile>
+        <id>Test</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <configuration>
+                        <skipTests>false</skipTests>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+        <profile>
+            <id>CTMS</id>
+            <properties>
+                <warName>CTMS</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>crms-toscana</id>
+            <properties>
+                <warName>crms-toscana</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>crms-sirer</id>
+            <properties>
+                <warName>sirer</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>formazione</id>
+            <properties>
+                <warName>formazione</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>pipeline</id>
+            <properties>
+                <warName>pipeline</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>vcslite</id>
+            <properties>
+                <warName>VCSLT</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>VCS</id>
+            <properties>
+                <warName>VCS</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>vcs-vrt</id>
+            <properties>
+                <warName>vcs-vrt</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>vcs-web</id>
+            <properties>
+                <warName>vcs-web</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>vcs-siopel</id>
+            <properties>
+                <warName>vcs-siopel</warName>
+            </properties>
+        </profile>
+        <profile>
+            <id>vcsApp</id>
+            <properties>
+                <warName>vcsApp</warName>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <repositories>
+        <repository>
+            <id>repo1</id>
+            <url>https://repo1.maven.org/maven2</url>
+	            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>activiti</id>
+            <url>https://maven.alfresco.com/nexus/content/groups/public/</url>
+            <releases/>
+            <snapshots/>
+        </repository>
+        <repository>
+            <id>vaadin-addons</id>
+            <url>https://maven.vaadin.com/vaadin-addons</url>
+        </repository>
+        <repository>
+            <id>maven-restlet</id>
+            <url>http://maven.restlet.com</url>
+
+        </repository>
+
+        <repository>
+            <id>nexus-cineca-public</id>
+            <url>http://nexus.u-gov.it/nexus/repository/public</url>
+        </repository>
+    </repositories>
+
+</project>

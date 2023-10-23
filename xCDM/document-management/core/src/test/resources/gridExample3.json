@@ -1,0 +1,717 @@
+{
+  "layout": [
+    [
+      "",
+      "100000000000001",
+      "100000000000002",
+      "100000000000003",
+      "100000000000004",
+      null,
+      null,
+      null
+    ],
+    [
+      "100000000000005",
+      "100000000000016",
+      "",
+      "",
+      "100000000000015",
+      null,
+      null,
+      null
+    ],
+    [
+      "100000000000006",
+      "",
+      "100000000000014",
+      "",
+      "",
+      null,
+      null,
+      null
+    ],
+    [
+      "100000000000007",
+      "100000000000013",
+      "100000000000012",
+      "100000000000011",
+      "100000000000010",
+      null,
+      null,
+      null
+    ],
+    [
+      "100000000000008",
+      "",
+      "100000000000009",
+      "",
+      "",
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ]
+  ],
+  "elements": {
+    "100000000000001": {
+      "parentTypeId": "FolderTimePoint",
+      "metadata": {
+        "TimePoint_DurataSelect": "",
+        "Ricovero_Straordinario": "",
+        "TimePoint_DescrizioneSelect": "",
+        "TimePoint_Descrizione": "",
+        "Ricovero_Telefonico": "",
+        "TimePoint_TempiSelect": "",
+        "TimePoint_DurataCiclo": "1",
+        "Ricovero_Ambulatoriale": "",
+        "Ricovero_Ordinario": "",
+        "Target_Prezzo": "",
+        "GridX_col": "",
+        "TimePoint_Tempi": "1",
+        "TimePoint_NumeroVisita": "0",
+        "TimePoint_Note": "",
+        "TimePoint_col": "2",
+        "TimePoint_RicoveroSelect": "",
+        "TimePoint_NumeroPrestazioni": ""
+      },
+      "id": "2032987901",
+      "type": {
+        "id": "62",
+        "typeId": "TimePoint"
+      },
+      "position": "1",
+      "titleString": "0+-+",
+      "parentId": "2032987897",
+      "guid": "100000000000001",
+      "coordinates": {
+        "x": 1,
+        "y": 1
+      }
+    },
+    "100000000000002": {
+      "parentTypeId": "FolderTimePoint",
+      "metadata": {
+        "TimePoint_DurataSelect": "",
+        "Ricovero_Straordinario": "",
+        "TimePoint_DescrizioneSelect": "",
+        "TimePoint_Descrizione": "",
+        "Ricovero_Telefonico": "",
+        "TimePoint_TempiSelect": "",
+        "TimePoint_DurataCiclo": "2",
+        "Ricovero_Ambulatoriale": "",
+        "Ricovero_Ordinario": "",
+        "Target_Prezzo": "",
+        "GridX_col": "",
+        "TimePoint_Tempi": "2",
+        "TimePoint_NumeroVisita": "1",
+        "TimePoint_Note": "",
+        "TimePoint_col": "3",
+        "TimePoint_RicoveroSelect": "",
+        "TimePoint_NumeroPrestazioni": ""
+      },
+      "id": "2032987902",
+      "type": {
+        "id": "62",
+        "typeId": "TimePoint"
+      },
+      "position": "1",
+      "titleString": "1+-+",
+      "parentId": "2032987897",
+      "guid": "100000000000002",
+      "coordinates": {
+        "x": 2,
+        "y": 1
+      }
+    },
+    "100000000000003": {
+      "parentTypeId": "FolderTimePoint",
+      "metadata": {
+        "TimePoint_DurataSelect": "",
+        "Ricovero_Straordinario": "",
+        "TimePoint_DescrizioneSelect": "",
+        "TimePoint_Descrizione": "",
+        "Ricovero_Telefonico": "",
+        "TimePoint_TempiSelect": "",
+        "TimePoint_DurataCiclo": "12",
+        "Ricovero_Ambulatoriale": "",
+        "Ricovero_Ordinario": "",
+        "Target_Prezzo": "",
+        "GridX_col": "",
+        "TimePoint_Tempi": "2",
+        "TimePoint_NumeroVisita": "2",
+        "TimePoint_Note": "",
+        "TimePoint_col": "4",
+        "TimePoint_RicoveroSelect": "",
+        "TimePoint_NumeroPrestazioni": ""
+      },
+      "id": "2032987903",
+      "type": {
+        "id": "62",
+        "typeId": "TimePoint"
+      },
+      "position": "1",
+      "titleString": "2+-+",
+      "parentId": "2032987897",
+      "guid": "100000000000003",
+      "coordinates": {
+        "x": 3,
+        "y": 1
+      }
+    },
+    "100000000000004": {
+      "parentTypeId": "FolderTimePoint",
+      "metadata": {
+        "TimePoint_DurataSelect": "",
+        "Ricovero_Straordinario": "",
+        "TimePoint_DescrizioneSelect": "",
+        "TimePoint_Descrizione": "",
+        "Ricovero_Telefonico": "",
+        "TimePoint_TempiSelect": "",
+        "TimePoint_DurataCiclo": "12",
+        "Ricovero_Ambulatoriale": "",
+        "Ricovero_Ordinario": "",
+        "Target_Prezzo": "",
+        "GridX_col": "",
+        "TimePoint_Tempi": "2",
+        "TimePoint_NumeroVisita": "3",
+        "TimePoint_Note": "",
+        "TimePoint_col": "5",
+        "TimePoint_RicoveroSelect": "",
+        "TimePoint_NumeroPrestazioni": ""
+      },
+      "id": "2032987904",
+      "type": {
+        "id": "62",
+        "typeId": "TimePoint"
+      },
+      "position": "1",
+      "titleString": "3+-+",
+      "parentId": "2032987897",
+      "guid": "100000000000004",
+      "coordinates": {
+        "x": 4,
+        "y": 1
+      }
+    },
+    "100000000000005": {
+      "parentTypeId": "FolderPrestazioni",
+      "metadata": {
+        "Prestazioni_CDCCode": "5",
+        "Prestazioni_row": "2",
+        "Tariffario_SSN": "3.51",
+        "Tariffario_Solvente": "10.53",
+        "GridX_col": "",
+        "Prestazioni_UOC": "ANALISI_VM",
+        "Base_Nome": "",
+        "Prestazioni_prestazione": "TEST+DI+STABILITA'+EMOGLOBINICA-&gt;Sangue",
+        "Prestazioni_UOCCode": "ANALISI_VM",
+        "Tariffario_ALPI": "",
+        "Prestazioni_CDC": "Analisi+2+-+Virologia+e+microbiologia",
+        "Prestazioni_Dizionario": ""
+      },
+      "id": "2032987905",
+      "type": {
+        "id": "63",
+        "typeId": "Prestazione"
+      },
+      "position": "1",
+      "titleString": "TEST+DI+STABILITA'+EMOGLOBINICA-&gt;Sangue",
+      "parentId": "2032987896",
+      "guid": "100000000000005",
+      "coordinates": {
+        "x": 1,
+        "y": 1
+      }
+    },
+    "100000000000006": {
+      "parentTypeId": "FolderPrestazioni",
+      "metadata": {
+        "Prestazioni_CDCCode": "3",
+        "Prestazioni_row": "3",
+        "Tariffario_SSN": "45.96",
+        "Tariffario_Solvente": "137.88",
+        "GridX_col": "",
+        "Prestazioni_UOC": "CARDIOLOGIA",
+        "Base_Nome": "",
+        "Prestazioni_prestazione": "ECOGRAFIA+OVARICA",
+        "Prestazioni_UOCCode": "CARDIOLOGIA",
+        "Tariffario_ALPI": "",
+        "Prestazioni_CDC": "Cardiologia",
+        "Prestazioni_Dizionario": ""
+      },
+      "id": "2032987908",
+      "type": {
+        "id": "63",
+        "typeId": "Prestazione"
+      },
+      "position": "1",
+      "titleString": "ECOGRAFIA+OVARICA",
+      "parentId": "2032987896",
+      "guid": "100000000000006",
+      "coordinates": {
+        "x": 1,
+        "y": 2
+      }
+    },
+    "100000000000007": {
+      "parentTypeId": "FolderPrestazioni",
+      "metadata": {
+        "Prestazioni_CDCCode": "7",
+        "Prestazioni_row": "4",
+        "Tariffario_SSN": "",
+        "Tariffario_Solvente": "",
+        "GridX_col": "",
+        "Prestazioni_UOC": "ANATOMIA",
+        "Base_Nome": "",
+        "Prestazioni_prestazione": "ECG",
+        "Prestazioni_UOCCode": "ANATOMIA",
+        "Tariffario_ALPI": "",
+        "Prestazioni_CDC": "Anatomia+Patologica",
+        "Prestazioni_Dizionario": ""
+      },
+      "id": "2032987910",
+      "type": {
+        "id": "63",
+        "typeId": "Prestazione"
+      },
+      "position": "1",
+      "titleString": "ECG",
+      "parentId": "2032987896",
+      "guid": "100000000000007",
+      "coordinates": {
+        "x": 1,
+        "y": 3
+      }
+    },
+    "100000000000008": {
+      "parentTypeId": "FolderPrestazioni",
+      "metadata": {
+        "Prestazioni_CDCCode": "3",
+        "Prestazioni_row": "5",
+        "Tariffario_SSN": "",
+        "Tariffario_Solvente": "",
+        "GridX_col": "",
+        "Prestazioni_UOC": "CARDIOLOGIA",
+        "Base_Nome": "",
+        "Prestazioni_prestazione": "Attivit&agrave;+del+PI+SOC",
+        "Prestazioni_UOCCode": "CARDIOLOGIA",
+        "Tariffario_ALPI": "",
+        "Prestazioni_CDC": "Cardiologia",
+        "Prestazioni_Dizionario": ""
+      },
+      "id": "2032987915",
+      "type": {
+        "id": "63",
+        "typeId": "Prestazione"
+      },
+      "position": "1",
+      "titleString": "Attivit&agrave;+del+PI+SOC",
+      "parentId": "2032987896",
+      "guid": "100000000000008",
+      "coordinates": {
+        "x": 1,
+        "y": 4
+      }
+    },
+    "100000000000009": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987915",
+        "Costo_Costo": "",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987902",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "",
+        "GridXY_col": "",
+        "Costo_Markup": "",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987916",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000009"
+    },
+    "100000000000010": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987910",
+        "Costo_Costo": "100",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "110",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987904",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "2",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "",
+        "GridXY_col": "",
+        "Costo_Markup": "10",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987914",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000010"
+    },
+    "100000000000011": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987910",
+        "Costo_Costo": "100",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "110",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987903",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "2",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "",
+        "GridXY_col": "",
+        "Costo_Markup": "10",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987913",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000011"
+    },
+    "100000000000012": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987910",
+        "Costo_Costo": "",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987902",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "2",
+        "GridXY_col": "",
+        "Costo_Markup": "",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987912",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000012"
+    },
+    "100000000000013": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987910",
+        "Costo_Costo": "100",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "110",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987901",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "2",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "",
+        "GridXY_col": "",
+        "Costo_Markup": "10",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987911",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000013"
+    },
+    "100000000000014": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987908",
+        "Costo_Costo": "",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987902",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "1",
+        "GridXY_col": "",
+        "Costo_Markup": "",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987909",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000014"
+    },
+    "100000000000015": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987905",
+        "Costo_Costo": "100",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "110",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987904",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "2",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "1",
+        "GridXY_col": "",
+        "Costo_Markup": "10",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987907",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000015"
+    },
+    "100000000000016": {
+      "parentTypeId": "FolderTpxp",
+      "metadata": {
+        "Costo_MarkupCTC": "",
+        "Costo_OreUomo": "",
+        "Rimborso_ApprovatoDa": "",
+        "Costo_OreMacchina": "",
+        "tp-p_Prestazione": "2032987905",
+        "Costo_Costo": "100",
+        "Rimborso_UO": "",
+        "Base_Nome": "",
+        "Costo_TransferPrice": "110",
+        "GridXY_row": "",
+        "Rimborso_ApprovatoInData": "",
+        "tp-p_TimePoint": "2032987901",
+        "Costo_Braccio": "",
+        "Costo_MarkupUnita": "2",
+        "tp-p_Checked": "1",
+        "Rimborso_MandatoInApprovazioneDa": "",
+        "Costo_Prezzo": "",
+        "Costo_Categoria": "",
+        "Rimborso_Rimborsabilita": "",
+        "GridXY_col": "",
+        "Costo_Markup": "10",
+        "Rimborso_MandatoInApprovazioneInData": ""
+      },
+      "id": "2032987906",
+      "type": {
+        "id": "64",
+        "typeId": "tpxp"
+      },
+      "position": "1",
+      "titleString": "",
+      "parentId": "2032987895",
+      "guid": "100000000000016"
+    }
+  },
+  "additionals": {},
+  "folders": {
+    "62": "2032987897",
+    "63": "2032987896",
+    "64": "2032987895"
+  },
+  "coordinates": {
+    "x": "tp-p_TimePoint",
+    "y": "tp-p_Prestazione",
+    "row": "Prestazioni_row",
+    "col": "TimePoint_col"
+  },
+  "updatedElementsCount": "0"
+}

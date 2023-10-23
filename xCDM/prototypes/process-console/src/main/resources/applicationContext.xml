@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xmlns:util="http://www.springframework.org/schema/util"
+           xmlns:context="http://www.springframework.org/schema/context"
+           xmlns:tx="http://www.springframework.org/schema/tx"
+           xmlns:security="http://www.springframework.org/schema/security"
+           xmlns:aop="http://www.springframework.org/schema/aop"
+           xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+        <context:annotation-config/>
+
+        <import resource="classpath:passwordEncoders/plain.xml"/>
+        <import resource="classpath:UsernamePasswordAuthenticationProvider.xml"/>
+
+
+        <bean id="freemarkerConfig"
+              class="it.cineca.siss.axmr3.web.freemarker.AxmrFreemarkerConfigurer">
+            <property name="templateLoaderPath" value="${template.path}" />
+        </bean>
+
+        <!--Impostazione file properties per specifiche DB -->
+
+        <import resource="classpath:propertyConfigurer.xml"/>
+
+
+        <!-- impostazione path per eseguibile dot (graphviz) -->
+        <bean id="dotPath" class="java.lang.String">
+            <!--
+              <constructor-arg value="C:\Program Files (x86)\Graphviz2.30\bin\"/>
+            -->
+            <constructor-arg value="${dot.path}"/>
+        </bean>
+
+        <!-- parametri per hibernate -->
+        <util:properties id="hibernateProperties">
+            <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+            <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+            <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+        </util:properties>
+
+        <!--Definizione Datasources -->
+
+        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+            <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+            <property name="url" value="${jdbc.url}"></property>
+            <property name="username" value="${jdbc.username}"></property>
+            <property name="password" value="${jdbc.password}"></property>
+            <property name="jdbcMaxActiveConnections" value="10"></property>
+            <property name="jdbcMaxIdleConnections" value="10"></property>
+        </bean>
+
+
+
+    <alias name="dataSource" alias="UserDataSource"/>
+
+
+
+        <!--Configurazione security -->
+
+        <security:global-method-security secured-annotations="enabled"/>
+
+        <security:http use-expressions="true">
+            <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+           <security:http-basic/>
+        </security:http>
+
+
+        <bean id="org.springframework.security.authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+            <property name="providers">
+                <list>
+                    <ref local="authenticationProvider"/>
+                </list>
+            </property>
+        </bean>
+
+        <!--Configurazione Gestore Transazioni DB -->
+
+        <bean id="axm3TX" class="it.cineca.siss.axmr3.transactions.Axmr3TXManager" destroy-method="destroy" scope="request">
+            <aop:scoped-proxy/>
+            <property name="sessionFactories">
+                <map>
+                    <entry key="doc" value-ref="docSessionFactory"/>
+                </map>
+            </property>
+        </bean>
+
+        <!-- Bean di inizializzazione DB -->
+
+
+
+        <import resource="activiti-standalone-context.xml" />
+        <import resource="activiti-ui-context.xml" />
+
+
+    </beans>
+

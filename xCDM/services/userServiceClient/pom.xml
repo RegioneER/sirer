@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>services</artifactId>
+        <groupId>it.cineca.siss.axmr3</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+     <name>UserServiceClient</name>
+    <description>Client per l'interrogazione di un UserService in modalità rest</description>
+    <groupId>it.cineca.siss.axmr3.services</groupId>
+    <artifactId>userServiceClient</artifactId>
+    <properties>
+        <sonar.skip>true</sonar.skip>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>it.cineca.siss.axmr3.authentication</groupId>
+            <artifactId>user-hibernate</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>it.cineca.siss.axmr3.services</groupId>
+            <artifactId>userService</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>it.cineca.siss.axmr3.authentication</groupId>
+            <artifactId>addOns</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

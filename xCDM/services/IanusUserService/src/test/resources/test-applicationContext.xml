@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+        <property name="url" value="jdbc:oracle:thin:@130.186.81.138:5555/db41_ext.pdv.cineca.it"></property>
+        <property name="username" value="CE_GEMELLI"></property>
+        <property name="password" value="gme2013!"></property>
+    </bean>
+
+    <alias name="dataSource" alias="UserDataSource"/>
+    <bean id="idServizio" class="java.lang.String">
+        <constructor-arg value="61"/>
+    </bean>
+    <bean id="passwordEncoder" class="it.cineca.siss.axmr3.authentication.IanusPasswordEncoder"/>
+
+</beans>

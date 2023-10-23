@@ -1,0 +1,124 @@
+label{
+	
+	margin-top:10px;
+	margin-bottom:5px;
+}
+input,textarea,select{
+	margin-bottom:5px;
+}
+
+.main-content button.btn{
+	font-size:16px;
+	margin-top:20px;
+}
+
+.data-view-mode{
+	display:inline;
+}
+
+.cpf label {
+	display:inline !important;
+}
+
+.cpf .field-component {
+	margin-top:-0px !important;
+}
+
+
+.cp label {
+	display:inline !important;
+}
+
+.cp .field-component {
+	margin-top:-0px !important;
+}
+
+
+.cpr label {
+	display:inline !important;
+}
+
+.cpr .field-component {
+	margin-top:-0px !important;
+}
+
+
+.cpoc label {
+	display:inline !important;
+}
+
+.cpoc .field-component {
+	margin-top:-0px !important;
+}
+
+.cpl label {
+	display:inline !important;
+}
+
+.cpl .field-component {
+	margin-top:-0px !important;
+}
+
+.field-component label{
+	display:block;
+	
+}
+
+#informations-datiPromotore_promotore label{
+	display:inline !important;
+}
+
+#informations-datiPromotore_promotore .field-component{
+	margin-top:-0px !important;
+	
+}
+
+#informations-datiCRO_denominazione label{
+	display:inline !important;
+}
+
+#informations-datiCRO_denominazione .field-component{
+	margin-top:-0px !important;	
+}
+
+
+
+.token-input-list-facebook{
+	list-style:none;
+	margin:0px;
+}
+
+.tabbable{
+	margin-top:20px;
+}
+
+.x-checkbox-input {
+	white-space:nowrap;
+}
+
+.x-checkbox-input input {
+	margin-right:3px;
+}
+
+#metadataTemplate-IDstudio .field-component label, 
+#metadataTemplate-IDstudio .field-component div.data-view-mode,
+#metadataTemplate-UniqueIdStudio .field-component label,
+#metadataTemplate-UniqueIdStudio .field-component div.data-view-mode 
+ {
+	display:inline;	
+}
+
+.field-component{
+	display:block;
+}
+
+.date{
+	margin-bottom:10px;
+}
+
+.col-lg-2{
+	padding-left:0px;
+}
+
+
+
