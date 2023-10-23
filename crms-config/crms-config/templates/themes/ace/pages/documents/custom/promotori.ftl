@@ -1,3 +1,5 @@
+
+<#include "../../../macros.ftl"/>
 <@script>
 
 
@@ -16,49 +18,63 @@
         <#assign first=true/>
         <#list userSitesCodesList as site>
             '   {"match": {"metadata.IdCentro.values.PINomeCognome_CODESTRING": "${userCF}"}},'+
-            '   {"match": {"createdBy": "${userDetails.username}"}}<#if !site?is_last>,</#if>'+
+            '   {"match": {"createdBy": "${userDetails.username}"}}'+
         </#list>
         '  ]},';
         //prependSite='   {"match": {"metadata.IdCentro.values.PINomeCognome_CODESTRING": "${userCF}"}},'; <#--${userDetails.anaData.CODICE_FISCALE}-->//Userid? codice fiscale?
         //TENGO GLI STUDI STANDARD IN RELAZIONE ALL'AZIENDA //prependStudio='   {"match": {"children.Centro.metadata.IdCentro.values.PINomeCognome_CODESTRING": "RSLMFR61C41H769S"}},';
     }
     else if (flagSP>=0){ //STSANSVIL-742
-        prependSite='{"or":[{"match": {"createdBy": "${userDetails.username}"}},{"match": {"viewableByUsers": "${userDetails.username}"}}]},';
+        prependSite='{"match": {"createdBy": "${userDetails.username}"}},';
     }
     else{
 	<#if userSitesCodesList?? && userSitesCodesList?size gt 0>
         prependSite='{"or":['+
 		<#assign first=true/>
 		<#list userSitesCodesList as site>
-	        '   {"match": {"metadata.IdCentro.values.Struttura_CODESTRING": "${site}.0"}}<#if !site?is_last>,</#if>'+
+		<#if first>
+			<#assign first=false/>
+		<#else>
+		','+
+		</#if>
+        '   {"match": {"metadata.IdCentro.values.Struttura_CODESTRING": "${site}.0"}}'+
 		</#list>
         '  ]},';
 	</#if>
     }
     if(flagSP>=0){
-        prependStudio='{"or":[{"match": {"createdBy": "${userDetails.username}"}},{"match": {"viewableByUsers": "${userDetails.username}"}}]},';
+        prependStudio='{"match": {"createdBy": "${userDetails.username}"}},';
     }
     else{
-    <#if userSitesCodesList?? && userSitesCodesList?size gt 0>
-        prependStudio='{"or":['+
-        <#assign first=true/>
-        <#list userSitesCodesList as site>
-           '   {"match": {"children.Centro.metadata.IdCentro.values.Struttura_CODESTRING": "${site}.0"}}<#if !site?is_last>,</#if>'+
-        </#list>
-        '  ]},';
-        <#--
-        prependStudio='{"bool":{ "should": ['+
-        <#assign first=true/>
-        <#list userSitesCodesList as site>
-           
-        '   {"term": {"children.Centro.metadata.IdCentro.values.Struttura_CODESTRING": "${site}.0"}}<#if !site?is_last>,</#if>'+
-        </#list>
-        '  ],'+
-        '"minimum_should_match" : 1,'+
-        '"boost" : 1.0'+
-        '}},';
-        -->
-    </#if>
+        <#if userSitesCodesList?? && userSitesCodesList?size gt 0>
+            prependStudio='{"or":['+
+            <#assign first=true/>
+            <#list userSitesCodesList as site>
+                <#if first>
+                    <#assign first=false/>
+                <#else>
+            ','+
+                </#if>
+            '   {"match": {"children.Centro.metadata.IdCentro.values.Struttura_CODESTRING": "${site}.0"}}'+
+            </#list>
+            '  ]},';
+            <#--
+            prependStudio='{"bool":{ "should": ['+
+            <#assign first=true/>
+            <#list userSitesCodesList as site>
+                <#if first>
+                    <#assign first=false/>
+                <#else>
+            ','+
+                </#if>
+            '   {"term": {"children.Centro.metadata.IdCentro.values.Struttura_CODESTRING": "${site}.0"}}'+
+            </#list>
+            '  ],'+
+            '"minimum_should_match" : 1,'+
+            '"boost" : 1.0'+
+            '}},';
+            -->
+        </#if>
     }
      function DateFmt(fstr) {
         this.formatString = fstr
@@ -107,33 +123,33 @@
             studyListReg();
         }
         else{
-        var grid_selector = "#home-grid-table";
-        var pager_selector = "#home-grid-pager";
-        var url=baseUrl+"/app/rest/elk/query/jqgrid/full/studio";
-        var filter='{"match_all":{}}';
-        if(flagSP>=0){
-            prependStudio=prependStudio.replace(",","");
-            filter=prependStudio;
-        }
-        //var colNames=['Id','Codice','Promotore','CRO','Principal investigator'];
-		var colNames=['Id','Codice','Principal investigator'];
-        /*var colModel=[
-                    {name:'id',index:'UniqueIdStudio_id', width:20, sorttype:"int", firstsortorder:"desc",jsonmap:"metadata.UniqueIdStudio.values.id"},
-                        {name:'codice',index:'metadata.IDstudio.values.CodiceProt',width:30,jsonmap:"metadata.IDstudio.values.CodiceProt"},
-                        {name:'sponsor',index:'metadata.datiPromotore.values.promotore', width:40,jsonmap:"metadata.datiPromotore.values.promotore"},
-                        {name:'cro',index:'metadata.datiCRO.values.denominazione', width:40,jsonmap:"metadata.datiCRO.values.denominazione"},
-                        {name:'centri',index:'centri',formatter:getCentri, width:40,jsonmap:"children.Centro"}
-                ];*/
-		var colModel=[
-                    {name:'id',index:'UniqueIdStudio_id', width:20, sorttype:"int", firstsortorder:"desc",jsonmap:"metadata.UniqueIdStudio.values.id"},
-                        {name:'codice',index:'metadata.IDstudio.values.CodiceProt',width:30,jsonmap:"metadata.IDstudio.values.CodiceProt"},
-                        {name:'centri',index:'centri',formatter:getCentri, width:40,jsonmap:"children.Centro"}
-                ];
-        var caption = "Studi";
-        fields="createdBy,metadata.IdCentro.values.Struttura";
+            var grid_selector = "#home-grid-table";
+            var pager_selector = "#home-grid-pager";
+            var url=baseUrl+"/app/rest/elk/query/jqgrid/full/studio";
+            var filter='{"match_all":{}}';
+            if(flagSP>=0){
+                prependStudio=prependStudio.replace(",","");
+                filter=prependStudio;
+            }
+            //var colNames=['Id','Codice','Promotore','CRO','Principal investigator'];
+            var colNames=['Id','Codice','Principal investigator'];
+            /*var colModel=[
+                        {name:'id',index:'UniqueIdStudio_id', width:20, sorttype:"int", firstsortorder:"desc",jsonmap:"metadata.UniqueIdStudio.values.id"},
+                            {name:'codice',index:'metadata.IDstudio.values.CodiceProt',width:30,jsonmap:"metadata.IDstudio.values.CodiceProt"},
+                            {name:'sponsor',index:'metadata.datiPromotore.values.promotore', width:40,jsonmap:"metadata.datiPromotore.values.promotore"},
+                            {name:'cro',index:'metadata.datiCRO.values.denominazione', width:40,jsonmap:"metadata.datiCRO.values.denominazione"},
+                            {name:'centri',index:'centri',formatter:getCentri, width:40,jsonmap:"children.Centro"}
+                    ];*/
+            var colModel=[
+                        {name:'id',index:'UniqueIdStudio_id', width:20, sorttype:"int", firstsortorder:"desc",jsonmap:"metadata.UniqueIdStudio.values.id"},
+                            {name:'codice',index:'metadata.IDstudio.values.CodiceProt',width:30,jsonmap:"metadata.IDstudio.values.CodiceProt"},
+                            {name:'centri',index:'centri',formatter:getCentri, width:40,jsonmap:"children.Centro"}
+                    ];
+            var caption = "Studi";
+            fields="createdBy,metadata.IdCentro.values.Struttura";
 
-        setupGridElk(grid_selector, pager_selector, url, filter, colModel,colNames, caption,null, fields);
-    }
+            setupGridElk(grid_selector, pager_selector, url, filter, colModel,colNames, caption,null, fields);
+        }
     }
 
     function getCentri(centerInput){
@@ -198,9 +214,7 @@
 	//HDCRPMS-142 13.04.2017 vmazzeo ***INIZIO***
     //var approvCeFilter='{"missing": {"field": "children.Contratto.metadata.ApprovDADSRETT.values"}},{"missing": {"field": "children.Contratto.metadata.ApprovDADSRETT2.values"}},{"match": {"children.ParereCe.metadata.ParereCe.values.esitoParere": "Parere favorevole"}}';
     var approvCeFilter=prependSite+'{"match" : { "metadata.statoValidazioneCentro.values.parereCEPositivo":1 }}';
-    
-   var approvCeFilter=prependSite+'{ "or" :[{"match" : { "metadata.statoValidazioneCentro.values.parereCEPositivo":1 }},{ "and" : [{"match" : { "children.ParereCe.metadata.ParereCe.values.ParereWFinviato":1 }},{"match" : { "children.ParereCe.metadata.ParereCe.values.esitoParere_CODE":4 }}]}]}';
-    var sospesiCeFilter=prependSite+'{"missing" : { "field" : "metadata.statoValidazioneCentro.values.idParereCE" }},{"match" : { "children.ParereCe.metadata.ParereCe.values.ParereWFinviato":1 }}, {"match" : { "children.ParereCe.metadata.ParereCe.values.esitoParere_CODE":2 }}';
+    var sospesiCeFilter=prependSite+'{"missing" : { "field" : "metadata.statoValidazioneCentro.values.idParereCE" }},{"match" : { "parent.metadata.ParereCE.values.ParereWFinviato":1 }}';
     var contrariCeFilter=prependSite+'{"exists" : { "field" : "metadata.statoValidazioneCentro.values.idParereCE" }},{"match" : { "metadata.statoValidazioneCentro.values.parereCEPositivo":0 }}';
     var chiusiFilter=prependSite+'{"range": {"children.ChiusuraCentro.metadata.DatiChiusuraCentro.values.dataConclusioneCentro": {"gte": "01/01/1970","format": "dd/MM/yyyy"}}}'
     var monitorFilter=prependSite+'{"exists" : { "field" : "children.AvvioCentro.metadata.DatiAvvioCentro.values.dataAperturaCentro" }},{"missing" : { "field" : "children.ChiusuraCentro.metadata.DatiChiusuraCentro.values.dataConclusioneCentro" }}';
@@ -467,8 +481,6 @@
 		<@script>
 			var $path_base = "${path.base}";//this will be used in gritter alerts containing images
 		</@script>
-
-
 	<div class="col-sm-12 infobox-container">
 		<@infobox "studi_ins" "icon icon-folder-open" "blue" "Studi in BD Regionale"  "Lista di tutti gli studi inseriti a livello regionale" />
 		<@infobox "studi_ins_reg" "icon icon-folder-open" "blue" "Studi in BD Aziendale"  "Lista di tutti gli studi inseriti a livello aziendale" />
@@ -487,26 +499,12 @@
 		<@infobox "centri_chiusi" "icon icon-ban-circle" "grey" "Chiusi" "Centri con chiusura amministrativa"/>
 		<@infobox "centri_ritirati" "icon icon-lock" "black" "Ritirati" "Centri ritirati"/>
 		<@infobox "progetti_totali" "icon icon-lock" "red" "Progetti" "Progetti totali"/>
-	</div> 
-    <!--div class="col-sm-12">
-        <div class="alert alert-block alert-danger" style="">
-            <i class="fa fa-exclamation-circle red"></i> Attenzione: A causa di manutenzioni straordinarie alcune funzionalità del sistema potrebbero non essere raggiungibili nel giorno 23/06/2023 dalle ore 9 alle ore 11.<br/>
-            Ci scusiamo del disagio arrecato.
-        </div>
-    </div-->
+	</div>
 	<div class="col-sm-12">
         <div id="quarantena" class="alert alert-block alert-danger" style="display: none">
             <i class="fa fa-exclamation-circle red"></i> Sono presenti centri in quarantena!
         </div>	
     </div>
-
-    <!-- STSANSVIL-8178 -->
-    <div class="col-sm-12">
-        <div class="alert alert-block alert-danger" style="margin: 2rem auto 1rem auto; display: none;">
-            <i class="fa fa-exclamation-circle red"></i> Attenzione: avviso di fermo del sistema nella giornata di venerdì 13/10/2023 dalle ore 9 alle ore 11.
-        </div>
-    </div>
-
 		
 		
 		<span class="home-table" >

@@ -172,7 +172,7 @@ margin-left: 21em;
 		}
 	});
 $('#informations-datiStudio_meddra').before('<tr><td colspan="2" style="background-color:#DDDDDD"><b>CLASSIFICAZIONE PATOLOGIA IN STUDIO</b></td></tr>');
-$('#informations-datiStudio_NaturaDelloStudio').before('<tr><td colspan="2" style="background-color:#DDDDDD"><b>&nbsp;</b></td></tr>');
+$('#informations-datiStudio_profit').before('<tr><td colspan="2" style="background-color:#DDDDDD"><b>&nbsp;</b></td></tr>');
 },1000);
 
 function datiStudioChecks(){
@@ -439,7 +439,7 @@ width: 100%;
 	<#if forceRO?? && forceRO>
 	    <#assign chiuso=true />
 	</#if>
-
+	
 
 	<#-- Inizializzo qui la variabile che mi dice se posso aggiungere figli o meno "true" per tutti-->
 	<#assign addChildrens=true />
@@ -448,7 +448,7 @@ width: 100%;
 		<#assign parentEl=el/>
 		<#list parentEl.getChildrenByType("Centro") as elCentro>
 			<#if elCentro.getFieldDataString("RichiestaSponsor","statoRichiesta")?? && elCentro.getFieldDataString("RichiestaSponsor","statoRichiesta")!="" && elCentro.getFieldDataString("RichiestaSponsor","statoRichiesta")=="1">
-				<#assign addChildrens=false>
+					<#assign addChildrens=false>
 			</#if>
 		</#list>
 	</#if>
@@ -608,25 +608,25 @@ width: 100%;
  			
 	<div id="farmaci-tab" class="tab-pane">
 		<#if canAccessTab>
- 		  <#assign sameGroup=false />
- 		  <#-- assign sameGroup=model['docService'].checkUsersSameGroupByPrefix(model['userService'].loadUserByUsername(el.createUser),userDetails,"CTO_") / -->
-		  <#assign sameGroup=true />
-  		<#if sameGroup >
+			<#assign sameGroup=false />
+			<#-- assign sameGroup=model['docService'].checkUsersSameGroupByPrefix(model['userService'].loadUserByUsername(el.createUser),userDetails,"CTO_") / -->
+			<#assign sameGroup=true />
+			<#if sameGroup >
 				<#if addChildrens && canAccessTab>
-	  		<#if model['getCreatableElementTypes']??>
-	  			<#list model['getCreatableElementTypes'] as docType>
-	    			<#if docType.typeId="Farmaco" >
-	    				<button class="submitButton round-button blue btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';"  ><i class="icon-plus bigger-160"  ></i><b>Aggiungi nuovo prodotto</b></button>
-	    			</#if>
-	  			</#list>
-	  		</#if>
-	  		</#if>
-  		</#if>
-	  	<br/><br/>
-		  <div class="row">
+					<#if model['getCreatableElementTypes']??>
+						<#list model['getCreatableElementTypes'] as docType>
+							<#if docType.typeId="Farmaco" >
+								<button class="submitButton round-button blue btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';"  ><i class="icon-plus bigger-160"  ></i><b>Aggiungi nuovo prodotto</b></button>
+							</#if>
+						</#list>
+					</#if>
+				</#if>
+			</#if>
+			<br/><br/>
+			<div class="row">
 				<div class="col-xs-12">
-					<div class="table-responsive">	
-	    			<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+					<div class="table-responsive">
+					<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 							<thead>
 								<tr>
 									<th class="hidden-480">Tipo</th>
@@ -639,50 +639,50 @@ width: 100%;
 									<th class="hidden-480" style="width: 10%">Azioni</th>
 								</tr>
 							</thead>
-	
-							<tbody>	
-								<#assign noFarmaci>	
+
+							<tbody>
+								<#assign noFarmaci>
 									<tr><td colspan=7><span class="help-button">?</span> Nessun prodotto inserito </td></tr>
-								</#assign>	
-								
-					    	<#assign parentEl=el/>
-					    	<#list parentEl.getChildrenByType("Farmaco") as subEl>
-						    	<#if subEl.deleted>
-						    	<#else>
-							    	<#assign noFarmaci="">
-							    	
-							    	<#assign tipo=subEl.getFieldDataDecode("Farmaco","tipo") />
-							    	<#assign prodotto="">
-							    	<#assign descrizione="">
-							    	<#assign unita="">
-							    	<#assign numero="">
-							    	<#assign valore="">
+								</#assign>
+
+							<#assign parentEl=el/>
+							<#list parentEl.getChildrenByType("Farmaco") as subEl>
+								<#if subEl.deleted>
+								<#else>
+									<#assign noFarmaci="">
+
+									<#assign tipo=subEl.getFieldDataDecode("Farmaco","tipo") />
+									<#assign prodotto="">
+									<#assign descrizione="">
+									<#assign unita="">
+									<#assign numero="">
+									<#assign valore="">
 									<#assign copertura="">
-							    	<#if subEl.getFieldDataCode("Farmaco","tipo")=="1">
-							    		<#assign prodotto=subEl.getFieldDataDecode("Farmaco","princAtt") />
-							    		<#if subEl.getFieldDataCode("Farmaco","princAtt")=="-9999">
-							    			<#assign prodotto=subEl.getFieldDataString("Farmaco","princAttAltro") />
-							    		</#if>
+									<#if subEl.getFieldDataCode("Farmaco","tipo")=="1">
+										<#assign prodotto=subEl.getFieldDataDecode("Farmaco","princAtt") />
+										<#if subEl.getFieldDataCode("Farmaco","princAtt")=="-9999">
+											<#assign prodotto=subEl.getFieldDataString("Farmaco","princAttAltro") />
+										</#if>
 										<#if subEl.getFieldDataString("Farmaco","SpecialitaAIC")??>
 											<#assign prodotto="Princ. Att.: "+prodotto+" - Specialità medicinale: "+subEl.getFieldDataString("Farmaco","SpecialitaAIC") />
 										</#if>
-							    	<#elseif subEl.getFieldDataCode("Farmaco","tipo")=="2">
-							    	    <#if subEl.getfieldData("Farmaco","dispMed")?? &&  subEl.getfieldData("Farmaco","dispMed")?size gt 0 >
-    							    		<#assign prodotto=subEl.getFieldDataDecode("Farmaco","dispMed") />
-    							    		<#if subEl.getFieldDataCode("Farmaco","dispMed")=="-9999">
-    							    			<#assign prodotto=subEl.getFieldDataString("Farmaco","dispMedAltro") />
-    							    		</#if>
-							    		</#if>
-							    	<#else>
-							    		<#assign prodotto=subEl.getFieldDataString("Farmaco","descrizioneAttr")+subEl.getFieldDataString("Farmaco","descrizioneMat")+subEl.getFieldDataString("Farmaco","descrizioneMatAltro")  />
-							    	</#if>
-							    	
-							    	<#assign descrizione=""/>
-							    	<#assign unita=subEl.getFieldDataString("Farmaco","unitaMisura") />
-							    	<#assign numero=subEl.getFieldDataString("Farmaco","numUnitaPaz") />
-							    	<#assign valore=subEl.getFieldDataString("Farmaco","totaleValore") />
-			    					<#-- assign copertura=subEl.getFieldDataDecode("Farmaco","modalitaFornitura") /-->
-				    	    	<!-- inizio tabella nuova -->
+									<#elseif subEl.getFieldDataCode("Farmaco","tipo")=="2">
+										<#if subEl.getfieldData("Farmaco","dispMed")?? &&  subEl.getfieldData("Farmaco","dispMed")?size gt 0 >
+											<#assign prodotto=subEl.getFieldDataDecode("Farmaco","dispMed") />
+											<#if subEl.getFieldDataCode("Farmaco","dispMed")=="-9999">
+												<#assign prodotto=subEl.getFieldDataString("Farmaco","dispMedAltro") />
+											</#if>
+										</#if>
+									<#else>
+										<#assign prodotto=subEl.getFieldDataString("Farmaco","descrizioneAttr")+subEl.getFieldDataString("Farmaco","descrizioneMat")+subEl.getFieldDataString("Farmaco","descrizioneMatAltro")  />
+									</#if>
+
+									<#assign descrizione=""/>
+									<#assign unita=subEl.getFieldDataString("Farmaco","unitaMisura") />
+									<#assign numero=subEl.getFieldDataString("Farmaco","numUnitaPaz") />
+									<#assign valore=subEl.getFieldDataString("Farmaco","totaleValore") />
+									<#-- assign copertura=subEl.getFieldDataDecode("Farmaco","modalitaFornitura") /-->
+								<!-- inizio tabella nuova -->
 										<tr>
 											<td class="hidden-480">${tipo}</td>
 											<td class="hidden-480">${prodotto}</td>
@@ -712,15 +712,15 @@ width: 100%;
 													</div>
 											</td>
 										</tr>
-										<!-- fine tabella nuova -->	
-			    				</#if>
-		    				</#list>
-		    				
-		    				${noFarmaci}
-		    	
-		 					</tbody>
+										<!-- fine tabella nuova -->
+								</#if>
+							</#list>
+
+							${noFarmaci}
+
+							</tbody>
 						</table>
-						
+
 					</div>
 				</div>
 			</div>
@@ -731,7 +731,7 @@ width: 100%;
 			</div>
 		</div>
 		</#if> <#-- canAccessTab -->
- 		</div> 			
+	</div>
 
 	<div id="promotori-tab" class="tab-pane">		
 		<#-- Se profilo segreteria pu� modificare l'elemento... -->
@@ -751,7 +751,7 @@ width: 100%;
 			</#list>
 		</#if>
 		</#if>
-	
+
 	
 	<div class="row">
 				<div class="col-xs-12">
@@ -786,7 +786,7 @@ width: 100%;
 															
 					<tr>
 						<#if canAccessTab>
-						<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getFieldDataElement("datiPromotore","promotore")[0]??>${subEl.getFieldDataElement("datiPromotore","promotore")[0].getTitleString()!""}</#if></a></td>
+							<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getFieldDataElement("datiPromotore","promotore")[0]??>${subEl.getFieldDataElement("datiPromotore","promotore")[0].getTitleString()!""}</#if></a></td>
 						<#else>
 							<td><#if subEl.getFieldDataElement("datiPromotore","promotore")[0]??>${subEl.getFieldDataElement("datiPromotore","promotore")[0].getTitleString()!""}</#if></td>
 						</#if>
@@ -804,15 +804,15 @@ width: 100%;
 									<i class="icon-ok bigger-120"></i>
 								</button-->
 								<#if canAccessTab >
-								<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
-									<i class="icon-edit bigger-120"></i>
-								</button>
-								<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
-									<#if elPolicy.canDelete>
-									<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il promotore?')) {deleteElement('${subEl.id}')};return false;">
-										<i class="icon-trash bigger-120"></i>
+									<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
+										<i class="icon-edit bigger-120"></i>
 									</button>
-								</#if>
+									<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
+									<#if elPolicy.canDelete>
+										<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il promotore?')) {deleteElement('${subEl.id}')};return false;">
+											<i class="icon-trash bigger-120"></i>
+										</button>
+									</#if>
 								</#if>
 								<!--button class="btn btn-xs btn-warning">
 									<i class="icon-flag bigger-120"></i>
@@ -924,7 +924,7 @@ width: 100%;
 															
 					<tr>
 						<#if canAccessTab>
-						<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getFieldDataString("datiFinanziatore","NomeFinanziatore")??>${subEl.getFieldDataString("datiFinanziatore","NomeFinanziatore")}</#if></a></td>
+							<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getFieldDataString("datiFinanziatore","NomeFinanziatore")??>${subEl.getFieldDataString("datiFinanziatore","NomeFinanziatore")}</#if></a></td>
 						<#else>
 							<td><#if subEl.getFieldDataString("datiFinanziatore","NomeFinanziatore")??>${subEl.getFieldDataString("datiFinanziatore","NomeFinanziatore")}</#if></td>
 						</#if>
@@ -932,15 +932,15 @@ width: 100%;
 						<td>
 							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
 								<#if  canAccessTab>
-								<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
-									<i class="icon-edit bigger-120"></i>
-								</button>
-								<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
-								<#if elPolicy.canDelete >
-									<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il finanziatore?')) {deleteElement('${subEl.id}')};return false;">
-										<i class="icon-trash bigger-120"></i>
+									<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
+										<i class="icon-edit bigger-120"></i>
 									</button>
-								</#if>
+									<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
+									<#if elPolicy.canDelete >
+										<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il finanziatore?')) {deleteElement('${subEl.id}')};return false;">
+											<i class="icon-trash bigger-120"></i>
+										</button>
+									</#if>
 								</#if>
 							</div>
 			
@@ -994,9 +994,9 @@ width: 100%;
 		</div>
 		</div>
 	</div>
-	
-	
-	
+
+
+
 	
 	
 	<div id="cro-tab" class="tab-pane">
@@ -1020,89 +1020,90 @@ width: 100%;
 
 	
 	
-	<div class="row">
+		<div class="row">
 				<div class="col-xs-12">
 					<div class="table-responsive">	
-    				<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-												<thead>
-													<tr>
-														<th class="hidden-480">Nome della CRO</th>
-														<th class="hidden-480">Nome del referente</th>
-														<th class="hidden-480" style="width: 10%">Azioni</th>
-													</tr>
-												</thead>
+    					<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th class="hidden-480">Nome della CRO</th>
+									<th class="hidden-480">Nome del referente</th>
+									<th class="hidden-480" style="width: 10%">Azioni</th>
+								</tr>
+							</thead>
 
-												<tbody>	
-												
-												<#assign noCRO>	
-													<tr>
-	            							<td colspan=7><span class="help-button">?</span> Nessuna CRO inserita </td>
-	           							</tr>
-           							</#assign>	
-    	<#assign parentEl=el/>
-    	<#list parentEl.getChildrenByType("CROStudio") as subEl>
-    	<#if subEl.deleted>
-    	<#else>
-    	<#assign noCRO="">
-    	    	<!-- inizio tabella nuova -->
-					<tr>
-						<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getFieldDataElement("datiCRO","denominazione")[0]??>${subEl.getFieldDataElement("datiCRO","denominazione")[0].getTitleString()!""}</#if></a></td>
-			
-						<td>${subEl.getFieldDataString("datiCRO","RefNomeCognomeF")!""}</td>
-						<td>
-							<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-								<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
-									<i class="icon-edit bigger-120"></i>
-								</button>
-								<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
-								<#if elPolicy.canDelete >
-									<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare la CRO?')) {deleteElement('${subEl.id}')};return false;">
-										<i class="icon-trash bigger-120"></i>
-									</button>
-								</#if>
-							</div>
-							<div class="visible-xs visible-sm hidden-md hidden-lg">
-								<div class="inline position-relative">
-									<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
-										<i class="icon-cog icon-only bigger-110"></i>
-									</button>
-									<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
-										<li>
-											<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-												<span class="blue">
-													<i class="icon-zoom-in bigger-120"></i>
-												</span>
-											</a>
-										</li>
-			
-										<li>
-											<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-												<span class="green">
+							<tbody>
+
+								<#assign noCRO>
+								<tr>
+									<td colspan=7><span class="help-button">?</span> Nessuna CRO inserita </td>
+								</tr>
+								</#assign>
+    							<#assign parentEl=el/>
+								<#list parentEl.getChildrenByType("CROStudio") as subEl>
+									<#if subEl.deleted>
+									<#else>
+									<#assign noCRO="">
+									<!-- inizio tabella nuova -->
+									<tr>
+										<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getFieldDataElement("datiCRO","denominazione")[0]??>${subEl.getFieldDataElement("datiCRO","denominazione")[0].getTitleString()!""}</#if></a></td>
+
+										<td>${subEl.getFieldDataString("datiCRO","RefNomeCognomeF")!""}</td>
+										<td>
+											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+												<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
 													<i class="icon-edit bigger-120"></i>
-												</span>
-											</a>
-										</li>
-			
-										<li>
-											<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-												<span class="red">
+												</button>
+
+												<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
+												<#if elPolicy.canDelete >
+												<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare la CRO?')) {deleteElement('${subEl.id}')};return false;">
 													<i class="icon-trash bigger-120"></i>
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</td>
-					</tr>
-    	<!-- fine tabella nuova -->	
-    	</#if>
-    	</#list>
-    	${noCRO}
- 		</tbody>
-		</table>
-		</div>
-		</div>
+												</button>
+												</#if>
+											</div>
+											<div class="visible-xs visible-sm hidden-md hidden-lg">
+												<div class="inline position-relative">
+													<button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown">
+														<i class="icon-cog icon-only bigger-110"></i>
+													</button>
+													<ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+														<li>
+															<a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+																<span class="blue">
+																	<i class="icon-zoom-in bigger-120"></i>
+																</span>
+															</a>
+														</li>
+
+														<li>
+															<a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+																<span class="green">
+																	<i class="icon-edit bigger-120"></i>
+																</span>
+															</a>
+														</li>
+
+														<li>
+															<a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+																<span class="red">
+																	<i class="icon-trash bigger-120"></i>
+																</span>
+															</a>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</td>
+									</tr>
+									<!-- fine tabella nuova -->
+    							</#if>
+    						</#list>
+							${noCRO}
+				 			</tbody>
+						</table>
+					</div>
+				</div>
 		</div>
 	<#else>
 		<div class="row">
@@ -1153,64 +1154,7 @@ width: 100%;
     	<#if subEl.deleted>
     	<#else>
     	<#assign noCentri="">
-    	
-
-    		    		
-    	<!--fieldset style="
-			background-color: #DFEFFC;
-		    border-radius: 10px;
-		    padding: 5px;
-		    border:1px solid #8AB8DA;
-			">
-    	<fieldset style="float:right;background-color:white">
-    		<legend>Stato avanzamento</legend>
-    		<table border=0 width=100%>
-    		<tr><td>
-    		<@msg "statoValidazioneCentro.fattLocale"/>:</td>
-    	<#if subEl.getfieldData("statoValidazioneCentro", "fattLocale")?? && subEl.getfieldData("statoValidazioneCentro", "fattLocale")?size gt 0 >
-			<#if subEl.getfieldData("statoValidazioneCentro", "fattLocale")[0]?split("###")[1]=="Si">
-				<td style="background-color: lightgreen;border-radius: 5px;padding:2px;">${subEl.getfieldData("statoValidazioneCentro", "fattLocale")[0]?split("###")[1]}
-				<#else>
-				<td style="background-color: OrangeRed;border-radius: 5px;padding:2px;">${subEl.getfieldData("statoValidazioneCentro", "fattLocale")[0]?split("###")[1]}
-				</#if>
-			<#else>
-			<td style="background-color: SandyBrown ;border-radius: 5px;padding:2px;">pending...
-		</#if>
-		</td></tr>
-		<tr><td><@msg "statoValidazioneCentro.valCTC"/>: </td>
-		<#if subEl.getfieldData("statoValidazioneCentro", "valCTC")?? && subEl.getfieldData("statoValidazioneCentro", "valCTC")?size gt 0 >
-			<#if subEl.getfieldData("statoValidazioneCentro", "fattLocale")[0]?split("###")[1]=="Si">
-				<td style="background-color: lightgreen;border-radius: 5px;padding:2px;">${subEl.getfieldData("statoValidazioneCentro", "valCTC")[0]?split("###")[1]}
-				<#else>
-				<td style="background-color: OrangeRed;border-radius: 5px;padding:2px;">${subEl.getfieldData("statoValidazioneCentro", "valCTC")[0]?split("###")[1]}
-				</#if>
-			<#else>
-			<td style="background-color: SandyBrown ;border-radius: 5px;padding:2px;">pending...
-			
-		</#if>
-		</td></tr>
-		<tr><td>Budget chiuso:</td>
-		<#if subEl.getfieldData("statoValidazioneCentro", "idBudgetApproved")?? && subEl.getfieldData("statoValidazioneCentro", "idBudgetApproved")?size gt 0 >
-			<td style="background-color: lightgreen ;border-radius: 5px;padding:2px;">Si
-			<#else>
-			<td style="background-color: SandyBrown ;border-radius: 5px;padding:2px;">No
-		</#if>
-		</td></tr></table>
-    	</fieldset>
-    	<legend style="
-			background-color: #8AB8DA;
-		    border-radius: 10px;
-		    padding: 5px;
-		    border:1px solid #8AB8DA;
-			"><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}">
-				<#if subEl.getfieldData("IdCentro","Struttura")[0]??>${subEl.getfieldData("IdCentro","Struttura")[0]?split("###")[1]!""}</#if></a></legend>
-
-	    	
-	    	<#if subEl.getfieldData("IdCentro","UO")[0]??> <@msg "IdCentro.UO"/>: <b>${subEl.getfieldData("IdCentro","UO")[0]?split("###")[1]!""}</b><br/> </#if>
-	    	<#if subEl.getfieldData("IdCentro","PI")[0]??> <@msg "IdCentro.PI"/>: <b>${subEl.getfieldData("IdCentro","PI")[0]?split("###")[1]!""}</b><br/> </#if>
-    	</fieldset-->    	
-    	
-    	    	<!-- inizio tabella nuova -->
+    		    	<!-- inizio tabella nuova -->
 						
 						
 						<#assign status ="" />
@@ -1237,11 +1181,11 @@ width: 100%;
 							</#if>
 						</#list>
 						<#assign userHasUO = false />
-							<#list userUOCodesList as uo>
-								<#if uo==uoCODE>
-									<#assign userHasUO = true />
-								</#if>
-							</#list>
+						<#list userUOCodesList as uo>
+							<#if uo==uoCODE>
+								<#assign userHasUO = true />
+							</#if>
+						</#list>
 						<#if ( userDetails.hasRole("tech-admin") || userDetails.hasRole("REGIONE") || (subEl.getCreateUser()==userDetails.username) || (userHasSite && !userDetails.hasRole("PI") && !userDetails.hasRole("COORD")) || (userDetails.hasRole("PI") && (userCF == piCF|| userDetails.username == piCF)) || (userHasUO && userDetails.hasRole("COORD")) )>
 							<#--questo è lo stesso if che c'è in centro.ftl per la visualizzazione del centro stesso-->
 							<#assign cantDeleteCenter="" />
@@ -1249,6 +1193,7 @@ width: 100%;
 							<#assign cantDeleteCenter="1" />
 						</#if>
 						<#--STSANSVIL-666 fine -->
+
 						<#if subEl.getfieldData("statoValidazioneCentro", "idBudgetApproved")?? && subEl.getfieldData("statoValidazioneCentro", "idBudgetApproved")?size gt 0>
 							<#assign status1="<span class='label label-danger'>Budget</span>" />
 						</#if>
@@ -1394,21 +1339,23 @@ width: 100%;
    
 	    <div id="emendamenti-tab" class="tab-pane">
 			<#if canAccessTab>
-		    <#if parPos>
-		    	<#assign parentEl=el/>
-		    	<#if model['getCreatableElementTypes']??>
-		    		<#list model['getCreatableElementTypes'] as docType>
-		    			<#if docType.typeId="Emendamento"> 
-		    		 		<button class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';" ><i class="icon-plus bigger-160"  ></i><b>Aggiungi nuovo emendamento</b></button>
-		      	  </#if>
-		    		</#list>
-		    	</#if>
-	    		<br/>	<br/>
-	    		
-		    	<div class="row">
+				<#if parPos>
+
+					<#assign parentEl=el/>
+						<#if model['getCreatableElementTypes']??>
+						<!-- <h1> VINCENZO ${model['getCreatableElementTypes']?size}</h1> -->
+							<#list model['getCreatableElementTypes'] as docType>
+								<#if docType.typeId="Emendamento">
+									<button class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';" ><i class="icon-plus bigger-160"  ></i><b>Aggiungi nuovo emendamento</b></button>
+								</#if>
+							</#list>
+						</#if>
+					<br/>	<br/>
+
+					<div class="row">
 						<div class="col-xs-12">
-							<div class="table-responsive">	
-			    			<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+							<div class="table-responsive">
+								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
 									<thead>
 										<tr>
 											<th class="hidden-480">Codice</th>
@@ -1420,62 +1367,62 @@ width: 100%;
 											<th class="hidden-480" style="width: 10%">Azioni</th>
 										</tr>
 									</thead>
-			
-									<tbody>	
-										<#assign noEmendamenti>	
-											<tr><td colspan=7><span class="help-button">?</span> Nessun emendamento inserito </td></tr>
-										</#assign>	
-										
-							    	<#assign parentEl=el/>
-							    	<#list parentEl.getChildrenByType("Emendamento") as subEl>
-							    		<#if subEl.deleted>
-							    		<#else>
-									    	<#assign noEmendamenti="">
-					    					<#assign emece="">
-					    						<#if subEl.getfieldData("DatiEmendamento","CeEme")?? && subEl.getfieldData("DatiEmendamento","CeEme")[0]??>
-					    							<#assign emece=subEl.getFieldDataDecode("DatiEmendamento","CeEme")>
-					    						</#if>
-					    					
-						    	    	<!-- inizio tabella nuova -->
-												<tr>
-													<td class="hidden-480">
-														<a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}">
-															${subEl.getFieldDataString("DatiEmendamento","CodiceEme")}
-														</a>
-													</td>
-													<!--td class="hidden-480">${subEl.getFieldDataString("DatiEmendamento","TitoloEme")}</td-->
-													<td class="hidden-480">${subEl.getFieldDataDecode("DatiEmendamento","TipologiaEme")}</td>
-													<td class="hidden-480">${getFieldFormattedDate("DatiEmendamento","DataEme",subEl)}</td>
-													<td class="hidden-480">${subEl.getFieldDataString("DatiEmendamento","SintesiEme")}</td>
-													<!--td class="hidden-480">${emece}</td-->
-													<td>
-															<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-																<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
-																	<i class="icon-edit bigger-120"></i>
-																</button>
-																<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
-																<#if elPolicy.canDelete >
-																	<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il farmaco?')) {deleteElement({id:${subEl.id}})};return false;" href="#">
-																		<i class="icon-trash bigger-120"></i>
+
+									<tbody>
+											<#assign noEmendamenti>
+												<tr><td colspan=7><span class="help-button">?</span> Nessun emendamento inserito </td></tr>
+											</#assign>
+
+										<#assign parentEl=el/>
+										<#list parentEl.getChildrenByType("Emendamento") as subEl>
+											<#if subEl.deleted>
+											<#else>
+												<#assign noEmendamenti="">
+												<#assign emece="">
+													<#if subEl.getfieldData("DatiEmendamento","CeEme")?? && subEl.getfieldData("DatiEmendamento","CeEme")[0]??>
+														<#assign emece=subEl.getFieldDataDecode("DatiEmendamento","CeEme")>
+													</#if>
+
+											<!-- inizio tabella nuova -->
+													<tr>
+														<td class="hidden-480">
+															<a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}">
+																${subEl.getFieldDataString("DatiEmendamento","CodiceEme")}
+															</a>
+														</td>
+														<!--td class="hidden-480">${subEl.getFieldDataString("DatiEmendamento","TitoloEme")}</td-->
+														<td class="hidden-480">${subEl.getFieldDataDecode("DatiEmendamento","TipologiaEme")}</td>
+														<td class="hidden-480">${getFieldFormattedDate("DatiEmendamento","DataEme",subEl)}</td>
+														<td class="hidden-480">${subEl.getFieldDataString("DatiEmendamento","SintesiEme")}</td>
+														<!--td class="hidden-480">${emece}</td-->
+														<td>
+																<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+																	<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
+																		<i class="icon-edit bigger-120"></i>
 																	</button>
-																</#if>
-															</div>
-													</td>
-												</tr>
-												<!-- fine tabella nuova -->	
-					    				</#if>
-				    				</#list>
-				    				
-				    				${noEmendamenti}
-				    	
-				 					</tbody>
+																	<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
+																	<#if elPolicy.canDelete >
+																		<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il farmaco?')) {deleteElement({id:${subEl.id}})};return false;" href="#">
+																			<i class="icon-trash bigger-120"></i>
+																		</button>
+																	</#if>
+																</div>
+														</td>
+													</tr>
+													<!-- fine tabella nuova -->
+											</#if>
+										</#list>
+
+										${noEmendamenti}
+
+									</tbody>
 								</table>
 							</div>
 						</div>
 					</div>
-			<#else>
-				<div>Area attiva solo per studi con almeno un centro con approvazione del CE</div>
-			</#if>
+				<#else>
+					<div>Area attiva solo per studi con almeno un centro con approvazione del CE</div>
+				</#if>
 			<#else>
 			<div class="row">
 				<div class="col-xs-12">
@@ -1486,97 +1433,97 @@ width: 100%;
 	    </div>
 		<div id="prodottistudio-tab" class="tab-pane">
 			<#if canAccessTab>
-			<#assign prodottiAbilitato=false />
-			<#list el.getChildrenByType("Centro") as subElCentro>
-				<#if subElCentro.getChildrenByType("AvvioCentro")?size gt 0>
-					<#assign prodottiAbilitato=true />
-				</#if>
-			</#list>
-		<#if prodottiAbilitato==true >
-			<#assign parentEl=el/>
-			<#if addChildrens >
-				<#if model['getCreatableElementTypes']??>
-					<#list model['getCreatableElementTypes'] as docType>
-						<#if docType.typeId="ProdottoStudio">
-							<button class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';" ><i class="icon-plus bigger-160"  ></i><b>Aggiungi nuovo prodotto dello studio</b></button>
+				<#assign prodottiAbilitato=false />
+				<#list el.getChildrenByType("Centro") as subElCentro>
+					<#if subElCentro.getChildrenByType("AvvioCentro")?size gt 0>
+						<#assign prodottiAbilitato=true />
+					</#if>
+				</#list>
+				<#if prodottiAbilitato==true >
+					<#assign parentEl=el/>
+					<#if addChildrens >
+						<#if model['getCreatableElementTypes']??>
+							<#list model['getCreatableElementTypes'] as docType>
+								<#if docType.typeId="ProdottoStudio">
+									<button class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';" ><i class="icon-plus bigger-160"  ></i><b>Aggiungi nuovo prodotto dello studio</b></button>
+								</#if>
+							</#list>
 						</#if>
-					</#list>
-				</#if>
-			</#if>
-			<br/><br/>
+					</#if>
+					<br/><br/>
 
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="table-responsive">
-						<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-							<thead>
-							<tr>
-								<th class="hidden-480">Tipo prodotto</th>
-								<th class="hidden-480">Codice</th>
-								<th class="hidden-480">Descrizione</th>
-								<th class="hidden-480">Link</th>
-								<th class="hidden-480">Data</th>
-								<th class="hidden-480" style="width: 10%">Azioni</th>
-							</tr>
-							</thead>
-
-							<tbody>
-								<#assign noProdotti>
-								<tr><td colspan=7><span class="help-button">?</span> Nessun prodotto dello studio inserito </td></tr>
-								</#assign>
-
-								<#assign parentEl=el/>
-								<#list parentEl.getChildrenByType("ProdottoStudio") as subEl>
-									<#if subEl.deleted>
-									<#else>
-										<#assign noProdotti="">
-									<!-- inizio tabella nuova -->
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="table-responsive">
+								<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+									<thead>
 									<tr>
-										<td class="hidden-480">${subEl.getFieldDataDecode("prodottoStudio","tipoProdotto")}</td>
-										<td class="hidden-480">
-											<#if subEl.getFieldDataString("prodottoStudio","DoiPmid")!="" >
-												DOI o PMID: ${subEl.getFieldDataString("prodottoStudio","DoiPmid")}
-											<#elseif subEl.getFieldDataString("prodottoStudio","ISBN")!="" >
-											ISBN: ${subEl.getFieldDataString("prodottoStudio","ISBN")}
-											<#elseif subEl.getFieldDataString("prodottoStudio","codiceBrevetto")!="" >
-												Brevetto: ${subEl.getFieldDataString("prodottoStudio","codiceBrevetto")}
-											</#if>
-										</td>
-										<td class="hidden-480">${subEl.getFieldDataString("prodottoStudio","descrizioneProdotto")}</td>
-										<td class="hidden-480">
-											<#if subEl.getFieldDataString("prodottoStudio","link")!="" >
-												<a href="${subEl.getFieldDataString("prodottoStudio","link")}">${subEl.getFieldDataString("prodottoStudio","link")}</a>
-											</#if>
-										</td>
-										<td class="hidden-480">${getFieldFormattedDate("prodottoStudio","dataProdotto",subEl)}</td>
-										<td>
-											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-												<button title="Scarica allegato" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/getAttach/${subEl.id}';">
-													<i class="icon-download bigger-120"></i>
-												</button>
-
-												<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
-												<#if elPolicy.canDelete >
-													<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il prodotto?')) {deleteElement({id:${subEl.id}})};return false;" href="#">
-														<i class="icon-trash bigger-120"></i>
-													</button>
-												</#if>
-											</div>
-
-										</td>
+										<th class="hidden-480">Tipo prodotto</th>
+										<th class="hidden-480">Codice</th>
+										<th class="hidden-480">Descrizione</th>
+										<th class="hidden-480">Link</th>
+										<th class="hidden-480">Data</th>
+										<th class="hidden-480" style="width: 10%">Azioni</th>
 									</tr>
-									<!-- fine tabella nuova -->
-									</#if>
-								</#list>
-								${noProdotti}
-							</tbody>
-						</table>
+									</thead>
+
+									<tbody>
+										<#assign noProdotti>
+										<tr><td colspan=7><span class="help-button">?</span> Nessun prodotto dello studio inserito </td></tr>
+										</#assign>
+
+										<#assign parentEl=el/>
+										<#list parentEl.getChildrenByType("ProdottoStudio") as subEl>
+											<#if subEl.deleted>
+											<#else>
+												<#assign noProdotti="">
+											<!-- inizio tabella nuova -->
+											<tr>
+												<td class="hidden-480">${subEl.getFieldDataDecode("prodottoStudio","tipoProdotto")}</td>
+												<td class="hidden-480">
+													<#if subEl.getFieldDataString("prodottoStudio","DoiPmid")!="" >
+														DOI o PMID: ${subEl.getFieldDataString("prodottoStudio","DoiPmid")}
+													<#elseif subEl.getFieldDataString("prodottoStudio","ISBN")!="" >
+													ISBN: ${subEl.getFieldDataString("prodottoStudio","ISBN")}
+													<#elseif subEl.getFieldDataString("prodottoStudio","codiceBrevetto")!="" >
+														Brevetto: ${subEl.getFieldDataString("prodottoStudio","codiceBrevetto")}
+													</#if>
+												</td>
+												<td class="hidden-480">${subEl.getFieldDataString("prodottoStudio","descrizioneProdotto")}</td>
+												<td class="hidden-480">
+													<#if subEl.getFieldDataString("prodottoStudio","link")!="" >
+														<a href="${subEl.getFieldDataString("prodottoStudio","link")}">${subEl.getFieldDataString("prodottoStudio","link")}</a>
+													</#if>
+												</td>
+												<td class="hidden-480">${getFieldFormattedDate("prodottoStudio","dataProdotto",subEl)}</td>
+												<td>
+													<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+														<button title="Scarica allegato" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/getAttach/${subEl.id}';">
+															<i class="icon-download bigger-120"></i>
+														</button>
+
+														<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
+														<#if elPolicy.canDelete >
+															<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il prodotto?')) {deleteElement({id:${subEl.id}})};return false;" href="#">
+																<i class="icon-trash bigger-120"></i>
+															</button>
+														</#if>
+													</div>
+
+												</td>
+											</tr>
+											<!-- fine tabella nuova -->
+											</#if>
+										</#list>
+										${noProdotti}
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		<#else>
-			<div>Area attiva solo per studi con almeno un centro in monitoraggio</div>
-		</#if>
+				<#else>
+					<div>Area attiva solo per studi con almeno un centro in monitoraggio</div>
+				</#if>
 			<#else>
 			<div class="row">
 				<div class="col-xs-12">
@@ -1586,159 +1533,159 @@ width: 100%;
 			</#if> <#-- canAccessTab -->
 		</div>
 
-     <div id="allegato-tab" class="tab-pane" >
+ 		<div id="allegato-tab" class="tab-pane" >
     		<#if canAccessTab>
-     <fieldset>
-		 	<!--legend>File allegati</legend-->
-    	<#assign parentEl=el/>
-    	<#assign sameGroup=false />
-          <#-- assign sameGroup=model['docService'].checkUsersSameGroupByPrefix(model['userService'].loadUserByUsername(el.createUser),userDetails,"CTO_") / -->
-		 <#assign sameGroup=true />
-        <#if sameGroup>
-        	<#if model['getCreatableElementTypes']??>
-        		<#list model['getCreatableElementTypes'] as docType>
-        			<#if docType.typeId="allegato"> 
-              	<button class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';"  ><i class="icon-plus bigger-160"  >
-              		</i><b>Aggiungi nuovo documento allegato</b>
-    						</button>
-              </#if>
-        		</#list>
-        	</#if>
-        </#if>	
- 			
- 			<br/><br/>
- 			<!--a href="#" onclick="getDocCe(${el.id});">Consulta Area documentale CE</a>
-		 	<a href="#" alt="Scarica Area documentale CE in formato ZIP" title="Scarica Area documentale CE in formato ZIP" onclick="getDocCeZip(${el.id});" ><i class="fa fa-file-archive-o" aria-hidden="true"></i></a-->
-            <div id="dialog" style="display:none;" title="Documentazione Generale"></div>
-    	<!--inizio tabella nuova-->
-    	<div class="row">
-				<div class="col-xs-12">
-					<div class="table-responsive">	
-    				<table id="sample-table-1" class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th class="hidden-480" style="width:1%">Tipologia</th>
-									<th class="hidden-480" >File</th>
-									<th class="hidden-480" >Autore</th>
-									<th class="hidden-480" >Versione</th>
-									<th class="hidden-480" >Data</th>
-									<th class="hidden-480" >Inserito da</th>
-									<th class="hidden-480" >Caricato il</th>
-									<th class="hidden-480" >Azioni</th>
-								</tr>
-							</thead>
+				<fieldset>
+					<!--legend>File allegati</legend-->
+				<#assign parentEl=el/>
+				<#assign sameGroup=false />
+				  <#-- assign sameGroup=model['docService'].checkUsersSameGroupByPrefix(model['userService'].loadUserByUsername(el.createUser),userDetails,"CTO_") / -->
+				 <#assign sameGroup=true />
+				<#if sameGroup>
+					<#if model['getCreatableElementTypes']??>
+						<#list model['getCreatableElementTypes'] as docType>
+							<#if docType.typeId="allegato">
+						<button class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';"  ><i class="icon-plus bigger-160"  >
+							</i><b>Aggiungi nuovo documento allegato</b>
+									</button>
+					  </#if>
+						</#list>
+					</#if>
+				</#if>
 
-							<tbody>
-							
-							<#assign noDoc>	
-								<tr>
-	            		<td colspan=8><span class="help-button">?</span> Nessun documento inserito </td>
-	           		</tr>
-           		</#assign>
-           		
-    					<#list parentEl.getChildrenByType("allegato") as subEl>
-    						
-    						<#--h3><a href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getfieldData("DocGenerali","DocGen")[0]??>${subEl.getfieldData("DocGenerali","DocGen")[0]?split("###")[1]} - versione: ${subEl.file.version!""} - data: <#if subEl.file.date??>${subEl.file.date.time?date?string.short}</#if><#else>Non definito</#if></a></h3-->
-								
-									<#if subEl.file??>
-									<#assign noDoc="" />	
-									<#assign tipologia="" />
-									<#assign autore="" />
-									<#assign version="" />
-									<#assign fileName="" />
-									<#assign uploadUser="" />
-									<#assign uploadDt="" />
-									<#assign data="" />
-									<#if subEl.getfieldData("DocGenerali","DocGen")[0]??>
-										<#assign tipologia=subEl.getFieldDataDecode("DocGenerali","DocGen")/>
-										<#if subEl.file??>
-											<#if subEl.file.autore??>
-												<#assign autore=subEl.file.autore />
+					<br/><br/>
+					<!--a href="#" onclick="getDocCe(${el.id});">Consulta Area documentale CE</a>
+					<a href="#" alt="Scarica Area documentale CE in formato ZIP" title="Scarica Area documentale CE in formato ZIP" onclick="getDocCeZip(${el.id});" ><i class="fa fa-file-archive-o" aria-hidden="true"></i></a-->
+					<div id="dialog" style="display:none;" title="Documentazione Generale"></div>
+				<!--inizio tabella nuova-->
+				<div class="row">
+						<div class="col-xs-12">
+							<div class="table-responsive">
+							<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="hidden-480" style="width:1%">Tipologia</th>
+											<th class="hidden-480" >File</th>
+											<th class="hidden-480" >Autore</th>
+											<th class="hidden-480" >Versione</th>
+											<th class="hidden-480" >Data</th>
+											<th class="hidden-480" >Inserito da</th>
+											<th class="hidden-480" >Caricato il</th>
+											<th class="hidden-480" >Azioni</th>
+										</tr>
+									</thead>
+
+									<tbody>
+
+									<#assign noDoc>
+										<tr>
+								<td colspan=8><span class="help-button">?</span> Nessun documento inserito </td>
+							</tr>
+						</#assign>
+
+								<#list parentEl.getChildrenByType("allegato") as subEl>
+
+									<#--h3><a href="${baseUrl}/app/documents/detail/${subEl.id}"><#if subEl.getfieldData("DocGenerali","DocGen")[0]??>${subEl.getfieldData("DocGenerali","DocGen")[0]?split("###")[1]} - versione: ${subEl.file.version!""} - data: <#if subEl.file.date??>${subEl.file.date.time?date?string.short}</#if><#else>Non definito</#if></a></h3-->
+
+											<#if subEl.file??>
+											<#assign noDoc="" />
+											<#assign tipologia="" />
+											<#assign autore="" />
+											<#assign version="" />
+											<#assign fileName="" />
+											<#assign uploadUser="" />
+											<#assign uploadDt="" />
+											<#assign data="" />
+											<#if subEl.getfieldData("DocGenerali","DocGen")[0]??>
+												<#assign tipologia=subEl.getFieldDataDecode("DocGenerali","DocGen")/>
+												<#if subEl.file??>
+													<#if subEl.file.autore??>
+														<#assign autore=subEl.file.autore />
+													</#if>
+
+													<#if subEl.file.version??>
+														<#assign version=subEl.file.version />
+													</#if>
+
+													<#if subEl.file.fileName??>
+														<#assign fileName=subEl.file.fileName />
+													</#if>
+
+													<#if subEl.file.uploadUser??>
+														<#assign uploadUser=subEl.file.uploadUser />
+													</#if>
+
+													<#if subEl.file.uploadDt??>
+														<#assign uploadDt=subEl.file.uploadDt.time?date?string.short />
+													</#if>
+
+													<#if subEl.file.date??>
+														<#assign data=subEl.file.date.time?date?string.short />
+													</#if>
+												</#if>
 											</#if>
 
-											<#if subEl.file.version??>
-												<#assign version=subEl.file.version />
-											</#if>
-
-											<#if subEl.file.fileName??>
-												<#assign fileName=subEl.file.fileName />
-											</#if>
-
-											<#if subEl.file.uploadUser??>
-												<#assign uploadUser=subEl.file.uploadUser />
-											</#if>
-
-											<#if subEl.file.uploadDt??>
-												<#assign uploadDt=subEl.file.uploadDt.time?date?string.short />
-											</#if>
-
-											<#if subEl.file.date??>
-												<#assign data=subEl.file.date.time?date?string.short />
-											</#if>
-										</#if>
-									</#if>
-									
-									<tr>
-										<#if subEl.file??>
-											<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}">${tipologia}</a></td>
-											<td class="hidden-480"><a class="center-link" href="${baseUrl}/app/documents/getAttach/${subEl.id}">${fileName}</a></td>
-											<td >${autore}</td>
-											<td>${version}</td>
-											<td>${data}</td>
-											<td user-data="${uploadUser}">${uploadUser}</td>
-											<td>${uploadDt}</td>
-										<#else>
-											<td colspan="7"><div id="success" class="alert alert-block alert-danger">	<i class="icon-ko red red">Caricamento del documento non andato a buon fine. Riprovare avendo cura di fare click una sola volta</div></td>
-										</#if>
-										<!--td class="hidden-480"><span class="label label-sm label-warning">Expiring</span></td-->
-										<td>
-											<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-												<!--button class="btn btn-xs btn-success">
-													<i class="icon-ok bigger-120"></i>
-												</button-->
-
-												<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
-													<i class="icon-edit bigger-120"></i>
-												</button>
-												<#-- PROTOCOLLAZIONE NON IN STUDIO, COMMENTO SOLTANTO PER TENERE TRACCIA DEL CODICE
-												<#if subEl.getFieldDataString("DocGenerali","ProtocolloNumero")?string=="" >
-													<button title="Protocolla documento" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler protocollare il documento?')) {protocollaElement(${subEl.id},'${subEl.file.fileName}',${elStudio.id},'${elStudio.getFieldDataString("IDstudio","ProtocolloFascicolo")?string}')};return false;" href="#">
-														<i class="icon-file bigger-120"></i>
-													</button>
+											<tr>
+												<#if subEl.file??>
+													<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}">${tipologia}</a></td>
+													<td class="hidden-480"><a class="center-link" href="${baseUrl}/app/documents/getAttach/${subEl.id}">${fileName}</a></td>
+													<td>${autore}</td>
+													<td>${version}</td>
+													<td>${data}</td>
+													<td user-data="${uploadUser}">${uploadUser}</td>
+													<td>${uploadDt}</td>
+													<!--td class="hidden-480"><span class="label label-sm label-warning">Expiring</span></td-->
 												<#else>
-													<button title="Vedi documento protocollato" class="btn btn-xs btn-danger" onclick="vediProtocollo('${subEl.getFieldDataString("DocGenerali","ProtocolloNumero")?string}'); return false;" href="#">
-														<i class="icon-file bigger-120"></i>
-													</button>
+													<td colspan="7"><div id="success" class="alert alert-block alert-danger">	<i class="icon-ko red red">Caricamento del documento non andato a buon fine. Riprovare avendo cura di fare click una sola volta</div></td>
 												</#if>
-												-->
-												<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
-												<#if elPolicy.canDelete >
-													<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il documento?')) {deleteElement({id:${subEl.id}})};return false;" href="#">
-														<i class="icon-trash bigger-120"></i>
-													</button>
-												</#if>
+												<td>
+													<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+														<!--button class="btn btn-xs btn-success">
+															<i class="icon-ok bigger-120"></i>
+														</button-->
 
-												<!--button class="btn btn-xs btn-warning">
-													<i class="icon-flag bigger-120"></i>
-												</button-->
-											</div>
-										</td>
-									</tr>
-									
-								</#if>
-									
-    					</#list>
-    					
-    					${noDoc}
-    					
- 							</tbody>
-						</table>
+														<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
+															<i class="icon-edit bigger-120"></i>
+														</button>
+														<#-- PROTOCOLLAZIONE NON IN STUDIO, COMMENTO SOLTANTO PER TENERE TRACCIA DEL CODICE
+														<#if subEl.getFieldDataString("DocGenerali","ProtocolloNumero")?string=="" >
+															<button title="Protocolla documento" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler protocollare il documento?')) {protocollaElement(${subEl.id},'${subEl.file.fileName}',${elStudio.id},'${elStudio.getFieldDataString("IDstudio","ProtocolloFascicolo")?string}')};return false;" href="#">
+																<i class="icon-file bigger-120"></i>
+															</button>
+														<#else>
+															<button title="Vedi documento protocollato" class="btn btn-xs btn-danger" onclick="vediProtocollo('${subEl.getFieldDataString("DocGenerali","ProtocolloNumero")?string}'); return false;" href="#">
+																<i class="icon-file bigger-120"></i>
+															</button>
+														</#if>
+														-->
+														<#assign elPolicy=subEl.getUserPolicy(userDetails)/>
+														<#if elPolicy.canDelete >
+															<button title="Elimina" class="btn btn-xs btn-danger" onclick="if(confirm('Sei sicuro di voler eliminare il documento?')) {deleteElement({id:${subEl.id}})};return false;" href="#">
+																<i class="icon-trash bigger-120"></i>
+															</button>
+														</#if>
+
+														<!--button class="btn btn-xs btn-warning">
+															<i class="icon-flag bigger-120"></i>
+														</button-->
+													</div>
+												</td>
+											</tr>
+
+										</#if>
+
+								</#list>
+
+								${noDoc}
+
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-    	<!--fine tabella nuova-->
-    	
-    </fieldset>	
+				<!--fine tabella nuova-->
+
+				</fieldset>
 			<#else>
 			<div class="row">
 				<div class="col-xs-12">

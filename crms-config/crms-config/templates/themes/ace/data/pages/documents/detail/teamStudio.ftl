@@ -29,45 +29,50 @@ var dialog=bootbox.dialog({
     $('#form-DatiTeamDiStudio').ready(function() {
         $('#form-DatiTeamDiStudio').addClass("form-horizontal");
         $('div[id^="DatiTeamDiStudio-"]').addClass("col-sm-9")
-        if($("input[name=DatiTeamDiStudio_TipoPersonale]").val().split('###')[0]=="1"){
-          $('#informations-DatiTeamDiStudio_AltroPersonale').hide();
-          $('#informations-DatiTeamDiStudio_NomeCognome').show();
-          $('#informations-DatiTeamDiStudio_attivitaDip1').show();
-          $('#informations-DatiTeamDiStudio_attivitaDip2').show();
-          $('#informations-DatiTeamDiStudio_attivitaNonDip1').hide();
-          $('#informations-DatiTeamDiStudio_rapLavNonDip').hide();
-          $('#informations-DatiTeamDiStudio_EnteNonDip').hide();
+        if($("input[name=DatiTeamDiStudio_TipoPersonale]") && $("input[name=DatiTeamDiStudio_TipoPersonale]").val()){
+            if($("input[name=DatiTeamDiStudio_TipoPersonale]").val().split('###')[0]=="1"){
+              $('#informations-DatiTeamDiStudio_AltroPersonale').hide();
+              $('#informations-DatiTeamDiStudio_NomeCognome').show();
+              $('#informations-DatiTeamDiStudio_attivitaDip1').show();
+              $('#informations-DatiTeamDiStudio_attivitaDip2').show();
+              $('#informations-DatiTeamDiStudio_attivitaNonDip1').hide();
+              $('#informations-DatiTeamDiStudio_rapLavNonDip').hide();
+              $('#informations-DatiTeamDiStudio_EnteNonDip').hide();
+            }
         }
-        if($("input[name=DatiTeamDiStudio_TipoPersonale]:checked").val().split('###')[0]=='2'){
-          $('#informations-DatiTeamDiStudio_AltroPersonale').show();
-          $('#informations-DatiTeamDiStudio_NomeCognome').hide();
-          $('#informations-DatiTeamDiStudio_attivitaDip1').hide();
-          $('#informations-DatiTeamDiStudio_attivitaDip2').hide();
-          $('#informations-DatiTeamDiStudio_attivitaNonDip1').show();
-          $('#informations-DatiTeamDiStudio_rapLavNonDip').show();
-          $('#informations-DatiTeamDiStudio_EnteNonDip').show();
+        if($("input[name=DatiTeamDiStudio_TipoPersonale]") && $("input[name=DatiTeamDiStudio_TipoPersonale]").val()){
+            if($("input[name=DatiTeamDiStudio_TipoPersonale]:checked").val().split('###')[0]=='2'){
+              $('#informations-DatiTeamDiStudio_AltroPersonale').show();
+              $('#informations-DatiTeamDiStudio_NomeCognome').hide();
+              $('#informations-DatiTeamDiStudio_attivitaDip1').hide();
+              $('#informations-DatiTeamDiStudio_attivitaDip2').hide();
+              $('#informations-DatiTeamDiStudio_attivitaNonDip1').show();
+              $('#informations-DatiTeamDiStudio_rapLavNonDip').show();
+              $('informations-DatiTeamDiStudio_EnteNonDip').show();
+            }
         }
         dialog.modal('hide');
     });
-                
-    $("input[name=DatiTeamDiStudio_TipoPersonale]").change(function(){
-        if($("input[name=DatiTeamDiStudio_TipoPersonale]:checked").val().split('###')[0]=="1"){
-          $('#informations-DatiTeamDiStudio_AltroPersonale').hide();
-          $('#informations-DatiTeamDiStudio_NomeCognome').show();
-          $('#informations-DatiTeamDiStudio_attivitaDip1').show();
-          $('#informations-DatiTeamDiStudio_attivitaDip2').show();
-          $('#informations-DatiTeamDiStudio_attivitaNonDip1').hide();
-          $('#informations-DatiTeamDiStudio_rapLavNonDip').hide();
-          $('#informations-DatiTeamDiStudio_EnteNonDip').hide();
-        }
-        if($("input[name=DatiTeamDiStudio_TipoPersonale]:checked").val().split('###')[0]=='2'){
-          $('#informations-DatiTeamDiStudio_AltroPersonale').show();
-          $('#informations-DatiTeamDiStudio_NomeCognome').hide();
-          $('#informations-DatiTeamDiStudio_attivitaDip1').hide();
-          $('#informations-DatiTeamDiStudio_attivitaDip2').hide();
-          $('#informations-DatiTeamDiStudio_attivitaNonDip1').show();
-          $('#informations-DatiTeamDiStudio_rapLavNonDip').show();
-          $('#informations-DatiTeamDiStudio_EnteNonDip').show();
-        }
-    });
+    if($("input[name=DatiTeamDiStudio_TipoPersonale]")){
+        $("input[name=DatiTeamDiStudio_TipoPersonale]").change(function(){
+            if($("input[name=DatiTeamDiStudio_TipoPersonale]:checked").val().split('###')[0]=="1"){
+              $('#informations-DatiTeamDiStudio_AltroPersonale').hide();
+              $('#informations-DatiTeamDiStudio_NomeCognome').show();
+              $('#informations-DatiTeamDiStudio_attivitaDip1').show();
+              $('#informations-DatiTeamDiStudio_attivitaDip2').show();
+              $('#informations-DatiTeamDiStudio_attivitaNonDip1').hide();
+              $('#informations-DatiTeamDiStudio_rapLavNonDip').hide();
+              $('#informations-DatiTeamDiStudio_EnteNonDip').hide();
+            }
+            if($("input[name=DatiTeamDiStudio_TipoPersonale]:checked").val().split('###')[0]=='2'){
+              $('#informations-DatiTeamDiStudio_AltroPersonale').show();
+              $('#informations-DatiTeamDiStudio_NomeCognome').hide();
+              $('#informations-DatiTeamDiStudio_attivitaDip1').hide();
+              $('#informations-DatiTeamDiStudio_attivitaDip2').hide();
+              $('#informations-DatiTeamDiStudio_attivitaNonDip1').show();
+              $('#informations-DatiTeamDiStudio_rapLavNonDip').show();
+              $('#informations-DatiTeamDiStudio_EnteNonDip').show();
+            }
+        });
+    }
 </@script>

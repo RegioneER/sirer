@@ -109,6 +109,79 @@ function loadFarmaci(centroId, table){
 			})(farmaco, editLink);
 			td3.append(editLink);
 
+			<#--  [STSANSVIL-2530] Aggiunto pulsante per l'eliminazione dei trattamenti  -->
+			//console.log(window.location.href);
+			//console.log(window.location.href.includes("DepotFarmaco-tab2"));
+			<#-- if(window.location.href.includes("DepotFarmaco-tab2")) { -->
+			var deleteLink=$('<a>');
+				deleteLink.attr('title','elimina');
+				(function(farmaco, deleteLink) {
+				deleteLink.click(function() {
+				//console.log(data);
+				var idCentro = farmaco.parentId;
+
+				// Prendo il centro in formato JSON
+				$.ajax({
+				url: baseUrl + '/app/rest/documents/getElementJSON/' + idCentro,
+				async: false,
+				dataType: 'json',
+				success: function (centro) {
+				var idStudio = centro.parentId;
+
+				// Prendo lo studio in formato JSON
+				$.ajax({
+				url: baseUrl + '/app/rest/documents/getElementJSON/' + idStudio,
+				async: false,
+				dataType: 'json',
+				success: function (studio) {
+				var tipoStudio = studio.metadata.datiStudio_tipoStudio[0].split('###')[0];
+				var tipoFarmaco = farmaco.metadata.depotFarmaco_tipo[0].split('###')[0];
+
+				// Se studio con farmaco o dispositivo
+				if ( tipoStudio==1 && tipoFarmaco==1 && data.length==1 ) {
+				bootbox.alert(
+				'E\' necessario almeno un farmaco per chiudere la fattibilità'
+				);
+				}
+				else if ( (tipoStudio==2 || tipoStudio==3) && tipoFarmaco==2 && data.length==1 ) {
+				bootbox.alert(
+				'E\' necessario almeno un dispositivo per chiudere la fattibilità'
+				);
+				}
+
+				else {
+				if(confirm("Attenzione! Non sarà possibile riaggiungerlo al centro. Procedere con l\'eliminazione?")) {
+				//Delete farmaco
+				url = "${baseUrl}/app/rest/dm/deleteElement/" + farmaco.id;
+				$.getJSON(url, function (data) {
+				if (data) {
+				if (data.result == "OK") {
+				bootbox.alert(
+				'Elemento eliminato con successo <i class="icon-ok green" ></i>'
+				);
+				window.setTimeout(function () {
+				bootbox.hideAll();
+				}, 3000);
+				location.reload();
+				}
+				}
+				});
+				} else {
+				// Do nothing
+				return;
+				}
+				}
+
+				}
+				}); // fine Studio
+				}
+				}); // fine Centro
+				});
+				})(farmaco, deleteLink);
+				deleteLink.html('<i class="fa fa-trash-o fa-2x"></i>&nbsp;');
+				td3.append(deleteLink);
+				<#-- } -->
+
 		</#if>
 			tr.append(td3);
 			table.find('tbody').append(tr);

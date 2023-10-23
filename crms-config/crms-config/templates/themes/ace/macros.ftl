@@ -1940,7 +1940,7 @@ sadasdasdsadasdsa
                 if (typeof loadedElement.parentId == 'undefined' ){
                     centro= $(location).attr('href').split("/")[7];
                     var request = $.ajax({
-                        url: "/crms-veneto/app/rest/documents/getelementidstudio/"+centro,
+                        url: "/sirer/app/rest/documents/getelementidstudio/"+centro,
                         method: "GET",
                         dataType: "json"
                     });
@@ -1971,7 +1971,7 @@ sadasdasdsadasdsa
                 }else{
                     centro= loadedElement.parentId;
                     var request = $.ajax({
-                        url: "/crms-veneto/app/rest/documents/getelementidstudio/"+centro,
+                        url: "/sirer/app/rest/documents/getelementidstudio/"+centro,
                         method: "GET",
                         dataType: "json"
                     });
@@ -2397,7 +2397,7 @@ sadasdasdsadasdsa
         if (typeof loadedElement.parentId == 'undefined' ){
             centro= $(location).attr('href').split("/")[7];
             var request = $.ajax({
-                url: "/crms-veneto/app/rest/documents/getelementidstudio/"+centro,
+                url: "/sirer/app/rest/documents/getelementidstudio/"+centro,
                 method: "GET",
                 dataType: "json"
             });
@@ -2428,7 +2428,7 @@ sadasdasdsadasdsa
         }else{
             centro= loadedElement.parentId;
             var request = $.ajax({
-                url: "/crms-veneto/app/rest/documents/getelementidstudio/"+centro,
+                url: "/sirer/app/rest/documents/getelementidstudio/"+centro,
                 method: "GET",
                 dataType: "json"
             });

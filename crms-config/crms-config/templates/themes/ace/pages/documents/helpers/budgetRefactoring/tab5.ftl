@@ -21,11 +21,19 @@
 		<#assign proposta_promotore=" &euro; " +budgetStudio.getFieldDataString("BudgetCTC","TargetStudio")+" per intero studio" />
 		<#assign proposta_numerica=budgetStudio.getFieldDataString("BudgetCTC","TargetStudio") />
 	</#if>
+	<#assign totPricePaz=0/>
+	<#assign totPerPaz=proposta_numerica?number+totPricePaz?number />
+	<#assign totPerPaz=" &euro; " +totPerPaz/>
+	<#assign totPerPaz=proposta_numerica?number+totPricePaz?number />
+	<#assign totPerStudio=numero_pazienti?number*totPerPaz?number />
+	<#assign totPerPaz=" &euro; " +totPerPaz/>
+	<#assign totPerStudio=" &euro; " +totPerStudio/>
 </#if>
 <@script>
 var numero_pazienti_tmp=${numero_pazienti};
 var proposta_promotore=${proposta_numerica};
 var proposta_promotore_tmp=${proposta_numerica};
+
 var markup_tmp=${markup_numerico};
 var loadedElement=${elementJson};
 var loadedBudget=${budgetJson};
@@ -118,11 +126,11 @@ empties[currEmpty.type.id]=currEmpty;
 					</tr>
 					<tr>
 						<td>Corrispettivo contrattuale totale a paziente </td>
-						<td><span id='show-TotPerPaz'></span></td>
+						<td><span id='show-TotPerPaz'>${totPerPaz}</span></td>
 					</tr>
 					<tr>
 						<td>GRANT totale </td>
-						<td><span id='show-TotPerStudio'></span></td>
+						<td><span id='show-TotPerStudio'>${totPerStudio}</span></td>
 					</tr>
 					<tr>
 						<td>Totale altri corrispettivi studio specifici </td>

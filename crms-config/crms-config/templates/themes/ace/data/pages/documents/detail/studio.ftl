@@ -5,7 +5,7 @@
 	"scripts" : ["jquery-ui-full","datepicker","bootbox", "token-input" ,"common/elementEdit.js","x-editable","jqgrid","pages/home.js","xCDM-modal"],
 	"inline_scripts":[],
 	"title" : "Dettaglio studio",
- 	"description" : "Dettaglio studio" 
+ 	"description" : "Dettaglio studio"
 } />
 <#assign elStudio=el />
 <#include "../../partials/navigation/navigazione_studio.ftl">
@@ -37,11 +37,11 @@ $('label.col-sm-3').removeClass('col-sm-3');
 	$('.col-sm-9').removeClass('col-sm-9');
 	$('.col-sm-12').removeClass('col-sm-12');
 	$.fn.editable.defaults.mode = 'inline';
-	
+
  	var loadedElement=${loadedJson};
  	var dummy=${json};
  	var empties=new Array();
- 	
+
  	empties[dummy.type.id]=dummy;
  	function valueOfField(idField){
     	field=$('#'+idField);
@@ -58,39 +58,43 @@ $('label.col-sm-3').removeClass('col-sm-3');
 		    return field.find('option:selected').val();
 		}else {
 			return field.val();
-		}	
+		}
 	 }
- 	
+
 //Hack da cercare//
 	<#--LUIGI controllo per evitare di lanciare javascript a scheda chiusa e controllo se ci sono emendamenti in corso-->
 	var updating=<#if updating >true<#else>false</#if>;
 	<#if userDetails.getEmeSessionId()??>
 		updating=true;
 	</#if>
-	
+
 	if (updating){
 		$('#datiStudio_tipoStudio-select').change(function(){gestFase();});
 		gestFase("${el.getfieldData("datiStudio", "tipoStudio")[0]!""}");
-		
+
 		//$('#datiStudio_SPTipoPop[value="6###Altro - specificare"]').change(function(){gestPop();});//STSANPRJS-1108
 		$('#datiStudio_SPTipoPop[value="1###Volontari sani"]').change(function(){gestPop2();});
 
 
 		$('#datiStudio_Intervento[value="8###altro"]').change(function(){gestInt();});
-		
+
 		$('#datiStudio_OSFarmaco-select').change(function(){gestRSO();});
-		
+
 		$('[id=datiStudio_SPControllato]').change(function(){gestCont();});
 
 		$('[id=datiStudio_SPMascheramento').change(function(){gestMascheramento();});//STSANPRJS-1108
 
 		$('[id=datiStudio_SPRandomizzazione]').change(function(){gestRand();});
-		
+
 		$('[id=datiStudio_Multicentrico]').change(function(){gestMulticentro();});
-		
-		$('[id=datiStudio_NaturaDelloStudio]').change(function(){gestNoProf();});
+
+		$('[id=datiStudio_profit]').change(function(){gestProfit();});
+
+		$('[id=datiStudio_NaturaDelloStudio]').change(function(){gestNoProfit();});
+		$('[id=datiStudio_NoProfitFinanziato]').change(function(){gestNoProfitFin();});
 
 		$('[id="datiCoordinatore_Disponibile"]').change(function(){gestCoordinatore()});
+		$('#datiCoordinatore_Nazione-select').change(function(){gestCoordinatoreNazione()});
 	}
 
 function gestCoordinatore(){
@@ -98,21 +102,36 @@ function gestCoordinatore(){
 	value=$('#datiCoordinatore_Disponibile[value="1###Si"]').is(':checked');
 	if(value){
 		$('tr[id^="informations-datiCoordinatore"][id!="informations-datiCoordinatore_Disponibile"]').show();
+		$('[id=informations-datiCoordinatore_NazioneSpec]').hide();
 	}
 	else{
 		$('tr[id^="informations-datiCoordinatore"][id!="informations-datiCoordinatore_Disponibile"]').hide();
 	}
 }
+<#-- [STSANSVIL-3385] Nazione=Italia ==> Specificare -->
+function gestCoordinatoreNazione(){
+	var value=false;
+	value=$('#datiCoordinatore_Nazione-select').val();
+	<#-- console.log("Sono qui: - value "+value); -->
+
+	if (value.indexOf('1###')==0 && $('#datiCoordinatore_Nazione-select').is(':visible')){
+		$('[id=informations-datiCoordinatore_NazioneSpec]').show();
+	} else {
+		$('[id=informations-datiCoordinatore_NazioneSpec]').hide();
+		$('[id=datiCoordinatore_NazioneSpec]').val(''); //se nascondo sbianco il valore!
+	}
+}
+
 function gestMulticentro(){
 	value=$('#datiStudio_Multicentrico[value="2###No"]').is(':checked');
-	
+
 	if (value==true){
 		$('[id=datiStudio_NumCentri]').val('1');
 	}
 }
-	
-	
-	
+
+
+
 function gestRSO(){
 	if($('#datiStudio_OSFarmaco-select')!==undefined && $('#datiStudio_OSFarmaco-select').val()!==undefined){
 		var value=$('#datiStudio_OSFarmaco-select').val();
@@ -133,13 +152,13 @@ function gestRSO(){
 function gestCont(){
 	value=$('#datiStudio_SPControllato[value="1###Sì"]').is(':checked');
 	//alert(value);
-	
+
 	if (value==true && $('#datiStudio_SPControllato').is(':visible')){
 		$('[id=informations-datiStudio_SPConfronto]').show();
 		$('[id=informations-datiStudio_SPModalitaConfronto]').show();
 	}
 	else {
-		$('[id=informations-datiStudio_SPConfronto]').hide(); 
+		$('[id=informations-datiStudio_SPConfronto]').hide();
 		$('[name=datiStudio_SPConfronto-select]').val('');
 		$('[name=datiStudio_SPConfronto-select]').trigger('change');
 
@@ -154,45 +173,64 @@ function gestCont(){
 function gestRand(){
 	value=$('#datiStudio_SPRandomizzazione[value="1###Sì"]').is(':checked');
 	//alert(value);
-	
+
 	if (value==true && $('#datiStudio_SPRandomizzazione').is(':visible')){
 		$('[id=informations-datiStudio_SPTipoRand]').show();
 	}
 	else {
-		$('[id=informations-datiStudio_SPTipoRand]').hide(); 
+		$('[id=informations-datiStudio_SPTipoRand]').hide();
 		$('[name=datiStudio_SPTipoRand-select]').val('');
 		$('[name=datiStudio_SPTipoRand-select]').trigger('change');
 	}
 }
 
 
+//[STSANSVIL-3794] Nascosto campo NaturaDelloStudio('Solo se no profit') e trigger associati
+function gestProfit(){
+	gestNoProfit();
+}
 
-function gestNoProf(){
-	value=$('#datiStudio_NaturaDelloStudio[value="2###No Profit finalizzato al miglioramento della pratica clinica"]').is(':checked');
-	//alert(value);
-	
-	if (value==true && $('#datiStudio_NaturaDelloStudio').is(':visible')){
+//[STSANSVIL-3794] Nascosto campo NaturaDelloStudio('Solo se no profit') e trigger associati
+
+function gestNoProfit(){
+	$('[id=informations-datiStudio_NoProfitFinanziatoTerzi]').hide();
+	value=$('#datiStudio_profit[value="2###No Profit"]').is(':checked');
+	if (value==true){
 		$('[id=informations-datiStudio_NoProfitFinanziato]').show();
+		$('[id=informations-datiStudio_NaturaDelloStudio]').show();
 	}
 	else {
-		$('[id=informations-datiStudio_NoProfitFinanziato]').hide(); 
+		$('[id=informations-datiStudio_NoProfitFinanziato]').hide();
+		$('[id=informations-datiStudio_NaturaDelloStudio]').hide();
+		$('[id=datiStudio_NaturaDelloStudio]').prop('checked', false);
 		$('[id=datiStudio_NoProfitFinanziato').prop('checked', false); //se nascondo sbianco il valore!
 	}
+	gestNoProfitFin();
 }
 
 
-	
-	
+// STSANSVIL-3436 No profit finanziato=Si ==> Finanziamento da terzi
+function gestNoProfitFin(){
+	value=$('#datiStudio_NoProfitFinanziato[value="1###Sì"]').is(':checked');
+	if (value==true && $('#datiStudio_NoProfitFinanziato').is(':visible')){
+		$('[id=informations-datiStudio_NoProfitFinanziatoTerzi]').show();
+	}
+	else {
+		$('[id=informations-datiStudio_NoProfitFinanziatoTerzi]').hide();
+		$('[id=datiStudio_NoProfitFinanziatoTerzi').prop('checked', false); //se nascondo sbianco il valore!
+	}
+}
+
 /*STSANPRJS-1108
 function gestPop(){
 	value=$('#datiStudio_SPTipoPop[value="6###Altro - specificare"]').is(':checked');
 	//alert(value);
-	
+
 	if (value==true && $('#datiStudio_SPTipoPop').is(':visible')){
 		$('[id=informations-datiStudio_PopolazioneVulnerabile]').show();
 	}
 	else {
-		$('[id=informations-datiStudio_PopolazioneVulnerabile]').hide(); 
+		$('[id=informations-datiStudio_PopolazioneVulnerabile]').hide();
 		$('[id=datiStudio_PopolazioneVulnerabile]').val('');
 	}
 }*/
@@ -214,12 +252,12 @@ function gestMascheramento(){
 function gestPop2(){
 	value=$('#datiStudio_SPTipoPop[value="1###Volontari sani"]').is(':checked');
 	//alert(value);
-	
+
 	if (value==true && $('#datiStudio_SPTipoPop').is(':visible')){
 		$('[id=informations-datiStudio_VolontariSani]').show();
 	}
 	else {
-		$('[id=informations-datiStudio_VolontariSani]').hide(); 
+		$('[id=informations-datiStudio_VolontariSani]').hide();
 		$('[id=datiStudio_VolontariSani]').val('');
 	}
 }
@@ -228,12 +266,12 @@ function gestPop2(){
 function gestInt(){
 	value=$('#datiStudio_Intervento[value="8###altro"]').is(':checked');
 	//alert(value);
-	
+
 	if (value==true && $('#datiStudio_Intervento').is(':visible')){
 		$('[id=informations-datiStudio_InterventoSpec]').show();
 	}
 	else {
-		$('[id=informations-datiStudio_InterventoSpec]').hide(); 
+		$('[id=informations-datiStudio_InterventoSpec]').hide();
 		$('[id=datiStudio_InterventoSpec]').val('');
 	}
 }
@@ -258,6 +296,8 @@ function gestFase(value){
 	$('[id=informations-datiStudio_NumCentri]').show();
 	$('[id=informations-datiStudio_GradoDiRischio]').show();
 
+	$('[id=informations-datiStudio_inUsoDisp]').hide();
+
 
 	if (value.indexOf("1###")==0 || value.indexOf("4###")==0 || value.indexOf("5###")==0){
 		$('[id=informations-datiStudio_malattiaRara]').show();
@@ -268,7 +308,7 @@ function gestFase(value){
 	}
 	if (value.indexOf("1###")==0 || value.indexOf("2###")==0 || value.indexOf("3###")==0 || value.indexOf("4###")==0){
 		$('[id^=informations-datiStudio_SP]').show();
-		
+
 		$('[id^=informations-datiStudio_OS]').hide();
 		$('[name=datiStudio_OSTipologia-select]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_OSTipologia-select]').trigger('change');//se nascondo sbianco il valore!
@@ -277,13 +317,13 @@ function gestFase(value){
 		$('[id=datiStudio_OSDirezionalita').prop('checked', false);//se nascondo sbianco il valore!
 		$('[name=datiStudio_OSFarmaco-select]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_OSFarmaco-select]').trigger('change');//se nascondo sbianco il valore!
-		
+
 		$('[id^=informations-datiStudio_GE]').hide();
 		$('[id=datiStudio_GESpecificare]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_GETipologia-select]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_GETipologia-select]').trigger('change');//se nascondo sbianco il valore!
 	}
-	
+
 	if (value.indexOf("5###")==0){
 		$('[id^=informations-datiStudio_SP]').hide();
 		$('[id=datiStudio_SPBracci]').val('');//se nascondo sbianco il valore!
@@ -304,13 +344,13 @@ function gestFase(value){
 		$('[id=informations-datiStudio_GradoDiRischio]').hide();
 		$('[name=datiStudio_GradoDiRischio-select]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_GradoDiRischio-select]').trigger('change');//se nascondo sbianco il valore!
-		
+
 		$('[id^=informations-datiStudio_GE]').hide();
 		$('[id=datiStudio_GESpecificare]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_GETipologia-select]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_GETipologia-select]').trigger('change');//se nascondo sbianco il valore!
 	}
-	
+
 	if (value.indexOf("6###")==0){
 		$('[id^=informations-datiStudio_SP]').hide();
 		$('[id=datiStudio_SPBracci]').val('');//se nascondo sbianco il valore!
@@ -334,17 +374,17 @@ function gestFase(value){
 		$('[id=datiStudio_OSDirezionalita').prop('checked', false);//se nascondo sbianco il valore!
 		$('[name=datiStudio_OSFarmaco-select]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_OSFarmaco-select]').trigger('change');//se nascondo sbianco il valore!
-		
+
 		$('[id^=informations-datiStudio_GE]').show();
-		
+
 		$('[id=informations-datiStudio_Sottostudi]').hide();
 		$('[name=datiStudio_Sottostudi-select]').val('');//se nascondo sbianco il valore!
 		$('[name=datiStudio_Sottostudi-select]').trigger('change');//se nascondo sbianco il valore!
-		
+
 		//$('[id=informations-datiStudio_NumCentri]').hide();
 		//$('[id=datiStudio_NumCentri]').val('');//se nascondo sbianco il valore!
 	}
-	
+
 	if (value.indexOf("1###")==0){
 		$('[id=informations-datiStudio_CodiceEUDRACT]').show();
 		$('[id=informations-datiStudio_Fase]').show();
@@ -362,14 +402,17 @@ function gestFase(value){
 		$('[name=datiStudio_GradoDiRischio-select]').trigger('change');//se nascondo sbianco il valore!
 
 	}
-	
+
 	if (value.indexOf("2###")==0 || value.indexOf("3###")==0){
 		$('[id=informations-datiStudio_CodiceEUDAMED]').show();
+		$('[id=informations-datiStudio_inUsoDisp]').show();
 	}else{
 		$('[id=informations-datiStudio_CodiceEUDAMED]').hide();
 		$('[id=datiStudio_CodiceEUDAMED]').val('');//se nascondo sbianco il valore!
+		$('[id=informations-datiStudio_inUsoDisp]').hide();
+		$('[id=datiStudio_inUsoDisp]').prop('checked', false);//se nascondo sbianco il valore!
 	}
-	
+
 	if (value.indexOf("4###")==0){
 		$('[id=informations-datiStudio_Intervento]').show();
 
@@ -379,7 +422,7 @@ function gestFase(value){
 
 
 	}
-	
+
 	//gestPop();//STSANPRJS-1108
 
 	gestPop2();
@@ -388,7 +431,8 @@ function gestFase(value){
 	gestRSO();
 	gestCont();
 	gestRand();
-	gestNoProf();
+	gestProfit();
+	gestNoProfit();
 }
 
 
@@ -409,7 +453,7 @@ function deleteElement(element) {
 			window.location.reload();
 		});
 	}
-		
+
 	}else if (!element || !element.id){
 		bootbox.alert("Attenzione impossibile riconoscere l'elemento da eliminare");
 		return;
@@ -429,7 +473,7 @@ function stdString(str){
 	if(str && str!="") return str;
 	else return "Valore mancante";
 }
-	
+
 function statoVisite(metadata){
 	if(metadata && metadata.DatiCustomMonitoraggioAmministrativo_VisiteFatturate){
 		return metadata.DatiCustomMonitoraggioAmministrativo_VisiteFatturabili[0]+'/'+metadata.DatiCustomMonitoraggioAmministrativo_VisiteTot[0];
@@ -494,7 +538,7 @@ function changeFonteFinSpec(){
  	if($('#datiStudio_fonteFinSpec-select').val()!==undefined){
 		selVal=$('#datiStudio_fonteFinSpec-select').val().split('###')[0];
 	}
-	switch(selVal){		
+	switch(selVal){
 	case '4'://INDUSTRIA FARMACEUTICA
 		$('#informations-datiStudio_fonteFinSponsor').show();
 		$('#datiStudio_fonteFinFondazione').val("");
@@ -502,7 +546,7 @@ function changeFonteFinSpec(){
 		$('#datiStudio_fonteFinAltro').val("");
 		$('#informations-datiStudio_fonteFinAltro').hide();
 	break;
-	
+
 	case '5'://FONDAZIONE O ENTE BENEFICO
 		$('#datiStudio_fonteFinSponsor-select').select2("val","");
 		$('#informations-datiStudio_fonteFinSponsor').hide();
@@ -510,7 +554,7 @@ function changeFonteFinSpec(){
 		$('#datiStudio_fonteFinAltro').val("");
 		$('#informations-datiStudio_fonteFinAltro').hide();
 	break;
-	
+
 	case '99'://ALTRO
 		$('#datiStudio_fonteFinSponsor-select').select2("val","");
 		$('#informations-datiStudio_fonteFinSponsor').hide();
@@ -537,7 +581,7 @@ function changeFonteFinSpec2(){
 		selVal=$('#datiStudio_fonteFinSpec2-select').val().split('###')[0];
 	}
 
-	switch(selVal){		
+	switch(selVal){
 	case '4'://INDUSTRIA FARMACEUTICA
 		$('#informations-datiStudio_fonteFinSponsor2').show();
 		$('#datiStudio_fonteFinFondazione2').val("");
@@ -545,7 +589,7 @@ function changeFonteFinSpec2(){
 		$('#datiStudio_fonteFinAltro2').val("");
 		$('#informations-datiStudio_fonteFinAltro2').hide();
 	break;
-	
+
 	case '5'://FONDAZIONE O ENTE BENEFICO
 		$('#datiStudio_fonteFinSponsor2-select').select2("val","");
 		$('#informations-datiStudio_fonteFinSponsor2').hide();
@@ -553,7 +597,7 @@ function changeFonteFinSpec2(){
 		$('#datiStudio_fonteFinAltro2').val("");
 		$('#informations-datiStudio_fonteFinAltro2').hide();
 	break;
-	
+
 	case '99'://ALTRO
 		$('#datiStudio_fonteFinSponsor2-select').select2("val","");
 		$('#informations-datiStudio_fonteFinSponsor2').hide();
@@ -631,13 +675,13 @@ function dsurList(){
 		var pager_selector = "#grid-dsury-pager";
 		var url=baseUrl+"/app/rest/documents/jqgrid/advancedSearch/DSUR?parent_obj_id_eq=${el.getId()}";
 		var colNames=['Titolo','Periodo di riferimento dal','al', 'Data relazione','Scarica'];
-		var colModel=[		
+		var colModel=[
 		  			{name:'codice',index:'DSUR_Titolo', formatter:stdString, width:30, sorttype:"string",jsonmap:"metadata.DSUR_Titolo.0"},
 		  			{name:'codice1',index:'DSUR_PeriodoDal', formatter:TSToDate2, width:30, sorttype:"string",jsonmap:"metadata.DSUR_PeriodoDal.0"},
 		  			{name:'codice2',index:'DSUR_PeriodoAl', formatter:TSToDate2, width:30, sorttype:"string",jsonmap:"metadata.DSUR_PeriodoAl.0"},
 		  			{name:'codice2',index:'DSUR_DataRelazione', formatter:TSToDate2, width:30, sorttype:"string",jsonmap:"file.date"},
 		  			{name:'id',index:'id', formatter:fileLink, width:30, jsonmap:"id"},
-		  			
+
 				];
 		var caption = "DSUR";
 		setupGrid(grid_selector, pager_selector, url, colModel,colNames, caption);
@@ -646,15 +690,15 @@ function dsurList(){
 	}
 	$(window).bind('hashchange', function(e) {
 		if(window.location.hash=='#dsur-tab'){
-			
-				
+
+
 			$('a[href=#dsur-tab]').click();
-			
+
 			dsurList();
 		}
 	});
 	setTimeout(dsurList,100);
-	
+
 /*TOSCANA-79 VMAZZEO 23.11.2016*/
 function getDocCe(id){
         $.ajax({
@@ -681,7 +725,7 @@ function getDocCe(id){
 /*
 STSANSVIL-1257 visualizzare nome e cognome utente che ha creato il documento
 */
-$( 	document ).ready(function() {
+$( document ).ready(function() {
 	$("td[user-data]").each(function(){
 		console.log($(this).html());
 		userCreator=$(this).html();
@@ -697,7 +741,7 @@ $( 	document ).ready(function() {
 					}
 				});
 			}
-		});
+		 });
 		if(nomeCognome!=''){
 			$(this).html(nomeCognome+" "+userCreator);
 		}

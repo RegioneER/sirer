@@ -28,7 +28,7 @@
                     <th>Tariffa da nomenclatore (&euro;)</th>
                     <th>Tariffa Prestazione (&euro;)</th>
                     <th>N. Prest./ Paziente</th>
-                    <th>Codice modalit&agrave; copertura oneri finanziari<br/>(A, B, C, D)</th>
+                    <th>Codice modalit&agrave; copertura oneri finanziari<br/>(A, B, C, D, E)</th>
                     <th>Modifica</th>
                     <th>Rimuovi</th>
                 </tr>
@@ -71,9 +71,9 @@
                 <thead>
                 <tr >
                     <th>Descrizione</th>
-                    <th>Previsto</th>
+                    <!--th>Previsto</th-->
                     <!--th>Descrizione braccio di controllo</th-->
-                    <th>Codice Modalità Copertura Oneri Finanziari (A,B,C,D)</th>
+                    <th>Codice Modalità Copertura Oneri Finanziari (A,B,C,D,E)</th>
                     <th>Totale valore (&euro;)</th>
                     <th>Modifica</th>
                     <th>Rimuovi</th>

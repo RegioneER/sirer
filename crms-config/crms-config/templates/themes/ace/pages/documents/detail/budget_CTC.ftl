@@ -24,6 +24,11 @@ var folderBudgetStudioTypeId=${el.getChildrenByType('FolderBudgetStudio')[0].typ
 var folderTimePointId=${el.getChildrenByType('FolderTimePoint')[0].id};
 var folderTpxpId=${el.getChildrenByType('FolderTpxp')[0].id};
 var budgetReadonly=${readonly?c};
+var budgetChiuso=-1;
+<#if el.getFieldDataString("ChiusuraBudget","Chiuso")?? && el.getFieldDataString("ChiusuraBudget","Chiuso")!="">
+budgetChiuso=${el.getFieldDataString("ChiusuraBudget","Chiuso")};
+</#if>
+
 </@script>
 <div class="row">
     <div class="col-xs-9">

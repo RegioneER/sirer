@@ -1,11 +1,11 @@
 <#assign type=model['docDefinition']/>
 <#global page={
-    "content": path.pages+"/"+mainContent,
-    "styles" : ["jquery-ui-full", "datepicker","pages/form.css","jqgrid"],
-    "scripts" : ["jquery-ui-full","datepicker","bootbox", "common/elementEdit.js","token-input","jqgrid","pages/home.js"],
-    "inline_scripts":[],
-    "title" : "Dettaglio centro",
-    "description" : "Dettaglio centro" 
+"content": path.pages+"/"+mainContent,
+"styles" : ["jquery-ui-full", "datepicker","pages/form.css","jqgrid"],
+"scripts" : ["jquery-ui-full","datepicker","bootbox", "common/elementEdit.js","token-input","jqgrid","pages/home.js"],
+"inline_scripts":[],
+"title" : "Dettaglio centro",
+"description" : "Dettaglio centro"
 } />
 <#assign elStudio=el.getParent() />
 
@@ -26,116 +26,163 @@ var empties=new Array();
 empties[${el.type.id}]=loadedElement;
 
 $('#document-form-submit').ready(function() {
-	$('#ParereCe_ParereWFinviato').parent().parent().hide();
-	
-	if($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==1){ 
-			$('#informations-ParereCe_MotivazioniSosp').hide();
+$('#ParereCe_ParereWFinviato').parent().parent().hide();
 
-			$('#informations-ParereCe_MotivazioniNonFav').hide();
-			
-			$('#informations-ParereCe_MotivazioniCond').hide();
-			
-			$('#informations-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==2){
-			$('#informations-ParereCe_MotivazioniSosp').show();
+var value = 0;
+if( $('#ParereCe_esitoParere:checked').val()!==undefined ) {
+value = $('#ParereCe_esitoParere:checked').val().split("###")[0];
+}
+if (value==1) {
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('#informations-ParereCe_RiapriSoloDoc').hide();
+$('#ParereCe_RiapriSoloDoc').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+} else if (value==2) {
+$('#informations-ParereCe_MotivazioniSosp').show();
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('#informations-ParereCe_RiapriSoloDoc').show();
+$('#informations-ParereCe_SezioneDocumentale').show();
+} else if (value==3) {
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('#informations-ParereCe_MotivazioniNonFav').show();
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('#informations-ParereCe_RiapriSoloDoc').hide();
+$('#ParereCe_RiapriSoloDoc').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+} else if (value==4) {
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('#informations-ParereCe_MotivazioniCond').show();
+$('#informations-ParereCe_RiapriSoloDoc').show();
+$('#informations-ParereCe_SezioneDocumentale').show();
+} else {
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('#informations-ParereCe_RiapriSoloDoc').hide();
+$('#ParereCe_RiapriSoloDoc').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+}
 
-			$('#informations-ParereCe_MotivazioniNonFav').hide();
-			
-			$('#informations-ParereCe_MotivazioniCond').hide();
-			
-			$('#informations-ParereCe_RiapriSoloDoc').show();
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==3){
-			$('#informations-ParereCe_MotivazioniSosp').hide();
+});
 
-			$('#informations-ParereCe_MotivazioniNonFav').show();
-			
-			$('#informations-ParereCe_MotivazioniCond').hide();
-			
-			$('#informations-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==4){
-			$('#informations-ParereCe_MotivazioniSosp').hide();
+$("[name=ParereCe_esitoParere]").on('change',function(){
 
-			$('#informations-ParereCe_MotivazioniNonFav').hide();
-			
-			$('#informations-ParereCe_MotivazioniCond').show();
-			
-			$('#informations-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-	
-	});
+var value = 0;
+if( $('#ParereCe_esitoParere:checked').val()!==undefined ) {
+value = $('#ParereCe_esitoParere:checked').val().split("###")[0];
+}
+if (value==1) {
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
 
-	$("[name=ParereCe_esitoParere]").on('change',function(){
-		
-		if($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==1){ 
-			$('#informations-ParereCe_MotivazioniSosp').hide();
-			$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
 
-			$('#informations-ParereCe_MotivazioniNonFav').hide();
-			$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_MotivazioniCond').hide();
-			$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==2){
-			$('#informations-ParereCe_MotivazioniSosp').show();
-			//$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			//$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
 
-			$('#informations-ParereCe_MotivazioniNonFav').hide();
-			$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_MotivazioniCond').hide();
-			$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_RiapriSoloDoc').show();
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==3){
-			$('#informations-ParereCe_MotivazioniSosp').hide();
-			$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
+$('#informations-ParereCe_RiapriSoloDoc').hide();
+$('[id=ParereCe_RiapriSoloDoc]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
 
-			$('#informations-ParereCe_MotivazioniNonFav').show();
-			//$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			//$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_MotivazioniCond').hide();
-			$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==4){
-			$('#informations-ParereCe_MotivazioniSosp').hide();
-			$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+} else if (value==2) {
+$('#informations-ParereCe_MotivazioniSosp').show();
 
-			$('#informations-ParereCe_MotivazioniNonFav').hide();
-			$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_MotivazioniCond').show();
-			//$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#informations-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		
-		
-	});
-   
-   
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_RiapriSoloDoc').show();
+$('[id=ParereCe_RiapriSoloDoc]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+} else if (value==3) {
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_MotivazioniNonFav').show();
+
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_RiapriSoloDoc').hide();
+$('[id=ParereCe_RiapriSoloDoc]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+} else if (value==4){
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_MotivazioniCond').show();
+$('[id=ParereCe_RiapriSoloDoc]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_RiapriSoloDoc').show();
+$('[id=ParereCe_RiapriSoloDoc]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+} else {
+$('#informations-ParereCe_MotivazioniSosp').hide();
+$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_MotivazioniNonFav').hide();
+$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
+$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_MotivazioniCond').hide();
+$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_RiapriSoloDoc').hide();
+$('[id=ParereCe_RiapriSoloDoc]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
+}
+
+});
+
+// Richiesta integrazioni* (CHECKBOX)
+$('#informations-ParereCe_RiapriSoloDoc').change(function() {
+var flagDoc = false;
+
+// Ciclo tutte le checkbox selezionate
+$('[name=ParereCe_RiapriSoloDoc]:checked').each(function() {
+var value = $(this).val().split('###')[0];
+if (value == 2) flagDoc = true;
+});
+
+// Condizionamento campi in base alle selezioni
+if (flagDoc) {
+$('#informations-ParereCe_SezioneDocumentale').show();
+} else {
+$('#informations-ParereCe_SezioneDocumentale').hide();
+$('[id=ParereCe_SezioneDocumentale]').prop('checked', false).trigger('change').trigger('change');//se nascondo sbianco il valore!
+}
+});
+
+
 </@script>
 
 

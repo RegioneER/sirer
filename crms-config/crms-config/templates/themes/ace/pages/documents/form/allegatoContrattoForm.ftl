@@ -152,26 +152,26 @@ return field.val();
 }
 }
 //SIRER-46
-/*
-//TOSCANA-190
+
+//STSANSVIL-2613
 $(document).ready(function() {
-$("#tipologiaContratto-tipologiaContratto_tipoProvvedimento").hide();
-$("#tipologiaContratto-tipologiaContratto_numeroProtocollo").hide();
+$("#tipologiaContratto-tipologiaContratto_DataDelibera").hide();
+$("#tipologiaContratto-tipologiaContratto_NProtocolloDelibera").hide();
 $("#tipologiaContratto_TipoContratto-select").unbind("change").bind("change",function(){
 $("#tipologiaContratto_TipoContratto").val($("#tipologiaContratto_TipoContratto-select").val());
-if($("#tipologiaContratto_TipoContratto-select").val()=="7###Atto deliberativo"){
-$("#tipologiaContratto-tipologiaContratto_numeroProtocollo").show();
-$("#tipologiaContratto-tipologiaContratto_tipoProvvedimento").show();
+if($("#tipologiaContratto_TipoContratto-select").val()=="7###Nulla osta aziendale"){
+$("#tipologiaContratto-tipologiaContratto_NProtocolloDelibera").show();
+$("#tipologiaContratto-tipologiaContratto_DataDelibera").show();
 }
 else{
-$("#tipologiaContratto_numeroProtocollo").val("");
-$("#tipologiaContratto-tipologiaContratto_numeroProtocollo").hide();
-$("[name=tipologiaContratto_tipoProvvedimento]").attr("checked", false).trigger("change");
-$("#tipologiaContratto-tipologiaContratto_tipoProvvedimento").hide();
+$("#tipologiaContratto_NProtocolloDelibera").val("");
+$("#tipologiaContratto-tipologiaContratto_NProtocolloDelibera").hide();
+$("[name=tipologiaContratto_DataDelibera]").val("");
+$("#tipologiaContratto-tipologiaContratto_DataDelibera").hide();
 }
 });
 });
-	*/
+
 
 </@script>
 <div class="mainContent">

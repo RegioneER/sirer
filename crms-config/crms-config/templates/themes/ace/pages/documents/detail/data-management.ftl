@@ -14,15 +14,21 @@
 <#else>
 
     <#assign userHasSite = true />
+<!-- userSitesCodesList ____ ${userSitesCodesList?size}-->
     <#if userSitesCodesList?size gt 0 >
     <#-- faccio il check di visibilità se ho dei centri associati (se non ne ho vuol dire che posso vederli tutti -->
 
         <#if model["element"].getTypeName()=="Studio" || model["element"].getTypeName()=="Centro"  >
             <#assign elementoRadice=model["element"] />
-        <#--elseif  model["element"].getAncient()?? > //<< da attivare dopo aver rideployato java (STSANSVIL-667
-            <#assign elementoRadice=model["element"].getAncient() /-->
+<!--h1>22 elementoRadice: ${elementoRadice.getId()} - ${elementoRadice.getTypeName()}</h1-->
+        <#elseif  model["element"].getAncient()?? >
+            <#assign elementoRadice=model["element"].getAncient() />
+    <!--h1>24 elementoRadice: ${elementoRadice.getId()} - ${elementoRadice.getTypeName()}</h1-->
+        <#elseif model["element"].getParent().getParent()??>
+            <#assign elementoRadice=model["element"].getParent().getParent() />
         <#else>
             <#assign elementoRadice=model["element"].getParent() />
+<!--h1>28 elementoRadice: ${elementoRadice.getId()} - ${elementoRadice.getTypeName()}</h1-->
         </#if>
 
         <#assign userHasSite = false />
@@ -37,6 +43,10 @@
             </#list>
         <#else>
             <!--h1>ancient: ${elementoRadice.getId()} - ${elementoRadice.getTypeName()}</h1-->
+            <#if elementoRadice.getTypeName()=="Emendamento">
+                <#assign elementoRadice=elementoRadice.getParent() />
+            <!--h1>45 elementoRadice: ${elementoRadice.getId()} - ${elementoRadice.getTypeName()}</h1-->
+            </#if>
             <#assign listaCentriInseriti = elementoRadice.getChildrenByType("Centro") />
             <#list listaCentriInseriti as stCentro>
                 <#assign piCF=(stCentro.getFieldDataCode("IdCentro","PINomeCognome"))!"" />
@@ -49,6 +59,7 @@
             </#list>
         </#if>
     </#if>
+<!-- userHasSite ${userHasSite?c} -->
     <#if userHasSite >
     <div id="myTab">
     <div class="tabbable">

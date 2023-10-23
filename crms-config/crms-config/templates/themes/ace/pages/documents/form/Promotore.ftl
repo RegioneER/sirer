@@ -1,94 +1,4 @@
-
-
 <@script>
-var loadedElement='';
-loadedElement.id='';
-
-	/* $('#document-form-submit').ready(function() {
-		var data = new Date();
-		//alert (("0" + data.getDate()).slice(-2)+'/'+("0" + (data.getMonth() + 1)).slice(-2)+'/'+data.getFullYear());
-		$('#ParereCe_dataSeduta').val(("0" + data.getDate()).slice(-2)+'/'+("0" + (data.getMonth() + 1)).slice(-2)+'/'+data.getFullYear());
-		
-		$('#ParereCe_ParereWFinviato').parent().parent().hide();
-		
-		$('#ParereCe-ParereCe_MotivazioniSosp').hide();
-		$('#ParereCe-ParereCe_MotivazioniNonFav').hide();
-		$('#ParereCe-ParereCe_MotivazioniCond').hide();
-		//$('#IstruttoriaCE-IstruttoriaCE_RichIntegr').hide();
-		$('#ParereCe-ParereCe_RiapriSoloDoc').hide();
-	});
-
-	$("[name=ParereCe_esitoParere]").on('change',function(){
-		
-		if($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==1){ 
-			$('#ParereCe-ParereCe_MotivazioniSosp').hide();
-			$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
-
-			$('#ParereCe-ParereCe_MotivazioniNonFav').hide();
-			$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_MotivazioniCond').hide();
-			$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==2){
-			$('#ParereCe-ParereCe_MotivazioniSosp').show();
-			//$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			//$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
-
-			$('#ParereCe-ParereCe_MotivazioniNonFav').hide();
-			$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_MotivazioniCond').hide();
-			$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_RiapriSoloDoc').show();
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==3){
-			$('#ParereCe-ParereCe_MotivazioniSosp').hide();
-			$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
-
-			$('#ParereCe-ParereCe_MotivazioniNonFav').show();
-			//$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			//$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_MotivazioniCond').hide();
-			$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		else if ($('#ParereCe_esitoParere:checked').val()!==undefined && $('#ParereCe_esitoParere:checked').val().split("###")[0]==4){
-			$('#ParereCe-ParereCe_MotivazioniSosp').hide();
-			$('[name=ParereCe_MotivazioniSosp-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniSosp-select]').trigger('change');//se nascondo sbianco il valore!
-
-			$('#ParereCe-ParereCe_MotivazioniNonFav').hide();
-			$('[name=ParereCe_MotivazioniNonFav-select]').val('');//se nascondo sbianco il valore!
-			$('[name=ParereCe_MotivazioniNonFav-select]').trigger('change');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_MotivazioniCond').show();
-			//$('[id=ParereCe_MotivazioniCond]').val('');//se nascondo sbianco il valore!
-			
-			$('#ParereCe-ParereCe_RiapriSoloDoc').hide();
-			$('[id=ParereCe_RiapriSoloDoc').prop('checked', false);//se nascondo sbianco il valore!
-		}
-		
-		
-	});
-	
-	 */
-
-
-
-
-
   $('#document-form-submit').closest('.btn').off('click');
   $('#document-form-submit').off('click').on('click',function(){
 
@@ -105,8 +15,7 @@ loadedElement.id='';
 					<#list template.fields as field>
 						<#if field.mandatory>
 					  	<#assign label=getLabel(template.name+"."+field.name)/>
-						//LUIGI: controlli ad-hoc obbligatorietà condizionata
-					  		if ($('#${template.name}_${field.name}').val()=="" && $('#${template.name}_${field.name}').is(':visible')){
+					  		if ($('#${template.name}_${field.name}').val()==""){
 					  	  	alert("Il campo ${label?html} deve essere compilato");
 	    						$('#${template.name}_${field.name}').focus();
 	    						return false;
@@ -121,7 +30,7 @@ loadedElement.id='';
 		</#list>
 	</#if>
 	
-	/* <#if model['docDefinition'].hasFileAttached>
+	<#if model['docDefinition'].hasFileAttached>
 	  if ($('#file').val()==""){
 	  	alert("Bisogna allegare un file");
 	  	$('#file').focus();
@@ -141,11 +50,13 @@ loadedElement.id='';
 		  }
 		</#if>
 		
-	</#if> */
-	
+	</#if>
+	$("select[id*='-select']").remove();//TOSCANA-204 elimino elementi -select e -altro per non far triplicare i dati in banca dati
+	$("input[id*='-altro']").remove();
+
 	var formData=new FormData($('#document-form')[0]);
 	var actionUrl=$('#document-form').attr("action");
-	var parentId=$("#parentId").val();
+var parentId=$("#parentId").val();
 loadingScreen("Salvataggio in corso...", "${baseUrl}/int/images/loading.gif");
   $.ajax({
       type: "POST",
@@ -159,7 +70,8 @@ loadingScreen("Salvataggio in corso...", "${baseUrl}/int/images/loading.gif");
           if (obj.result=="OK") {
               loadingScreen("Salvataggio effettuato", "${baseUrl}/int/images/green_check.jpg",2000);
               if (obj.redirect){
-                  window.location.href="${baseUrl}/app/documents/detail/"+parentId+"#AllegatoEme-tab2";
+                  window.location.href="/acm/?/dizionari/list/${model['docDefinition'].typeId}";
+
               }
           }else {
 			bootbox.hideAll();
@@ -199,10 +111,9 @@ loadingScreen("Salvataggio in corso...", "${baseUrl}/int/images/loading.gif");
 			return field.val();
 		}	
 	}
-
-
-	
-	
+$("input").each(function(){
+$(this).attr("size","65");
+});
 </@script>
 
 
@@ -251,7 +162,7 @@ loadingScreen("Salvataggio in corso...", "${baseUrl}/int/images/loading.gif");
         </div>
         </#if>
         <div class="form-group field-component">
-        <@fileChooser "file" "file" getLabel(model['docDefinition'].typeId+".fileLabel")+"<sup style='color:red'></sup>"/>
+        <@fileChooser "file" "file" getLabel(model['docDefinition'].typeId+".fileLabel")+"<sup style='color:red'>*</sup>"/>
         </div>
         </#if>
         <button class="submitButton round-button blue btn btn-warning" type="button" id="document-form-submit" name="document-form-submit"/>
@@ -262,5 +173,3 @@ loadingScreen("Salvataggio in corso...", "${baseUrl}/int/images/loading.gif");
 
 </form>
 </div>
-
-

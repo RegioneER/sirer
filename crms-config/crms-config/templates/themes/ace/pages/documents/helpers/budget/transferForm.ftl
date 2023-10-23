@@ -14,6 +14,7 @@
 			        <option value="2###B: finanziamento proveniente da terzi">finanziamento proveniente da terzi</option>
 			        <option value="3###C: fondo aziendale come previsto dal D.M. 17/12/2004">fondo aziendale come previsto dal D.M. 17/12/2004</option>
 			        <option value="4###D: a carico del promotore profit">a carico del promotore profit</option>
+				<option value="5###E: a carico del SSN">a carico del SSN</option>
 			</select>
                 </span>
                	<#--label for="oreuomo">Tempo uomo</label>

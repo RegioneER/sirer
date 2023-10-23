@@ -13,8 +13,8 @@
     </#if-->
 <div class="row">
 	<div class="col-sm-8">
-	<h2>UOPartecipante</h2>
-    <@TemplateForm "UOPartecipante" el userDetails true />
+	<h2>Progetto</h2>
+    <@TemplateForm "Progetto" el userDetails true />
 	</div>
 	<div class="col-sm-4">
 		<#--include "../helpers/attached-file.ftl"/-->
