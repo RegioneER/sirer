@@ -550,6 +550,7 @@ $_SERVER['REMOTE_USER'] = $_SERVER['REMOTE_USERID']; //ATTENZIONE: TOLGO IL @IDS
 	}
 }
 
+/*
 if($_SERVER['HTTP_AUTHZ_AUTHENTICATIONMETHOD']=='QueryDatabaseAuthenticationHandler'){
     // Gestione della scadenza password, assegnare l'utente al gruppo di funzioni base-profile e mettare la password scaduta per farla cambiare al primo accesso
     //if(!isset($sso_user) || !$sso_user){
@@ -585,6 +586,7 @@ if($_SERVER['HTTP_AUTHZ_AUTHENTICATIONMETHOD']=='QueryDatabaseAuthenticationHand
     }
     //Fine gestione scadenza passwd
 }
+*/
 
 if ($script=="/cas5Authn/login.php"){
 	
