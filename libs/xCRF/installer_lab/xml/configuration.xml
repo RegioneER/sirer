@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Dettagli domanda" titolo="Dettagli domanda" table="DB" 
+	link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|VISITNUM=[VISITNUM]|and|ESAM=[ESAM]" 
+	
+	FIELD_TB_SHOW="D_TIPO_ISTANZA||' - '||D_TIPO_DB||' - '||USER_DB||' - '||D_TYPE_IST||' - '||D_SERVICE_NAME_PROD||D_SERVICE_NAME_DEV"
+	tb_header="Description"
+	cols="1">
+		<field type="hidden" var="CODPAT" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="CENTER" var_type="number"/>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes">
+			<value val="0"></value>
+		</field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		
+		
+     <field>
+     	<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Data Base details<br></b></td>]]></txt_value>
+	</field>
+	<field type='select_hyper' var='TIPO_ISTANZA'>
+		<txt_value><![CDATA[Utility]]></txt_value>
+		<value val="1">Transational</value>
+		<value val="2">Analisys</value>
+		<value val="3">Anagrafic</value>
+	</field>
+	<field type='radio_hyper' var='TYPE_IST' subtbcol="3">
+		<txt_value>Dedicated to</txt_value>
+		<value val="1">Development</value>
+		<value val="2">Pre-production</value>
+		<value val="3">Production</value>
+	</field>
+	<field type='select_hyper' var='TIPO_DB'>
+		<txt_value><![CDATA[DB]]></txt_value>
+		<value val="1">Oracle</value>
+		<value val="2">MySql</value>
+	</field>
+	<field type='select_hyper' var='SERVICE_NAME_MYSQL' hide="yes" condition="TIPO_DB" condition_value="2">
+		<txt_value><![CDATA[Service Name]]></txt_value>
+		<value val="1">MYTEST-5.0</value>
+		<value val="2">MYPROD-5.0</value>
+	</field>
+	<field type='textbox_hyper' var='USER_DB' var_type='text' var_size='400'>
+		<txt_value><![CDATA[Schema]]></txt_value>
+		
+	</field>
+	<save>Save</save>
+	<cancel>Cancel</cancel>
+</form>

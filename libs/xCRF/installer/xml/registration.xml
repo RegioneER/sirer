@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form fname="PATIENT REGISTRATION" titolo="PATIENT REGISTRATION" table="REGISTRAZIONE" link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|EXAMS=visite_exams.xml|and|ret_registrazione=yes" cols="1" load="REGISTRATION_Load();" f_to_call="SubjidExist">
+  <field type="hidden" var="CODPAT" var_type="number" pk="yes">
+    <value val="next"/>
+  </field>
+  <field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"/>
+  <field type="hidden" var="ESAM" var_type="number" pk="yes"/>
+  <field type="hidden" var="PROGR" var_type="number" pk="yes"/>
+  <field type="hidden" var="VISITNUM" var_type="number" pk="yes"/>
+  <field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"/>
+  <field type="hidden" var="INVIOCO" tb="no"/>
+  <field type="hidden" var="CENTER" var_type="text" var_size="40"/>
+  <field type="hidden" var="HD_SUBJID" var_type="number" var_size="40" bytb="REGISTRAZIONE" bytbcode="MAX(SUBJID)" bytbdecode="MAX(SUBJID)" bytbwhere="CENTER='[CENTER]'"/>
+  <field type="hidden" var="HD_CODE" var_type="text" tb="no" var_size="40" bytbnoprefix="yes" bytb="SITES" bytbcode="CODE" bytbdecode="CODE" bytbwhere="ID=to_number('[CENTER]')"/>
+  <field type="hidden" var="INITIALS" var_type="text" var_size="2"/>
+  <field var="MYTITLE" tb="no" colspan="2" cols="1" type="text">
+    <txt_value><![CDATA[<div class="titolo" align="center" >PATIENT REGISTRATION</div>]]></txt_value>
+  </field>
+  <field var="SITEID" disabled="yes" type="textbox" var_type="text" var_size="14" cols="1" size="14" txt_align="right" field_align="left">
+    <txt_value><![CDATA[Site No.]]></txt_value>
+  </field>
+  <field var="SITEIDDISPLAY" disabled="yes" tb="no" type="hidden" var_type="text" var_size="3" cols="1" size="3" txt_align="right" field_align="left">
+    <txt_value><![CDATA[Site No.]]></txt_value>
+  </field>
+  <field var="SUBJID" disabled="yes" type="textbox" var_type="text" var_size="4" cols="1" on_Blur="cf();" size="4" txt_align="right" field_align="left">
+    <txt_value><![CDATA[Patient No.]]></txt_value>
+  </field>
+  <send><![CDATA[
+    
+Send
+
+  ]]></send>
+  <enable>
+
+  </enable>
+</form>

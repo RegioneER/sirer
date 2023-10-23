@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<profile>
+	<sidebar>
+		<item icon="home" link="index.php">
+			<text>Home page</text>
+		</item>
+		<item icon="pencil">
+			<text>Data Entry</text>
+			<link text="Register new patient" icon="plus" value="index.php?ESAM=0&amp;VISITNUM=0"/>
+			<link text="New Drug Request" icon="medkit" value="javascript:AddForm('New Drug request',3,2);"/>
+		</item>
+		<item icon="list">
+			<text>Browse Data</text>
+			<link text="Patients list" icon="user-md" value="index.php?list=patients_list.xml"/>
+			<link text="Sites list" icon="hospital-o" value="index.php?list=patients_list_center.xml"/>
+			<link text="Drugs list" icon="medkit" value="index.php?list=patients_list_pt.xml"/>
+		</item>
+		<!-- 
+		<item icon="check">
+			<text>Data Quality</text>
+			<link text="New eQuery" icon="question" value="index.php?eQuery&amp;eform"/>
+			<link text="Open eQueries" icon="reply" value="index.php?eQuery"/>
+			<link text="Closed eQueries" icon="lock" value="index.php?eQuery&amp;closed"/>
+		</item>
+		<item icon="el-icon-graph">
+			<text>Predefined Reports</text>
+			<link text="Summary Report" icon="el-icon-graph" value="index.php?report=summary"/>
+			<link text="Registered and eligible patients by month" icon="el-icon-graph" value="index.php?report=reg_eleg"/>
+			<link text="Drug prescriptions and administrations" icon="el-icon-graph" value="index.php?report=drug_request"/>
+			<link text="Drug administrations by month" icon="el-icon-graph" value="index.php?report=drug_admin"/>
+			<link text="Drug Toxicity and Suspected Adverse Events" icon="el-icon-graph" value="index.php?report=tox"/>
+			<link text="End of treatment" icon="el-icon-graph" value="index.php?report=eot"/>
+			<link text="Baseline characteristics" icon="el-icon-graph" value="index.php?report=baseline"/>
+			<param name="summary"><![CDATA[content/reporting/reportviewer/report.html?solution=drug_prm&path=/herceptin&name=summary_report.prpt&locale=it_IT]]></param>
+			<param name="reg_eleg"><![CDATA[content/reporting/reportviewer/report.html?solution=drug_prm&path=/herceptin&name=registered_eligibile_patients_month.prpt&locale=it_IT]]></param>
+			<param name="drug_request"><![CDATA[content/reporting/reportviewer/report.html?solution=drug_prm&path=/herceptin&name=prescription_and_administration.prpt&locale=it_IT]]></param>
+			<param name="drug_admin"><![CDATA[content/reporting/reportviewer/report.html?solution=drug_prm&path=/herceptin&name=adm_p_d_month.prpt&locale=it_IT]]></param>
+			<param name="tox"><![CDATA[content/reporting/reportviewer/report.html?solution=drug_prm&path=/herceptin&name=adr.prpt&locale=it_IT]]></param>
+			<param name="eot"><![CDATA[content/reporting/reportviewer/report.html?solution=drug_prm&path=/herceptin&name=end_of_treatment.prpt&locale=it_IT]]></param>
+			<param name="baseline"><![CDATA[content/reporting/reportviewer/report.html?solution=drug_prm&path=/herceptin&name=baseline_features.prpt&locale=it_IT]]></param>
+		</item>
+		 -->
+	</sidebar>
+	
+
+	<navbar title="CASIGG" image="images/logo.png" >
+		<item type="button" icon="question" text="Help" color="ligh-green" link="index.php?page=help"/>
+		<item type="dropdown" icon="plus" text="Actions" color="blue">
+			<link text="Register new patient" icon="plus" value="index.php?ESAM=0&amp;VISITNUM=0"/>
+		</item>
+	</navbar>
+	<study_structure_ref value="visite_exams"/>
+	<fastSearch>
+		<field name="PT_REGISTRAZIONE.NOME" type="string" showNever="true">NOME</field>
+	</fastSearch>
+</profile>

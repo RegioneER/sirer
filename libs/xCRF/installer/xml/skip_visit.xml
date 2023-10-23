@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form fname="SKIP THIS VISIT" titolo="SKIP THIS VISIT" table="SKIP_VISIT" link_to="|ME|" link_to_send="|ME|" cols="2" f_to_call="SkipVisit">
+  <field cols="2" colspan="2" field_align="left" tb="no" txt_align="right" var="MYTITLE" type="text">
+    <txt_value>
+      <![CDATA[<div class=titolo align=center>SKIP THIS VISIT</div>]]>
+    </txt_value>
+  </field>
+  <field pk="yes" type="hidden" var="CODPAT" var_type="number">
+    <value val="next"/>
+  </field>
+  <field bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'" type="hidden" var="USERID_INS" var_size="40" var_type="text"/>
+  <field pk="yes" type="hidden" var="ESAM" var_type="number"/>
+  <field pk="yes" type="hidden" var="PROGR" var_type="number"/>
+  <field pk="yes" type="hidden" var="VISITNUM" var_type="number"/>
+  <field pk="yes" type="hidden" var="VISITNUM_PROGR" var_type="number"/>
+  <field tb="no" type="hidden" var="INVIOCO"/>
+  <field type="hidden" var="CENTER" var_size="40" var_type="text"/>
+  <field bytb="REGISTRAZIONE" bytbcode="SUBJID" bytbdecode="SUBJID" bytbwhere="CODPAT='[CODPAT]'" type="hidden" var="SUBJID" var_size="14" var_type="text"/>
+  <field bytb="REGISTRAZIONE" bytbcode="SITEID" bytbdecode="SITEID" bytbwhere="CODPAT='[CODPAT]'" type="hidden" var="SITEID" var_size="14" var_type="text"/>
+  <field cols="2" field_align="left" tb="no" txt_align="right" type="text" var="OTHERVAR0">
+    <txt_value>
+      <![CDATA[This visit was not performed. By clicking on the Skip visit button, the visit will be locked without any data entered.]]>
+    </txt_value>
+  </field>
+  <field cols="2" field_align="left" size="100" txt_align="right" type="textbox" var="COMMENTS" send="obbligatorio" var_size="225" var_type="text">
+    <txt_value>
+      <![CDATA[Reasons]]>
+    </txt_value>
+  </field>
+  <send>
+    <![CDATA[
+Skip Visit
+]]>
+  </send>
+  <cancel>
+    <![CDATA[
+Cancel
+]]>
+  </cancel>
+</form>

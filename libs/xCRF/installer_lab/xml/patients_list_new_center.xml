@@ -1,0 +1,8 @@
+<list titolo="Sites List - Registration">
+	<col tipo="hidden" nome="CENTER" var="[service]_CENTRI.CENTER" table="[service]_CENTRI">	</col>
+	<col tipo="hidden" nome="USERID" var="[service]_UTENTI_CENTRI.USERID" table="[service]_UTENTI_CENTRI" 
+			where="[service]_UTENTI_CENTRI.CENTER=[service]_CENTRI.CENTER and [service]_UTENTI_CENTRI.USERID='[remote_userid]'">
+	</col>
+	<col tipo="testo" nome="DENOM" var="[service]_CENTRI.DENOM" ord_arrow="yes" order_by="asc">ASL</col>
+	<col tipo="lente" nome="CENTER_1" var="[service]_CENTRI.CENTER" script="index.php" param="ESAM=0,VISITNUM=0,CENTER" >New patient form</col>
+</list>

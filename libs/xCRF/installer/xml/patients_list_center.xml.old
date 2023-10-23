@@ -1,0 +1,9 @@
+<list titolo="Sites List">	
+	<col tipo="testo" nome="CENTER" var="[service]_CENTRI.CENTER" table="[service]_CENTRI" where="[service]_CENTRI.CENTER not in ('098','099')" order_by="asc" group_by="1">Center ID</col>
+	<col tipo="hidden" nome="USERID" var="[service]_UTENTI_CENTRI.USERID" table="[service]_UTENTI_CENTRI" where="[service]_UTENTI_CENTRI.CENTER=[service]_CENTRI.CENTER and [service]_UTENTI_CENTRI.USERID='[remote_userid]'" group_by="1"></col>
+	<col tipo="testo" nome="NAME" var="[service]_CMM_CENTER.NAME"  table="[service]_CMM_CENTER" 
+	where="[service]_CENTRI.CENTER=LPAD([service]_CMM_CENTER.ID_CENTER,3,'0')" ord_arrow="yes"  group_by="1">Center Name</col>
+	<col tipo="testo" nome="PAZIENTI" var="count(distinct ([patients_table].codpat))" table="[patients_table]" where="[patients_table].CENTER(+)=[service]_UTENTI_CENTRI.CENTER">N. of Patients</col>
+	<col tipo="freccia" nome="CENTER_LINK" var="[service]_CENTRI.CENTER" script="index.php" param="list=patients_list.xml,CENTER" ></col>
+</list>
+

@@ -1,0 +1,10 @@
+<list titolo="Lista Pazienti">	
+	<col tipo="testo" nome="SITEID" var="SITEID">Site</col>
+<col tipo="hidden" nome="CENTER" var="CENTER"/>
+<col tipo="testo" nome="SUBJID" var="SUBJID">Patient Number</col>
+<col tipo="lente" nome="CODPAT" var="CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT" table="[PREFIX]_REGISTRATION" order_by="asc">Patient Visit</col>
+	</list>
+
+
+
+ 

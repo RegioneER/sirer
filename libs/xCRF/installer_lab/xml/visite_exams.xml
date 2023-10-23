@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<visit_exam>
+	<group text="RANGE">	
+		<visit number="0" text="RANGE" short_txt="RANGE">
+			<exam number="0" xml="range_lab.xml" mandatory="yes" default="yes" progr="yes" all_in="yes"  max_all_in="5">
+				<text>Laboratory Normal Ranges Form</text>
+			</exam>
+		</visit>		
+	</group>
+</visit_exam>
+ 

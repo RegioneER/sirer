@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="CERCA PAZIENTE" titolo="CERCA PAZIENTE" table="REGISTRATION" cols="1">
+    <field type="hidden" var="SEARCH" tb="no">
+    	<value val='1'></value>
+    </field>
+     <field type="hidden" var="TSEARCH" tb="no">
+     <value val='1'></value>
+    </field>
+   	<field type="hidden" var="FORM" tb="no" />
+     
+	<field>
+		<txt_value><![CDATA[<tr><td colspan="2" class="titolo"><b>FIND PATIENT</b></td></tr>]]></txt_value>
+	</field>
+
+	<field type="textbox_hyper" var="SITEID">
+		<txt_value>Center Code:</txt_value>
+	</field>
+ 	<field type="textbox_hyper" var="SUBJID">
+		<txt_value>Patient Code:</txt_value>
+	</field>
+  
+	<send>Search</send> 
+	<cancel>Cancel</cancel> 
+</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

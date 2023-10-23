@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<study>
+	<dir_base>/http/www/[NOMESTUDIO]/html/uxmr</dir_base>
+	<configuration>
+		<entry-point>
+			<esam>0</esam>
+		</entry-point>		
+		<prefix>[PREFISSO]</prefix>
+		<pk_seq>SEQ</pk_seq>
+		<pk_service>CODPAT</pk_service>
+		<labels>
+			<menu_paziente>Menu</menu_paziente>
+			<lista_schede>Patients List</lista_schede>
+			<patients_list>Patients List</patients_list>
+			<torna_lista_schede>Go Back</torna_lista_schede>
+		</labels>
+		<lang>en</lang>
+		<eq>case2</eq>
+		<dm>Data manager</dm>
+		<field_lib>/http/lib/XMR/hyperlibs/libs/fields/</field_lib>
+	</configuration>
+	<center_view><![CDATA[
+	select distinct 
+  substr(userid,0,3)  as center,
+  azienda_ente AS denom
+  from ana_utenti_1  where userid not like '9%' 
+  and userid = SUBSTR (userid, 0, 3) || '00001'
+		]]></center_view>
+	<workflow>
+		<nome>[NOMESTUDIO]</nome>
+		<attori>
+			<attore>
+				<id>1</id>
+				<nome>Data manager</nome>
+				<query><![CDATA[
+				select a.userid, c.center as center from ana_utenti_1 a, [CENTRI] c where a.userid like '997%'
+				]]>
+				</query>
+			</attore>
+			<attore>
+				<id>2</id>
+				<nome>Data Entry</nome>
+				<query><![CDATA[
+				select a.userid, c.center as center from ana_utenti_1 a, [CENTRI] c where substr(a.userid,0,3)=c.center and a.userid not like '9%'
+				]]>
+				</query>
+			</attore>
+			<attore>
+				<id>3</id>
+				<nome>Project Manager</nome>
+				<query><![CDATA[
+				SELECT a.userid, c.center AS center
+             FROM ana_utenti_1 a, [CENTRI] c
+            WHERE a.userid LIKE '991%'
+				]]>
+				</query>
+			</attore>
+			<attore>
+				<id>4</id>
+				<nome>Sponsor</nome>
+				<query><![CDATA[
+				SELECT a.userid, c.center AS center
+             FROM ana_utenti_1 a, [CENTRI] c
+            WHERE a.userid LIKE '995%'
+				]]>
+				</query>
+			</attore>
+			<attore>
+				<id>4</id>
+				<nome>Sponsor</nome>
+				<query><![CDATA[
+				SELECT a.userid, c.center AS center
+             FROM ana_utenti_1 a, [CENTRI] c
+            WHERE a.userid LIKE '995%'
+				]]>
+				</query>
+			</attore>
+			<attore>
+				<id>5</id>
+				<nome>CRA</nome>
+				<query><![CDATA[
+				SELECT userid_cra as USERID, LTRIM (TO_CHAR (center, '000')) as CENTER FROM CRA_CENTER
+				]]>
+				</query>
+			</attore>
+			<attore>
+				<id>6</id>
+				<nome>DSM</nome>
+				<query><![CDATA[
+				SELECT a.userid,
+     			 c.center AS center
+    			 FROM ana_utenti_1 a,
+     			 [CENTRI] c
+   				 WHERE a.userid LIKE '998%'
+				]]>
+				</query>
+			</attore>
+			<attore>
+				<id>7</id>
+				<nome>Special</nome>
+				<query><![CDATA[
+				SELECT a.userid,
+     			 c.center AS center
+    			 FROM ana_utenti_1 a,
+     			 [CENTRI] c
+   				 WHERE a.userid LIKE '994%' or a.userid='ADMIN'
+				]]>
+				</query>
+			</attore>
+		</attori>
+		<stati>
+			<stato>
+				<id>1</id>
+				<nome>Registrazione paziente</nome>
+				<actid>2</actid>
+			</stato>
+			<stato>
+				<id>2</id>
+				<nome>Arruolato</nome>
+				<actid>2</actid>
+			</stato>
+		</stati>
+		<rami>
+			<ramo>
+				<orig>1</orig>
+				<dest>2</dest>
+				<condition>Assegnato</condition>
+			</ramo>
+		</rami>
+	</workflow>
+</study>

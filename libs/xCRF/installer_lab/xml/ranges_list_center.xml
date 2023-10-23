@@ -1,0 +1,10 @@
+<list titolo="Lista Centri" >
+	<col tipo="testo" nome="CENTER" var="V_RANGE_LAB.CENTER" table="V_RANGE_LAB" order_by="asc" >Center ID</col>
+	<col tipo="testo" nome="D_LBTEST" var="V_RANGE_LAB.D_LBTEST" table="V_RANGE_LAB" WHERE="V_RANGE_LAB.D_LBTEST IS NOT NULL">Parameter</col>
+	<col tipo="testo" nome="LBDATE" var="V_RANGE_LAB.LBDATE" table="V_RANGE_LAB" >Date</col>
+	<col tipo="testo" nome="D_SEX" var="V_RANGE_LAB.D_SEX" table="V_RANGE_LAB" >Sex</col>
+	<col tipo="testo" nome="D_LBORRESU" var="V_RANGE_LAB.D_LBORRESU" table="V_RANGE_LAB" >Unit</col>
+	<col tipo="testo" nome="LBORNRLO" var="V_RANGE_LAB.LBORNRLO" table="V_RANGE_LAB" >Min</col>
+	<col tipo="testo" nome="LBORNRHI" var="V_RANGE_LAB.LBORNRHI" table="V_RANGE_LAB" >Max</col>
+</list>
+<!-- Aspetto la tabella CMM_CENTERS -->

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<page titolo='SERVIZIO'>
+<blocco titolo='eQUERIES LIST'>
+<link script='index.php' param='list=equery_list_opened_DM.xml'>
+<testo>Opened eQueries</testo>
+</link>
+<link script='index.php' param='list=equery_list_answered_DM.xml'>
+<testo>Answered eQueries</testo>
+</link>
+<link script='index.php' param='list=equery_list_closed_DM.xml'>
+<testo>Closed eQueries</testo>
+</link>
+</blocco>
+</page>

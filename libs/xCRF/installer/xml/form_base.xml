@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!--windows-1252"?>-->
+	<form fname="[fname]" titolo="[fname]" table="" link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|exams=visite_exams.xml" cols="" f_to_call="" load="" >
+		<field type="hidden" var="CODPAT" var_type="number" pk="yes">
+			<value val="next"></value>
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+		<field type="hidden" var="INVIOCO" tb="no"></field>
+		<field type="hidden" var="CENTER" var_type="text" var_size="40"></field>
+		
+		
+		<enable>
+        </enable>
+		<send ><![CDATA[Send]]></send>
+		<cancel ><![CDATA[Cancel]]></cancel>
+		<save ><![CDATA[Save]]></save>
+	</form>

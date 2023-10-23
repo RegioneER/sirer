@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it" >
+<head>
+
+<title>PIERREL @ PIERREL RESEARCH ITALY</title>
+<link media="screen" href="./css/sys_info.css" rel="stylesheet" type="text/css" />
+<!--meta refresh-->
+<script type="text/javascript" src="libs/js/fmweb.js"></script>
+
+<script type="text/javascript" src="libs/js/show_values.js"></script>
+<script type="text/javascript" src="libs/js/cerca.js"></script>
+<script type="text/javascript" src="libs/js/calendarDateInput.js"></script>
+<script type="text/javascript" src="funzioni_esterne.js"></script>
+<script type="text/javascript">
+
+function openWind(url){
+//alert("State abbandonando il sito di sanofi-aventis, le informazioni contenute nel nuovo sito prescelto possono non essere conformi al Dlgs 219/06 che regola la pubblicità sui medicinali per uso umano e le opinioni espresse non riflettono necessariamente le posizioni di sanofi-aventis, né sono da essa avallate");
+
+//var pippo = window.open(url, "blank","fullscreen=yes");
+var pippo =  window.open(url);
+
+}
+	
+	function IsNumeric(sText)
+		{
+		   var ValidChars = "0123456789.";
+		   var IsNumber=true;
+		   var Char;
+		
+		 
+		   for (i = 0; i < sText.length && IsNumber == true; i++) 
+		      { 
+		      Char = sText.charAt(i); 
+		      if (ValidChars.indexOf(Char) == -1) 
+		         {
+		         IsNumber = false;
+		         }
+		      }
+		   return IsNumber;
+		   
+		   }
+	
+function createRequestObject() {
+			var ro;
+			var browser = navigator.appName;
+			if(browser == "Microsoft Internet Explorer"){
+				ro = new ActiveXObject("Microsoft.XMLHTTP");
+			}else{
+				ro = new XMLHttpRequest();
+			}
+			return ro;
+		}
+		var ritorno=true;
+		var http = createRequestObject();
+		
+		function show_hide(id_tag){
+			if (document.getElementById(id_tag).style.display!='') document.getElementById(id_tag).style.display='';
+			else document.getElementById(id_tag).style.display='none';
+		}
+		
+		function ajax_call(html_id, param) {
+			if (ritorno){
+			ritorno=false;
+			
+			call='ajax.php?HTML_ID='+html_id+'&'+param;
+			document.getElementById(html_id).innerHTML='<img src="/images/loading.gif">';
+			http.open('get', call);
+			http.onreadystatechange = handleResponse;
+			http.send(null);
+			 } else {
+	      setTimeout('ajax_call("'+html_id+'", "'+param+'")', 10);
+	   }
+		}
+		
+		
+		function ajax_send_form(form_id) {
+				
+				ritorno=false;
+				el=document.forms[form_id].elements;
+				var str='';
+				for (i=0;i<el.length;i++){
+					if (el[i].name!='salva' && el[i].name!='invia'){
+						
+						if (el[i].length>0 && el[i].type!='select-one') {
+							//alert (i+' - '+el[i].name+' - '+el[i].type);
+							for (c=0;i<el[i].length;c++){
+								//alert (c+' - '+el[i].name+' - '+el[i].type);
+								if (el[i][c].checked) str+=el[i].name+'='+el[i][c].value+'&';
+							}
+						}
+						else {
+							//alert (i+' - '+el[i].name+' - '+el[i].type);
+							if (el[i].type=='checkbox' || el[i].type=='radio') {
+								//alert (i+' - '+el[i].name+' - '+el[i].type);
+								if (el[i].checked) {
+									//alert (el[i].name+' - '+el[i].value+' - '+el[i].checked);
+									str+=el[i].name+'='+el[i].value+'&'; 
+								}
+								else {
+									if (el[i].type=='checkbox')	str+=el[i].name+'=0&'; 
+								}
+								
+							}
+							else str+=el[i].name+'='+el[i].value+'&';
+						}
+					}
+					//alert (i+' - '+el[i].name+' - '+el[i].type);
+				}
+				//return false;
+				
+				url='index.php';
+				//return false;
+				//document.getElementById(html_id).innerHTML='<img src="/images/loading.gif">';
+
+				str+='&ajax_call=yes';		
+				call=url+'?'+str;
+				//return false;
+				http.onreadystatechange = alertContents;
+			    http.open('POST', url, true);
+			    
+			    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			    http.setRequestHeader("Content-length", str.length);
+			    http.setRequestHeader("Connection", "close");
+			    http.send(str);
+   }
+
+   function alertContents() {
+      if (http.readyState == 4) {
+         if (http.status == 200) {
+            //alert(http.responseText);
+            //return false;
+            result = http.responseText;
+            if (result.match("link_to:")){
+            	resp=result.split(":");
+            	//if (resp[1]!='') window.location.href=resp[1];
+            	document.forms[0].submit();
+            }
+            if (result.match("Error:")){
+            	resp=result.split(":");
+            	resp2=resp[1].split("#error#");
+            	//alert(resp2[0]);
+            	if (resp2[1])
+            	alert('Errore:'+resp2[1]);
+            	if (document.forms[0].elements[resp2[0]]) {
+            		document.forms[0].elements[resp2[0]].focus();
+            		document.forms[0].elements[resp2[0]].select();
+            	}
+            	//else 
+            	//document.forms[0].elements[resp2[0]][0].select();
+            	//document.forms[0].elements[resp2[0]][0].select();
+            }
+            //document.getElementById('myspan').innerHTML = result;            
+            //alert(result);
+         } else {
+            alert('There was a problem with the request.');
+         }
+      }
+   }
+	
+		
+		function handleResponse() {
+			if(http.readyState == 4){
+				var response = http.responseText;
+				if (response.match("#DIV#")){
+					resp=response.split("#DIV#");
+					resp[0]=resp[0].replace('\n','');
+					document.getElementById(resp[0]).innerHTML = resp[1];
+				}
+				ritorno=true;
+				}
+		}
+		
+
+function getFit(){
+
+var myUrl=location.href;
+
+if(document.getElementById('homeBlock')){
+
+if (document.all){
+document.getElementById('home').setAttribute('className','selected');
+}
+else if((document.getElementById)||(document.layers)){ 
+document.getElementById('home').setAttribute('class','selected');
+}
+}
+
+}
+
+		
+</script>
+<script type="text/javascript">
+  
+  
+
+ var needToConfirm = true;
+ //var myHistory = location.href;
+
+function setDirtyFlag(){
+needToConfirm = true; //Call this function if some changes is made to the web page and requires an alert
+// Of-course you could call this is Keypress event of a text box or so...
+
+}
+
+function releaseDirtyFlag(){
+needToConfirm = false; //Call this function if dosent requires an alert.
+//this could be called when save button is clicked 
+
+}
+
+
+//window.onbeforeunload = confirmExit();
+function confirmExit(evt){
+
+if (!evt) var evt = window.event;
+alert(evt.clientY + "-" + evt.clientX);
+}
+
+
+function eCrfClose(){
+alert("closing");
+window.opener='x';
+window.close();
+//self.close();
+        //ww = window.open(window.location, "_self");
+        //self.close();
+		openedWindow = window.open(location.href);
+		//openedWindow.close();
+//window.close();
+}
+  
+</script>
+<!--script-->
+</head>
+<body onload="getFit();//<!--onload-->" >
+
+<div id='debug'></div>
+<!--div style="width:100%;text-align:center;">
+	<a title="banner" href="/index.php"><img src="/images/nuovo_banner_giotto.jpg" height="114" border="0" alt="Banner Giotto" width="95%"></a>
+</div-->
+
+<!--tr>
+	<td height="28" valign="bottom" align="right" >
+<div id="animatedtabs" class="animatedtabs" style="height:28px;">
+<ul>
+<li id="home"><a href="/../index.php" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li>
+</ul>
+<div style="width:200px;margin-right:5px;color:#439ce3;font-family:verdana;font-size:12px;height:28px;"></div>
+</div>
+	</td>
+</tr-->
+
+
+<!--
+<tr>
+	<td height="37">
+
+<table border=0 width="905" height="37" cellspacing="0" cellpadding="0" align=center style="border-top:0px #439ce3 solid;margin-top:0px;margin-bottom:0px;">
+	<tr >
+		<td width="905" height="16" bgcolor="#90c5ef" align="center" style="border-top:1px #439ce3 solid;">
+		<table height="15" width="905">
+		<tr>
+		<td width="555">
+		
+		<div id="equeryMenu" style="margin-left:8px;display:none;"><div style="float:left;padding:1px;"><a class="subMenu" href="index.php?eQuery&eform">New eQuery</a></div><div style="float:left;padding:1px;color:#1D2E5C;">|</div><div style="float:left;padding:1px;color:white;"><b>Outstanding eQuery</b></div><div style="float:left;padding:1px;color:#1D2E5C;">|</div><div style="float:left;padding:1px;"><a class="subMenu" href="index.php?eQuery&closed">Closed eQuery</a></div></div>
+		<div id="equeryMenuOpen" style="margin-left:8px;display:none;"><div style="float:left;padding:1px;"><a class="subMenu" href="index.php?eQuery&eform">New eQuery</a></div><div style="float:left;padding:1px;">|</div><div style="float:left;padding:1px;"><a class="subMenu" href="index.php?=&eQuery">Outstanding eQuery</a></div><div style="float:left;padding:1px;color:#1D2E5C;">|</div><div style="float:left;padding:1px;color:white;"><b>Closed eQuery</b></div></div>
+		<div id="equeryNew" style="margin-left:8px;display:none;"><div style="float:left;padding:1px;color:white;"><b>New eQuery</b></div><div style="float:left;padding:1px;">|</div><div style="float:left;padding:1px;"><a class="subMenu" href="index.php?=&eQuery">Outstanding eQuery</a></div><div style="float:left;padding:1px;color:#1D2E5C;">|</div><div style="float:left;padding:1px;"><a class="subMenu" href="index.php?eQuery&closed">Closed eQuery</a></div></div>
+		</td>
+		<td width="300" align="right" style="color:white;font-family:verdana;">
+		</td>
+		<!--td align="center" width="10" style="color:white;">|
+		</td>
+		<td width="50" align="center" style="color:#002364;"><div style="cursor:pointer;" onclick=eCrfClose()><b>Logout</b></div></td>
+		</tr>		
+		</table>
+		</td>
+	</tr>
+	<tr>
+		<td height="21" style="background-image: url(/img/ombra.gif);background-repeat:repeat-x;">
+		</td>
+	</tr>
+</table>	
+
+	</td>
+</tr>-->
+
+
+
+
+
+<tr>
+	<!--td align="center" id="contentBox" width="100%" bgcolor="#f1f1f1"-->
+	<td align="center" id="contentBox" width="95%" valign="top">
+	<div id="mainContent" style="border:0px red solid;position:relative;float:left;margin-top:0px;width:100%;">
+	<!--div id="mainContent" style="border:0px red solid;overflow-y:auto;position:relative;float:left;margin-top;0px;width:950px;"-->
+	<table border="1" width="95%" align="center" >
+	<tr>
+	<td align="center" colspan="2">
+	<br>
+	<h1><font size="3">System Information</font></h1>
+	<div></div>
+	<div><strong>HyperSuite is hosted in a physically shared (logically dedicated) environment described as follow:<br><br><br></strong></div>
+	</td>
+	</tr>
+
+	<tr>
+	<td align="center" valign="top" >
+	<br>
+	<div><b><u>Application Server  and Database Server</u></b></div>
+	<br><br><br><br><br><br><br><br><br><br><br>
+	<div style="width:50%;text-align:left;">
+		<img src="./imgserv/server.jpg" height="214" border="0" alt="img" width="100%">
+	</div>
+	</td>
+	<td >
+	<br>
+	<div><b><u>Application server:</u></b></div>
+	<br><br><br>
+	<div style="margin-left:10px;"><i>High Availability Farm with Network Load Balancer:</i><br>
+	<li>redundant Network Load Balancer</li><br>
+	<li>8 Application Node (2 Development, 2 Pre-Production, 4 Production)</li><br>
+	<br>
+	<i>Each node is based on:</i><br>
+	<li>8 core Intel CPU Xeon E5420 @ 2.50GHz</li><br>
+	<li>16 Gbyte RAM</li><br>
+	<li>2x146GB mirrored disks</li><br>
+	<br>
+	<i>Operating System: </i><br>
+	SUSE Linux Enterprise Server 10<br>
+	<br>
+	
+	<!--div>Since October 2011 the Pre-Production has been virtualized w/ WMWARE and based on:</div>
+	<li>2 core Intel CPU Xeon E5620 @ 2.40Ghz</li><br>
+	<li>8 Gbyte RAM</li><br>
+	<li>Storage server: Cineca Storage Area Network with EMC Clarion CX4</li><br-->
+	
+	<br><b><u>Database server:</u></b><br>
+	<br>
+	<i>2 High Availability 2-Node Cluster based on IBM p6-595 partitions (Logical Partition):</i><br>
+	<li>1 Cluster for development purposes</li><br>
+	<li>1 Cluster for service delivery (production) purposes</li><br>
+	<br>
+	<i>Each Node is based on:</i><br>
+	<li>2 (scalable up to 8) Virtual Processor IBM POWER6 clock 5.0 Ghz</li><br>
+	<li>64 GB RAM</li><br>
+	<li>Fully redundant ethernet connections 1Gbps</li><br>
+	<li>Fully redundant FC connections 4Gbps</li><br>
+	<li>2x146GB 15Krpm HDisk</li><br>
+	<li>External Storage server: Cineca Storage Area Network with SAN Volume Controller (SVC) and IBM DS8700 Enterprise Storage Server</li><br>
+
+
+	<br>
+	<i>External Storage Server: </i>NAS EMC NS480<br>
+	<!--i>External Disk Storage via Storage Area Network: </i>0.5TB<br-->
+	<br>
+	<i>PowerVM: </i>LPAR + ViOS + DLPAR (hypervisor and partitioning system)<br>
+	<br>
+	<i>Operating System: </i>AIX V 6.1 + HACMP 5<br>
+	<br>
+	<i>Database:</i>  Oracle Enterprise Server version 11.1.0.7<br>
+	</div>
+	<br>
+	</td>
+	</tr>
+
+	<tr >
+	<td align="center" >
+	<br>
+	<div><b><u>Web Server and Encryption Software</u></b></div>
+	</td>
+	<td>
+	<br>
+	<div style="margin-left:10px;"><li>Apache 2.2.3 + mod_ssl Web Server + mod_shib</li><br>
+	<li>Shibboleth authentication service</li><br>
+	<li>Supports Secure Socket Layer (SSL v3) and Transport Layer Security (TLS v.1.0) to encrypt all transactions</li><br>
+	<li>High grade of cryptography - RSA 2048/1024 bit</li><br>
+	<li>X.509 Certificate (SSL)</li><br>
+	</div>
+	<br>
+	</td>
+	</tr>
+
+	<tr>
+	<td align="center">
+	<div><b><u>Programming Languages</b></u></div>
+	</td>
+	<td>
+	<br>
+	<div style="margin-left:10px;"><i>JavaScript, Java, Perl, PHP</i><br>
+	</div>
+	<br>
+	</td>
+	</tr>
+
+	<tr>
+	<td align="center">
+	<div><b><u>Configuration Standard</b></u></div>
+	</td>
+	<td>
+	<br>
+	<div style="margin-left:10px;"><i>XML, XHTML, CSS, DTD</i><br>
+	</div>
+	<br>
+	</td>
+	</tr>
+
+</table>
+
+<blockquote dir="ltr" style="margin-right: 0px;">
+
+<form name='link_to_post' method="POST"></form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<!--windows-1252"?>-->
+<form fname="INVESTIGATOR" titolo="INVESTIGATOR" table="ESIG" 
+      link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|exams=visite_exams.xml" cols="2" 
+      f_to_call="ElectronicSignature" >
+  <field type="hidden" var="CODPAT" var_type="number" pk="yes">
+    <value val="next">
+    </value>
+  </field>
+  <field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'">
+  </field>
+  <field type="hidden" var="ESAM" var_type="number" pk="yes">
+  </field>
+  <field type="hidden" var="PROGR" var_type="number" pk="yes">
+  </field>
+  <field type="hidden" var="VISITNUM" var_type="number" pk="yes">
+  </field>
+  <field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes">
+  </field>
+  <field type="hidden" var="INVIOCO" tb="no">
+  </field>
+  <field type="hidden" var="CENTER" var_type="text" var_size="40">
+  </field>
+  <field type="hidden" var="SUBJID" var_type="text" var_size="14" bytb="REGISTRAZIONE" bytbcode="SUBJID" bytbdecode="SUBJID" bytbwhere="CODPAT='[CODPAT]'">
+  </field>
+  <field type="hidden" var="SITEID" var_type="text" var_size="14" bytb="REGISTRAZIONE" bytbcode="SITEID" bytbdecode="SITEID" bytbwhere="CODPAT='[CODPAT]'">
+  </field>
+  <field var="MYTITLE" tb="no" colspan="2" cols="2" txt_align="right" field_align="left" >
+    <txt_value >
+      <![CDATA[ <div class="titolo" align="center" >INVESTIGATOR&#39;S SIGNATURE</div>]]>
+    </txt_value>
+  </field>
+  <field  cols="1" colspan="2">
+    <txt_value >
+      <![CDATA[ <td colspan="2" width="50%"  class="input" > </td>]]>
+    </txt_value>
+  </field>
+  <field  cols="1" colspan="2">
+    <txt_value >
+      <![CDATA[ <td colspan="2" width="50%"  class="input" > </td>]]>
+    </txt_value>
+  </field>
+  <field cols="2" colspan="2" var="MYNOTE2" tb="no">
+    <txt_value >
+      <![CDATA[ <td colspan="4" ><b>By submitting this form I declare that I have reviewed for accuracy all data entered and that information reflect the medical records.</b></td>]]>
+    </txt_value>
+  </field>
+  <field var="USERNAME" type="textbox" var_type="text" var_size="10" cols="2" size="10" txt_align="right" field_align="left" >
+    <txt_value >
+      Please enter the account (must be qualified for the signature)
+    </txt_value>
+  </field>
+  <field var="PASSWORD" tb="no" type="password" cols="2" txt_align="right" field_align="left"  >
+    <txt_value >
+      Please enter the password
+    </txt_value>
+  </field>
+  <send >
+    Freeze
+  </send>
+  <cancel >
+    Cancel
+  </cancel>
+</form>

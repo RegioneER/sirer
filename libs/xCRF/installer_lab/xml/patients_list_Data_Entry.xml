@@ -1,0 +1,23 @@
+<list titolo="Lista Pazienti">
+	
+	<col tipo="testo" nome="CODPAT" var="[patients_table].CODPAT" table="[patients_table]" ord_arrow="yes">Id </col>
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER" table="[patients_table]"></col>
+	<!-- col tipo="testo" nome="init" script="index.php" param="exams=visite_exams.xml,CODPAT,CENTER" var="[patients_table].D_NOME" ord_arrow="yes">NAME</col>
+	<col tipo="testo" nome="URL" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER" var="SISS_DETT_SERV.URL_AMR||SISS_DETT_SERV.URL_PROD||'#br#Svil: '||SISS_DETT_SERV.URL_SVIL" ord_arrow="yes" order_by="yes" >URL produzione (AMR/FARM)</col>
+	<col tipo="testo" nome="DBS" var="getdbs([patients_table].CODPAT)">DataBases</col>
+	<col tipo="testo" nome="SERVICE_NAME" var="GET_SERVICE_NAME([patients_table].CODPAT)" ord_arrow="yes">Service Name</col>	
+	<col tipo="testo" nome="D_REFERENTE" var="SISS_MIGR.D_REFERENTE" ord_arrow="yes">Referente Sistema</col>
+	<col tipo="testo" nome="D_REFERENTE_MIGR" var="SISS_MIGR.D_REFERENTE_MIGR" ord_arrow="yes">Referente Migrazione</col>
+	
+	
+	<col tipo="testo" nome="D_STEP_MIGR" var="SISS_MIGR.D_STEP_MIGR" ord_arrow="yes">Step Migrazione</col>
+	<col tipo="testo" nome="DATA_INIZIO" var="SISS_MIGR.DATA_INIZIO" ord_arrow="yes">Inizio</col>
+	<col tipo="testo" nome="DURATA" var="SISS_MIGR.DURATA" ord_arrow="yes">Durata</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+	<col tipo="testo" nome="REF" script="index.php" param="CENTER,CODPAT,VISITNUM=1,ESAM=10,PROGR=1,form=dati_migrazione.xml,link_to=index.php%3Flist%3Dpatients_list.xml%23[ID]" 
+	var="'Scheda Migrazione'" ord_arrow="yes">Scheda Migrazione</col-->
+</list>
+
+
+
+ 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="windows-1252"?> <!--windows-1252"?>-->
+	<form fname="SDV ELECTRONIC SIGNATURE" titolo="SDV ELECTRONIC SIGNATURE" table="SDVESIG" link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|exams=visite_exams.xml" cols="2" 
+	 load="document.getElementById('USERNAME').value='';" 
+	  >
+		<!--IQ SDV-->
+		<field type="hidden" var="module" var_type="text" tb="no">
+			<value val="SDV"></value>
+		</field>
+		<field type="hidden" var="sdv_action" var_type="text" tb="no">
+			<value val="eSignatureSave"></value>
+		</field>
+		<field type="hidden" var="CODPAT" var_type="number" pk="yes">
+			
+		</field>
+		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+<!--		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>-->
+		
+		<field type="hidden" var="INVIOCO" tb="no"></field>
+		<field type="hidden" var="CENTER" var_type="text" var_size="40"></field>
+		<field type="hidden" var="SITEID" bytb="REGISTRAZIONE" bytbcode="SITEID" bytbdecode="SITEID" bytbwhere="codpat='[CODPAT]'"  var_type="text" var_size="14" ></field>
+		<field type="hidden" var="SUBJID" bytb="REGISTRAZIONE" bytbcode="SUBJID" bytbdecode="SUBJID" bytbwhere="codpat='[CODPAT]'"  var_type="text" var_size="14" ></field>
+		<field type="hidden" var="VISITNUM" var_type="number" tb="no">
+			<value val="[VISITNUM]"></value>
+		</field>
+		
+		<field  span="yes" cols="2" tb="no" var="_TITLE01">
+			<txt_value ><![CDATA[ <div style="text-align:center; width:100%;">SDV ELECTRONIC SIGNATURE</div>]]></txt_value>
+		</field>
+		<field  cols="2" span="yes" tb="no" var="_TITLE02">
+			<txt_value ><![CDATA[ <div  style="background-color:#FFFFFF; font-size:8pt;"  > <i>By submitting this form, I declare that I have reviewed for accuracy the CRF of this patient and that information reflect the medical records</i></div>]]></txt_value>
+		</field>
+		<field  cols="1" span="yes" tb="no" var="_TITLE03a">
+			<txt_value ><![CDATA[ <div  style="background-color:#FFFFFF; font-size:8pt;"  > </div>]]></txt_value>
+		</field>
+		<field  cols="1" span="yes" tb="no" var="_TITLE03b">
+			<txt_value ><![CDATA[ <div  style="background-color:#FFFFFF; font-size:8pt;"  > </div>]]></txt_value>
+		</field>
+		
+		<field var="USERNAME"  type="textbox" var_type="text" var_size="200" size="50" send="obbligatorio" cols="2"  txt_align="right" field_align="left" >
+					<txt_value >Please enter the account (must be qualified for the signature)</txt_value>
+		</field>
+		
+		<field var="PASSWORD"  type="password" tb="no" var_type="text" var_size="200" size="50" send="obbligatorio" cols="2"  txt_align="right" field_align="left" >
+					<txt_value >Please enter the password</txt_value>
+		</field>
+		<field type="sdvsign" disabled="yes" disabled_all="yes" var="SIGNDATE" cols="2"  var_type="text" var_size="40" size="40" >
+		<txt_value >Date of last eSignature:</txt_value>
+		</field>	
+        <field  cols="2" span="yes" tb="no" var="_FOOTER01">
+			<txt_value ><![CDATA[ <div  style="background-color:#FFFFFF; font-size:8pt;" > The signature will be removed, and should be appended again, after a modification of the data by means of eQuery or Obvious Correction.. Click on the link for the list of Obvious Corrections done.</div>]]>	</txt_value>
+		</field>	
+
+		<send>eSignature</send>
+
+	</form>

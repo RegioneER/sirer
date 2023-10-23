@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<page titolo='SERVIZIO'>
+<blocco titolo='PATIENT REGISTRATION PROCESS'>
+<link script='changepwd.php' param=''>
+<testo>Change Password</testo>
+</link>
+<link script='ShibLogOut' param=''>
+<testo>Logout</testo>
+</link>
+<link script='' param=''>
+<testo><![CDATA[<a href="mailto:SISS_ICT@cineca.it">Contact the support</a>]]></testo>
+</link>
+	<link script='index.php' param='list=equery_list_center.xml'>
+		<testo>eQuery</testo>
+	</link>
+<link script='' param=''>
+<testo><![CDATA[<a href="../sys/browse_table/multiple_dnl.htm">Export</a>]]></testo>
+</link>
+<link script='' param=''>
+<testo><![CDATA[<a href="../cgi-bin/browse_table">Browse tables</a>]]></testo>
+</link>
+<link script='/XMLValidator/index.php' param=''>
+<testo>XML Validator</testo>
+</link>
+<link script='' param=''>
+ <testo><![CDATA[<a href="/cgi-bin/upload_xml?UPLOAD_XML=1&ACTION=START">Upload XML</a>]]></testo>
+</link> 
+<link script='' param=''>
+ <testo><![CDATA[<a href="/uxmr/index.php?SYS_TABLES">Sys Tables</a>]]></testo>
+</link> 
+<link script='' param=''>
+ <testo><![CDATA[<a href="/acm/DB_Lock.php">DB Lock</a>]]></testo>
+</link> 
+</blocco></page>

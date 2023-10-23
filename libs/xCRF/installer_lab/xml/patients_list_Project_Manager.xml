@@ -1,0 +1,10 @@
+<list titolo="Lista Centri" >
+	<col tipo="testo" nome="CENTER" var="[service]_CENTRI.CENTER" table="[service]_CENTRI" where="[service]_CENTRI.CENTER not in ('098','099')" order_by="asc" >Center ID</col>
+	<col tipo="testo" nome="NAME" var="[service]_CMM_CENTER.NAME"  table="[service]_CMM_CENTER" 
+	where="[service]_CENTRI.CENTER=[service]_CMM_CENTER.CODE" ord_arrow="yes" >Center Name</col>
+	<col tipo="hidden" nome="USERID" var="[service]_UTENTI_CENTRI.USERID" table="[service]_UTENTI_CENTRI" where="[service]_UTENTI_CENTRI.CENTER=[service]_CENTRI.CENTER and [service]_UTENTI_CENTRI.USERID='[remote_userid]'" ></col>
+	<col tipo="hidden" nome="CODPAT" var="[service]_CENTRI.CENTER" table="[service]_CENTRI" ></col>
+	<col tipo="freccia" nome="CENTER_LINK" var="[service]_CENTRI.CENTER" script="index.php" param="exams=visite_exams.xml,CODPAT,CENTER" > Link to form</col>
+	<!--col tipo="freccia" nome="CENTER_LINK" var="[service]_CENTRI.CENTER" script="index.php" param="list=patients_list_ranges.xml,CENTER" > Link to reports</col-->
+</list>
+<!-- Aspetto la tabella CMM_CENTERS -->

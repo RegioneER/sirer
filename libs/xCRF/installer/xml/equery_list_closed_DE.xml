@@ -1,0 +1,17 @@
+<list titolo="Closed eQueries">
+	<col tipo="hidden" nome="CENTER" var="CENTER"></col>
+	<col tipo="hidden" nome="VISITNUM" var="VISITNUM"></col>
+	<col tipo="hidden" nome="VISITNUM_PROGR" var="VISITNUM_PROGR"></col>
+	<col tipo="hidden" nome="PROGR" var="PROGR"></col>
+	
+	<col tipo="hidden" nome="CODPAT" var="CODPAT"></col>
+	<col tipo="testo" nome="EQUERY_INT_1" var="EQUERY_INT" ord_arrow="yes"  >eQuery ID</col>
+	<col tipo="testo" nome="SITEID" var="SITEID" >Center</col>
+	<col tipo="testo" nome="SUBJID" var="SUBJID" ord_arrow="yes">Patient ID</col>
+	<col tipo="esame" nome="ESAM" var="ESAM">Form name</col>
+	<col tipo="lente" nome="EQUERY_INT" var="EQUERY_INT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER,ESAM,VISITNUM,PROGR,VISITNUM_PROGR" table="[PREFIX]_INTEGRAZIONI_SCHEDE" >Link eQ</col>
+	<col tipo="testo" nome="INS_DT" var="INS_DT"  >Date</col>
+	<col tipo="hidden" nome="STATO" var="STATO"  where="STATO=1"></col>
+	<col tipo="testo" nome="NOTE" var="NOTE"   >DM/CRA's question</col>
+	<col tipo="testo" nome="NOTE_DE" var="NOTE_DE"  >Invetigator's question/answer</col>
+</list>

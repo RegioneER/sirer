@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<form cols="2" fname="VITAL SIGNS" js_function="if(!validate(0)) return false;" js_onsave="if(!validate(1)) return false;" link_to="|ME|" link_to_send="|NEXT|" table="VSN" titolo="VITAL SIGNS">
+
+    <field cols="2" colspan="2" field_align="left" tb="no" txt_align="right" var=".titolo">
+        <txt_value>VITAL SIGNS</txt_value>
+    </field>
+    <field cols="2" colspan="2" field_align="left" tb="no" txt_align="right" var=".js">
+        <txt_value>&lt;script type="text/javascript" src="xml/core/config.js"&gt; &lt;/script&gt;
+&lt;script type="text/javascript" src="xml/core/datejs.js"&gt; &lt;/script&gt;
+&lt;script type="text/javascript" src="xml/core/base.js"&gt; &lt;/script&gt;
+&lt;script type="text/javascript" src="xml/core/baseV2.js"&gt; &lt;/script&gt;
+&lt;script type="text/javascript" src="xml/popup/dialog_jquery/dialog_f.js"&gt; &lt;/script&gt;
+&lt;script type="text/javascript" src="xml/popup/dialog_jquery/form_liste.js"&gt; &lt;/script&gt;
+&lt;script type="text/javascript" src="xml/popup/dialog_jquery/jquery-ui.js"&gt; &lt;/script&gt;
+&lt;script type="text/javascript" src="xml/vsn_4.js"&gt; &lt;/script&gt;
+ &lt;link rel="stylesheet" href="xml/popup/dialog_jquery/jquery-ui.css" /&gt;
+ &lt;link rel="stylesheet" href="xml/popup/dialog_jquery/style1.css" /&gt;
+        </txt_value>
+    </field>
+    <field pk="yes" type="hidden" var="CODPAT" var_type="number">
+        <value val="next" />
+    </field>
+    <field bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid=&apos;[remote_userid]&apos;" type="hidden" var="USERID_INS" var_size="40" var_type="text" />
+    <field pk="yes" type="hidden" var="ESAM" var_type="number" />
+    <field pk="yes" type="hidden" var="PROGR" var_type="number" />
+    <field pk="yes" type="hidden" var="VISITNUM" var_type="number" />
+    <field pk="yes" type="hidden" var="VISITNUM_PROGR" var_type="number" />
+    <field tb="no" type="hidden" var="INVIOCO" />
+    <field type="hidden" var="CENTER" var_size="40" var_type="text" />
+    <field bytb="REGISTRAZIONE" bytbcode="SUBJID" bytbdecode="SUBJID" bytbwhere="CODPAT=&apos;[CODPAT]&apos;" type="hidden" var="SUBJID" var_size="14" var_type="text" />
+    <field bytb="REGISTRAZIONE" bytbcode="SITEID" bytbdecode="SITEID" bytbwhere="CODPAT=&apos;[CODPAT]&apos;" type="hidden" var="SITEID" var_size="14" var_type="text" />
+    <field cols="2" def=" cm" field_align="left" save="facoltativo" send="facoltativo" size="3" txt_align="right" type="textbox" upper="yes" var="HGT1N" var_size="3" var_type="number">
+        <txt_value>Body height:</txt_value>
+    </field>
+    <field cols="2" def=" mm Hg" field_align="left" save="facoltativo" send="facoltativo" size="3" txt_align="right" type="textbox" upper="yes" var="SBP1N" var_size="3" var_type="number">
+        <txt_value>Systolic blood pressure:</txt_value>
+    </field>
+    <field cols="2" def=" mm Hg" field_align="left" save="facoltativo" send="facoltativo" size="3" txt_align="right" type="textbox" upper="yes" var="DBP1N" var_size="3" var_type="number">
+        <txt_value>Diastolic blood pressure:</txt_value>
+    </field>
+    <field cols="2" def=" beats/min" field_align="left" save="facoltativo" send="facoltativo" size="3" txt_align="right" type="textbox" upper="yes" var="PLS1N" var_size="3" var_type="number">
+        <txt_value>Pulse rate:</txt_value>
+    </field>
+    <field cols="2" field_align="left" tb="no" txt_align="left" type="text" var="OTHVAR1" span="yes">
+        <txt_value>Please measure vital signs after the patient has been sitting for at least 5 minutes.
+        </txt_value>
+    </field>
+    <field cols="2" field_align="left" tb="no" txt_align="left" type="text" var="OTHVAR2" span="yes">
+        <txt_value>Please record the average of two measurements.
+        </txt_value>
+    </field>
+    <field cols="2" field_align="left" tb="no" txt_align="left" type="text" var="OTHVAR3" span="yes">
+        <txt_value>In case of significant abnormalities prior to study drug administration, please give details in the RELEVANT MEDICAL HISTORY/CURRENT MEDICAL CONDITIONS form (see this visit).
+        </txt_value>
+    </field>
+    <field cols="2" field_align="left" txt_align="right" type="radio" var="OTHVAR4" span="yes">
+        <txt_value>Please document all &lt;u&gt;Serious&lt;/u&gt; Adverse Events which are starting after written informed consent on the Adverse Event Form and report within 24 hours on a SAE Form
+        </txt_value>
+        <value val="1">AE is documented</value>
+    </field>
+    <send>Freeze</send>
+    <cancel>Cancel</cancel>
+    <save>Save</save>
+</form>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<page titolo="SERVIZIO">
+	<blocco titolo="RANGE">
+		<link script="index.php" param="list=patients_list_center.xml">
+		<testo>Center List</testo>
+		</link>
+		<link script='index.php' param='list=equery_list_center.xml'>
+		<testo>eQuery</testo>
+		</link>
+	</blocco>
+	
+</page>

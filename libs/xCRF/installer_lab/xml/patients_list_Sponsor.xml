@@ -1,0 +1,13 @@
+<list titolo="Lista Pazienti">
+	<col tipo="testo" nome="CODPAT" var="[patients_table].CODPAT" table="[patients_table]" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER" ord_arrow="yes">Patient Id</col>
+
+	<col tipo="lente" nome="SUBJID3" var="[patients_table].CODPAT" script="index.php" param="CRF=1,CODPAT"  >Report</col>
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER" table="[patients_table]" order_by="asc"></col>
+	<col tipo="testo" nome="SITEID" var="[patients_table].SITEID" table="[patients_table]" order_by="asc">Center</col>
+	<col tipo="testo" nome="SUBJID" var="[patients_table].SUBJID" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER" table="[patients_table]" order_by="asc" ord_arrow="yes">Patient No.</col>
+	<col tipo="visite_dm" param="CODPAT,CENTER" EXAMS="visite_exams.xml"></col>
+</list>
+
+
+
+ 

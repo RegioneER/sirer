@@ -1,0 +1,445 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Strict//IT">
+<html lang="IT" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+
+<title>AAAIII01</title>
+<link  href="hypernet.css" rel="stylesheet" type="text/css" />
+<!--meta refresh-->
+
+
+<style>
+
+div#navigation{background-color:#FFF;border-bottom: 1px solid #787878;padding-left: 20px}
+div#navigation ul{list-style-type: none;margin: 0;padding: 0;white-space: nowrap}
+div#navigation li{display: inline;margin: 0;padding:2}
+div#navigation li a{text-decoration: none;border: 1px solid #787878;padding: 0px 0.3em; background: #ccc;color: #036}
+div#navigation li a:hover{background-color: #FCE9DA}
+div#navigation li#activelink a{border-bottom: 1px solid #fff;background-color: #fff;}
+.main>table,.main>form>table{
+width:950px !important;
+} 
+</style>
+
+
+<script type="text/javascript" src="libs/js/fmweb.js"></script>
+<script type="text/javascript" src="libs/js/show_values.js"></script>
+<script type="text/javascript" src="libs/js/cerca.js"></script>
+<script type="text/javascript" src="libs/js/calendarDateInput.js"></script>
+<script type="text/javascript" src="xml/funzioni_esterne.js"></script>
+<!-- script type="text/javascript" src="calendar.js"></script-->
+<script type="text/javascript" src="libs/js_tooltip/calendar_en.js"></script>
+<!-- script type="text/javascript" src="libs/js_tooltip/calendar_it.js"></script-->
+<!-- 
+<script type="text/javascript" src="xml/date.js"></script>
+<script type="text/javascript" src="xml/js/validations.js"></script>
+<script type="text/javascript" src="xml/js/advchecks.js"></script>
+<script type="text/javascript" src="xml/js/crosschecks.js"></script>
+<script type="text/javascript" src="xml/js/xload.js"></script>
+<script type="text/javascript" src="xml/js/automaticFields.js"></script>
+<script type="text/javascript" src="xml/js/utility.js"></script-->
+<script type="text/javascript">
+var menuShown;
+	
+// Browser Window Size and Position
+// copyright Stephen Chapman, 3rd Jan 2005, 8th Dec 2005
+// you may copy these functions but please keep the copyright notice as well
+function pageWidth() {return window.innerWidth != null? window.innerWidth : document.documentElement && document.documentElement.clientWidth ?       document.documentElement.clientWidth : document.body != null ? document.body.clientWidth : null;} 
+function pageHeight() {return  window.innerHeight != null? window.innerHeight : document.documentElement && document.documentElement.clientHeight ?  document.documentElement.clientHeight : document.body != null? document.body.clientHeight : null;} 
+function posLeft() {return typeof window.pageXOffset != 'undefined' ? window.pageXOffset :document.documentElement && document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ? document.body.scrollLeft : 0;} 
+function posTop() {return typeof window.pageYOffset != 'undefined' ?  window.pageYOffset : document.documentElement && document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ? document.body.scrollTop : 0;} 
+function posRight() {return posLeft()+pageWidth();} 
+function posBottom() {return posTop()+pageHeight();}
+
+
+	function IsNumeric(sText)
+		{
+		   var ValidChars = "0123456789.";
+		   var IsNumber=true;
+		   var Char;
+		
+		 
+		   for (i = 0; i < sText.length && IsNumber == true; i++) 
+		      { 
+		      Char = sText.charAt(i); 
+		      if (ValidChars.indexOf(Char) == -1) 
+		         {
+		         IsNumber = false;
+		         }
+		      }
+		   return IsNumber;
+		   
+		   }
+	
+function createRequestObject() {
+			var ro;
+			var browser = navigator.appName;
+			if(browser == "Microsoft Internet Explorer"){
+				ro = new ActiveXObject("Microsoft.XMLHTTP");
+			}else{
+				ro = new XMLHttpRequest();
+			}
+			return ro;
+		}
+		var ritorno=true;
+		var http = createRequestObject();
+		
+		function show_hide(id_tag){
+			if (document.getElementById(id_tag).style.display!='') document.getElementById(id_tag).style.display='';
+			else document.getElementById(id_tag).style.display='none';
+		}
+		
+		function ajax_call(html_id, param) {
+			if (ritorno){
+			ritorno=false;
+			
+			call='ajax.php?HTML_ID='+html_id+'&'+param;
+			//alert(call);
+			//document.getElementById('debug').innerHTML+=document.write('<a href="'+call+'" target="_new">debug<\/a>');
+			
+			document.getElementById(html_id).innerHTML="<img src=\"/images/loading.gif\">";
+			http.open('get', call);
+			http.onreadystatechange = handleResponse;
+			http.send(null);
+			 } else {
+	      setTimeout('ajax_call("'+html_id+'", "'+param+'")', 10);
+	   }
+		}
+		
+		
+		function ajax_send_form(form_id) {
+				
+				ritorno=false;
+				http = createRequestObject();
+				//call='ajax.php?HTML_ID='+html_id+'&'+param;
+				//alert(call);
+				//alert (pageHeight()+' - '+posBottom());
+				if (document.getElementById('saving')){
+					var top=posBottom()-(pageHeight()/2)-40;
+					left=(pageWidth()/2)-100;
+					document.getElementById('saving').style.left=''+left+'px';
+					document.getElementById('saving').style.top=''+top+'px';
+					
+					document.getElementById('saving').style.display='';
+					
+				}
+				//document.getElementById('debug').innerHTML+=document.write('<a href="'+call+'" target="_new">debug<\/a>');
+				el=document.forms[form_id].elements;
+				var str='';
+				for (i=0;i<el.length;i++){
+					if (el[i].name!='salva' && el[i].name!='invia'){
+						
+						if (el[i].length>0 && el[i].type!='select-one') {
+							//alert (i+' - '+el[i].name+' - '+el[i].type);
+							for (c=0;i<el[i].length;c++){
+								//alert (c+' - '+el[i].name+' - '+el[i].type);
+								if (el[i][c].checked) str+=el[i].name+'='+el[i][c].value+'&';
+							}
+						}
+						else {
+							//alert (i+' - '+el[i].name+' - '+el[i].type);
+							if (el[i].type=='checkbox' || el[i].type=='radio') {
+								//alert (i+' - '+el[i].name+' - '+el[i].type);
+								if (el[i].checked) {
+									//alert (el[i].name+' - '+el[i].value+' - '+el[i].checked);
+									str+=el[i].name+'='+el[i].value+'&'; 
+								}
+								else {
+									if (el[i].type=='checkbox')	str+=el[i].name+'=0&'; 
+								}
+								
+							}
+							else str+=el[i].name+'='+el[i].value+'&';
+						}
+					}
+					//alert (i+' - '+el[i].name+' - '+el[i].type);
+				}
+				//return false;
+				
+				url='index.php';
+				//document.getElementById('debug').innerHTML+=document.write('<a href="'+call+'" target="_new">debug<\/a>');
+				//return false;
+				//document.getElementById(html_id).innerHTML=document.write('<img src="/images/loading.gif">');
+
+				str+='&ajax_call=yes';		
+				call=url+'?'+str;
+				document.getElementById('debug').innerHTML+='<a href="'+call+'" target="_new">debug<\/a>';
+				//return false;
+				http.onreadystatechange = alertContents;
+			    http.open('POST', url, true);
+			    
+			    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			    http.setRequestHeader("Content-length", str.length);
+			    http.setRequestHeader("Connection", "close");
+			    http.send(str);
+   }
+
+   function alertContents() {
+      if (http.readyState == 4) {
+         if (http.status == 200) {
+            //alert(http.responseText);
+            //return false;
+            result = http.responseText;
+            if (result.match("link_to:")){
+            	resp=result.split(":");
+            	//if (resp[1]!='') window.location.href=resp[1];
+            	document.forms[0].submit();
+            }
+            if (result.match("Error:")){
+            	resp=result.split(":");
+            	resp2=resp[1].split("#error#");
+            	document.getElementById('saving').style.display='none';
+            	if (resp2[1])
+            	alert('Error:'+resp2[1]);
+            	if (document.forms[0].elements[resp2[0]]) {
+            		document.forms[0].elements[resp2[0]].focus();
+            		document.forms[0].elements[resp2[0]].select();
+            	}
+            	//else 
+            	//document.forms[0].elements[resp2[0]][0].select();
+            }
+            //Skip Visit: aggiunta A.Colabufalo
+            if (result.match("Confirm:")){
+            	resp=result.split(":");
+            	resp2=resp[1].split("#confirm#");
+            	document.getElementById('saving').style.display='none';
+            	if (resp2[1])
+            	if(confirm('Attention:'+resp2[1])){
+            		document.forms[0].submit();
+                	}
+            	else{
+                	return false;
+                }
+                	
+            	if (document.forms[0].elements[resp2[0]]) {
+            		document.forms[0].elements[resp2[0]].focus();
+            		document.forms[0].elements[resp2[0]].select();
+            	}
+            	//else 
+            	//document.forms[0].elements[resp2[0]][0].select();
+            }
+            //document.getElementById('myspan').innerHTML = result;            
+            //alert(result);
+         } else {
+            alert('There was a problem with the request.');
+         }
+      }
+   }
+	
+		
+		function handleResponse() {
+			if(http.readyState == 4){
+				var response = http.responseText;
+				if (response.match("#DIV#")){
+					resp=response.split("#DIV#");
+					resp[0]=resp[0].replace('\n','');
+					document.getElementById(resp[0]).innerHTML = resp[1];
+				}
+				ritorno=true;
+				}
+		}
+		function releaseDirtyFlag(){
+			needToConfirm = false; //Call this function if dosent requires an alert.
+			//this could be called when save button is clicked 
+
+			}
+		function getFit(){
+
+			var myUrl=location.href;
+			//alert(location.href);
+
+			if ((myUrl.indexOf("&VISITNUM=0&ESAM=0")!=-1)&&(myUrl.indexOf("CENTER=")==-1)) {
+			//alert("New pat");
+				if (document.all){
+				document.getElementById('newPat').setAttribute('className','selected');
+				}
+				else if((document.getElementById)||(document.layers)){ 
+				document.getElementById('newPat').setAttribute('class','selected');
+				}
+			}
+
+			if (myUrl.indexOf("list=patients_list.xml")!=-1) {
+				if (document.all){
+				document.getElementById('regPat').setAttribute('className','selected');
+				}
+				else if((document.getElementById)||(document.layers)){ 
+				document.getElementById('regPat').setAttribute('class','selected');
+				}
+			}
+
+			if (myUrl.indexOf("SEARCH=1&FORM=1")!=-1) {
+				if (document.all){
+				document.getElementById('findPat').setAttribute('class','selected');
+				}
+				else if((document.getElementById)||(document.layers)){ 
+				document.getElementById('findPat').setAttribute('className','selected');
+				}
+			}
+
+			if (myUrl.indexOf("eQuery")!=-1) {
+				if (document.all){
+				document.getElementById('eQuery').setAttribute('class','selected');
+				}
+				else if((document.getElementById)||(document.layers)){ 
+				document.getElementById('eQuery').setAttribute('className','selected');
+				}
+			}
+
+
+			if(document.getElementById('homeBlock')){
+
+			if (document.all){
+			document.getElementById('home').setAttribute('className','selected');
+			}
+			else if((document.getElementById)||(document.layers)){ 
+			document.getElementById('home').setAttribute('class','selected');
+			}
+
+			//document.getElementById('home').setAttribute('class','selected');
+			}
+
+
+			if ((myUrl.indexOf("changepwd.php")!=-1)) {
+				if (document.all){
+				document.getElementById('chgPwd').setAttribute('class','selected');
+				}
+				else if((document.getElementById)||(document.layers)){ 
+				document.getElementById('chgPwd').setAttribute('className','selected');
+				}
+			}
+
+			if ((myUrl.indexOf("CRF_BLANK")!=-1)) {
+				if (document.all){
+				document.getElementById('1_Click_CRF').setAttribute('class','selected');
+				}
+				else if((document.getElementById)||(document.layers)){ 
+				document.getElementById('1_Click_CRF').setAttribute('className','selected');
+				}
+			}
+
+			if ((myUrl.indexOf("CRF_ANNOTE")!=-1)) {
+				if (document.all){
+				document.getElementById('CRF_Annotated').setAttribute('class','selected');
+				}
+				else if((document.getElementById)||(document.layers)){ 
+				document.getElementById('CRF_Annotated').setAttribute('className','selected');
+				}
+			}
+
+			//alert("test");
+
+			}
+					 
+	
+		</script>
+<!--script-->
+</head>
+<body onload="getUserid();getFit();//<!--onload-->">
+<script type="text/javascript" src="libs/js_tooltip/wz_tooltip.js"></script>
+<div id='debug'></div>
+<div id='saving' style="z-index:2;position:absolute;background-color:white;border:2px solid;display:none;">
+<font size="5"><img src="images/loading.gif">Saving...</font>
+</div>
+
+<div style="width:100%;text-align:center;">
+	<!--div style="width:95%;text-align:center;"-->
+	<a title="banner" href="/index.php"><img src="/imgserv/bannerstudy.jpg" height="100"  border="0" alt="Banner" width="1200"></a>
+	<!--/div-->
+</div>
+
+<table border=0 width=95%; align=center>
+	<tr>
+	<td width='80%'>
+	<div id="animatedtabs" class="animatedtabs" style="height:28px;">
+<ul>
+<!--<li id="home"><a href="index.php" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li>-->
+
+<script>
+
+function getUserid(){
+var menu_inv='<li id="Home"><a href="/uxmr/index.php?" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li><li id="Laboratory Range"><a href="index.php?" title="Laboratory Range" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Laboratory Range</span></a></li>';
+var menu_cra='<li id="Home"><a href="/uxmr/index.php?" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li><li id="Laboratory Range"><a href="index.php?" title="Laboratory Range" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Laboratory Range</span></a></li>';
+var menu_dm='<li id="Home"><a href="/uxmr/index.php?" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li><li id="Laboratory Range"><a href="index.php?" title="Laboratory Range" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Laboratory Range</span></a></li>';
+var menu_pm='<li id="Home"><a href="/uxmr/index.php?" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li><li id="Laboratory Range"><a href="index.php?" title="Laboratory Range" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Laboratory Range</span></a></li>';
+var menu_spec='';
+var menu_sp='<li id="Home"><a href="/uxmr/index.php?" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li><li id="Laboratory Range"><a href="index.php?" title="Laboratory Range" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Laboratory Range</span></a></li>';
+var menu_dsm='<li id="New patient registration"><a href="index.php?VISITNUM=0&ESAM=0" title="New patient registration" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">New patient registration</span></a></li><li id="eQuery"><a href="index.php?=&eQuery" title="eQuery" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">eQuery</span></a></li><li id="eSAE"><a href="index.php?SAE=1" title="eSAE" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">eSAE</span></a></li>';
+var menu_admin='<li id="Home"><a href="/uxmr/index.php?" title="Home" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Home</span></a></li><li id="New patient registration"><a href="index.php?VISITNUM=0&ESAM=0" title="New patient registration" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">New patient registration</span></a></li><li id="Registered patients"><a href="index.php?list=patients_list.xml" title="Registered patients" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Registered patients</span></a></li><li id="eQuery"><a href="index.php?=&eQuery" title="eQuery" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">eQuery</span></a></li><li id="Find Patient"><a href="index.php?SEARCH=1&FORM=1" title="Find Patient" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Find Patient</span></a></li><li id="eSAE"><a href="index.php?SAE=1" title="eSAE" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">eSAE</span></a></li><li id="Other functions"><a href="/cgi-bin/reports?F=_homepage&nome_progetto=HOMEPAGE&fase=1&stdout=yes&dna=1?" title="Other functions" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">Other functions</span></a></li><li id="1click CRF"><a href="index.php?" title="1click CRF" onclick="releaseDirtyFlag();"><span style="color:#439ce3;">1click CRF</span></a></li>';
+
+document.getElementById('animatedtabs').innerHTML=menu_inv;
+if (document.forms['link_to_post'].userid.value=='991')
+		document.getElementById('animatedtabs').innerHTML=menu_pm;
+	else
+		if (document.forms['link_to_post'].userid.value=='994')
+			document.getElementById('animatedtabs').innerHTML=menu_spec;					
+		else
+			if (document.forms['link_to_post'].userid.value=='995')
+				document.getElementById('animatedtabs').innerHTML=menu_sp;		
+			else
+				if(document.forms['link_to_post'].userid.value=='996') 
+					document.getElementById('animatedtabs').innerHTML=menu_cra;				
+				else
+					if(document.forms['link_to_post'].userid.value=='997')
+						document.getElementById('animatedtabs').innerHTML=menu_dm;				
+					else
+						if (document.forms['link_to_post'].userid.value=='998')
+							document.getElementById('animatedtabs').innerHTML=menu_dsm;		
+						else
+							if (document.forms['link_to_post'].userid.value.toUpperCase=='ADM')
+								document.getElementById('animatedtabs').innerHTML=menu_admin;	
+							else
+								document.getElementById('animatedtabs').innerHTML=menu_inv;
+}
+</script>
+
+</ul>
+<!-- <div style="width:200px;margin-right:5px;color:#439ce3;font-family:verdana;font-size:12px;height:28px;"></div> -->
+</div>
+	<!--tabs-->
+	</td>
+	<td align=right><!--utente--></td>
+	</tr>
+</table>
+<td class="main" >
+<!--body--><div id="content"><!--filters--> <!--messages--></div>
+</td>
+<!--SCRIPT-->
+
+
+
+
+
+	<td align="center" valign="top" height="90">
+
+<table border=0 width="95%;" height="96" cellspacing="0" cellpadding="0" align=center style="border-top:0px #439ce3 solid;margin-top:0px;margin-bottom:0px;">
+
+	<tr >
+		<td >
+				<!--Pharmacovigilance of IFE Europe GmbH<br>-->
+				<!--45307 Essen, Germany<br>-->
+				<!--Phone: ++49 / 201 / 8990-123<br>-->
+				<!--Fax: ++49 / 201 / 8990-251.<br>-->
+				<!--<a href="mailto:hypernet@pierrelgroup.com">email</a>-->
+		</td>
+	</tr>
+
+
+<tr>
+<td colspan="3" height="21" style="background-image: url(/images/ombra.gif);background-repeat:repeat-x;">
+</td>
+</tr>
+
+
+
+</table>
+
+
+<!-- START CANCEL FOOT -->
+
+<!--footer-->
+
+<form name='link_to_post' method="post">
+<input type="hidden" name="userid" value="<!--userid-->" />
+<input type="hidden" name="fulluserid" value="<!--fulluserid-->" /></form>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<list titolo="Lista Centri" >
+	<col tipo="hidden" nome="CENTER" var="[service]_CENTRI.CENTER" table="[service]_CENTRI" where="[service]_CENTRI.CENTER not in ('599')" order_by="asc" ></col>
+	<col tipo="testo" nome="CODE" var="[service]_CMM_CENTER.CODE"  table="[service]_CMM_CENTER" 
+	where="[service]_CENTRI.CENTER=LPAD([service]_CMM_CENTER.ID_CENTER,3,'0')" ord_arrow="yes"  >Site ID</col>
+	
+	<col tipo="testo" nome="NAME" var="[service]_CMM_CENTER.NAME"  table="[service]_CMM_CENTER" 
+	where="[service]_CENTRI.CENTER=LPAD([service]_CMM_CENTER.ID_CENTER,3,'0')" ord_arrow="yes" >Site Name</col>
+	
+	<col tipo="freccia" nome="CENTER_LINK_O" var="[service]_CENTRI.CENTER" script="index.php" param="list=equery_list_opened_DM.xml,CENTER" >eQ Opened</col>
+	<col tipo="testo" nome="OPENED" var="(select count(EQUERY_INT)
+                              from [service]_eq
+                             where stato = 0
+                               and codpat=to_number([service]_CENTRI.CENTER))" >num. eQ Opened</col>
+	
+	<col tipo="freccia" nome="CENTER_LINK_A" var="[service]_CENTRI.CENTER" script="index.php" param="list=equery_list_answered_DM.xml,CENTER" >eQ Answered</col>
+	<col tipo="testo" nome="ASNWERED" var="(select count(EQUERY_INT)
+                              from [service]_eq
+                             where stato = 2
+                              and codpat=to_number([service]_CENTRI.CENTER))" >num. eQ Answered</col>
+	<col tipo="freccia" nome="CENTER_LINK_C" var="[service]_CENTRI.CENTER" script="index.php" param="list=equery_list_closed_DM.xml,CENTER" >eQ Closed</col>
+	<col tipo="testo" nome="CLOSED" var="(select count(EQUERY_INT)
+                              from [service]_eq
+                             where stato = 1
+                               and codpat=to_number([service]_CENTRI.CENTER))" >num. eQ Closed</col>
+	
+</list>

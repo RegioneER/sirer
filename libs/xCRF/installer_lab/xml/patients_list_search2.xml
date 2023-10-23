@@ -1,0 +1,20 @@
+<list titolo="Patients List">
+	<!--col tipo="testo" nome="SUBJID" var="[patients_table].SUBJID" script="index.php" param="exams=visite_exams.xml,SUBJID"  table="[patients_table]" >Patient Code</col-->
+	
+	<col tipo="lente" nome="CODPAT" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exams.xml,CODPAT,CENTER" table="[patients_table]" >Patient view</col>
+	<col tipo="testo" nome="SITEID" var="[patients_table].SITEID" table="[patients_table]" order_by="asc" ord_arrow="yes">Center Code</col>
+	<col tipo="testo" nome="SUBJID" var="[patients_table].SUBJID" table="[patients_table]" order_by="asc" ord_arrow="yes">Patient Code</col>
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER" table="[patients_table]"></col>
+	<!--
+	<col tipo="testo" nome="INIZIALI" var="[patients_table].INITIALS"    table="[patients_table]" >Initials</col>
+	<col tipo="testo" nome="COGNOME" var="GCCB_FIND.COGNOME"    table="GCCB_FIND" order_by="yes" ord_arrow="yes">Cognome</col>
+	<col tipo="testo" nome="LABEL" var="GCCB_FIND.LABEL"    table="GCCB_FIND" order_by="yes" >Codice fiala</col>
+	<col tipo="testo" nome="BOX" var="GCCB_FIND.BOX"    table="GCCB_FIND" order_by="yes" >Scatola</col>
+	<col tipo="data" nome="DATA_CONGELAM" var="GCCB_FIND.DATA_CONGELAM"    table="GCCB_FIND" order_by="yes" >Data Congelamento</col>
+	<col tipo="testo" nome="NUM_FIALE" var="GCCB_FIND.NUM_FIALE"    table="GCCB_FIND" order_by="yes" >Numero di fiale congelate tot.</col-->
+</list>
+
+
+
+
+ 

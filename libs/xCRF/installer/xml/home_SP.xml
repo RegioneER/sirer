@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<page titolo='SERVIZIO'>
+<blocco titolo='PATIENT REGISTRATION PROCESS'>
+<link script='changepwd.php' param=''>
+<testo>Change Password</testo>
+</link>
+<link script='ShibLogOut' param=''>
+<testo>Logout</testo>
+</link>
+<link script='' param=''>
+<testo><![CDATA[<a href="mailto:xxx@pierrel-research.com">Contact the support</a>]]></testo>
+</link>
+</blocco></page>

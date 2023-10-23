@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<page titolo="SERVIZIO">
+	<blocco titolo="RANGE">
+		<link script="index.php" param="exams=range_lab.xml,CODPAT=[CENTER]">
+		<testo>Laboratory Normal Range Form</testo>
+		</link>
+		<link script='index.php' param='EQ_DE'>
+		<testo>eQuery</testo>
+		</link>
+	</blocco>
+</page>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<study>
+    <dir_base>__installer_study_folder__</dir_base>
+    <configuration>
+        <field_lib>__installer_study_folder__</field_lib>
+        <entry-point>
+            <esam>0</esam>
+        </entry-point>      
+        <prefix>__intstaller_prefix__</prefix>
+        <pk_seq>SEQ</pk_seq>
+        <pk_service>CODPAT</pk_service>
+        <labels>
+            <menu_paziente>Request menu</menu_paziente>
+            <lista_schede>Request Details</lista_schede>
+            <patients_list>Patients list</patients_list>
+            <torna_lista_schede>Back</torna_lista_schede>
+        </labels>
+        <equery>
+            <single_registry>true</single_registry>
+        </equery>
+		<lang>it</lang>
+		<languages>
+			<lang code="it">Italiano</lang>
+		</languages>
+    </configuration>
+</study>

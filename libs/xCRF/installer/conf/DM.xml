@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<profile>
+	<sidebar>
+		<item icon="home" link="index.php">
+			<text>Home Page</text>
+		</item>
+		<item icon="list">
+			<text>Browse Data</text>
+			<link text="Patients' List" icon="hospital-o" value="index.php?list=patients_list_center.xml"/>
+		</item>
+		<item icon="comment">
+			<text>Data Quality</text>
+			<link text="Outstanding eQueries" icon="mail-forward" value="index.php?list=equery_list_opened_DM.xml"/>
+			<link text="Answered eQueries" icon="reply" value="index.php?list=equery_list_answered_DM.xml"/>
+			<link text="Closed eQueries" icon="lock" value="index.php?list=equery_list_closed_DM.xml"/>
+		</item>
+		<item icon="search">
+            <text>Source Data Verification</text>
+            <link text="SDV Signature Report" icon="bar-chart-o" value="index.php?SDV_LIST=SIGNATURE"/>
+            <link text="SDV Status Report" icon="bar-chart-o" value="index.php?SDV_LIST=STATUS"/>
+            <link text="SDV Violation Report" icon="bar-chart-o" value="index.php?SDV_LIST=VIOLATION"/>
+            <link text="SDV Strategy Report" icon="bar-chart-o" value="index.php?module=SDV&amp;sdv_action=reportSDVStrategy"/>
+        </item>
+		<item icon="database">
+			<text>Data Management</text>
+			<link text="Export CSV" icon="download"  value="/cgi-bin/multiple_dnl_csv?PREFIX=[PREFIX]"/>
+			<link text="Export XLS" icon="download"  value="/cgi-bin/multiple_dnl_xls?PREFIX=[PREFIX]"/>
+			<link text="Export XLSX" icon="download"  value="/cgi-bin/multiple_dnl_xlsx?PREFIX=[PREFIX]"/>
+			<link text="Export XML" icon="download"  value="/cgi-bin/multiple_dnl_xml?PREFIX=[PREFIX]"/>
+			<link text="Export FLAT" icon="download"  value="/cgi-bin/multiple_dnl_flat?PREFIX=[PREFIX]"/>
+			<link text="Export SAS XPT" icon="download"  value="/cgi-bin/multiple_dnl_xpt?PREFIX=[PREFIX]"/>
+			<link text="Browse tables"  icon="table"  value="/cgi-bin/browse_table?PREFIX=[PREFIX]"/>
+			<link text="Shell SQL" icon="table"  value="/cgi-bin/upload_sql?UPLOAD_SQL=1&amp;ACTION=START2&amp;PREFIX=[PREFIX]"/>
+			<link text="Upload XML File" icon="upload"  value="/cgi-bin/upload_xml?UPLOAD_XML=1&amp;ACTION=START&amp;PREFIX=[PREFIX]"/>
+			<link text="Upload XML Code" icon="upload"  value="/cgi-bin/upload_xml?UPLOAD_XML=1&amp;ACTION=START2&amp;PREFIX=[PREFIX]"/>
+			<!--link text="System Tables" icon="database"  value="javascript:alert('Demo environment');"/-->
+			<!--link text="Database Lock" icon="lock"  value="DB_Lock.php"/-->
+		</item>
+		<item icon="search">
+            <text>Source Data Verification</text>
+            <link text="SDV Signature Report" icon="bar-chart-o" value="index.php?SDV_LIST=SIGNATURE"/>
+            <link text="SDV Status Report" icon="bar-chart-o" value="index.php?SDV_LIST=STATUS"/>
+            <link text="SDV Violation Report" icon="bar-chart-o" value="index.php?SDV_LIST=VIOLATION"/>
+            <link text="SDV Strategy Report" icon="bar-chart-o" value="index.php?module=SDV&amp;sdv_action=reportSDVStrategy"/>
+        </item>
+		<item icon="bar-chart-o">
+			<text>Predefined Reports</text>
+			<link text="Registered patients" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+			<link text="Drug prescriptions and administrations" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+			<link text="End of treatment" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+			<link text="Baseline characteristics" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+			<!--param name="registered_patients"><![CDATA[/pentaho/content/pentaho-interactive-reporting/resources/web/pir.html?command=view&solution=demogst&path=&file=patients_registered.prpti]]></param-->
+		</item>
+		<item icon="gear">
+			<text>Administrative Console</text>
+			<link text="Wizard study configurator" icon="magic"  value="/acm/?/study/wizard/[PREFIX]/1"/>
+			<link text="Add/remove profiles" icon="tags"  value="/acm/?/study/profiles/[PREFIX]"/>
+			<link text="Add/remove global users" icon="users"  value="/acm/?/study/users/[PREFIX]"/>
+			<link text="Add/remove centers" icon="h-square"  value="/acm/?/study/centers/[PREFIX]"/>
+			<link text="Open Builder" icon="gears"  value="/acm/?/study/builder/[PREFIX]"/>
+		</item>
+	</sidebar>
+	
+
+	
+	<navbar title="[TITLE]" image="images/study-logo.png" >
+		<!--item type="button" icon="gavel" text="Regulations" color="red" link="javascript:alert('Demo environment');"/>
+		<item type="button" icon="book" text="eCRFs" color="light-blue" link="javascript:alert('Demo environment');"/-->
+		<item type="button" icon="question" text="Help" color="ligh-green" link="javascript:alert('Demo environment');"/>
+		<item type="dropdown" icon="plus" text="Actions" color="blue">
+			<!--link text="New eQuery" icon="comment" value="index.php?eQuery&amp;eform"/-->
+		</item>
+		<item type="highlights" icon="tasks" text="Activity list by Site" color="green">
+			<query><![CDATA[
+						select * from (select * from 
+(select 
+  'index.php?CODPAT='||c.CODPAT||'&amp;VISITNUM='||c.VISITNUM||'&amp;ESAM='||c.ESAM||'&amp;VISITNUM_PROGR='||c.VISITNUM_PROGR||'&amp;PROGR='||c.PROGR as LINK,
+  '[ESAM_NAME('||c.VISITNUM||','||c.ESAM||')] - Patient Code: '||c.CODPAT as MESSAGE, 
+  greatest(c.INSERTDT, nvl(c.MODDT,to_date('01010001','DDMMYYYY'))) as DT,
+  case when FINE is null then 'check-square-o'
+  else 'pencil' end as ICON
+from [PREFIX]_COORDINATE c, [PREFIX]_REGISTRAZIONE r
+						where r.CODPAT=c.CODPAT
+						and r.CENTER in (select uc.center from [PREFIX]_UTENTI_CENTRI uc where uc.userid=:userid)
+						and INIZIO is not null
+						--CODPAT_WHERE--
+UNION ALL
+select 
+'index.php?&exams=visite_exam.xml&CODPAT='||c.CODPAT||'&CENTER='||c.CENTER||'&ESAM='||c.ESAM||'&VISITNUM='||c.VISITNUM||'&PROGR='||c.PROGR||'&VISITNUM_PROGR='||C.VISITNUM_PROGR||'&ABILITA_EQ_DM=1' as LINK,
+case 
+  when CHIUSA is not null then 'eQuery '||c.id||' closed'
+  when VALIDATA is not null then 'eQuery '||c.id||' validated'
+  when ANSWER is not null then 'eQuery '||c.id||' answered'
+  else 'eQuery '||c.id||' opened'  
+  end as MESSAGE, 
+  greatest(c.QUEST_DT, nvl(c.ANS_DT,to_date('01010001','DDMMYYYY')), nvl(c.VAL_DT,to_date('01010001','DDMMYYYY')), nvl(c.CHIUSA_DT,to_date('01010001','DDMMYYYY'))) as DT,
+  case when CHIUSA is not null then 'lock'
+  when VALIDATA is not null then 'check'
+  when ANSWER is not null then 'reply'
+  else 'comment'  
+  end as ICON
+  from [PREFIX]_EQUERY c
+						where c.CENTER in (select uc.center from [PREFIX]_UTENTI_CENTRI uc where uc.userid=:userid)
+						--CODPAT_WHERE--
+) t order by t.dt desc)
+where rownum < 10]]>
+			</query>
+		</item>
+	</navbar>
+	<study_structure_ref value="visite_exams"/>
+	<fastSearch>
+		<field name="[PREFIX]_REGISTRAZIONE.CODPAT" type="number">Patient Code</field>
+		<field name="[PREFIX]_REGISTRAZIONE.SITEID" type="string">SiteID</field>
+		<field name="[PREFIX]_REGISTRAZIONE.SUBJID" type="string">SubjID</field>
+	</fastSearch>
+</profile>

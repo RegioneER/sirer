@@ -1,0 +1,53 @@
+HH_AUTO_IDX = new Array();
+HH_AUTO_IDX[0] = new Array();
+HH_AUTO_IDX[1] = new Array();
+HH_AUTO_IDX[1][25] = '#1#2#3#4#5#6#7#8#10#11#13#14#15#16#17#18#19#20#21';
+
+HH_AUTO_IDX[2] = new Array();
+
+HH_AUTO_IDX[3] = new Array();
+HH_AUTO_IDX[3][25] = '#1#2#3#4#5#6#7#8#10#11#13#14#15#16#17#18#19#20#21';
+
+HH_AUTO_IDX[4] = new Array();
+
+HH_AUTO_IDX[5] = new Array();
+
+HH_AUTO_IDX[6] = new Array();
+HH_AUTO_IDX[6][25] = '#1#2#3#4#5#6#7#8#10#11#13#14#15#16#17#18#19#20#21';
+
+HH_AUTO_IDX[7] = new Array();
+
+HH_AUTO_IDX[8] = new Array();
+
+HH_AUTO_IDX[9] = new Array();
+HH_AUTO_IDX[9][25] = '#1#2#3#4#5#6#7#8#10#11#13#14#15#16#17#18#19#20#21';
+
+HH_AUTO_IDX[10] = new Array();
+
+HH_AUTO_IDX[11] = new Array();
+
+HH_AUTO_CHECK = new Array();
+HH_AUTO_CHECK[0] = new Array();
+HH_AUTO_CHECK[0] = ['CONDITION','MASTER','SLAVE'];
+
+HH_AUTO_CHECK[1] = ['(#LBEXT1_1#==null)', 'LBEXT1_1', 'LBORRESUE1'];
+HH_AUTO_CHECK[2] = ['(#LBEXT1_1#==null)', 'LBEXT1_1', 'LBORNRLOE1'];
+HH_AUTO_CHECK[3] = ['(#LBEXT1_1#==null)', 'LBEXT1_1', 'LBORNRHIE1'];
+HH_AUTO_CHECK[4] = ['(#LBEXT2_1#==null)', 'LBEXT2_1', 'LBORRESUE2'];
+HH_AUTO_CHECK[5] = ['(#LBEXT2_1#==null)', 'LBEXT2_1', 'LBORNRLOE2'];
+HH_AUTO_CHECK[6] = ['(#LBEXT2_1#==null)', 'LBEXT2_1', 'LBORNRHIE2'];
+HH_AUTO_CHECK[7] = ['(#LBEXT3_1#==null)', 'LBEXT3_1', 'LBORRESUE3'];
+HH_AUTO_CHECK[8] = ['(#LBEXT3_1#==null)', 'LBEXT3_1', 'LBORNRLOE3'];
+HH_AUTO_CHECK[9] = ['(#LBEXT3_1#==null)', 'LBEXT3_1', 'LBORNRHIE3'];
+HH_AUTO_CHECK[10] = ['(#LBEXT4_1#==null)', 'LBEXT4_1', 'LBORRESUE4'];
+HH_AUTO_CHECK[11] = ['(#LBEXT4_1#==null)', 'LBEXT4_1', 'LBORNRLOE4'];
+HH_AUTO_CHECK[12] = ['(#LBEXT4_1#==null)', 'LBEXT4_1', 'LBORNRHIE4'];
+HH_AUTO_CHECK[13] = ['(#LBEXT5_1#==null)', 'LBEXT5_1', 'LBORRESUE5'];
+HH_AUTO_CHECK[14] = ['(#LBEXT5_1#==null)', 'LBEXT5_1', 'LBORNRLOE5'];
+HH_AUTO_CHECK[15] = ['(#LBEXT5_1#==null)', 'LBEXT5_1', 'LBORNRHIE5'];
+HH_AUTO_CHECK[16] = ['(#LBEXT6_1#==null)', 'LBEXT6_1', 'LBORRESUE6'];
+HH_AUTO_CHECK[17] = ['(#LBEXT6_1#==null)', 'LBEXT6_1', 'LBORNRLOE6'];
+HH_AUTO_CHECK[18] = ['(#LBEXT6_1#==null)', 'LBEXT6_1', 'LBORNRHIE6'];
+HH_AUTO_CHECK[19] = ['(#LBEXT7_1#==null)', 'LBEXT7_1', 'LBORRESUE7'];
+HH_AUTO_CHECK[20] = ['(#LBEXT7_1#==null)', 'LBEXT7_1', 'LBORNRLOE7'];
+HH_AUTO_CHECK[21] = ['(#LBEXT7_1#==null)', 'LBEXT7_1', 'LBORNRHIE7'];

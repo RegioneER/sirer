@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+	<form fname="LABORATORY" titolo="LABORATORY NORMAL RANGES FORM" table="RANGE_LAB"
+	link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|exams=visite_exams.xml" cols="4" f_to_call="SendMailChangeLaboratory" 
+	FIELD_TB_SHOW="LBDATE_D||'/'||LBDATE_M||'/'||LBDATE_Y" tb_header="Validity Date" load="if (!Range_lab_load()) return false;"  js_function="if (!Range_lab_check()) return false; if (!CheckDateNANK('LBDATE')) return false; if (!CheckDateNANK('LBDATEF')) return false;" >
+	<field type="hidden" var="CODPAT" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>	
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+  	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="INVIOCO" tb="no"></field>
+	<field type="hidden" var="CENTER" var_type="text" var_size="40"></field>
+	
+	<field cols="4" span="yes" var="_LBL_01" tb="no">
+		<txt_value><![CDATA[<b>LABORATORY NORMAL RANGES FORM</b>]]></txt_value>
+	</field>
+	<field cols="4" span="yes" var="_SEP" tb="no">
+		<txt_value><![CDATA[<hr/>]]></txt_value>
+	</field>
+	
+	<field type="date_cal" var="LBDATE" cols="2" send="obbligatorio" >
+		<txt_value><![CDATA[<b>Date</b>]]></txt_value>
+	</field>
+	<field cols="1" span="yes" var="_LBL_02" tb="no">
+		<txt_value><![CDATA[<b>Sex</b>]]></txt_value>
+	</field>
+	<field type="select" var="SEX"  cols="1"  span="yes" show_selected="yes" send="obbligatorio">
+		<txt_value></txt_value>
+		<value val="1">Male</value>
+	</field>
+	<field cols="1" span="yes" var="_LBL_03" tb="no">
+		<txt_value><![CDATA[<b>Parameter</b>]]></txt_value>
+	</field>
+	<field cols="1" span="yes" var="_LBL_04" tb="no">
+		<txt_value><![CDATA[<b>Unit</b>]]></txt_value>
+	</field>
+
+	<field cols="1" span="yes" var="_LBL_05" tb="no">
+		<txt_value><![CDATA[<b>Min</b>]]></txt_value>
+	</field>
+
+	<field cols="1" span="yes" var="_LBL_06" tb="no">
+		<txt_value><![CDATA[<b>Max</b>]]></txt_value>
+	</field>
+
+
+
+	<field type="textbox" var="D_LBTEST"  var_type="text"  var_size="200" size="30" cols="1"  span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=1">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=1"> 
+	</field>
+	<field type="select" var="LBORRESU"   cols="1"  span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="100001">n / mcL</value>
+<value val="100002">n / mm^3</value>
+<value val="100003">n x 10^3 / mL</value>
+<value val="100004">n x 10^3 / cm^3</value>
+<value val="100005">n x 10^6 / L</value>
+<value val="100006">M / L</value>
+<value val="100007">n x 10^3 / mcL</value>
+<value val="100008">n x 10^3 / mm^3 </value>
+<value val="100009">n x 10^6 / mL</value>
+<value val="100010">n x 10^6 / cm^3</value>
+<value val="100011">n x 10^9 / L</value>
+<value val="100012">G / L</value>
+<value val="100014">k / mcL</value>
+<value val="100013">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01">
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	
+	<field type="textbox" var="D_LBTEST2" var_type="text"  var_size="200" size="30" cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=2">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST2" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=2"> 
+	</field>
+	<field type="select" var="LBORRESU2"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO2" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI2" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	
+	<field type="textbox" var="D_LBTEST3" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=3">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST3" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=3"> 
+	</field>
+	<field type="select" var="LBORRESU3"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO3" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI3" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+<field type="textbox" var="D_LBTEST4" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=4">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST4" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=4"> 
+	</field>
+	<field type="select" var="LBORRESU4"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO4" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI4" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST5" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=5">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST5" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=5"> 
+	</field>
+	<field type="select" var="LBORRESU5"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO5" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI5" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST6" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=6">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST6" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=6"> 
+	</field>
+	<field type="select" var="LBORRESU6"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO6" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI6" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST7" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=7">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST7" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=7"> 
+	</field>
+	<field type="select" var="LBORRESU7"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="100001">n / mcL</value>
+<value val="100002">n / mm^3</value>
+<value val="100003">n x 10^3 / mL</value>
+<value val="100004">n x 10^3 / cm^3</value>
+<value val="100005">n x 10^6 / L</value>
+<value val="100006">M / L</value>
+<value val="100007">n x 10^3 / mcL</value>
+<value val="100008">n x 10^3 / mm^3 </value>
+<value val="100009">n x 10^6 / mL</value>
+<value val="100010">n x 10^6 / cm^3</value>
+<value val="100011">n x 10^9 / L</value>
+<value val="100012">G / L</value>
+<value val="100014">k / mcL</value>
+<value val="100013">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO7" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI7" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST8" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=8">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST8" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=8"> 
+	</field>
+	<field type="select" var="LBORRESU8"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="200001">mmol / L</value>
+<value val="200002">mcmol / mL</value>
+<value val="200003">g / L</value>
+<value val="200004">mg / mL</value>
+<value val="200006">g / dL</value>
+<value val="200007">g / 100 mL</value>
+<value val="200008">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO8" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI8" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST9" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=9">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST9" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=9"> 
+	</field>
+	<field type="select" var="LBORRESU9"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="130001">fL</value>
+<value val="130002">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO9" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI9" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST10" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=10">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST10" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=10"> 
+	</field>
+	<field type="select" var="LBORRESU10"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="600001">mmol / L</value>
+<value val="600002">mcmol / mL</value>
+<value val="600003">mcmol / L</value>
+<value val="600004">g / L</value>
+<value val="600005">mg / mL</value>
+<value val="600006">g / dL</value>
+<value val="600007">g / 100 mL</value>
+<value val="600008">mg/ L</value>
+<value val="600009">mg / dL</value>
+<value val="600010">mg / 100 mL</value>
+<value val="600011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO10" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI10" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST11" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=11">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST11" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=11"> 
+	</field>
+	<field type="select" var="LBORRESU11"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="500001">mcmol / L</value>
+<value val="500002">mmol / L</value>
+<value val="500003">mcmol / mL</value>
+<value val="500004">mg / dL</value>
+<value val="500005">mg / 100 mL</value>
+<value val="500006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO11" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI11" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST12" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=12">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST12" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=12"> 
+	</field>
+	<field type="select" var="LBORRESU12"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="600001">mmol / L</value>
+<value val="600002">mcmol / mL</value>
+<value val="600003">mcmol / L</value>
+<value val="600004">g / L</value>
+<value val="600005">mg / mL</value>
+<value val="600006">g / dL</value>
+<value val="600007">g / 100 mL</value>
+<value val="600008">mg/ L</value>
+<value val="600009">mg / dL</value>
+<value val="600010">mg / 100 mL</value>
+<value val="600011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO12" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI12" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST13" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=13">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST13" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=13"> 
+	</field>
+	<field type="select" var="LBORRESU13"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="120001">%</value>
+<value val="120002">mmol / L</value>
+<value val="120003">mcmol / mL</value>
+<value val="120004">mcmol / L</value>
+<value val="120005">g / L</value>
+<value val="120006">mg / mL</value>
+<value val="120007">g / dL</value>
+<value val="120008">g / 100 mL</value>
+<value val="120009">mg / dL</value>
+<value val="120010">mg / 100 mL</value>
+<value val="120011">U / L</value>
+<value val="120012">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO13" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI13" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST14" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=14">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST14" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=14"> 
+	</field>
+	<field type="select" var="LBORRESU14"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="500001">mcmol / L</value>
+<value val="500002">mmol / L</value>
+<value val="500003">mcmol / mL</value>
+<value val="500004">mg / dL</value>
+<value val="500005">mg / 100 mL</value>
+<value val="500006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO14" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI14" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST15" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=15">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST15" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=15"> 
+	</field>
+	<field type="select" var="LBORRESU15"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO15" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI15" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST16" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=16">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST16" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=16"> 
+	</field>
+	<field type="select" var="LBORRESU16"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO16" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI16" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST17" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=17">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST17" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=17"> 
+	</field>
+	<field type="select" var="LBORRESU17"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO17" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI17" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST18" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=18">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST18" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=18"> 
+	</field>
+	<field type="select" var="LBORRESU18"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO18" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI18" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST19" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=19">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST19" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=19"> 
+	</field>
+	<field type="select" var="LBORRESU19"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="700001">mmol / L</value>
+<value val="700002">mcmol / mL</value>
+<value val="700003">mEq / L</value>
+<value val="700004">mcEq / mL</value>
+<value val="700005">mg / dL</value>
+<value val="700006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO19" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI19" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST20" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=20">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST20" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=20"> 
+	</field>
+	<field type="select" var="LBORRESU20"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="700001">mmol / L</value>
+<value val="700002">mcmol / mL</value>
+<value val="700003">mEq / L</value>
+<value val="700004">mcEq / mL</value>
+<value val="700005">mg / dL</value>
+<value val="700006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO20" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI20" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST21" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=21">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST21" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=21"> 
+	</field>
+	<field type="select" var="LBORRESU21"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="150001">U / L </value>
+<value val="150003">mckat / L</value>
+<value val="150002">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO21" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI21" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST22" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=22">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST22" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=22"> 
+	</field>
+	<field type="select" var="LBORRESU22"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="900001">%</value>
+<value val="900003">mmol / mol</value>
+<value val="900002">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO22" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI22" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field cols="4" span="yes" var="_LBL_07" tb="no">
+		<txt_value><![CDATA[<i>Glyco HB is haemoglobin A1C (clarification according to US Amendment 1.0 and Amendment 2.0)</i>]]></txt_value>
+	</field>
+	<field type="textbox" var="D_LBTEST23" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=23">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST23" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=23"> 
+	</field>
+	<field type="select" var="LBORRESU23"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="140001">ng / dL</value>
+<value val="140002">ng / mL</value>
+<value val="140003">mcg / L</value>
+<value val="140004">pg / mL</value>
+<value val="140005">ng / L</value>
+<value val="140006">pmol / L</value>
+<value val="140007">nmol / L</value>
+<value val="140008">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO23" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI23" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST24" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=24">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST24" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=24"> 
+	</field>
+	<field type="select" var="LBORRESU24"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="170001">n / hpf</value>
+<value val="170002">NA</value>
+<value val="170003">n / mcL</value>
+	</field>
+	<field type="textbox" var="LBORNRLO24" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI24" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST25" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=25">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST25" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=25"> 
+	</field>
+	<field type="select" var="LBORRESU25"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="170001">n / hpf</value>
+<value val="170002">NA</value>
+<value val="170003">n / mcL</value>
+	</field>
+	<field type="textbox" var="LBORNRLO25" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI25" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST26" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=26">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST26" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=26"> 
+	</field>
+	<field type="select" var="LBORRESU26"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="180001">n / lpf</value>	
+<value val="180002">NA</value>	
+<value val="180003">n / mcL</value>	
+</field>
+	<field type="textbox" var="LBORNRLO26" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI26" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTEST27" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=27">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST27" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=27"> 
+	</field>
+	<field type="select" var="LBORRESU27"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="110001">mcmol / L</value>
+<value val="110002">mmol / L</value>
+<value val="110003">mcmol / mL</value>
+<value val="110005">g / L</value>
+<value val="110006">mg / mL</value>
+<value val="110007">g / dL</value>
+<value val="110008">g / 100 mL</value>
+<value val="110009">mg / dL</value>
+<value val="110010">mg / 100 mL</value>
+<value val="110011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO27" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI27" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+
+		<field type="textbox" var="D_LBTEST28" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=28">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST28" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=28"> 
+	</field>
+	<field type="select" var="LBORRESU28"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+		<value val="160001">mg / 24h</value>
+		<value val="160002">NA</value>
+		<value val="160003">mcmol / 24h</value>
+		<value val="160004">mcg / L</value>
+	</field>
+	<field type="textbox" var="LBORNRLO28" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI28" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field cols="4" span="yes" var="_LBL_08" tb="no">
+		<txt_value><![CDATA[<i>Calcium is mandatory  for  US Amendment 1.0 and Amendment 2.0</i>]]></txt_value>
+	</field>
+	<field type="textbox" var="D_LBTEST29" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=29">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST29" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=29"> 
+	</field>
+	<field type="select" var="LBORRESU29"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="700001">mmol / L</value>
+<value val="700002">mcmol / mL</value>
+<value val="700003">mEq / L</value>
+<value val="700004">mcEq / mL</value>
+<value val="700005">mg / dL</value>
+<value val="700006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO29" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI29" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>	
+	<field cols="4" span="yes" var="_LBL_09" tb="no">
+		<txt_value><![CDATA[<i>Glucose is mandatory  for US Amendment 1.0 and Amendment 2.0</i>]]></txt_value>
+	</field>
+		<field type="textbox" var="D_LBTEST30" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=30">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST30" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=30"> 
+	</field>
+	<field type="select" var="LBORRESU30"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="600001">mmol / L</value>
+<value val="600002">mcmol / mL</value>
+<value val="600003">mcmol / L</value>
+<value val="600004">g / L</value>
+<value val="600005">mg / mL</value>
+<value val="600006">g / dL</value>
+<value val="600007">g / 100 mL</value>
+<value val="600008">mg/ L</value>
+<value val="600009">mg / dL</value>
+<value val="600010">mg / 100 mL</value>
+<value val="600011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO30" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI30" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field cols="4" span="yes" var="_LBL_10" tb="no">
+		<txt_value><![CDATA[<i>Haematocrit is mandatory  for Amendment 2.0</i>]]></txt_value>
+	</field>
+		<field type="textbox" var="D_LBTEST31" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=31">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTEST31" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=31"> 
+	</field>
+	<field type="select" var="LBORRESU31"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+	<value val="190001">%</value>
+<value val="190002">ratio</value>
+<value val="190003">g / L</value>
+<value val="190004">mg / mL</value>
+<value val="190005">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLO31" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHI31" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>	
+	
+
+	<field cols="4" span="yes" var="_SEP" tb="no">
+		<txt_value><![CDATA[<hr/>]]></txt_value>
+	</field>
+	
+	<!--FEMALE-->
+	<field type="date_cal" var="LBDATEF" cols="2"   send="obbligatorio" >
+		<txt_value><![CDATA[<b>Date</b>]]></txt_value>
+	</field>
+	<field cols="1" span="yes" var="_LBL_11" tb="no">
+		<txt_value><![CDATA[<b>Sex</b>]]></txt_value>
+	</field>
+	<field type="select" var="SEXF"  cols="1" span="yes" show_selected="yes" send="obbligatorio">
+		<txt_value></txt_value>
+		<value val="2" >Female</value>
+	</field>
+	<field cols="4" span="yes" var="_LBL_12" tb="no">
+		<txt_value><![CDATA[<input type="button" value="Copy from male" name="Copy from male" onclick="Range_lab_copymale();"/>]]></txt_value>
+	</field>
+	
+	<field cols="1" span="yes" var="_LBL_13" tb="no">
+		<txt_value><![CDATA[<b>Parameter</b>]]></txt_value>
+	</field>
+	<field cols="1" span="yes" var="_LBL_14" tb="no">
+		<txt_value><![CDATA[<b>Unit</b>]]></txt_value>
+	</field>
+
+	<field cols="1" span="yes" var="_LBL_15" tb="no">
+		<txt_value><![CDATA[<b>Min</b>]]></txt_value>
+	</field>
+
+	<field cols="1" span="yes" var="_LBL_16" tb="no">
+		<txt_value><![CDATA[<b>Max</b>]]></txt_value>
+	</field>
+
+
+
+	<field type="textbox" var="D_LBTESTF"  var_type="text"  var_size="200" size="30" cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=1">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF" var_type="number"  save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=1"> 
+	</field>
+	<field type="select" var="LBORRESUF"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="100001">n / mcL</value>
+<value val="100002">n / mm^3</value>
+<value val="100003">n x 10^3 / mL</value>
+<value val="100004">n x 10^3 / cm^3</value>
+<value val="100005">n x 10^6 / L</value>
+<value val="100006">M / L</value>
+<value val="100007">n x 10^3 / mcL</value>
+<value val="100008">n x 10^3 / mm^3 </value>
+<value val="100009">n x 10^6 / mL</value>
+<value val="100010">n x 10^6 / cm^3</value>
+<value val="100011">n x 10^9 / L</value>
+<value val="100012">G / L</value>
+<value val="100014">k / mcL</value>
+<value val="100013">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	
+	<field type="textbox" var="D_LBTESTF2" var_type="text"  var_size="200" size="30" cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=2">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF2" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=2"> 
+	</field>
+	<field type="select" var="LBORRESUF2"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF2" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF2" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	
+	<field type="textbox" var="D_LBTESTF3" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=3">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF3" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=3"> 
+	</field>
+	<field type="select" var="LBORRESUF3"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+		</field>
+	<field type="textbox" var="LBORNRLOF3" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF3" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+<field type="textbox" var="D_LBTESTF4" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=4">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF4" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=4"> 
+	</field>
+	<field type="select" var="LBORRESUF4"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF4" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF4" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF5" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=5">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF5" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=5"> 
+	</field>
+	<field type="select" var="LBORRESUF5"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF5" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF5" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF6" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=6">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF6" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=6"> 
+	</field>
+	<field type="select" var="LBORRESUF6"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="300001">n / mcL</value>
+<value val="300002">n / mm^3</value>
+<value val="300003">n x 10^3 / mL</value>
+<value val="300004">n x 10^3 / cm^3</value>
+<value val="300005">n x 10^6 / L</value>
+<value val="300006">M / L</value>
+<value val="300007">n x 10^3 / mcL</value>
+<value val="300008">n x 10^3 / mm^3 </value>
+<value val="300009">n x 10^6 / mL</value>
+<value val="300010">n x 10^6 / cm^3</value>
+<value val="300011">n x 10^9 / L</value>
+<value val="300012">G / L</value>
+<value val="300013">%</value>
+<value val="300015">k / mcL</value>
+<value val="300014">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF6" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF6" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF7" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=7">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF7" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=7"> 
+	</field>
+	<field type="select" var="LBORRESUF7"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="100001">n / mcL</value>
+<value val="100002">n / mm^3</value>
+<value val="100003">n x 10^3 / mL</value>
+<value val="100004">n x 10^3 / cm^3</value>
+<value val="100005">n x 10^6 / L</value>
+<value val="100006">M / L</value>
+<value val="100007">n x 10^3 / mcL</value>
+<value val="100008">n x 10^3 / mm^3 </value>
+<value val="100009">n x 10^6 / mL</value>
+<value val="100010">n x 10^6 / cm^3</value>
+<value val="100011">n x 10^9 / L</value>
+<value val="100012">G / L</value>
+<value val="100014">k / mcL</value>
+<value val="100013">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF7" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF7" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF8" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=8">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF8" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=8"> 
+	</field>
+	<field type="select" var="LBORRESUF8"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="200001">mmol / L</value>
+<value val="200002">mcmol / mL</value>
+<value val="200003">g / L</value>
+<value val="200004">mg / mL</value>
+<value val="200006">g / dL</value>
+<value val="200007">g / 100 mL</value>
+<value val="200008">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF8" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF8" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF9" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=9">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF9" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=9"> 
+	</field>
+	<field type="select" var="LBORRESUF9"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="130001">fL</value>
+<value val="130002">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF9" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF9" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF10" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=10">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF10" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=10"> 
+	</field>
+	<field type="select" var="LBORRESUF10"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="600001">mmol / L</value>
+<value val="600002">mcmol / mL</value>
+<value val="600003">mcmol / L</value>
+<value val="600004">g / L</value>
+<value val="600005">mg / mL</value>
+<value val="600006">g / dL</value>
+<value val="600007">g / 100 mL</value>
+<value val="600008">mg/ L</value>
+<value val="600009">mg / dL</value>
+<value val="600010">mg / 100 mL</value>
+<value val="600011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF10" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF10" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF11" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=11">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF11" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=11"> 
+	</field>
+	<field type="select" var="LBORRESUF11"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="500001">mcmol / L</value>
+<value val="500002">mmol / L</value>
+<value val="500003">mcmol / mL</value>
+<value val="500004">mg / dL</value>
+<value val="500005">mg / 100 mL</value>
+<value val="500006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF11" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF11" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF12" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=12">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF12" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=12"> 
+	</field>
+	<field type="select" var="LBORRESUF12"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="600001">mmol / L</value>
+<value val="600002">mcmol / mL</value>
+<value val="600003">mcmol / L</value>
+<value val="600004">g / L</value>
+<value val="600005">mg / mL</value>
+<value val="600006">g / dL</value>
+<value val="600007">g / 100 mL</value>
+<value val="600008">mg/ L</value>
+<value val="600009">mg / dL</value>
+<value val="600010">mg / 100 mL</value>
+<value val="600011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF12" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF12" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF13" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=13">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF13" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=13"> 
+	</field>
+	<field type="select" var="LBORRESUF13"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="120001">%</value>
+<value val="120002">mmol / L</value>
+<value val="120003">mcmol / mL</value>
+<value val="120004">mcmol / L</value>
+<value val="120005">g / L</value>
+<value val="120006">mg / mL</value>
+<value val="120007">g / dL</value>
+<value val="120008">g / 100 mL</value>
+<value val="120009">mg / dL</value>
+<value val="120010">mg / 100 mL</value>
+<value val="120011">U / L</value>
+<value val="120012">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF13" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF13" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF14" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=14">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF14" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=14"> 
+	</field>
+	<field type="select" var="LBORRESUF14"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="500001">mcmol / L</value>
+<value val="500002">mmol / L</value>
+<value val="500003">mcmol / mL</value>
+<value val="500004">mg / dL</value>
+<value val="500005">mg / 100 mL</value>
+<value val="500006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF14" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF14" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF15" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=15">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF15" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=15"> 
+	</field>
+	<field type="select" var="LBORRESUF15"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF15" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF15" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF16" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=16">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF16" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=16"> 
+	</field>
+	<field type="select" var="LBORRESUF16"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF16" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF16" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF17" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=17">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF17" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=17"> 
+	</field>
+	<field type="select" var="LBORRESUF17"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF17" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF17" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF18" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=18">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF18" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=18"> 
+	</field>
+	<field type="select" var="LBORRESUF18"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="400001">U / L</value>
+<value val="400002">mU / mL</value>
+<value val="400003">mckat / L</value>
+<value val="400004">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF18" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF18" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF19" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=19">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF19" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=19"> 
+	</field>
+	<field type="select" var="LBORRESUF19"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="700001">mmol / L</value>
+<value val="700002">mcmol / mL</value>
+<value val="700003">mEq / L</value>
+<value val="700004">mcEq / mL</value>
+<value val="700005">mg / dL</value>
+<value val="700006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF19" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF19" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF20" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=20">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF20" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=20"> 
+	</field>
+	<field type="select" var="LBORRESUF20"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="700001">mmol / L</value>
+<value val="700002">mcmol / mL</value>
+<value val="700003">mEq / L</value>
+<value val="700004">mcEq / mL</value>
+<value val="700005">mg / dL</value>
+<value val="700006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF20" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF20" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF21" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=21">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF21" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=21"> 
+	</field>
+	<field type="select" var="LBORRESUF21"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="150001">U / L </value>
+<value val="150003">mckat / L</value>
+<value val="150002">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF21" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF21" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF22" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=22">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF22" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=22"> 
+	</field>
+	<field type="select" var="LBORRESUF22"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="900001">%</value>
+<value val="900003">mmol / mol</value>
+<value val="900002">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF22" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF22" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field cols="4" span="yes" var="_LBL_17" tb="no">
+		<txt_value><![CDATA[<i>Glyco HB is haemoglobin A1C (clarification according to US Amendment 1.0 and Amendment 2.0)</i>]]></txt_value>
+	</field>
+	<field type="textbox" var="D_LBTESTF23" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=23">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF23" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'"  bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=23"> 
+	</field>
+	<field type="select" var="LBORRESUF23"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="140001">ng / dL</value>
+<value val="140002">ng / mL</value>
+<value val="140003">mcg / L</value>
+<value val="140004">pg / mL</value>
+<value val="140005">ng / L</value>
+<value val="140006">pmol / L</value>
+<value val="140007">nmol / L</value>
+<value val="140008">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF23" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF23" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF24" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=24">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF24" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=24"> 
+	</field>
+	<field type="select" var="LBORRESUF24"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="170001">n / hpf</value>
+<value val="170002">NA</value>
+<value val="170003">n / mcL</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF24" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF24" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF25" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=25">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF25" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=25"> 
+	</field>
+	<field type="select" var="LBORRESUF25"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="170001">n / hpf</value>
+<value val="170002">NA</value>
+<value val="170003">n / mcL</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF25" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF25" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF26" var_type="text"  var_size="200"  size="30"  cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=26">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF26" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=26"> 
+	</field>
+	<field type="select" var="LBORRESUF26"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="180001">n / lpf</value>	
+<value val="180002">NA</value>	
+<value val="180003">n / mcL</value>	
+	</field>
+	<field type="textbox" var="LBORNRLOF26" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF26" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field><field type="textbox" var="D_LBTESTF27" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=27">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF27" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=27"> 
+	</field>
+	<field type="select" var="LBORRESUF27"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="110001">mcmol / L</value>
+<value val="110002">mmol / L</value>
+<value val="110003">mcmol / mL</value>
+<value val="110005">g / L</value>
+<value val="110006">mg / mL</value>
+<value val="110007">g / dL</value>
+<value val="110008">g / 100 mL</value>
+<value val="110009">mg / dL</value>
+<value val="110010">mg / 100 mL</value>
+<value val="110011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF27" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF27" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+
+	<field type="textbox" var="D_LBTESTF28" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=28">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF28" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=28"> 
+	</field>
+	<field type="select" var="LBORRESUF28"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+		<value val="160001">mg / 24h</value>
+		<value val="160002">NA</value>
+		<value val="160003">mcmol / 24h</value>
+		<value val="160004">mcg / L</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF28" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF28" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+		<field cols="4" span="yes" var="_LBL_18" tb="no">
+		<txt_value><![CDATA[<i>Calcium is mandatory  for  US Amendment 1.0 and Amendment 2.0</i>]]></txt_value>
+	</field>
+	<field type="textbox" var="D_LBTESTF29" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=29">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF29" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=29"> 
+	</field>
+	<field type="select" var="LBORRESUF29"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="700001">mmol / L</value>
+<value val="700002">mcmol / mL</value>
+<value val="700003">mEq / L</value>
+<value val="700004">mcEq / mL</value>
+<value val="700005">mg / dL</value>
+<value val="700006">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF29" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF29" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>	
+	<field cols="4" span="yes" var="_LBL_19" tb="no">
+		<txt_value><![CDATA[<i>Glucose is mandatory  for US Amendment 1.0 and Amendment 2.0</i>]]></txt_value>
+	</field>
+		<field type="textbox" var="D_LBTESTF30" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=30">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF30" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=30"> 
+	</field>
+	<field type="select" var="LBORRESUF30"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="600001">mmol / L</value>
+<value val="600002">mcmol / mL</value>
+<value val="600003">mcmol / L</value>
+<value val="600004">g / L</value>
+<value val="600005">mg / mL</value>
+<value val="600006">g / dL</value>
+<value val="600007">g / 100 mL</value>
+<value val="600008">mg/ L</value>
+<value val="600009">mg / dL</value>
+<value val="600010">mg / 100 mL</value>
+<value val="600011">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF30" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF30" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	
+	
+	<field cols="4" span="yes" var="_LBL_20" tb="no">
+		<txt_value><![CDATA[<i>Haematocrit is mandatory  for Amendment 2.0</i>]]></txt_value>
+	</field>
+		<field type="textbox" var="D_LBTESTF31" var_type="text"  var_size="200" size="30"   cols="1" span="yes"  disabled="yes" bytb="LBPARAM" bytbcode="D_LBTEST" bytbdecode="D_LBTEST" bytbwhere="LBTEST=31">
+		<txt_value></txt_value>  
+	</field>
+	<field type="hidden" var="LBTESTF31" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" bytb="LBPARAM" bytbcode="LBTEST" bytbdecode="LBTEST" bytbwhere="LBTEST=31"> 
+	</field>
+	<field type="select" var="LBORRESUF31"   cols="1" span="yes"  show_selected="yes">
+		<txt_value></txt_value>  
+<value val="190001">%</value>
+<value val="190002">ratio</value>
+<value val="190003">g / L</value>
+<value val="190004">mg / mL</value>
+<value val="190005">NA</value>
+	</field>
+	<field type="textbox" var="LBORNRLOF31" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field type="textbox" var="LBORNRHIF31" var_type="number" save="facoltativo" send="facoltativo" label_js="For decimal number, please remember to use only the full stop \'.\'" cols="1" span="yes" fm_code="01" >
+		<txt_value></txt_value>
+	</field>
+	<field cols="4" span="yes" var="_SEP" tb="no">
+		<txt_value><![CDATA[<hr/>]]></txt_value>
+	</field>
+	
+	<save>Save</save>
+	<send>Send</send>
+  <cancel>Cancel</cancel> 
+  
+   </form>

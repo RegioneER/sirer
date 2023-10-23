@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="Registration" titolo="Registration" table="REGISTRAZIONE" cols="2"  
+link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|exams"  >
+
+  <field type="hidden" var="CODPAT" var_type="number" pk="yes">
+    <value val="next"></value>
+  </field>
+  <field type="hidden" var="USERID_INS" var_type="text" var_size="40"
+  bytb="ana_utenti" bytbcode="userid" bytbdecode="userid"
+  bytbwhere="userid='[remote_userid]'"/>
+  <field type="hidden" var="ESAM" var_type="number" pk="yes"/>
+  <field type="hidden" var="VISITNUM" var_type="number" pk="yes"/>
+  <field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"/>
+  <field type="hidden" var="INVIOCO" tb="no"/>
+  <field type="hidden" var="CENTER" var_type="number"/>
+  <field type="hidden" var="PROGR" where="ID_SERVICE=[ID_SERVICE]" var_type="number" pk="yes" >
+  	<value val="0"></value>
+  </field>
+ 
+	<field cols="2">
+		<txt_value><![CDATA[<td colspan="6" class="bg_testata3"><b>GENERIC INFORMATION</b></td>]]></txt_value>
+	</field>
+	  <field type="hidden" var="INITIALS" var_type="text" var_size="2"/>
+	   <field type="hidden" var="SUBJID" var_type="text" var_size="4"/>
+	    <field type="hidden" var="SITEID" var_type="TEXT" var_size="3"/>
+	  
+  	<field cols="2" type="textbox" var="D_NOME" var_type="text"  var_size="200" size="80" send="obbligatorio">
+    	<txt_value>Name </txt_value>
+  	</field>
+  	<!--field type="select" cols="1" var="NOME" bytb="STUDIES" bytbcode="NAME" bytbdecode="NAME" bytborderby='NAME' send="obbligatorio">
+  	 	<txt_value>Nome servizio </txt_value>
+  	 </field-->
+  	<!--field cols="1" type="textbox" var="COMMESSA" var_type="text"  var_size="200" size="80" send="obbligatorio">
+    	<txt_value>Commessa </txt_value>
+  	</field--> 
+  	<!--field type="select" cols="1" var="COMMESSA" bytb="COMMESSE" bytbcode="ID" bytbdecode="COMMESSA" bytborderby='COMMESSA' send="obbligatorio">
+  	 	<txt_value>Commessa </txt_value>
+  	</field-->
+  	
+  	
+  	<field cols="2" type="textarea" var="NOTE" var_size="4000" var_type="text" tcols="80" rows="10">
+		<txt_value><![CDATA[Note.<br>(max 4000 character)]]></txt_value>
+	</field>
+  
+  	<send>Send</send>
+  	<cancel>Cancel</cancel>
+	<enable>
+		<exam number="1" visitnum="1" progr="1"></exam>
+		<!--exam number="2" visitnum="0" progr="1"></exam>
+		<exam number="3" visitnum="0" progr="1"></exam>
+		<exam number="4" visitnum="0" progr="1"></exam>
+		<exam number="5" visitnum="0" progr="1"></exam>
+		<exam number="6" visitnum="0" progr="1"></exam-->
+	</enable>
+  
+</form>
+   
+		

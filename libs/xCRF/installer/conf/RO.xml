@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<profile>
+	<sidebar>
+		<item icon="home" link="index.php">
+			<text>Home Page</text>
+		</item>
+		<item icon="list">
+			<text>Browse Data</text>
+			<link text="Site's list" icon="hospital-o" value="index.php?list=patients_list_center.xml"/>
+		</item>
+		<item icon="comment">
+			<text>Data Quality</text>
+			<link text="Outstanding eQueries" icon="mail-forward" value="index.php?list=equery_list_opened_DE.xml"/>
+			<link text="Answered eQueries" icon="reply" value="index.php?list=equery_list_answered_DE.xml"/>
+			<link text="Closed eQueries" icon="lock" value="index.php?list=equery_list_closed_DE.xml"/>
+
+		</item>
+		<item icon="search">
+            <text>Source Data Verification</text>
+            <link text="SDV Signature Report" icon="bar-chart-o" value="index.php?SDV_LIST=SIGNATURE"/>
+            <link text="SDV Status Report" icon="bar-chart-o" value="index.php?SDV_LIST=STATUS"/>
+            <link text="SDV Violation Report" icon="bar-chart-o" value="index.php?SDV_LIST=VIOLATION"/>
+            <link text="SDV Strategy Report" icon="bar-chart-o" value="index.php?module=SDV&amp;sdv_action=reportSDVStrategy"/>
+        </item>
+        <item icon="bar-chart-o">
+            <text>Predefined Reports</text>
+            <link text="Registered patients" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+            <link text="Drug prescriptions and administrations" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+            <link text="End of treatment" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+            <link text="Baseline characteristics" icon="bar-chart-o" value="javascript:alert('Demo environment');"/>
+            <!--param name="registered_patients"><![CDATA[/pentaho/content/pentaho-interactive-reporting/resources/web/pir.html?command=view&solution=demogst&path=&file=patients_registered.prpti]]></param-->
+        </item>
+    </sidebar>
+
+	<navbar title="[TITLE]" image="images/study-logo.png" >
+		<!--item type="button" icon="gavel" text="Regulations" color="red" link="javascript:alert('Demo environment');"/>
+		<item type="button" icon="book" text="eCRFs" color="light-blue" link="javascript:alert('Demo environment');"/-->
+		<item type="button" icon="question" text="Help" color="ligh-green" link="javascript:alert('Demo environment');"/>
+		<item type="dropdown" icon="plus" text="Actions" color="blue"></item>
+		<item type="highlights" icon="envelope" text="Activity list by Site" color="green">
+			<query><![CDATA[
+						select * from (select * from 
+(select 
+  'index.php?CODPAT='||c.CODPAT||'&amp;VISITNUM='||c.VISITNUM||'&amp;ESAM='||c.ESAM||'&amp;VISITNUM_PROGR='||c.VISITNUM_PROGR||'&amp;PROGR='||c.PROGR as LINK,
+  '[ESAM_NAME('||c.VISITNUM||','||c.ESAM||')] - Patient Code: '||c.CODPAT as MESSAGE, 
+  greatest(c.INSERTDT, nvl(c.MODDT,to_date('01010001','DDMMYYYY'))) as DT,
+  case when FINE is null then 'check-square-o'
+  else 'pencil' end as ICON
+from [PREFIX]_COORDINATE c, [PREFIX]_REGISTRAZIONE r
+						where r.CODPAT=c.CODPAT
+						and r.CENTER in (select uc.center from [PREFIX]_UTENTI_CENTRI uc where uc.userid=:userid)
+						and INIZIO is not null
+						--CODPAT_WHERE--
+UNION ALL
+select 
+'index.php?&exams=visite_exam.xml&CODPAT='||c.CODPAT||'&CENTER='||c.CENTER||'&ESAM='||c.ESAM||'&VISITNUM='||c.VISITNUM||'&PROGR='||c.PROGR||'&VISITNUM_PROGR='||C.VISITNUM_PROGR||'&ABILITA_EQ_DM=1' as LINK,
+case 
+  when CHIUSA is not null then 'eQuery '||c.id||' closed'
+  when VALIDATA is not null then 'eQuery '||c.id||' validated'
+  when ANSWER is not null then 'eQuery '||c.id||' answered'
+  else 'eQuery '||c.id||' opened'  
+  end as MESSAGE, 
+  greatest(c.QUEST_DT, nvl(c.ANS_DT,to_date('01010001','DDMMYYYY')), nvl(c.VAL_DT,to_date('01010001','DDMMYYYY')), nvl(c.CHIUSA_DT,to_date('01010001','DDMMYYYY'))) as DT,
+  case when CHIUSA is not null then 'lock'
+  when VALIDATA is not null then 'check'
+  when ANSWER is not null then 'reply'
+  else 'comment'  
+  end as ICON
+  from [PREFIX]_EQUERY c
+						where c.CENTER in (select uc.center from [PREFIX]_UTENTI_CENTRI uc where uc.userid=:userid)
+						--CODPAT_WHERE--
+) t order by t.dt desc)
+where rownum < 10]]>
+			</query>
+		</item>
+	</navbar>
+	<study_structure_ref value="visite_exams"/>
+	<fastSearch>
+		<field name="[PREFIX]_REGISTRAZIONE.CODPAT" type="number">Patient Code</field>
+		<field name="[PREFIX]_REGISTRAZIONE.SITEID" type="string">SiteID</field>
+		<field name="[PREFIX]_REGISTRAZIONE.SUBJID" type="string">SubjID</field>
+	</fastSearch>
+</profile>

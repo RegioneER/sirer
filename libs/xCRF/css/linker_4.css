@@ -1,0 +1,118 @@
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	font-size: 80%;
+	font-weight: bold;
+	}	
+	
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	}
+
+/* =-=-=-=-=-=-=-[Menu Four]-=-=-=-=-=-=-=- */
+
+
+#menu4 div,.item_preview2 a {
+background-color:#FFE1A1 ;
+}
+
+#menu4 div.menu_body a,.item_preview2 a {
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+	margin-bottom:5px;
+	text-decoration: none;
+	}
+	
+#menu4 div a:link, #menu4 div a:visited,.item_preview2 a:link,.item_preview2 a:visited {
+	color: #9E3C02;
+	display: inline-block;
+	width:168px;
+	padding: 8px 0 0 30px;
+	}
+	
+#menu4 div a:hover,.item_preview2 a:hover {
+	padding: 8px 0 0 30px;
+	}
+	
+#menu4 div a:active,.item_preview2 a:active {
+	color: #fff;
+	padding: 8px 0 0 30px;
+	}
+	
+#menu4 div.menu_body {
+	border-style: none none solid none;
+	border-color: #D76100;
+	border-size: 1px;
+	border-width: 1px;
+	background: #FFAD00;
+}
+
+
+#menu4 {
+	
+	border-style: solid solid none solid;
+	border-color: #D76100;
+	border-size: 1px;
+	border-width: 1px;
+	margin: 10px;
+	}
+	
+#menu4 .menu_header a,.item_preview1 a {
+  	height: 32px;
+  	voice-family: "\"}\""; 
+  	voice-family: inherit;
+  	height: 24px;
+	text-decoration: none;
+	}
+	
+#menu4 .menu_header a:link, #menu4 .menu_header a:visited,.item_preview1 a:link,.item_preview1 a:visited {
+	color: #9E3C02;
+	display: inline-block;
+	
+	background: url(../std_images/menu4.gif) no-repeat;
+	padding: 8px 0 0 30px;
+	}
+	
+#menu4 .menu_header a:hover,.item_preview1 a:hover {
+	color: #fff;
+	background: url(../std_images/menu4.gif) 0 -32px no-repeat;
+	padding: 8px 0 0 30px;
+	}
+	
+#menu4 .menu_header a:active,.item_preview1 a:active {
+	color: #fff;
+	background: url(../std_images/menu4.gif) 0 -64px no-repeat;
+	padding: 8px 0 0 30px;
+	}
+	
+	
+	.list_box {
+	display:table;
+	border-collapse:collapse;
+	border:0px;
+	}
+	
+	.list_item{
+	display:table-row;
+	padding:0px;
+	}
+
+	.item_href{
+	display:table-cell;
+	}
+	
+	.item_actions{
+	display:table-cell;
+	padding: 0px 0px 0px 20px;
+	}
+
+	
+	.item_preview2 a, .item_preview1 a{
+	width:168px;
+	
+	}
+	.item_preview2 , .item_preview1 {
+	background-color:#FFE1A1 ;
+	}

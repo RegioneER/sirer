@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<visit_exam>
+	<group text="PAZIENTE">
+		<visit text="Registrazione" number="0" short_txt="Registrazione">
+			<exam number="0" xml="registrazione.xml" default="yes" mandatory="yes">
+				<text>Registrazione</text>
+			</exam>
+		</visit>
+	</group>
+</visit_exam>

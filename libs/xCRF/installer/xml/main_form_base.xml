@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--windows-1252"?>-->
+<form fname="[fname]" titolo="[fname]" table="[table]" link_to="index.php?CENTER=[CENTER]|and|CODPAT=[CODPAT]|and|VISITNUM=[VISITNUM]|and|ESAM=[sub_form_esam_number]|and|form=[sub_form_file_name]" cols="2" f_to_call="MainPerformed" main_field="[main_field]" main_field_value="[main_field_value]" sub_form_file_name="[sub_form_file_name]" table_sub="[table_sub]" >
+	<field type="hidden" var="CODPAT" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid" bytbdecode="userid" bytbwhere="userid='[remote_userid]'"></field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes"></field>
+	<field type="hidden" var="INVIOCO" tb="no"></field>
+	<field type="hidden" var="CENTER" var_type="text" var_size="40"></field>
+	<field type="hidden" var="SUBJID" var_type="text" var_size="14" bytb="REGISTRAZIONE" bytbcode="SUBJID" bytbdecode="SUBJID" bytbwhere="CODPAT='[CODPAT]'"></field>
+	<field type="hidden" var="SITEID" var_type="text" var_size="14" bytb="REGISTRAZIONE" bytbcode="SITEID" bytbdecode="SITEID" bytbwhere="CODPAT='[CODPAT]'"></field>
+	<field var="[main_field]" type="[type]" var_type="number" send="obbligatorio" save="obbligatorio" cols="2" subtbcol="2" txt_align="right" field_align="left" >
+		<txt_value ><![CDATA[ [main_field_label] ]]></txt_value>
+		<value val="[main_field_value]" ><![CDATA[ [main_field_yes_label] ]]></value>
+		<value val="[main_field_no_value]" ><![CDATA[ [main_field_no_label] ]]></value>
+	</field>
+	<cancel>
+		<![CDATA[Cancel]]>
+	</cancel>
+	<save >
+		<![CDATA[Continue]]>
+	</save>
+	<enable></enable>
+</form>

@@ -1,0 +1,8 @@
+<list titolo="Lista Centri" >
+	<col tipo="hidden" nome="CENTER" var="[service]_CENTRI.CENTER" table="[service]_CENTRI" where="[service]_CENTRI.CENTER not in ('599')" order_by="asc" group_by="1"></col>
+	<col tipo="testo" nome="CODE" var="SITES.CODE"  table="SITES" where="[service]_CENTRI.CENTER=SITES.ID" ord_arrow="yes"  group_by="1">Center ID</col>
+	<col tipo="hidden" nome="USERID" var="[service]_UTENTI_CENTRI.USERID" table="[service]_UTENTI_CENTRI" where="[service]_UTENTI_CENTRI.CENTER=[service]_CENTRI.CENTER and [service]_UTENTI_CENTRI.USERID='[remote_userid]'" group_by="1"></col>
+	<col tipo="testo" nome="NAME" var="SITES.DESCR"  table="SITES" where="[service]_CENTRI.CENTER=SITES.ID" ord_arrow="yes" group_by="1" >Site Name</col>
+	<col tipo="hidden" nome="CODPAT" var="[service]_CENTRI.CENTER" table="[service]_CENTRI" ></col>
+	<col tipo="freccia" nome="CENTER_LINK" var="[service]_CENTRI.CENTER" script="index.php" param="form=range_lab.xml,CODPAT,CENTER,VISITNUM=0,ESAM=0" > Link to form</col>
+</list>
