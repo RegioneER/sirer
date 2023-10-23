@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="CERCA PAZIENTE" titolo="CERCA PAZIENTE" table="STUDY_ANA_PAT" cols="2">
+    <field type="hidden" var="SEARCH" tb="no">
+    	<value val='1'></value>
+    </field>
+     <field type="hidden" var="TSEARCH" tb="no">
+     <value val='1'></value>
+    </field>
+   	<field type="hidden" var="FORM" tb="no" />
+     
+   
+	<field cols="2">
+		<txt_value><![CDATA[<tr><td colspan="4" class="titolo"><b>CERCA PAZIENTE</b></td></tr>]]></txt_value>
+	</field>
+
+	<field type="select" tb="no" var="CENTER" bytb="CENTRI,[service]_UTENTI_CENTRI" bytbcode="distinct [service]_CENTRI.CENTER" 
+	bytbdecode="[service]_CENTRI.DENOM||' ('||[service]_CENTRI.CENTER||')'" byvar="[service]_CENTRI.DENOM" 
+	bytbwhere="[service]_CENTRI.CENTER=[service]_UTENTI_CENTRI.CENTER AND [service]_UTENTI_CENTRI.USERID='[remote_userid]'"
+	cols="2">
+				<txt_value>Centro</txt_value>
+	</field>
+ 	<field type="textbox" var="CODPAT" var_type="number" cols="2">
+		<txt_value>Codice Paziente</txt_value>
+	</field>
+  
+<!-- 
+IL DM non deve avere possibilità di fare ricerche per nome e cognome!! infatti poi vede gli asterischi...
+
+	<field type="textbox" var="S_COGNOME"  upper="yes" cols="1">
+		<txt_value>Cognome</txt_value>
+	</field>
+	
+	<field type="textbox" var="S_NOME"  upper="yes" cols="1">
+		<txt_value>Nome</txt_value>
+	</field>
+    
+   -->
+	<field type="data" var="NASCITA_DT" min="sysdate" cols="2"> 
+		<txt_value>Data di nascita</txt_value>
+	</field>
+	<field type="select" var="GENDER" cols="2">
+					<txt_value>Sesso</txt_value>
+					<value val="M">M</value>
+					<value val="F">F</value>
+	</field> 
+  
+  
+<send>Cerca</send> 
+<cancel>Cancella</cancel> 
+</form>
+	
+	
+	
+	
+	
+	
+	

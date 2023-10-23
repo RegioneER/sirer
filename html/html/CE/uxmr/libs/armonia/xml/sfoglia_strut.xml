@@ -1,0 +1,8 @@
+<list titolo="">
+	<col tipo="testo" nome="CODICE_STRUT" var="COD_STRUCT" table="STRUTTURE_ORG" >Codice Struttura</col>
+	<col tipo="testo" nome="COMUNE" var="upper(COMUNE)" table="STRUTTURE_ORG" order_by="asc">Comune</col>
+	<col tipo="testo" nome="DENOM" var="upper(DENOM)" table="STRUTTURE_ORG" order_by="asc">Denominazione Struttura</col>
+	<col tipo="testo" nome="ADDRESS" var="ADDRESS" table="STRUTTURE_ORG">Indirizzo</col>
+	<col tipo="testo" nome="SIGLA_PROVINCIA" var="SIGLA" table="STRUTTURE_ORG">Provincia</col>
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

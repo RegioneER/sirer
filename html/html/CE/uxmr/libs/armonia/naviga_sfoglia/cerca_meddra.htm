@@ -1,0 +1,40 @@
+<html>
+<head>
+	<title>AIFA | Registro dei farmaci per artrite reumatoide sottoposti a monitoraggio</title>
+	
+<link media="screen" href="/aifa_intensivi.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form>
+<input type="hidden" name="list" value="cerca_meddra.xml">
+<input type="hidden" name="scrip" value="/study/sfoglia.php">
+<input type="hidden" name="S_PT_NAME" value="">
+<input type="hidden" name="S_HLT_NAME" value="">
+<input type="hidden" name="S_HLGT_NAME" value="">
+<input type="hidden" name="S_SOC_NAME" value="">
+<input type="hidden" name="oper" value="OR">
+<input type="hidden" name="tipo" value="cerca">
+<input type="hidden" name="page" value="1">
+<input type="hidden" name="function" value="add_value">
+<input type="hidden" name="source" value="PT_NAME,PT_CODE,HLT_CODE,HLGT_CODE,SOC_CODE">
+<input type="hidden" name="dest" value="SOC_NAME,PT_CODE,HLT_CODE,HLGT_CODE,SOC_CODE">
+
+	<table border=0 width=100% cellpadding=0 cellspacing=0 class="destra">
+		<tr>
+			<td align="center">
+	Stringa da cercare: <input type="text" name="PATTERN" value="" size="20" onBlur="this.value=this.value.toUpperCase();
+document.forms[0].elements['S_PT_NAME'].value=this.value;
+document.forms[0].elements['S_HLT_NAME'].value=this.value;
+document.forms[0].elements['S_HLGT_NAME'].value=this.value;
+document.forms[0].elements['S_SOC_NAME'].value=this.value;	" onKeypress="if (event.keyCode==13) {this.value=this.value.toUpperCase();
+document.forms[0].elements['S_PT_NAME'].value=this.value;
+document.forms[0].elements['S_HLT_NAME'].value=this.value;
+document.forms[0].elements['S_HLGT_NAME'].value=this.value;
+document.forms[0].elements['S_SOC_NAME'].value=this.value;	document.forms[0].action='/study/sfoglia.php';document.forms[0].submit();}">	
+<input type="submit" value="Cerca" onclick="document.forms[0].action='/study/sfoglia.php';"  ><hr>
+
+</td>
+</tr>
+</table>
+</form>
+

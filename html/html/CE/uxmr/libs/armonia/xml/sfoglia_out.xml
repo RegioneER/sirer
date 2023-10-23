@@ -1,0 +1,15 @@
+<list titolo="">
+	<col tipo="hidden" nome="COD_STRUCT" var="STRUTTURE.COD_STRUCT" table="STRUTTURE"></col>
+	<col tipo="hidden" nome="CAP" var="STRUTTURE.CAP" table="STRUTTURE"></col>
+	<col tipo="hidden" nome="SIGLA" var="STRUTTURE.SIGLA" table="STRUTTURE"></col>
+	<col tipo="testo"  nome="DENOM" var="STRUTTURE.DENOM">Denominazione</col>
+	<col tipo="testo"  nome="ADDRESS" var="STRUTTURE.ADDRESS">Via</col>
+	<col tipo="testo"  nome="COMUNE" var="STRUTTURE.COMUNE" order_by="asc">Citta</col>
+	<col tipo="hidden"  nome="RESPONSABILE" var="STRUTTURE.RESPONSABILE"></col>
+	<col tipo="hidden"  nome="FAX" var="STRUTTURE.FAX"></col>
+	<col tipo="hidden"  nome="ID_COMUNE_ALFANUM" var="STRUTTURE.ID_COMUNE_ALFANUM"></col>
+	<col tipo="hidden"  nome="COD_ASL" var="STRUTTURE.COD_ASL"></col>
+	<col tipo="hidden"  nome="DENOM_ASL" var="STRUTTURE.DENOM_ASL"></col>
+	<col tipo="hidden"  nome="ABILITAZIONE" var="nvl(STRUTTURE.ABILITAZIONE,0)||STRUTTURE.DENOM||' ('|| STRUTTURE.SIGLA||') '"></col>
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

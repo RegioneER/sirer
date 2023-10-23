@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <script>
+            function dynvar() {
+                var vars = {};
+                var x = document.location.search.substring(1).split('&');
+        
+                for (var i in x) {
+                    var z = x[i].split('=',2);
+        
+                    if (!vars[z[0]]) {
+                        vars[z[0]] = unescape(z[1]);
+                    }
+                }
+        
+                //document.getElementById('doctitle').innerHTML = vars.doctitle;
+                document.getElementById('paginate').innerHTML = 'page ' + vars.page + ' of ' + vars.topage;
+            }
+        </script>
+    </head>
+
+    <body style="margin:0;" onload="dynvar();">
+        <div style="border-top:#CCCCCC solid 1px;color:#0070C0;font-family:Lato,sans-serif;font-size:12px;height:36px;position:relative;">
+            
+            <!--div style="float:left;padding:0 5px 0 4px;"><img alt="DPB" src="http://www.gravatar.com/avatar/5544fe6a05400da5a8957ff29dd6718c.png?s=128" style="border-radius:3px;width:32px;" />
+            	</div-->
+            
+            <div style="float:right;list-style:none;margin:3px 3px 0;text-align:right;"><strong id="doctitle"><!--{doctitle}--></strong><br />
+            	<span id="paginate" style="color:#666666;display:inline-block;font-size:11px;font-weight:300;padding-right:1px;">page {page} of {topage}</span>
+            </div>
+            
+            <h1 style="font-size:10px;margin:0;color:#0070C0;"><!--strong>Danny Berger</strong><br /><a href="http://dpb587.me/" style="color:#666666;font-size:11px;font-weight:300;text-decoration:none;">http://dpb587.me</a-->
+            	<u><i><b>Segreteria Tecnico-Scientifica:</b></i></u><br>
+            		Dr.ssa Raffaella Gaggeri, Responsabile - Tel. 0543/739941 Fax 0543/739288 <a href="mailto:segreteriascientifica.ceav@irst.emr.it">segreteriascientifica.ceav@irst.emr.it</a><br/>
+								Dr.ssa Nicoletta Rizzi Tel. 0543/739983 – Dr. Riccardo Tessarini 0543/739287 - Fax 0543/739288 <a href="mailto:segreteriamministrativa.ceav@irst.emr.it">segreteriamministrativa.ceav@irst.emr.it</a>
+							<!--u>Segreteria Scientifica:</u> Dr.ssa Paola Burioli Tel. 0543/739941 Fax. 0543/739288 <a href="mailto:segreteriascientifica.ceav@irst.emr.it">segreteriascientifica.ceav@irst.emr.it</a><br/>
+							<u>Segreteria Amministrativa:</u> Sig.ra Rosaria Perotto (coordinatrice)<br/>
+							Dr.ssa Nicoletta Rizzi, Dr. Riccardo Tessarini Tel. 0543/739983 – 739287 Fax. 0543/739288 <a href="mailto:segreteriamministrativa.ceav@irst.emr.it">segreteriamministrativa.ceav@irst.emr.it</a><br/>
+							<u><i><b>Articolazioni Locali di Segreteria Scientifica:</b></i></u> Dr.ssa Caterina Donati (IRST); Dr.ssa Alba Plescia (Rimini); Dr.ssa Silvia Maretti (Ravenna);<br/>Dr.ssa Francesca Caruso (Cesena); Dr.ssa Marina Assirelli (Forl&igrave;)-->
+            </h1>
+        </div>
+    </body>
+</html>

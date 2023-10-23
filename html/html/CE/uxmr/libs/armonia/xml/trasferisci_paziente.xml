@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<form fname="CANCELLA PAZIENTE" titolo="CANCELLA PAZIENTE" table="REGISTRAZIONE"
+	cols="3">
+	<field type="hidden" var="TRASF_ACTION" tb="no" />
+
+	<field type="hidden" var="TTRASF" tb="no">
+		<value val="1"></value>
+	</field>
+
+	<field type="hidden" var="USERID_INS" priority_bytb="yes"
+		var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid"
+		bytbdecode="userid" bytbwhere="userid='[remote_userid]'" tb="no" />
+
+	<field type="hidden" var="CENTER" var_type="text" tb="no" />
+	<field type="hidden" var="SERVIZIO" var_type="text" tb="no" 
+bytbcode="'[service]'" bytbdecode="'[service]'" bytb="DUAL" bytbnoprefix="yes" />
+
+	<field type="hidden" var="NASCPZ" var_type="text" tb="no"
+		bytbcode="NASCPZ" bytbdecode="NASCPZ" bytbwhere="CODPAT='[CODPAT]'" bytb="REGISTRAZIONE" />
+
+	<field cols="3">
+		<txt_value><![CDATA[<tr><td colspan="6" class="titolo"><b>TRASFERIMENTO PAZIENTE</b></td></tr>]]></txt_value>
+	</field>
+	
+	
+	<field type="select" var="CENTRO_ORIGINE" 
+	bytbcode="distinct b.CENTER" bytbdecode="b.DENOM || ' ( ' || b.CENTER || ' )'" bytb="REGISTRAZIONE a join [service]_CENTRI b on a.center = b.center" 
+	tb="no" cols="1" onchange="compila_codpat($('input[name=SERVIZIO]').val());" show_selected="yes">
+	<txt_value>CENTRO ORIGINE:</txt_value>
+	</field>
+	
+	<field type="select" var="CODPAT" tb="no" cols="1" show_selected="yes">
+	<txt_value>Codice paziente:</txt_value>
+	</field>
+	
+	<field type="select" var="CENTRO_DESTINAZIONE" 
+	bytbcode="CENTER" bytbdecode="DENOM || ' ( ' || CENTER || ' )'" bytb="CENTRI" tb="no" cols="1" show_selected="yes">
+	<txt_value>CENTRO DESTINAZIONE:</txt_value>
+	</field>
+	
+	<field type="select" var="TIPO_RICHIESTA" tb="no"  send="obbligatorio" cols="3"
+	bytb="EQUERY" bytbcode="ID" bytbdecode="'Equery nr. ' || ID" bytbwhere="CENTER=[CENTER] and CODPAT=[CODPAT] 
+	union
+	select -1 as code, ' Richiesta in WCA' as decode from dual
+	union
+	select -2 as code, ' Richiesta in Helpdesk' as decode from dual
+	union
+	select -3 as code, ' Altro' as decode from dual" >
+		<txt_value>Tipo richiesta</txt_value>
+	</field>
+
+
+
+	<send>Procedi</send>
+	<cancel>Sbianca campi</cancel>
+</form>

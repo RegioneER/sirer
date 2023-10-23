@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<form fname="INVIA UN MESSAGGIO AI PARTECIPANTI" titolo="INVIA UN MESSAGGIO AI PARTECIPANTI" table="MESSAGGI" cols="1">
+    <field type="hidden" var="MSG" tb="no">
+    	<value val='1'></value>
+    </field>
+    <field type="hidden" var="MSG_ID" var_type="number" PK="yes">
+    	<value val="next"></value>
+    </field>
+   <field type="hidden" var="INVIO_DT" var_type="text"  var_size="40">
+    	<value val="sysdate"></value>
+    </field>
+    <field type="hidden" var="TMSG" tb="no">
+    
+    </field>
+
+	<field>
+		<txt_value><![CDATA[<tr><td colspan="4" class="titolo"><b>INVIA UN MESSAGGIO AI PARTECIPANTI</b></td></tr>]]></txt_value>
+	</field>
+<field>
+		<txt_value><![CDATA[<tr><td colspan="4" align="right"><a href="index.php?list=messag_list.xml">Visualizza messaggi inviati </a></td></tr>]]></txt_value>
+	</field>
+
+
+	<field>
+		<txt_value><![CDATA[<tr><td colspan="4" class="input"><b>Invia a:</b></td></tr>]]></txt_value>
+	</field>
+
+  <field type="checkbox" var="AIFA/CINECA">
+					<value val="AIFA"> AIFA</value>
+  </field>
+  <field type="checkbox" var="MEDICI">
+					<value val="MEDICI"> Medici</value>
+  </field>
+  <field type="checkbox" var="FAR">
+					<value val="FAR"> Farmacisti</value>
+  </field>
+   
+ 	<field type="textbox" var="SUBMSG"  var_type="text" send="obbligatorio" var_size="200" size="60" >
+		<txt_value>Oggetto del Messaggio</txt_value>
+	</field>
+	
+	<field type="textarea" var="TXTMSG"  var_type="text" send="obbligatorio" var_size="4000" tcols="60" rows="10">
+		<txt_value>Testo del Messaggio</txt_value>
+	</field>
+	<field type="file" var="ATAMSG">
+		<txt_value>Allega file</txt_value>
+	</field>
+	
+	  <field type="checkbox" var="RESOCONTO" tb="no">
+					<value val="RESOCONTO"> Inviare resoconto invio?</value>
+  </field>
+  
+<send>Invia</send> 
+<cancel>Cancella</cancel> 
+</form>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<form fname="CANCELLA PAZIENTE" titolo="CANCELLA PAZIENTE" table="REGISTRAZIONE"
+	cols="1">
+	<field type="hidden" var="NASCPZ_ACTION" tb="no" />
+
+	<field type="hidden" var="TNASCPZ" tb="no">
+		<value val="1"></value>
+	</field>
+
+	<field type="hidden" var="USERID_INS" priority_bytb="yes"
+		var_type="text" var_size="40" bytb="ana_utenti" bytbcode="userid"
+		bytbdecode="userid" bytbwhere="userid='[remote_userid]'" tb="no" />
+
+	<field type="hidden" var="CENTER" var_type="text" tb="no" />
+	<field type="hidden" var="SERVIZIO" var_type="text" tb="no" 
+bytbcode="'[service]'" bytbdecode="'[service]'" bytb="DUAL" bytbnoprefix="yes" />
+
+	<field type="hidden" var="NASCPZ" var_type="text" tb="no"
+		bytbcode="NASCPZ" bytbdecode="NASCPZ" bytbwhere="CODPAT='[CODPAT]'" bytb="REGISTRAZIONE" />
+
+	<field>
+	<field type="hidden" var="MOTIVO" var_type="number" tb="no"
+		bytbcode="MOTIVO" bytbdecode="MOTIVO" bytbwhere="CODPAT='[CODPAT]'" bytb="REGISTRAZIONE" />
+
+	<field>
+		<txt_value><![CDATA[<tr><td colspan="2" class="titolo"><b>CANCELLAZIONE PAZIENTE</b></td></tr>]]></txt_value>
+	</field>
+	
+	<field type="text" var="CODPAT" tb="no">
+	<txt_value>Codice paziente:</txt_value>
+	</field>
+	<field type="text" var="CENTRO" bytb="CENTRI" 
+		bytbcode="DENOM || ' (' || CENTER || ')'"
+		bytbdecode="DENOM || ' (' || CENTER || ')'" bytbwhere="CENTER='[CENTER]'" tb="no">
+	<txt_value>Centro:</txt_value>
+	</field>
+
+	<field type="text" var="STATO_ATTUALE" var_type="text" var_size="200"
+		cols="1" bytb="REGISTRAZIONE" no_dm_change="yes"
+		bytbcode="case when NASCPZ is null then 'ATTIVO' else '&lt;span style=''color:red;''&gt;CANCELLATO (' || D_MOTIVO || ')&lt;/span&gt;' end"
+	  bytbdecode="case when NASCPZ is null then 'ATTIVO' else '&lt;span style=''color:red;''&gt;CANCELLATO (' || D_MOTIVO || ')&lt;/span&gt;' end"
+		bytbwhere="CODPAT='[CODPAT]'">
+		<txt_value>Stato attuale:</txt_value>
+	</field>
+
+	<field type="select" var="AZIONE"  send="obbligatorio" cols="1" tb="no" 
+	onchange="setMotivo();">
+		<txt_value>Azione</txt_value>
+			<value val="1">Cancella paziente</value>
+			<value val="2">Ripristino paziente</value>
+	</field>
+	
+	<field type="select" var="MOTIVO_CANC"  send="obbligatorio" cols="1" tb="no" condition="AZIONE" condition_value="1">
+		<txt_value>Motivo della cancellazione</txt_value>
+			<value val="-1">Paziente duplicato</value>
+			<value val="-2">Paziente inserito per errore</value>
+			<value val="-9">Altro</value>
+	</field>
+	
+	<field type="select" var="TIPO_RICHIESTA" cols="1" tb="no"  send="obbligatorio"
+	bytb="EQUERY" bytbcode="ID" bytbdecode="'Equery nr. ' || ID" bytbwhere="CENTER=[CENTER] and CODPAT=[CODPAT] 
+	union
+	select -1 as code, ' Richiesta in WCA' as decode from dual
+	union
+	select -2 as code, ' Richiesta in Helpdesk' as decode from dual
+	union
+	select -3 as code, ' Altro' as decode from dual" >
+		<txt_value>Tipo richiesta</txt_value>
+	</field>
+
+
+
+	<send>Procedi</send>
+	<cancel>Sbianca campi</cancel>
+</form>

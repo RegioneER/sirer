@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>AIFA | Registro dei farmaci sottoposti a monitoraggio</title>
+	
+<link media="screen" href="/aifa_intensivi.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form action="/libs/armonia/scripts/sfoglia_armonia.php">
+<input type="hidden" name="list" value="sfoglia_out.xml">
+<input type="hidden" name="scrip" value="/libs/armonia/scripts/sfoglia_armonia.php">
+<input type="hidden" name="S_DENOM" value="">
+<input type="hidden" name="S_COMUNE" value="">
+<input type="hidden" name="S_ADDRESS" value="">
+<input type="hidden" name="oper" value="OR">
+<input type="hidden" name="tipo" value="cerca">
+<input type="hidden" name="page" value="1">
+<input type="hidden" name="function" value="add_value">
+<input type="hidden" name="source" value="ABILITAZIONE,DENOM,COD_STRUCT,ADDRESS,CAP,COMUNE,RESPONSABILE,FAX,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL">
+<input type="hidden" name="dest" value="ABILITAZIONE,AZIENDA_ENTE,COD_STRUCT,VIA,CAP,CITTA,RESP_FM,FAXFARMA,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL">
+
+	<table border=0 width=100% cellpadding=0 cellspacing=0 class="destra">
+		<tr>
+			<td align="center">
+	Stringa da cercare: 
+	<input type="text" name="PATTERN" value="" size="20" 
+	onBlur="this.value=this.value.toUpperCase();document.forms[0].elements['S_DENOM'].value=this.value;document.forms[0].elements['S_COMUNE'].value=this.value;document.forms[0].elements['S_ADDRESS'].value=this.value; " 
+	onKeypress="if (event.keyCode==13) {this.value=this.value.toUpperCase();document.forms[0].elements['S_DENOM'].value=this.value;document.forms[0].elements['S_COMUNE'].value=this.value;document.forms[0].elements['S_ADDRESS'].value=this.value;document.forms[0].submit();}">	
+<input type="submit" value="Cerca"><hr>
+
+</td>
+</tr>
+</table>
+</form>

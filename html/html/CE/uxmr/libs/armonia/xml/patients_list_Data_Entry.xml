@@ -1,0 +1,20 @@
+<list titolo="Lista Pazienti">
+	
+	<col tipo="testo" nome="CODPAT" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER"  table="[patients_table]" order_by="yes" ord_arrow="yes">Codice Paziente</col>
+	
+	<!--col tipo="testo" nome="DENOM" var="reuma_centri.DENOM" param="exams=visite_exam.xml,CODPAT,CENTER"  table="reuma_centri"   >Centro</col!-->
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER" table="[patients_table]"></col>
+	
+	<col tipo="testo" nome="init" crypto="yes" var="[patients_table].NOME||' '||[patients_table].COGNOME" table="[patients_table]">Nome Paziente</col>
+	
+	<col tipo="testo" nome="reg" var="(select to_char([service]_coordinate.insertdt,'DD/MM/YYYY') from [service]_coordinate where [patients_table].codpat=[service]_coordinate.codpat and [service]_coordinate.esam=0)">Data di registrazione</col>
+	<col tipo="testo" nome="ELEG" var="(select DECODE([service]_DIAGNOSI.ELEG,'1','Eleggibile','','Non Eleggibile') from [service]_DIAGNOSI where [patients_table].codpat=[service]_DIAGNOSI.codpat)">Stato</col>
+	
+	<col tipo="hidden" nome="NASCPZ_STATUS" var="[patients_table].NASCPZ" table="[patients_table]" where="NASCPZ is null">Se 1 allora nascosto</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+	<col tipo="visite_dm" param="CODPAT,CENTER" EXAMS="visite_exams.xml"></col>
+	<col tipo="pdf" script="/study/index.php" target="_blank" param="pdf=create,CODPAT,CENTER">CRFs</col>
+
+	
+	
+</list>

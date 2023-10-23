@@ -1,0 +1,12 @@
+<list titolo="">
+	<col tipo="testo" nome="COD_STRUCT" var="ASL.COD_STRUCT" table="ASL" >Codice Struttura</col>
+	<col tipo="testo" nome="DENOMINAZIONE_REGIONE" var="upper(ASL.DENOMINAZIONE_REGIONE)" order_by="asc">Regione</col>
+	<col tipo="testo" nome="COMUNE" var="upper(ASL.COMUNE)" table="ASL" order_by="asc">Comune</col>
+	<col tipo="HIDDEN" nome="DESCR_ASL" var="upper(LTRIM(RTRIM(DENOM)))||' '||upper(LTRIM(RTRIM(ADDRESS)))||' '||upper(COMUNE)" order_by="asc">A.S.L.</col>
+	<col tipo="testo" nome="DENOM" var="DENOM" order_by="asc">A.S.L.</col>
+	<col tipo="testo" nome="ADDRESS" var="ASL.ADDRESS" >Indirizzo</col>
+	<col tipo="HIDDEN" nome="SIGLA" var="ASL.SIGLA" ></col>
+  <col tipo="HIDDEN" nome="CODICE_AZIENDA" var="ASL.COD_STRUCT" ></col>
+	<col tipo="javascript"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>
+ 

@@ -1,60 +1,60 @@
-<?xml version="1.0" encoding="windows-1252"?> 
-<form fname="Selezione studi" titolo="Selezione studi" table="SEL_STUDI" 
-	link_to="index.php?ID_SED=[ID_SED]|and|exams" 
-	cols="1"
-	f_to_call="link_parere_odg_verbale"
-	js_function="rimuovi_inutili();" js_onsave="yes"
-	>
-		<field type="hidden" var="ID_SED" var_type="number" pk="yes">
-			<value val="next"></value>
-		</field>
-		<field type="hidden" var="INVIOCO" var_type="number" tb="no">
-			<value val="0"></value>
-		</field>
-		<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
-		<field type="hidden" var="PROGR" var_type="number" pk="yes">
-			<value val="0"></value>
-		</field>
-		<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
-		</field>
-		<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
-		<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
+<?xml version="1.0" encoding="windows-1252"?>
+<form fname="Selezione studi" titolo="Selezione studi" table="SEL_STUDI"
+	  link_to="index.php?ID_SED=[ID_SED]|and|exams"
+	  cols="1"
+	  f_to_call="link_parere_odg_verbale"
+	  js_function="rimuovi_inutili();" js_onsave="yes"
+>
+	<field type="hidden" var="ID_SED" var_type="number" pk="yes">
+		<value val="next"></value>
+	</field>
+	<field type="hidden" var="INVIOCO" var_type="number" tb="no">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="VISITNUM_PROGR" var_type="number" pk="yes" value="0"></field>
+	<field type="hidden" var="PROGR" var_type="number" pk="yes">
+		<value val="0"></value>
+	</field>
+	<field type="hidden" var="USERID_INS" var_type="text" var_size="40" bytb="ANA_UTENTI_2" bytbcode="USERID" bytbdecode="USERID" bytbwhere="USERID='[remote_userid]'">
+	</field>
+	<field type="hidden" var="ESAM" var_type="number" pk="yes"></field>
+	<field type="hidden" var="VISITNUM" var_type="number" pk="yes"></field>
 
-		<field type="hidden" var="CENTER" var_type="number" />
-		
-		<field type="hidden" var="GUID" var_type="text" var_size="200" />
+	<field type="hidden" var="CENTER" var_type="number" />
 
-		<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
-		
-		<field>
-			<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Selezione studi/emendamenti da portare in seduta</b></td>]]></txt_value>
-		</field>
-		
-		<field 	type="multicheck_multiselect" var="STUDI_SOSPESI" bytb="VIEW_STUDI_SOSPESI" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="TIPO_SPER,PARERE_UNICO" bytb_vis="VIEW_STUDI_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
-				select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
-			<txt_value><![CDATA[<b>Selezionare gli studi sospesi o approvati a condizione:</b>]]></txt_value>
-		</field>
-		
-		<field 	type="multicheck_multiselect" var="STUDI" bytb="VIEW_STUDI_PRIMA_VAL" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="TIPO_SPER,PARERE_UNICO" bytb_vis="VIEW_STUDI_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
-				select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
-			<txt_value><![CDATA[<b>Selezionare i nuovi  studi</b>]]></txt_value>
-		</field>
-		
-		<field 	type="multicheck_multiselect" var="STUDI_EMENDAMENTI" bytb="VIEW_EME_PRIMA_VAL" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="IDE_CODICE" bytb_vis="VIEW_EME_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
-				select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
-			<txt_value><![CDATA[<b>Selezionare i nuovi emendamenti</b>]]></txt_value>
-		</field>
- 		
-		<field 	type="multicheck_multiselect" var="STUDI_EME_SOSP" bytb="VIEW_EME_SOSPESI" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="IDE_CODICE" bytb_vis="VIEW_EME_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
-				select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
-			<txt_value><![CDATA[<b>Selezionare gli emendamenti in attesa d'integrazione/modifica</b>]]></txt_value>
-		</field>
- 		
+	<field type="hidden" var="GUID" var_type="text" var_size="200" />
+
+	<field type="hidden" var="NOT_NEW" var_type="number" var_size="1" />
+
+	<field>
+		<txt_value><![CDATA[<td colspan="2"  class=titolo3 align=center><b>Selezione studi/emendamenti da portare in seduta</b></td>]]></txt_value>
+	</field>
+
+	<field 	type="multicheck_multiselect" var="STUDI_SOSPESI" bytb="VIEW_STUDI_SOSPESI" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="TIPO_SPER,PARERE_UNICO" bytb_vis="VIEW_STUDI_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
+			  select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_tag_5="6:" select_tag_6="7:"	select_tag_7="8:" select_tag_8="9:"	select_tag_9="10:" select_tag_10="11:" select_tag_11="12:"	select_tag_12="13:" select_tag_13="14:"	select_tag_14="15:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
+		<txt_value><![CDATA[<b>Selezionare gli studi sospesi o approvati a condizione:</b>]]></txt_value>
+	</field>
+
+	<field 	type="multicheck_multiselect" var="STUDI" bytb="VIEW_STUDI_PRIMA_VAL" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="TIPO_SPER,PARERE_UNICO" bytb_vis="VIEW_STUDI_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
+			  select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_tag_5="6:" select_tag_6="7:"	select_tag_7="8:" select_tag_8="9:"	select_tag_9="10:" select_tag_10="11:" select_tag_11="12:"	select_tag_12="13:" select_tag_13="14:"	select_tag_14="15:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
+		<txt_value><![CDATA[<b>Selezionare i nuovi  studi</b>]]></txt_value>
+	</field>
+
+	<field 	type="multicheck_multiselect" var="STUDI_EMENDAMENTI" bytb="VIEW_EME_PRIMA_VAL" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="IDE_CODICE" bytb_vis="VIEW_EME_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
+			  select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_tag_5="6:" select_tag_6="7:"	select_tag_7="8:" select_tag_8="9:"	select_tag_9="10:" select_tag_10="11:" select_tag_11="12:"	select_tag_12="13:" select_tag_13="14:"	select_tag_14="15:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
+		<txt_value><![CDATA[<b>Selezionare i nuovi emendamenti</b>]]></txt_value>
+	</field>
+
+	<field 	type="multicheck_multiselect" var="STUDI_EME_SOSP" bytb="VIEW_EME_SOSPESI" bytbcode="CODE" bytbdecode="DECODE" bytbwhere="id_ce=(select id_ce from ana_utenti_2 where userid='[remote_userid]')" bytborderby="IDE_CODICE" bytb_vis="VIEW_EME_ALL" bytbcode_vis="CODE" bytbdecode_vis="DECODE"
+			  select_tag_0="1:" select_tag_1="2:"	select_tag_2="3:" select_tag_3="4:"	select_tag_4="5:" select_tag_5="6:" select_tag_6="7:"	select_tag_7="8:" select_tag_8="9:"	select_tag_9="10:" select_tag_10="11:" select_tag_11="12:"	select_tag_12="13:" select_tag_13="14:"	select_tag_14="15:" select_bytb="LISTA_COMP_ALL" select_bytbcode="USERID" select_bytbdecode="NOME||' '||COGNOME" select_bytbwhere="CENTER=[CENTER]" select_bytborderby="COGNOME">
+		<txt_value><![CDATA[<b>Selezionare gli emendamenti in attesa d'integrazione/modifica</b>]]></txt_value>
+	</field>
+
 
 	<enable>
 	</enable>
 
-		
+
 	<save>Salva</save>
 	<cancel>Annulla</cancel>
 </form>

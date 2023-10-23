@@ -585,7 +585,7 @@ class query extends Configurable {
 						$length = oci_result ( $stmt, "CHAR_LENGTH" );
 					$column_name = oci_result ( $stmt, "COLUMN_NAME" );
 					
-					$debug_values .= "\n* Nome campo: " . $column_name . " -> Valore campo: " . $values [$column_name] . " (Tipo: " . oci_result ( $stmt, "DATA_TYPE" ) . " Oracle Length: " . $length . ") Length Value: " . strlen ( $values [$column_name] ) . " * | mb_strlen: " . mb_strlen ( $values [$column_name], 'utf-8' );
+					//$debug_values .= "\n* Nome campo: " . $column_name . " -> Valore campo: " . $values [$column_name] . " (Tipo: " . oci_result ( $stmt, "DATA_TYPE" ) . " Oracle Length: " . $length . ") Length Value: " . strlen ( $values [$column_name] ) . " * | mb_strlen: " . mb_strlen ( $values [$column_name], 'utf-8' );
 					//OLD $debug_values.="\n* Nome campo: ".$column_name." -> Valore campo: ".$values[$column_name]." (Tipo: ".oci_result($stmt, "DATA_TYPE")." Oracle Length: ".$length.") Length Value: ".strlen($values[$column_name])." *";
 				//					$this->exec("select * from ALL_TAB_COLUMNS where table_name=upper('$table') and column_name=upper('$key')");//commentata
 				//					$this->get_row();
@@ -623,7 +623,7 @@ class query extends Configurable {
 				}
 			}
 		}
-		
+
 		$file_log = $GLOBALS ['dir'] . "/log_trace/" . $in ['remote_userid'] . ".log";
 		$time_end = time ();
 		$diff_time = $time_end - $time_ini;
@@ -638,7 +638,7 @@ class query extends Configurable {
 		fclose ( $handle );
 		return null;
 	}
-	
+
 	/**
 	 * Identifica l'errore dell'istruzione sql eseguita
 	 *
@@ -666,7 +666,7 @@ class query extends Configurable {
 			//echo "<li>{$this->row['COLUMN_NAME']} - {$this->row['DATA_TYPE']} - {$this->row['DATA_LENGTH']} - ".strlen($values[$this->row['COLUMN_NAME']])."</li>";
 		}
 	}
-	
+
 	/**
 	 * Restituisce le specifiche degli errori
 	 *
@@ -675,7 +675,7 @@ class query extends Configurable {
 	function getErrors() {
 		return $this->errors;
 	}
-	
+
 	/**
 	 * Effettua una query di update
 	 *
@@ -685,7 +685,7 @@ class query extends Configurable {
 	 * @param array $clob
 	 */
 	function update($values, $table, $pk = null, $clob = null) {
-		
+
 		$time_ini = time ();
 		if ($this->getConfiguration ( 'debug' ) == 'on') {
 			$args = func_get_args ();
@@ -694,11 +694,11 @@ class query extends Configurable {
 		//se è presente array clob, inseriscilo in CLOB
 		if (is_array ( $clob ))
 			$clob_flag = true;
-			
+
 		//print_r($values);
 		//print_r($pk);
 		$fields = null;
-		
+
 		foreach ( $values as $field_name => $valore ) {
 			if (preg_match ( "/^to_date/i", $valore ))
 				$fields .= "{$field_name}=$valore,";
@@ -710,7 +710,7 @@ class query extends Configurable {
 					$fields .= "{$field_name}=:{$field_name},";
 				}
 			}
-		
+
 		}
 		//preparo l'empty clob per i testi lunghi
 		if (isset ( $clob_flag ) && $clob_flag) {
@@ -719,7 +719,7 @@ class query extends Configurable {
 				//				$valori.="EMPTY_CLOB(),";
 				$returning .= "{$field_name},";
 				$into .= ":{$field_name},";
-			
+
 			}
 			$returning = rtrim ( $returning, "," );
 			$into = rtrim ( $into, "," );
@@ -730,19 +730,19 @@ class query extends Configurable {
 			foreach ( $pk as $key => $val ) {
 				$pk_key .= "{$key}=:PK_{$key} and ";
 			}
-		
+
 		$fields = rtrim ( $fields, "," );
 		//ATTENZIONE, se la chiave FINIVA per "d", rimuoveva tale d
 		//		$pk_key=rtrim($pk_key," and ");
 		$pk_key = preg_replace ( "/ and $/", "", $pk_key );
 		if ($pk_key != '')
 			$pk_key = "where $pk_key";
-		
+
 		$this->str = "update $table set $fields $pk_key";
-		
+
 		if (isset ( $clob_flag ) && $clob_flag)
 			$this->str .= $returning_into_clob;
-		
+
 		global $in;
 		global $SRV;
 		global $log_conn;
@@ -763,21 +763,21 @@ class query extends Configurable {
 */
 		//FPTracker::trackQuery ( $this->str );
 		$this->stmt = ociparse ( $this->conn, $this->str );
-		
+
 		if (isset ( $clob_flag ) && $clob_flag) {
 			foreach ( $clob as $field_name => $long_txt ) {
 				$clob_descr [$field_name] = oci_new_descriptor ( $this->conn, OCI_D_LOB );
 			}
-		
+
 		}
 		if (isset ( $clob_flag ) && $clob_flag) {
 			foreach ( $clob as $field_name => $long_txt ) {
 				oci_bind_by_name ( $this->stmt, ":{$field_name}", $clob_descr [$field_name], - 1, OCI_B_CLOB );
 			}
 		}
-		
+
 		foreach ( $values as $field_name => $valore ) {
-			
+
 			if (! preg_match ( "/^to_date/i", $valore )) {
 				$values [$field_name] = preg_replace ( "/\n/", "", $values [$field_name] );
 				ocibindbyname ( $this->stmt, ":{$field_name}", $values [$field_name] );
@@ -787,7 +787,7 @@ class query extends Configurable {
 			foreach ( $pk as $key => $val ) {
 				ocibindbyname ( $this->stmt, ":PK_{$key}", $pk [$key] );
 			}
-		
+
 		if (! ociexecute ( $this->stmt, OCI_DEFAULT )) {
 			//			error_page($in['remote_userid'], $this->str, $this->str);
 			$file_log = $GLOBALS ['dir'] . "/log_trace/" . $in ['remote_userid'] . ".log";
@@ -821,7 +821,7 @@ class query extends Configurable {
 					else
 						$length = oci_result ( $stmt, "CHAR_LENGTH" );
 					$column_name = oci_result ( $stmt, "COLUMN_NAME" );
-					$debug_values .= "\n* Nome campo: " . $column_name . " -> Valore campo: " . $values [$column_name] . " (Tipo: " . oci_result ( $stmt, "DATA_TYPE" ) . " Oracle Length: " . $length . ") Length Value: " . strlen ( $values [$column_name] ) . " * | mb_strlen: " . mb_strlen ( $values [$column_name], 'utf-8' );
+					//$debug_values .= "\n* Nome campo: " . $column_name . " -> Valore campo: " . $values [$column_name] . " (Tipo: " . oci_result ( $stmt, "DATA_TYPE" ) . " Oracle Length: " . $length . ") Length Value: " . strlen ( $values [$column_name] ) . " * | mb_strlen: " . mb_strlen ( $values [$column_name], 'utf-8' );
 					//					$this->exec("select * from ALL_TAB_COLUMNS where table_name=upper('$table') and column_name=upper('$key')");//commentata
 				//					$this->get_row();
 				//					if($this->row['CHAR_LENGTH']==0) $length=$this->row['DATA_LENGTH'];

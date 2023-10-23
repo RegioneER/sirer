@@ -1,0 +1,18 @@
+<list titolo="Lista Centri">
+	<col tipo="testo" nome="CENTER" var="[service]_CENTRI.CENTER"
+		table="[service]_CENTRI" group_by="1">Codice Centro</col>
+	<col tipo="hidden" nome="USERID" var="[service]_UTENTI_CENTRI.USERID"
+		table="[service]_UTENTI_CENTRI"
+		where="[service]_UTENTI_CENTRI.CENTER=[service]_CENTRI.CENTER and [service]_UTENTI_CENTRI.USERID='[remote_userid]'"
+		group_by="1"></col>
+	<col tipo="testo" nome="DENOM" var="[service]_CENTRI.DENOM"
+		ord_arrow="yes" order_by="asc" group_by="1">Denominazione Centro</col>
+	<!--col tipo="testo" nome="CITTA" var="[service]_CENTRI.CITTA" ord_arrow="yes" 
+		order_by="asc" group_by="1">CITTA</col -->
+	<!-- <col tipo="testo" nome="PAZIENTI" var="count(distinct ([patients_table].codpat))" 
+		table="[patients_table]" where="[patients_table].CENTER=[service]_UTENTI_CENTRI.CENTER">N. 
+		Pazienti</col> -->
+	<col tipo="freccia" nome="CENTER_LINK" var="[service]_CENTRI.CENTER"
+		script="index.php" param="VISITNUM=0,ESAM=0,CENTER,form=registrazione.xml">Registrazione</col>
+</list>
+

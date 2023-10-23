@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>AIFA | Registro dei farmaci per artrite reumatoide sottoposti a monitoraggio</title>
+<link media="screen" href="/aifa_intensivi.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form>
+<input type="hidden" name="list" value="sfoglia_fasl.xml">
+<input type="hidden" name="scrip" value="/study/sfoglia.php">
+<input type="hidden" name="oper" value="OR">
+<input type="hidden" name="S_DENOM" value="">
+<input type="hidden" name="S_COD_STRUCT" value="">
+<input type="hidden" name="S_REGIONE" value="">
+<input type="hidden" name="S_COMUNE" value="">
+<input type="hidden" name="S_ADDRESS" value="">
+<input type="hidden" name="tipo" value="cerca">
+<input type="hidden" name="page" value="1">
+<input type="hidden" name="function" value="add_value">
+<input type="hidden" name="source" value="COD_STRUCT,DESCR_ASL">
+<input type="hidden" name="dest" value="COD_FARMA_ALTRA,FARMA_ALTRA">
+
+	<table border=0 width=100% cellpadding=0 cellspacing=0 class="destra">
+		<tr>
+			<td align="center">
+	<b>È possibile effettuare la ricerca per: Denominazione ASL, Codice ASL, Regione e Indirizzo (Via, Comune)</b><br>Testo da cercare:<input type="text" name="PATTERN" value="" size="20" 
+	onBlur="this.value=this.value.toUpperCase();
+	document.forms[0].elements['S_DENOM'].value=this.value;
+	document.forms[0].elements['S_COD_STRUCT'].value=this.value;
+	document.forms[0].elements['S_REGIONE'].value=this.value;
+	document.forms[0].elements['S_COMUNE'].value=this.value;
+	document.forms[0].elements['S_ADDRESS'].value=this.value;
+	" onKeypress="if (event.keyCode==13) {
+	this.value=this.value.toUpperCase();
+	document.forms[0].elements['S_DENOM'].value=this.value;
+	document.forms[0].elements['S_COD_STRUCT'].value=this.value;
+	document.forms[0].elements['S_REGIONE'].value=this.value;
+	document.forms[0].elements['S_COMUNE'].value=this.value;
+	document.forms[0].elements['S_ADDRESS'].value=this.value;
+	document.forms[0].action='/study/sfoglia.php';document.forms[0].submit();}">	
+<input type="submit" value="Cerca" onclick="
+document.forms[0].action='/study/sfoglia.php';
+"><hr>
+
+</td>
+</tr>
+</table>
+</form>

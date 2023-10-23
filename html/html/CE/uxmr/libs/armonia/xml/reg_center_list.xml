@@ -1,0 +1,9 @@
+<list titolo="lista centri registrati">
+	<col tipo="testo" nome="USERID" var="REUMA_CENTRI.CENTER" table="REUMA_CENTRI">UserID</col>
+	<col tipo="testo" nome="DENOM" var="REUMA_CENTRI.DENOM" table="REUMA_CENTRI">Struttura</col>
+	<col tipo="testo" nome="REFERENTE" var="ana_utenti_1.NOME||' '||ana_utenti_1.COGNOME" table="ana_utenti_1" where="ana_utenti_1.userid=REUMA_CENTRI.CENTER">Referente</col>
+	<col tipo="testo" nome="TELFAX" var="ana_utenti_1.TELEFONO||' '||ana_utenti_1.FAX" table="ana_utenti_1" where="ana_utenti_1.userid=REUMA_CENTRI.CENTER">Telefono Fax</col>
+	<col tipo="testo" nome="EMAIL" var="ana_utenti_1.email" table="ana_utenti_1" where="ana_utenti_1.userid=REUMA_CENTRI.CENTER">Email</col>
+<col tipo="testo" nome="CITTA" var="ana_utenti_1.CITTA" table="ana_utenti_1" where="ana_utenti_1.userid=REUMA_CENTRI.CENTER" order_by="asc"><![CDATA[Citt&agrave;]]></col>
+	<col tipo="testo" nome="FARMA" var="reuma_farma.FARMACIA ||' - ' || reuma_farma.userid" table="reuma_farma" where="reuma_farma.userid=ana_utenti_1.FARMA">Farmacia di riferimento</col>
+</list>

@@ -1,0 +1,4 @@
+<list titolo="">
+<col tipo="testo"  nome="SOC_CODE" var="SOC_CODE" table="SOC_MEDDRA">CODICE</col>
+<col tipo="testo"  nome="SOC_NAME" var="SOC_NAME" script="/study/sfoglia.php" param="list=sfoglia_meddra_l2.xml,SOC_CODE">DESCRIZIONE</col>
+</list>

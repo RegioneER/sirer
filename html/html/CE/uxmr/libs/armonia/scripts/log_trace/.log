@@ -1,0 +1,16 @@
+<session 23972><hr><b>Script : index.php</b><br><b>Parametri di input</b><ul><li>list: /libs/armonia/xml/sfoglia_out.xml</li><li>scrip: /libs/armonia/scripts/sfoglia_armonia.php</li><li>S_DENOM: </li><li>S_COMUNE: </li><li>S_ADDRESS: </li><li>oper: OR</li><li>tipo: cerca</li><li>page: 1</li><li>function: add_value</li><li>source: ABILITAZIONE,DENOM,COD_STRUCT,ADDRESS,CAP,COMUNE,RESPONSABILE,FAX,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL</li><li>dest: ABILITAZIONE,AZIENDA_ENTE,COD_STRUCT,VIA,CAP,CITTA,RESP_FM,FAXFARMA,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL</li><li>PATTERN: </li><li>remote_userid: </li></ul></session>
+					<error>yes</error>
+					<exec_time>0</exec_time>
+					<end_timestamp>1332861214</end_timestamp>
+				</session>
+				<session 23973><hr><b>Script : index.php</b><br><b>Parametri di input</b><ul><li>list: /libs/armonia/xml/sfoglia_out.xml</li><li>scrip: /libs/armonia/scripts/sfoglia_armonia.php</li><li>S_DENOM: </li><li>S_COMUNE: </li><li>S_ADDRESS: </li><li>oper: OR</li><li>tipo: cerca</li><li>page: 1</li><li>function: add_value</li><li>source: ABILITAZIONE,DENOM,COD_STRUCT,ADDRESS,CAP,COMUNE,RESPONSABILE,FAX,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL</li><li>dest: ABILITAZIONE,AZIENDA_ENTE,COD_STRUCT,VIA,CAP,CITTA,RESP_FM,FAXFARMA,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL</li><li>PATTERN: </li><li>remote_userid: </li></ul></session>
+					<error>yes</error>
+					<exec_time>0</exec_time>
+					<end_timestamp>1332861251</end_timestamp>
+				</session>
+				<session 23974><hr><b>Script : index.php</b><br><b>Parametri di input</b><ul><li>list: /libs/armonia/xml/sfoglia_out.xml</li><li>scrip: /libs/armonia/scripts/sfoglia_armonia.php</li><li>S_DENOM: </li><li>S_COMUNE: </li><li>S_ADDRESS: </li><li>oper: OR</li><li>tipo: cerca</li><li>page: 1</li><li>function: add_value</li><li>source: ABILITAZIONE,DENOM,COD_STRUCT,ADDRESS,CAP,COMUNE,RESPONSABILE,FAX,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL</li><li>dest: ABILITAZIONE,AZIENDA_ENTE,COD_STRUCT,VIA,CAP,CITTA,RESP_FM,FAXFARMA,ID_COMUNE_ALFANUM,COD_ASL,DENOM_ASL</li><li>PATTERN: </li><li>remote_userid: </li></ul></session>
+					<error>yes</error>
+					<exec_time>0</exec_time>
+					<end_timestamp>1332861322</end_timestamp>
+				</session>
+				

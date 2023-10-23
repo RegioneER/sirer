@@ -1,0 +1,7 @@
+<list titolo="">
+<col tipo="testo"  nome="DESCR" var="DESCR"  table="ICD9_TMAIN">DESCRIZIONE</col>
+<col tipo="HIDDEN"  nome="ID1" var="ID1" ></col>
+<col tipo="HIDDEN"  nome="ID2" var="ID2" ></col>
+<col tipo="testo"  nome="ID3" var="ID3" >CODICE</col>
+<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

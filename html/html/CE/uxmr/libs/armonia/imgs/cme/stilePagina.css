@@ -1,0 +1,45 @@
+UNKNOWN {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+I {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+A {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: verdana,arial
+}
+A I {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: verdana,arial
+}
+A B {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; COLOR: #666666; FONT-FAMILY: verdana,arial
+}
+BLOCKQUOTE {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+P {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+OL {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+LI {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+UL {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+DD {
+	FONT-SIZE: 12px; COLOR: #000080; FONT-FAMILY: verdana,arial
+}
+.linkmenu {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #666666; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none
+}
+.linkmenu2 {
+	FONT-WEIGHT: bold; FONT-SIZE: 11px; COLOR: #666666; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none
+}
+.linkmappa {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; COLOR: #666666; FONT-FAMILY: verdana,arial; TEXT-DECORATION: none
+}

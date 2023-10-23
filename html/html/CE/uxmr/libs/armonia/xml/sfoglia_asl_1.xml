@@ -1,0 +1,10 @@
+<list titolo="">
+	<col tipo="testo" nome="CODICE_ASL" var="ASLR.CODICE_ASL" table="ASLR" >Codice ASL</col>
+	<col tipo="testo" nome="REGIONE" var="upper(ASLR.REGIONE)" table="ASLR" order_by="asc">Regione</col>
+	<col tipo="testo" nome="COMUNE" var="upper(ASLR.COMUNE)" table="ASLR" order_by="asc">Comune</col>
+	<col tipo="testo" nome="DESCR_ASL" var="upper(ASLR.DESCR_ASL)" table="ASLR" order_by="asc">A.S.L.</col>
+	<col tipo="testo" nome="ADDRESS" var="ASLR.ADDRESS" table="ASLR">Indirizzo</col>
+	<col tipo="HIDDEN" nome="SIGLA_PROVINCIA" var="ASLR.SIGLA_PROVINCIA" table="ASLR"></col>
+  <!--col tipo="HIDDEN" nome="CODICE_AZIENDA" var="ASLR.CODICE_AZIENDA" table="ASLR"></col-->
+	<col tipo="javascript"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

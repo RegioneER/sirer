@@ -1,0 +1,32 @@
+<html>
+<head>
+	<title>AIFA | Registro dei farmaci per artrite reumatoide sottoposti a monitoraggio</title>
+<link media="screen" href="/aifa_intensivi.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form>
+<input type="hidden" name="list" value="cerca_icd9.xml">
+<input type="hidden" name="scrip" value="sfoglia.php">
+<input type="hidden" name="S_DESCR" value="">
+<input type="hidden" name="tipo" value="cerca">
+<input type="hidden" name="page" value="1">
+<input type="hidden" name="function" value="add_value">
+<input type="hidden" name="source" value="ID1,ID2,ID3,DESCR">
+<input type="hidden" name="dest" value="ID1_ALTRE,ID2_ALTRE,ID3_ALTRE,T52_ALTRE">
+
+	<table border=0 width=100% cellpadding=0 cellspacing=0 class="destra">
+		<tr>
+				<td align="center">
+	Stringa da cercare: <input type="text" name="PATTERN" value="" size="20" onBlur="this.value=this.value.toUpperCase();
+document.forms[0].elements['S_DESCR'].value=this.value;
+" onKeypress="if (event.keyCode==13) {this.value=this.value.toUpperCase();
+document.forms[0].elements['S_DESCR'].value=this.value;
+document.forms[0].action='sfoglia.php';document.forms[0].submit();}">	
+<input type="submit" value="Cerca" onclick="document.forms[0].action='sfoglia.php';"  ><hr>
+
+</td>
+
+</tr>
+</table>
+</form>
+

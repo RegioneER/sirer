@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="FeasibilityServizi" name="FeasibilityServizi" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <serviceTask id="sid-8C255A33-FB0B-423D-B148-EB3F36B0E617" name="Abilitazione templates" activiti:exclusive="false" activiti:expression="${ceGemelliProcessActions.abilitaPI(elementId,execution)}${processActions.addTemplate(elementId,'ServiziCoinvolti')}"></serviceTask>
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="sid-8C255A33-FB0B-423D-B148-EB3F36B0E617"></sequenceFlow>
+    <userTask id="sid-F8C3642E-F68B-4A08-B153-97F3A7D88868" name="Invia ai servizi" activiti:exclusive="false" activiti:candidateUsers="${enabledPI}" activiti:candidateGroups="CTC"></userTask>
+    <sequenceFlow id="sid-745B3DF4-BD10-4111-987F-549E6020DDA8" sourceRef="sid-8C255A33-FB0B-423D-B148-EB3F36B0E617" targetRef="sid-F8C3642E-F68B-4A08-B153-97F3A7D88868"></sequenceFlow>
+    <serviceTask id="sid-71BEFC05-67C5-4090-AFCF-C59FDEE3FFAB" name="Mail ai servizi (RESP)" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression>${mailServizi}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:expression>${ceGemelliProcessActions.getEmail("ALIAS_SISTEMA")}</activiti:expression>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string>Richiesta di partecipazione ad uno Studio Clinico</activiti:string>
+        </activiti:field>
+        <activiti:field name="bcc">
+          <activiti:string>g.contino@cineca.it</activiti:string>
+        </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression>${ceGemelliProcessActions.mailInfoCentro(elementId)}
+
+Cordiali saluti</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <userTask id="sid-58B731D8-62B7-4104-9C19-1F5E0F3DBD67" name="Approva Feasibility" activiti:async="true" activiti:exclusive="false">
+      <extensionElements>
+        <activiti:taskListener event="create" expression="${ceGemelliProcessActions.attivaServizi(elementId, task)}"></activiti:taskListener>
+      </extensionElements>
+      <multiInstanceLoopCharacteristics isSequential="false">
+        <loopCardinality>${numServ}</loopCardinality>
+      </multiInstanceLoopCharacteristics>
+    </userTask>
+    <serviceTask id="sid-D57F5124-078C-4E11-81CA-9374E5AAA3E5" name="actionServizi" activiti:expression="${ceGemelliProcessActions.actionServizi(elementId, execution)}" activiti:resultVariableName="mailServizi"></serviceTask>
+    <sequenceFlow id="sid-40BCB304-F2B6-4968-8CAB-BEC0DD9F0B7C" sourceRef="sid-F8C3642E-F68B-4A08-B153-97F3A7D88868" targetRef="sid-D57F5124-078C-4E11-81CA-9374E5AAA3E5"></sequenceFlow>
+    <sequenceFlow id="sid-9A8DA42E-DFDE-45EF-9ED7-A1AC744DFBFE" sourceRef="sid-D57F5124-078C-4E11-81CA-9374E5AAA3E5" targetRef="sid-71BEFC05-67C5-4090-AFCF-C59FDEE3FFAB"></sequenceFlow>
+    <sequenceFlow id="sid-B7B81FA0-518B-44EE-9D6A-6FA8D760661B" sourceRef="sid-71BEFC05-67C5-4090-AFCF-C59FDEE3FFAB" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_FeasibilityServizi">
+    <bpmndi:BPMNPlane bpmnElement="FeasibilityServizi" id="BPMNPlane_FeasibilityServizi">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="30.0" width="30.0" x="60.0" y="105.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="28.0" width="28.0" x="705.0" y="106.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-8C255A33-FB0B-423D-B148-EB3F36B0E617" id="BPMNShape_sid-8C255A33-FB0B-423D-B148-EB3F36B0E617">
+        <omgdc:Bounds height="80.0" width="100.0" x="122.5" y="80.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-F8C3642E-F68B-4A08-B153-97F3A7D88868" id="BPMNShape_sid-F8C3642E-F68B-4A08-B153-97F3A7D88868">
+        <omgdc:Bounds height="80.0" width="100.0" x="270.0" y="80.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-71BEFC05-67C5-4090-AFCF-C59FDEE3FFAB" id="BPMNShape_sid-71BEFC05-67C5-4090-AFCF-C59FDEE3FFAB">
+        <omgdc:Bounds height="80.0" width="100.0" x="555.0" y="80.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-58B731D8-62B7-4104-9C19-1F5E0F3DBD67" id="BPMNShape_sid-58B731D8-62B7-4104-9C19-1F5E0F3DBD67">
+        <omgdc:Bounds height="80.0" width="100.0" x="120.0" y="225.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-D57F5124-078C-4E11-81CA-9374E5AAA3E5" id="BPMNShape_sid-D57F5124-078C-4E11-81CA-9374E5AAA3E5">
+        <omgdc:Bounds height="80.0" width="100.0" x="405.0" y="80.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="90.0" y="120.0"></omgdi:waypoint>
+        <omgdi:waypoint x="122.5" y="120.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-B7B81FA0-518B-44EE-9D6A-6FA8D760661B" id="BPMNEdge_sid-B7B81FA0-518B-44EE-9D6A-6FA8D760661B">
+        <omgdi:waypoint x="655.0" y="120.0"></omgdi:waypoint>
+        <omgdi:waypoint x="705.0" y="120.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-40BCB304-F2B6-4968-8CAB-BEC0DD9F0B7C" id="BPMNEdge_sid-40BCB304-F2B6-4968-8CAB-BEC0DD9F0B7C">
+        <omgdi:waypoint x="370.0" y="120.0"></omgdi:waypoint>
+        <omgdi:waypoint x="405.0" y="120.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-9A8DA42E-DFDE-45EF-9ED7-A1AC744DFBFE" id="BPMNEdge_sid-9A8DA42E-DFDE-45EF-9ED7-A1AC744DFBFE">
+        <omgdi:waypoint x="505.0" y="120.0"></omgdi:waypoint>
+        <omgdi:waypoint x="555.0" y="120.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-745B3DF4-BD10-4111-987F-549E6020DDA8" id="BPMNEdge_sid-745B3DF4-BD10-4111-987F-549E6020DDA8">
+        <omgdi:waypoint x="222.5" y="120.0"></omgdi:waypoint>
+        <omgdi:waypoint x="270.0" y="120.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

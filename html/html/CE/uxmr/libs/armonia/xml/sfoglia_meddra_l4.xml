@@ -1,0 +1,8 @@
+<list titolo="">
+<col tipo="hiddem"  nome="SOC_CODE" var="SOC_CODE" table="PT_MEDDRA">SOC_CODE</col>
+<col tipo="hiddem"  nome="HLGT_CODE" var="HLGT_CODE" table="PT_MEDDRA">HLGT_CODE</col>
+<col tipo="hiddem"  nome="HLT_CODE" var="HLT_CODE" table="PT_MEDDRA">HLT_CODE</col>
+<col tipo="testo"  nome="PT_CODE" var="PT_CODE" >CODICE</col>
+<col tipo="testo"  nome="PT_NAME" var="PT_NAME" >DESCRIZIONE</col>
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

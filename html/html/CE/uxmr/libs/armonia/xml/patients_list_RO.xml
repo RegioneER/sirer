@@ -1,0 +1,17 @@
+<list titolo="Lista Pazienti">
+	
+	<col tipo="testo" nome="CODPAT" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER"  table="[patients_table]" order_by="yes" ord_arrow="yes">Codice Paziente</col>
+	
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER" table="[patients_table]"></col>
+	<col tipo="testo" nome="init" crypto="yes" var="[patients_table].NOME||' '||[patients_table].COGNOME" table="[patients_table]">Nome Paziente</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+	<col tipo="hidden" nome="NASCPZ_STATUS" var="[patients_table].NASCPZ" table="[patients_table]" where="NASCPZ is null">Se 1 allora nascosto</col>
+	<col tipo="visite_dm" param="CODPAT,CENTER" EXAMS="visite_exams.xml"></col>
+	<col tipo="pdf" script="/study/index.php" target="_blank" param="pdf=create,CODPAT,CENTER">CRF</col>
+	
+	
+</list>
+
+
+
+ 

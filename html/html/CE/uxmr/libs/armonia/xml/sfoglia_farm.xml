@@ -1,0 +1,6 @@
+<list titolo="">
+	<col tipo="hidden" nome="SOSTANZA" var="distinct SOSTANZA" table="FARMACI_VIEW" ></col>
+	<col tipo="testo" nome="DSOST" var="upper(DSOST)" table="FARMACI_VIEW" order_by="asc">Principio attivo</col>
+	<col tipo="testo" nome="ATC" var="ATC" table="FARMACI_VIEW" order_by="asc">ATC</col>
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

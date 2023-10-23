@@ -1,0 +1,24 @@
+<list titolo="Tutte le eQuery">
+	<!--col tipo="hidden" nome="MSG_ID" var="REUMA_MESSAGGI.MSG_ID" table="REUMA_MESSAGGI"></col>
+	<col tipo="hidden" nome="INVIODT" var="REUMA_MESSAGGI.INVIO_DT" order_by="asc"></col-->
+	<col tipo="hidden" nome="USERID" var="[service]_UTENTI_CENTRI.USERID" table="[service]_UTENTI_CENTRI" where="[service]_UTENTI_CENTRI.CENTER=[service]_CENTRI.CENTER and [service]_UTENTI_CENTRI.USERID='[remote_userid]'" group_by="1"></col>
+	<col tipo="testo" nome="CENTER" var="[service]_CENTRI.CENTER" table="[service]_equery" where="[service]_equery.CENTER=[service]_CENTRI.CENTER" group_by="1">Codice Centro</col>
+	<col tipo="testo" nome="DENOM" var="[service]_CENTRI.DENOM" table="[service]_CENTRI" group_by="1">Denominazione Centro</col>
+	<col tipo="testo" nome="QUERIES" var="count(distinct ([service]_EQUERY.id))" table="[service]_EQUERY" where="[service]_EQUERY.CENTER=[service]_UTENTI_CENTRI.CENTER">N. eQuerys</col>
+	<col tipo="freccia" nome="CENTER_LINK" var="[service]_CENTRI.CENTER" script="index.php" param="eQuery,all,CENTER" ></col>
+	<!--col tipo="testo" nome="DENOM" var="[service]_CENTRI.DENOM" ord_arrow="yes" order_by="asc" group_by="1">Denominazione Centro</col-->
+	
+	<!--col tipo="testo" nome="INVIO_DT" var="e.CODPAT" table="REUMA_equery e, REUMA_utenti_centri uc, REUMA_centri c" where="" >Data hola mundo</col-->
+	<!--col tipo="testo" nome="SUBMSG" var="REUMA_MESSAGGI.SUBMSG" >Oggetto</col>
+	<col tipo="testo" nome="TXTMSG" var="REUMA_MESSAGGI.TXTMSG" >Testo Messaggio</col>
+	<col tipo="hidden" nome="ATAMSG" var="REUMA_MESSAGGI.ATAMSG" ></col>
+	<col tipo="testo" nome="D_ATAMSG" var="REUMA_MESSAGGI.D_ATAMSG" script="/uploaded_file/" param="ATAMSG" link="1" target="new">Allegato</col>
+
+	<col tipo="testo" nome="AIFA" var="DECODE(REUMA_MESSAGGI.AIFA,1,'Si')">AIFA</col>
+	<col tipo="testo" nome="MEDICI" var="DECODE(REUMA_MESSAGGI.MEDICI,1,'Si')">MEDICI</col>
+	<col tipo="testo" nome="FARMAC" var="DECODE(REUMA_MESSAGGI.FAR,1,'Si')">FARMACISTI</col-->
+	<!--col tipo="testo" nome="TAVNEU" var="DECODE(DERMO_MESSAGGI.TAVNEU,1,'Si')">TAVOLO NEUROLOGICO</col>
+	<col tipo="testo" nome="CINECA" var="DECODE(DERMO_MESSAGGI.CINECA,1,'Si')">CINECA</col-->
+</list>
+
+ 

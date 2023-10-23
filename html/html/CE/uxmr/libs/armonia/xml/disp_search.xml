@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="CERCA PAZIENTE/FARMACO" titolo="CERCA RICHIESTA FARMACO" table="REGISTRAZIONE" cols="1">
+    <field type="hidden" var="SEARCH" tb="no">
+    	<value val='2'></value>
+    </field>
+     <field type="hidden" var="TSEARCH" tb="no">
+    </field>
+   	
+	<field>
+		<txt_value><![CDATA[<tr><td colspan="2" class="titolo"><b>DISPENSAZIONE FARMACO DA CARTACEO</b></td></tr>]]></txt_value>
+	</field>
+	<!--field type="select" var="CENTER" bytb="CENTRI,EMATO_UTENTI_CENTRI" bytbcode="distinct EMATO_CENTRI.CENTER" bytbdecode="AN_CENTRI.DENOM" byvar="AN_CENTRI.DENOM" bytbwhere="AN_CENTRI.CENTER=AN_UTENTI_CENTRI.CENTER AND AN_UTENTI_CENTRI.USERID='[remote_userid]'">
+				<txt_value>Centro</txt_value>
+	</field-->
+ 	<field type="textbox" var="NPROG_RIC">
+		<txt_value>Codice Identificativo Unico della Richiesta Farmaco</txt_value>
+	</field>
+	
+  
+  
+<send>Cerca</send> 
+<cancel>Cancella</cancel> 
+</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+

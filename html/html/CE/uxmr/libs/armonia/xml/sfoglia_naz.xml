@@ -1,0 +1,6 @@
+<list titolo="">
+	<col tipo="testo" nome="CODE" var="CODE" table="PAESI_ISO" >Codice Nazione</col>
+	<col tipo="testo" nome="DECODE" var="upper(DECODE)" table="PAESI_ISO" order_by="asc">Nazione</col>
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>
+

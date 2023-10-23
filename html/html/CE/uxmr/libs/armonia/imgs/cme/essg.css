@@ -1,0 +1,145 @@
+BODY {
+	FONT-SIZE: x-small; BACKGROUND: white; COLOR: #1e1e1e; FONT-STYLE: normal; FONT-FAMILY: verdana, sans-serif
+}
+.testo {
+	PADDING-LEFT: 22px; FONT-WEIGHT: bold; FONT-SIZE: small; COLOR: #8e9198; PADDING-TOP: 10px; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.menu {
+	FONT-WEIGHT: bold; FONT-SIZE: small; COLOR: #ea9835; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.titolo {
+	PADDING-LEFT: 26px; FONT-WEIGHT: normal; FONT-SIZE: large; PADDING-BOTTOM: 1px; MARGIN: 30px 30px 5px; WIDTH: 100%; COLOR: #114aa1; PADDING-TOP: 14px; BORDER-BOTTOM: #e0e4e3 1px solid; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+.titoloBas {
+	FONT-WEIGHT: normal; FONT-SIZE: large; PADDING-BOTTOM: 1px; MARGIN: 30px 30px 5px; WIDTH: 100%; COLOR: #114aa1; PADDING-TOP: 14px; FONT-STYLE: normal; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-ALIGN: center
+}
+.registro {
+	PADDING-LEFT: 26px; FONT-WEIGHT: bold; FONT-SIZE: x-small; PADDING-BOTTOM: 10px; MARGIN: 30px 30px 5px; WIDTH: 90%; COLOR: #90806c; PADDING-TOP: 10px; BORDER-BOTTOM: #e0e4e3 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fcf8e9
+}
+.registrobis {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: x-small; PADDING-BOTTOM: 2px; MARGIN: 30px; WIDTH: 90%; COLOR: #74664b; PADDING-TOP: 2px; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #fcf8e9
+}
+.reg {
+	PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: x-small; PADDING-BOTTOM: 10px; MARGIN: 30px 30px 5px; WIDTH: 40%; COLOR: #90806c; PADDING-TOP: 10px; BORDER-BOTTOM: #e0e4e3 1px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #ebebe9
+}
+.int {
+	PADDING-LEFT: 10px; FONT-WEIGHT: bold; FONT-SIZE: x-small; PADDING-BOTTOM: 1px; MARGIN: 5px 30px; COLOR: #ffffff; PADDING-TOP: 3px; BORDER-BOTTOM: #927067 2px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #cba097
+}
+.int2 {
+	PADDING-LEFT: 10px; 
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: small; 
+	PADDING-BOTTOM: 1px; 
+	MARGIN: 5px 0px; 
+	COLOR: #ffffff; 
+	PADDING-TOP: 3px; 
+	BORDER-BOTTOM: #927067 2px solid; 
+	FONT-FAMILY: Verdana; 
+	BACKGROUND-COLOR: #c8b2a5
+}
+
+.bar-t {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FONT-SIZE: x-small; PADDING-BOTTOM: 1px; MARGIN: 1px 0px; COLOR: #ffffff; BORDER-BOTTOM: #927067 2px solid; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #c8b2a5; TEXT-ALIGN: center
+}
+.lin {
+	PADDING-TOP: 17px; BORDER-BOTTOM: #f7f0ea 2px solid
+}
+.lin {
+	PADDING-TOP: 17px; BORDER-BOTTOM: #f7f0ea 2px solid
+}
+.destra {
+	FONT-SIZE: x-small; TEXT-ALIGN: right
+}
+.destra-bis {
+	FONT-SIZE: x-small; TEXT-ALIGN: left
+}
+.destra-min {
+	FONT-SIZE: xx-small; COLOR: #114aa1; TEXT-ALIGN: left
+}
+.col {
+	FONT-SIZE: xx-small; COLOR: #114aa1; TEXT-ALIGN: right
+}
+.asterisco {
+	FONT-WEIGHT: bold; FONT-SIZE: x-small; MARGIN: 4px 4px 0px; COLOR: #dc2626; FONT-FAMILY: Verdana
+}
+TD.sc2 {
+	PADDING-LEFT: 20px; FONT-WEIGHT: bold; FONT-SIZE: x-small; WIDTH: 25%; COLOR: #ffffff; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #a49582
+}
+TD.sc3 {
+	PADDING-LEFT: 20px; FONT-WEIGHT: bold; FONT-SIZE: x-small; WIDTH: 75%; COLOR: #ffffff; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8cda2
+}
+TD.sc2b {
+	PADDING-LEFT: 20px; 
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: x-small; 
+	COLOR: #ffffff; 
+	FONT-FAMILY: Verdana; 
+	BACKGROUND-COLOR: #a49582
+}
+TD.sc2bis {
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: x-small; 
+	COLOR: #ffffff; 
+	FONT-FAMILY: Verdana;
+	TEXT-ALIGN: CENTER; 
+	BACKGROUND-COLOR: #a49582
+}
+TD.sc3b {
+	PADDING-LEFT: 20px; FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: #ffffff; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8cda2
+}
+TD.sc4 {
+	FONT-SIZE: x-small; WIDTH: 25%; COLOR: #74664b; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #ebebe9
+}
+TD.sc4bis {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: x-small; PADDING-BOTTOM: 2px; COLOR: #74664b; PADDING-TOP: 2px; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #ebebe9
+}
+TD.sc5 {
+	PADDING-LEFT: 20px; FONT-SIZE: x-small;  COLOR: #74664b; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f0e4d6
+}
+}
+TD.sc5biss {
+	FONT-SIZE: x-small;  COLOR: #74664b; FONT-FAMILY: Verdana; TEXT-ALIGN: CENTER; BACKGROUND-COLOR: #f0e4d6
+}
+TD.sc6 {
+	PADDING-CENTER: 20px; FONT-SIZE: x-small;  COLOR: #74664b; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f0e4d6
+}
+TD.sc5b {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: x-small; PADDING-BOTTOM: 2px; COLOR: #74664b; PADDING-TOP: 2px; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f0e4d6
+}
+TD.sc2P {
+	PADDING-LEFT: 20px; FONT-WEIGHT: bold; FONT-SIZE: x-small; WIDTH: 50%; COLOR: #ffffff; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #a49582
+}
+TD.sc3P {
+	PADDING-LEFT: 20px; FONT-WEIGHT: bold; FONT-SIZE: x-small; WIDTH: 25%; COLOR: #ffffff; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f8cda2
+}
+TABLE.sf {
+	BACKGROUND-COLOR: #f7f6f1
+}
+TD.input {
+	PADDING-LEFT: 20px; FONT-SIZE: x-small; WIDTH: 50%; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #e6ddd8
+}
+TD.input2 {
+	PADDING-LEFT: 40px; FONT-WEIGHT: bold; FONT-SIZE: x-small; COLOR: #58483d; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #e6ddd8
+}
+TD.base {
+	BORDER-TOP: #ffffff 2px solid; PADDING-LEFT: 20px; FONT-SIZE: x-small; PADDING-BOTTOM: 4px; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #f4f4f4
+}
+TD.scbase {
+	PADDING-LEFT: 40px; FONT-SIZE: x-small; COLOR: #74664b; FONT-FAMILY: Verdana; BACKGROUND-COLOR: #ebebe9
+}
+INPUT {
+	MARGIN-TOP: 4px; FONT-SIZE: 10px; COLOR: #424242; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white
+}
+TEXTAREA {
+	MARGIN-TOP: 4px; FONT-SIZE: 10px; COLOR: #666666; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white
+}
+SELECT {
+	MARGIN-TOP: 4px; FONT-SIZE: 10px; COLOR: #666666; FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, sans-serif; BACKGROUND-COLOR: white
+}
+A:link {
+	FONT-WEIGHT: bold; COLOR: #3a3229; TEXT-DECORATION: none
+}
+A:visited {
+	FONT-WEIGHT: bold; COLOR: #7b6344; TEXT-DECORATION: none
+}
+

@@ -1,0 +1,14 @@
+<list titolo="           Richieste Farmaco Dispensate da Cartaceo">
+  <col tipo="testo" nome="CENTER" var="CENTER" order_by="asc" table="REUMA_DISP_TER" >Centro</col>
+  <col tipo="testo" nome="USERID" var="USERID">User</col>
+	<col tipo="testo" nome="CODPAT" var="CODPAT" order_by="asc" >Codice Paziente</col>
+	<col tipo="testo" nome="INIZIALI" var="INIZIALI" order_by="asc" > Iniziali </col>
+	<col tipo="testo" nome="CODFISC" var="CODFISC" order_by="asc" > Codice Fiscale </col>
+	<col tipo="testo" nome="NPROG_RIC" var="NPROG_RIC" order_by="asc">C.I.U. della Richiesta Famaco</col>
+	<col tipo="testo" nome="PROGR" var="PROGR" >Richiesta Farmaco del Paziente N.ro</col>
+	<col tipo="freccia" script="index.php" param="CENTER,CODPAT,PROGR,ESAM=3,VISITNUM=1,form=dispensazione.xml" ></col>	
+
+</list>
+
+
+

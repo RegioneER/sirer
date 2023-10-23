@@ -1,0 +1,12 @@
+<list titolo="">
+<col tipo="hidden"  nome="SOC_CODE" var="SOC_CODE" table="TOT_MEDDRA" >SOC_CODE</col>
+<col tipo="testo"  nome="SOC_NAME" var="SOC_NAME" order_by="asc">SOC NAME</col>
+<col tipo="hidden"  nome="HLGT_CODE" var="HLGT_CODE" >HLGT_CODE</col>
+<col tipo="testo"  nome="HLGT_NAME" var="HLGT_NAME" order_by="asc">HLGT NAME</col>
+<col tipo="hidden"  nome="HLT_CODE" var="HLT_CODE" >HLT_CODE</col>
+<col tipo="testo"  nome="HLT_NAME" var="HLT_NAME" order_by="asc">HLT NAME</col>
+<col tipo="hidden"  nome="PT_CODE" var="PT_CODE" >PT_CODE</col>
+<col tipo="testo"  nome="PT_NAME" var="PT_NAME" order_by="asc">PT NAME</col>
+
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

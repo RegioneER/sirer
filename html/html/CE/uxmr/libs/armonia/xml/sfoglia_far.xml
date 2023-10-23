@@ -1,0 +1,6 @@
+<list titolo="" outmes="Non sono state trovate farmacie registrate.">
+	<col tipo="testo" nome="FARMACIA" var="REUMA_FARMA.FARMACIA" table="REUMA_FARMA" order_by="asc" ></col>
+	<col tipo="HIDDEN" nome="USERID" var="REUMA_FARMA.USERID" table="REUMA_FARMA"></col>
+	<col tipo="HIDDEN" nome="SIGLA_PROVINCIA" var="REUMA_FARMA.SIGLA_PROVINCIA" table="REUMA_FARMA"></col>
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

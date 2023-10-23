@@ -1,0 +1,5 @@
+<list titolo="">
+<col tipo="hiddem"  nome="SOC_CODE" var="SOC_CODE" table="HLGT_MEDDRA">SOC_CODE</col>
+<col tipo="testo"  nome="HLGT_CODE" var="HLGT_CODE" >CODICE</col>
+<col tipo="testo"  nome="HLGT_NAME" var="HLGT_NAME" script="/study/sfoglia.php" param="list=sfoglia_meddra_l3.xml,SOC_CODE,HLGT_CODE">DESCRIZIONE</col>
+</list>

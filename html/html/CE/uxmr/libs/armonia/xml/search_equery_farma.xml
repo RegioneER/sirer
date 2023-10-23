@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="windows-1252"?> 
+<form fname="CERCA EQUERY" titolo="CERCA EQUERY" table="STUDY_ANA_PAT" cols="1">
+    <field type="hidden" var="SEARCH" tb="no">
+    	<value val='1'></value>
+    </field>
+     <field type="hidden" var="TSEARCH" tb="no">
+     <value val='1'></value>
+    </field>
+   	<field type="hidden" var="FORM" tb="no" />
+     
+   
+	<field>
+		<txt_value><![CDATA[<tr><td colspan="2" class="titolo"><b>CERCA EQUERY</b></td></tr>]]></txt_value>
+	</field>
+
+	<field type="select" tb="no" var="CENTER" bytb="CENTRI,EQUERY_FARMA" bytbcode="distinct REUMA_CENTRI.CENTER" bytbdecode="REUMA_CENTRI.DENOM||' ('||REUMA_CENTRI.CENTER||')'" byvar="REUMA_CENTRI.DENOM" bytbwhere="REUMA_CENTRI.CENTER=EQUERY_FARMA.CENTER AND EQUERY_FARMA.FARMA='[remote_userid]'">
+				<txt_value>Centro</txt_value>
+	</field>
+	
+		<field type="textbox" var="ID" var_type="number"  upper="yes" cols="1">
+		<txt_value>Numero eQuery</txt_value>
+	</field>
+	
+	
+ 	<field type="textbox" var="CODPAT" var_type="number">
+		<txt_value>Codice Paziente</txt_value>
+	</field>
+  
+	
+
+	
+	
+	<!--field type="textbox" var="NOME"  upper="yes" cols="1">
+		<txt_value>Nome</txt_value>
+	</field-->
+    
+  <!--field type="select" var="VISITNUM">
+					<txt_value>Visita</txt_value>
+					<value val="Registrazione/diagnosi">Registrazione/diagnosi</value>
+					<value val="Richiesta farmaco">Richiesta farmaco</value>
+					<value val="Rivalutazione">Rivalutazione</value>
+					<value val="Fine trattamento">Fine trattamento</value>
+					<value val="ADR">ADR</value>
+	</field--> 
+  
+  
+  
+  <!--field type="select" var="ESAMEN">
+					<txt_value>Esame</txt_value>
+					<value val="Registrazione">Registrazione</value>
+					<value val="Diagnosi">Diagnosi</value>
+					<value val="Richiesta farmaco">Richiesta farmaco</value>
+					<value val="Dispensazione">Dispensazione</value>
+					<value val="Rivalutazione">Rivalutazione</value>
+					<value val="Fine trattamento">Fine trattamento</value>
+					<value val="ADR">ADR</value>
+	</field--> 
+  
+  
+  
+	<!--field type="data" var="NASCITA_DT" min="sysdate">
+		<txt_value>Data di nascita</txt_value>
+	</field>
+	<field type="select" var="GENDER">
+					<txt_value>Sesso</txt_value>
+					<value val="M">M</value>
+					<value val="F">F</value>
+	</field--> 
+  
+  
+<send>Cerca</send> 
+<cancel>Cancella</cancel> 
+</form>
+	
+	
+	
+	
+	
+	
+	

@@ -1,12 +1,12 @@
-<?php 
+<?php
 
 include_once "libs/field.inc";
 
 
 class field_multicheck_multiselect extends field{
-	
+
 	var $sel_values;
-	
+
 	/**
 	 * Costruttore
 	 *
@@ -48,16 +48,16 @@ class field_multicheck_multiselect extends field{
 			$this->attributes['BYTBWHERE'] = $where;
 			$this->attributes['BYTBORDERBY'] = $order_by;
 		}
-		
+
 		$this->attributes['COLSPAN'] = 2;
-		
+
 	}
-	
+
 	function open_($val){
 		$this->input_txt="<div style=\"border-bottom: 4px solid white;padding:5px;width:100%;background-color:#E0E0E0\">";
 		$this->input_txt.=$this->testo;
 		$this->input_txt.="</div>";
-		
+
 		$this->input_field="<div style=\"width:100%;background-color:#F5F5F5\">";
 		$spl = explode("|",$this->db_vars[$this->id]);
 		//print_r($spl);
@@ -67,12 +67,12 @@ class field_multicheck_multiselect extends field{
 //			echo "key=$key <br>";
 //			echo "val=$val <br>";
 //			echo "db_vars={$this->db_vars[$this->id]} <br>";
-			
+
 			#CHECKBOX
 			$checked="";
 			$skey="";
 			$selected="";
-			
+
 			#GC HDCE-1836# Es: selezionando questo studio |101165_1| viene checkato anche |1165_1|, quindi controllo che il match sia anche sui pipe |
 			//if (preg_match("!{$key}!", $this->db_vars[$this->id])){
 			if (preg_match("/\|{$key}\|/", $this->db_vars[$this->id])){
@@ -89,11 +89,11 @@ class field_multicheck_multiselect extends field{
 														</label>
       										 </div>
 													 ";
-			
-			
+
+
 			#LUIGI: RELATORI in visualizzazione
 			$selected_spl= explode("_",$selected);
-			for($i=0;$i<5;$i++){
+			for($i=0;$i<15;$i++){
 				$selected[$i] = "";
 				$seltag[$i] = $this->attributes['SELECT_TAG_'.$i];
 				$this->input_field.="<span style=\"float:left;\"> {$seltag[$i]}<select name=\"{$this->id}_MCKSEL_{$i}_{$key}\">";
@@ -108,16 +108,16 @@ class field_multicheck_multiselect extends field{
 				$this->input_field.="</select>&nbsp;</span>";
 				//$this->input_field.="<br>";
 			}
-			
+
 			$this->input_field.="<br style=\"clear:both;\"><hr style=\"border-top: 1px solid\">";
-			
-			
+
+
 		}
-		
+
 		$this->input_field.="</div>";
-		
+
 	}
-	
+
 	function close_($val){
 		//GIULIO - In visualizzazione interrogo la tabella/vista definita nell'attributo BYTB_VIS (se presente) perche' lo studio potrebbe non essere nella vista primaria. Altrimenti restano valide le bytb.. normali
 		if($this->attributes['BYTB_VIS']) $this->fields_value_bytb_vis($this->attributes['BYTB_VIS']);
@@ -138,7 +138,7 @@ class field_multicheck_multiselect extends field{
 			#LUIGI: RELATORI in visualizzazione
 			$selected_spl= explode("_",$selected);
 			//var_dump($selected_spl);
-			for($i=0;$i<5;$i++){
+			for($i=0;$i<15;$i++){
 				$optsel[$i] = "";
 				$selected[$i] = "";
 				$seltag[$i] = $this->attributes['SELECT_TAG_'.$i];
@@ -160,10 +160,10 @@ class field_multicheck_multiselect extends field{
 				}
 				$this->input_field.="</td></tr></table>";
 			}
-			
+
 		}
 	}
-	
+
 	function insert_stmt(){
 		if ($this->session_vars ['USER_TIP'] == 'DM' && ($this->attributes['NO_DM_CHANGE']!='' || $this->attributes['CRYPTO']!='')){
    		return;
@@ -179,7 +179,7 @@ class field_multicheck_multiselect extends field{
 				//die();
 				$value.=$mvalore."|";
 				$sval="";
-				for($i=0;$i<5;$i++){
+				for($i=0;$i<15;$i++){
 					if($in["{$this->id}_MCKSEL_{$i}_{$mvalore}"]) $sval.=$in["{$this->id}_MCKSEL_{$i}_{$mvalore}"]."_";
 					//Logger::send('sval='.$sval);
 				}
@@ -187,15 +187,15 @@ class field_multicheck_multiselect extends field{
 				$value.=$sval."|";
 			}
 		}
-		
+
 		//die();
-		
+
 		if ($this->attributes['TB']!='no'){
 			$this->field_stmt[0]=$this->attributes['VAR'];
 			$this->value_stmt[0]=$value;
 		}
 	}
-	
+
 	function allinea_db(){
 		if ($this->attributes['TB']!='no'){
 			$ret[0]="{$this->attributes['VAR']} varchar2(4000 char)";
@@ -203,7 +203,7 @@ class field_multicheck_multiselect extends field{
 		}
 		else return ;
 	}
-	
+
 	function open_save($val){
 		$check_="{$this->id}_passed=false";
 		foreach($this->values as $key=>$val){
@@ -221,7 +221,7 @@ class field_multicheck_multiselect extends field{
 			";
 		$this->salva_js=$check_;
 	}
-	
+
 	function open_send($val){
 		$check_="{$this->id}_passed=false";
 		foreach($this->values as $key=>$val){
@@ -246,7 +246,7 @@ class field_multicheck_multiselect extends field{
 		}
 		#GC 14-11-2013# Svuoto $this->values che contiene risultati della open_
 		$this->values=null;
-		
+
 		if ($this->xml_form->form['NO_LOAD_TB']!='' && $this->xml_form->closed) return;
 		$in=$this->session_vars;
 		$inputval=$this->db_vars;
@@ -256,20 +256,20 @@ class field_multicheck_multiselect extends field{
 		//}
 		$code=$this->attributes['BYTBCODE'];
 		if($this->attributes['BYTBCODE_VIS']!='') $code=$this->attributes['BYTBCODE_VIS'];
-		
+
 		$decode=$this->attributes['BYTBDECODE'];
 		if($this->attributes['BYTBDECODE_VIS']!='') $decode=$this->attributes['BYTBDECODE_VIS'];
-		
+
 		$where=$this->attributes['BYTBWHERE'];
 		if($this->attributes['BYTBWHERE_VIS']!='') $where=$this->attributes['BYTBWHERE_VIS'];
-		
+
 		$order_by=$this->attributes['BYTBORDERBY'];
 		$where=str_replace("min_of","<",$where);
 		$where=str_replace("max_of",">",$where);
-		
-		//nel caso in cui mi riferisca a ANA_UTENTI oppure abbia settato ANCHE il parametro bytbnoprefix="yes", 
+
+		//nel caso in cui mi riferisca a ANA_UTENTI oppure abbia settato ANCHE il parametro bytbnoprefix="yes",
 		//allora NON metto il prefisso del servizio davanti
-		if (!preg_match("/ana_utenti/i",$value) && $this->attributes['BYTBNOPREFIX']=="")	
+		if (!preg_match("/ana_utenti/i",$value) && $this->attributes['BYTBNOPREFIX']=="")
 			$value=$this->service."_".$value;
 		$decode=str_replace("#BR#", "<br>", $decode);
 		$decode=str_replace("#i#", "<i>", $decode);
@@ -304,7 +304,7 @@ class field_multicheck_multiselect extends field{
 				}
 			}
 			else {
-				
+
 				global ${$this->attributes['BYVAR']};
 				$this->values[$sql->row['CODE']]=${$this->attributes['BYVAR']}[$sql->row['CODE']];
 			}

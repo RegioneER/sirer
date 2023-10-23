@@ -1,0 +1,4 @@
+<list titolo="">
+<col tipo="testo"  nome="DESCR" var="DESCR" table="ICD9_MAIN" script="sfoglia.php" param="list=sfoglia_icd9_2_3.xml,ID1">DESCRIZIONE</col>
+<col tipo="testo"  nome="ID1" script="sfoglia.php" param="list=sfoglia_icd9_2_3_2.xml,ID1" var="ID1" >CODICE</col>
+</list>

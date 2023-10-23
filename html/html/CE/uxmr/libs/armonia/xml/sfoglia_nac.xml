@@ -1,0 +1,9 @@
+<list titolo="">
+	<col tipo="testo" nome="DESCR_COMUNE" var="COMUNI_PR.DESCR_COMUNE" table="COMUNI_PR" order_by="asc">Comune</col>
+	<col tipo="testo" nome="DESCR_REGIONE" var="COMUNI_PR.DESCR_REGIONE" table="COMUNI_PR">Regione</col>
+	<col tipo="HIDDEN" nome="SIGLA_PROVINCIA" var="COMUNI_PR.SIGLA_PROVINCIA" table="COMUNI_PR"></col>
+	<col tipo="HIDDEN" nome="ISTAT_REGIONE" var="COMUNI_PR.ISTAT_REGIONE" table="COMUNI_PR"></col>
+	<col tipo="HIDDEN" nome="ISTAT_PROVINCIA" var="COMUNI_PR.ISTAT_PROVINCIA" table="COMUNI_PR"></col>
+	<col tipo="HIDDEN" nome="ISTAT_COMUNE" var="COMUNI_PR.ISTAT_COMUNE" table="COMUNI_PR"></col>
+	<col tipo="javascrip"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

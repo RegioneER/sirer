@@ -1,0 +1,5 @@
+<list titolo="">
+<col tipo="testo"  nome="DESCR" var="DESCR" script="sfoglia.php" param="list=sfoglia_icd9_3.xml,ID1,ID2,source=ID1£ID2£ID3£DESCR,dest=ID1_NEFROPATIA£ID2_NEFROPATIA£ID3_NEFROPATIA£T52_NEFROPATIA" table="ICD9_SMAIN">DESCRIZIONE</col>
+<col tipo="HIDDEN"  nome="ID1" var="ID1" ></col>
+<col tipo="testo"  nome="ID2" script="sfoglia.php" param="list=sfoglia_icd9_3.xml,ID1,ID2,source=ID1£ID2£ID3£DESCR,dest=ID1_NEFROPATIA£ID2_NEFROPATIA£ID3_NEFROPATIA£T52_NEFROPATIA" var="ID2" >CODICE</col>
+</list>

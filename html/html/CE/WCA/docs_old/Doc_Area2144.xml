@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:ExportManifest xmlns:ns2="http://www.pentaho.com/schema/">
+    <ExportManifestInformation exportDate="03-03-2015 11:29:45 CET" exportBy="admin" rootFolder="/public/"/>
+    <ExportManifestEntity path="tipologia_prova.prpt">
+        <ExportManifestProperty>
+            <EntityMetaData name="tipologia_prova.prpt" createdDate="2014-07-07T16:32:31.823+02:00" isFolder="false" path="tipologia_prova.prpt" isHidden="false" locale="it_IT" title="tipologia_prova"/>
+        </ExportManifestProperty>
+        <ExportManifestProperty>
+            <EntityAcl>
+                <entriesInheriting>true</entriesInheriting>
+                <owner>admin</owner>
+                <ownerType>USER</ownerType>
+            </EntityAcl>
+        </ExportManifestProperty>
+    </ExportManifestEntity>
+</ns2:ExportManifest>

@@ -1,0 +1,37 @@
+<list titolo="Tutte le eQuery">
+	<!--col tipo="hidden" nome="MSG_ID" var="REUMA_MESSAGGI.MSG_ID" table="REUMA_MESSAGGI"></col>
+	<col tipo="hidden" nome="INVIODT" var="REUMA_MESSAGGI.INVIO_DT" order_by="asc"></col-->
+	<col tipo="hidden" nome="USERID" var="[service]_UTENTI_CENTRI.USERID" table="[service]_UTENTI_CENTRI" where="[service]_UTENTI_CENTRI.CENTER=[service]_CENTRI.CENTER and [service]_UTENTI_CENTRI.USERID='[remote_userid]'"></col>
+	
+	<col tipo="testo" nome="CENTER" var="[service]_CENTRI.CENTER" table="[service]_equery" where="[service]_equery.CENTER=[service]_CENTRI.CENTER">Codice Centro</col>
+	<col tipo="testo" nome="DENOM" var="[service]_CENTRI.DENOM" table="[service]_CENTRI">Denominazione Centro</col>
+	
+	<col tipo="testo" nome="ID" var="[service]_EQUERY.ID" ord_arrow="yes" >Numero eQuery</col>
+	
+	<col tipo="testo" nome="CODPAT" var="[service]_EQUERY.CODPAT" table="[service]_EQUERY" where="[service]_UTENTI_CENTRI.CENTER=[service]_EQUERY.CENTER" ord_arrow="yes">Codice paziente</col>
+	
+	<col tipo="testo" nome="TIPO" var="decode([service]_EQUERY.TIPO_EQUERY,1,'Modifica dati',2,'Quesito clinico',NULL,'Classificazione non effettuata')" table="[service]_EQUERY" ord_arrow="yes" >Tipo eQuery</col>
+	
+	<col tipo="testo" nome="VISITNUM" var="decode([service]_EQUERY.VISITNUM,0,'Registrazione/diagnosi',1,'Richiesta farmaco',2,'Rivalutazione',4,'Fine trattamento',99,'ADR')" table="[service]_EQUERY" >Visita</col>
+	
+	<col tipo="testo" nome="ESAMEN" var="decode([service]_EQUERY.ESAM,0,'Registrazione',1,'Diagnosi',2,'Richiesta farmaco',3,'Dispensazione',4,'Rivalutazione',5,'Fine trattamento',99,'ADR')" table="[service]_EQUERY" >Esame</col>
+	
+	
+	
+	<col tipo="freccia" nome="CENTER_LINK" var="[service]_CENTRI.CENTER" script="index.php" param="eQuery,eform,ID" ></col>
+	<!--col tipo="testo" nome="DENOM" var="[service]_CENTRI.DENOM" ord_arrow="yes" order_by="asc" group_by="1">Denominazione Centro</col-->
+	
+	<!--col tipo="testo" nome="INVIO_DT" var="e.CODPAT" table="REUMA_equery e, REUMA_utenti_centri uc, REUMA_centri c" where="" >Data hola mundo</col-->
+	<!--col tipo="testo" nome="SUBMSG" var="REUMA_MESSAGGI.SUBMSG" >Oggetto</col>
+	<col tipo="testo" nome="TXTMSG" var="REUMA_MESSAGGI.TXTMSG" >Testo Messaggio</col>
+	<col tipo="hidden" nome="ATAMSG" var="REUMA_MESSAGGI.ATAMSG" ></col>
+	<col tipo="testo" nome="D_ATAMSG" var="REUMA_MESSAGGI.D_ATAMSG" script="/uploaded_file/" param="ATAMSG" link="1" target="new">Allegato</col>
+
+	<col tipo="testo" nome="AIFA" var="DECODE(REUMA_MESSAGGI.AIFA,1,'Si')">AIFA</col>
+	<col tipo="testo" nome="MEDICI" var="DECODE(REUMA_MESSAGGI.MEDICI,1,'Si')">MEDICI</col>
+	<col tipo="testo" nome="FARMAC" var="DECODE(REUMA_MESSAGGI.FAR,1,'Si')">FARMACISTI</col-->
+	<!--col tipo="testo" nome="TAVNEU" var="DECODE(DERMO_MESSAGGI.TAVNEU,1,'Si')">TAVOLO NEUROLOGICO</col>
+	<col tipo="testo" nome="CINECA" var="DECODE(DERMO_MESSAGGI.CINECA,1,'Si')">CINECA</col-->
+</list>
+
+ 

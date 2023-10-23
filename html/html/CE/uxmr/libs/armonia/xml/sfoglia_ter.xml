@@ -1,0 +1,9 @@
+<list titolo="">
+	<col tipo="hidden" nome="COD_STRUCT" var="ASL.COD_STRUCT" table="ASL"></col>
+	<col tipo="hidden" nome="CAP" var="ASL.CAP" ></col>
+	<col tipo="hidden" nome="SIGLA" var="ASL.SIGLA" ></col>
+	<col tipo="testo"  nome="DENOM" var="ASL.DENOM">Denominazione</col>
+	<col tipo="testo"  nome="ADDRESS" var="ASL.ADDRESS">Via</col>
+	<col tipo="testo"  nome="COMUNE" var="ASL.COMUNE" order_by="asc">Citta</col>
+	<col tipo="javascript"  nome="SELECT" nome_fun="add_value" image="freccia.gif"></col>
+</list>

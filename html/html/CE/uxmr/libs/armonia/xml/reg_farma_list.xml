@@ -1,0 +1,8 @@
+<list titolo="lista farmacie registrate">
+	<col tipo="testo" nome="USERID" var="REUMA_FARMA.USERID" table="REUMA_FARMA">UserID</col>
+	<col tipo="testo" nome="AZIENDA_ENTE" var="REUMA_FARMA.AZIENDA_ENTE" table="REUMA_FARMA">Struttura</col>
+	<col tipo="testo" nome="REFERENTE" var="REUMA_FARMA.NOME||' '||REUMA_FARMA.COGNOME" table="REUMA_FARMA">Referente</col>
+	<col tipo="testo" nome="TELFAX" var="ana_utenti_1.TELEFONO||' '||ana_utenti_1.FAX" table="ana_utenti_1" where="ana_utenti_1.userid=REUMA_FARMA.USERID">Telefono Fax</col>
+	<col tipo="testo" nome="EMAIL" var="ana_utenti_1.email" table="ana_utenti_1" where="ana_utenti_1.userid=REUMA_FARMA.USERID">Email</col>
+	<col tipo="testo" nome="CITTA" var="ana_utenti_1.CITTA" table="ana_utenti_1" where="ana_utenti_1.userid=REUMA_FARMA.USERID" order_by="asc">Città</col>
+</list>

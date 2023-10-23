@@ -1,0 +1,21 @@
+<list titolo="Lista Pazienti">
+	
+	<col tipo="testo" nome="CODPAT" var="[patients_table].CODPAT" script="index.php" param="exams=visite_exam.xml,CODPAT,CENTER"  table="[patients_table]" ord_arrow="yes">Codice paziente</col>
+	
+	<col tipo="hidden" nome="NASCITA_DT" var="to_char([patients_table].NASCITA_DT,'DDMMYYYY')" table="[patients_table]"></col>
+	
+	<col tipo="hidden" nome="CENTER" var="[patients_table].CENTER" table="[patients_table]" 
+		where="CENTER IN (SELECT CENTER FROM [service]_UTENTI_CENTRI WHERE USERID = '[remote_userid]')"></col>
+	
+	
+	<col tipo="testo" nome="NOME" crypto="yes" var="[patients_table].NOME" table="[patients_table]">Nome </col>
+	<col tipo="testo" nome="COGNOME" crypto="yes" var="[patients_table].COGNOME" table="[patients_table]">Cognome</col>
+	
+	<col tipo="testo" nome="GENDER" var="decode([patients_table].gender,1,'M',2,'F')" table="[patients_table]">Sesso</col>
+	<col tipo="hidden" nome="NASCPZ_STATUS" var="[patients_table].NASCPZ" table="[patients_table]" where="NASCPZ is null">Se 1 allora nascosto</col>
+	<col tipo="hidden" nome="USERID_INS" var="[patients_table].USERID_INS"></col>
+	<col tipo="visite_dm" param="CODPAT,CENTER" EXAMS="visite_exams.xml"></col>
+	</list>
+
+
+ 

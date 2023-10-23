@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="it" xml:lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<meta content="IE=EmulateIE8" http-equiv="X-UA-Compatible">
+</head>
+
+<body style="color: #393939; font-family: Arial,Helvetica,sans-serif; font-size: 9pt; line-height: 1.4em;">
+
+<table width="100%" cellspacing="0" cellpadding="2" border="0">
+    <tr>
+        <td align="center" valign="middle" width="200"><img src="../logo_verona.png" width="160" height="158" /></td>
+        <td align="center" valign="middle" >COMITATO ETICO DELLA PROVINCIA DI VERONA<br/>
+        <br/>
+        Ufficio di Segreteria<br/>
+        <br/>
+        c/o dipartimento farmaceutico - Azienda ULSS 20, Via Salvo d&rsquo;Acquisto, 7 &ndash; 37122 Verona   tel. 045/8076054 - 8076073 -  fax  8076098
+</td>
+    </tr>
+</table>
+<br/>
+<table width="80%" cellspacing="0" cellpadding="2" border="0" align="center">
+	<tr>
+    	<td align="right" valign="middle" colspan="2" >Verona,  #NOW#</td>
+    </tr>
+    <tr>
+        <td align="left" valign="middle" width="60%"> Prot. n. xxxx/01.01.01<br/>Oggetto: Convocazione.</td>
+        <td align="left" valign="middle" >&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="left" valign="middle" > &nbsp;</td>
+        <td align="left" valign="middle" >Ai Componenti del Comitato Etico<br/>Della Provincia di Verona</td>
+    </tr>
+    					                
+
+</table>
+<br/>
+
+<p>#ODG#</p>
+
+</body>
+
+</html>
