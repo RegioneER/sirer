@@ -1,34 +1,89 @@
 <@script>
+
+// [STSANSVIL-4704]
+$( document ).ready(function() {
+$('[id=IdCentro-IdCentro_convenzioni]').hide();
+$('[id=IdCentro-IdCentro_convenzioniSpecifica]').hide();
+$('[id=IdCentro-IdCentro_aziende]').hide();
+
+$('[id=IdCentro_universitario]').change(function(){gestUniversitario();});
+$('[id=IdCentro_convenzioni]').change(function(){gestConvenzioni();});
+
+function gestUniversitario() {
+value=$('#IdCentro_universitario[value="1###Si"]').is(':checked');
+
+if (value==true && $('#IdCentro_universitario').is(':visible')){
+$('[id=IdCentro-IdCentro_convenzioni]').show();
+$('[id=IdCentro-IdCentro_aziende]').show();
+}
+else {
+$('[id=IdCentro-IdCentro_convenzioni]').hide();
+$('[id=IdCentro_convenzioni]').prop('checked', false);
+$('[id=IdCentro-IdCentro_aziende]').hide();
+$('[id=IdCentro_aziende]').prop('checked', false);
+$('[id=IdCentro-IdCentro_convenzioniSpecifica]').hide();
+$('[id=IdCentro_convenzioniSpecifica]').val('');
+}
+}
+
+function gestConvenzioni() {
+value=$('#IdCentro_convenzioni[value="1###Si"]').is(':checked');
+
+if (value==true && $('#IdCentro_convenzioni').is(':visible')){
+$('[id=IdCentro-IdCentro_convenzioniSpecifica]').show();
+}
+else {
+$('[id=IdCentro-IdCentro_convenzioniSpecifica]').hide();
+$('[id=IdCentro_convenzioniSpecifica]').val('');
+}
+}
+});
+
   $('#document-form-submit').closest('.btn').off('click');
   $('#document-form-submit').off('click').on('click',function(){
 
-  
-  <#if type.associatedTemplates?? && type.associatedTemplates?size gt 0>
-		<#list type.associatedTemplates as assocTemplate>
-			<#assign templatePolicy=assocTemplate.getUserPolicy(userDetails, type)/>
-			
-			<#if assocTemplate.enabled && templatePolicy.canCreate>
-				<#assign template=assocTemplate.metadataTemplate/>
-				
-				<#if template.fields??>
-				
-					<#list template.fields as field>
-						<#if field.mandatory>
-					  	<#assign label=getLabel(template.name+"."+field.name)/>
-					  		if ($('#${template.name}_${field.name}').val()==""){
-					  	  	alert("Il campo ${label?html} deve essere compilato");
-	    						$('#${template.name}_${field.name}').focus();
-	    						return false;
-					  	  }
-					  </#if>
-				  </#list>
-				  
-				</#if>
-						
-		  </#if>
-		
-		</#list>
-	</#if>
+
+<!-- STSANSVIL-5060 check mandatory alla creazione -->
+<#if type.associatedTemplates?? && type.associatedTemplates?size gt 0>
+<#list type.associatedTemplates as assocTemplate>
+<#assign templatePolicy=assocTemplate.getUserPolicy(userDetails, type)/>
+<#if assocTemplate.enabled && templatePolicy.canCreate>
+<#assign template=assocTemplate.metadataTemplate/>
+<#if template.fields??>
+<#list template.fields as field>
+<#if field.mandatory>
+<#assign label=getLabel(template.name+"."+field.name)/>
+
+<#if field.type=="RADIO" || field.type=="CHECKBOX">
+if ( $('[name=${template.name}_${field.name}]:checked').val()==undefined && $('#${template.name}_${field.name}').is(':visible') ){
+alert("Il campo ${label?html} deve essere compilato");
+return false;
+}
+<#elseif field.type=="SELECT">
+if ( ($('[name=${template.name}_${field.name}-select]').val()=="") && $('#${template.name}-${template.name}_${field.name}').is(':visible') ){
+alert("Il campo ${label?html} deve essere compilato");
+return false;
+}
+<#elseif field.type=="EXT_DICTIONARY">
+if ( ($('[name=${template.name}_${field.name}]').val()=="") && $('#${template.name}-${template.name}_${field.name}').is(':visible') ){
+alert("Il campo ${label?html} deve essere compilato");
+return false;
+}
+<#else>
+if ( $('#${template.name}_${field.name}').val()=="" && $('#${template.name}_${field.name}').is(':visible') ){
+alert("Il campo ${label?html} deve essere compilato");
+$('#${template.name}_${field.name}').focus();
+return false;
+}
+</#if>
+
+</#if>
+</#list>
+</#if>
+
+</#if>
+</#list>
+</#if>
 	
 	<#if model['docDefinition'].hasFileAttached>
 	  if ($('#file').val()==""){

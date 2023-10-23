@@ -210,19 +210,19 @@ div#budget div{
                 filter+='{"match":{"metadata.UniqueIdStudio.values.id":'+$("#UniqueIdStudio_id_like").val()+'}}';
                 anyFilter=true;
             }
-            if($("#IDstudio_CodiceProt_like").val()!=""){
+            if($("#IDstudio_CodiceProt_eq").val()!=""){
 
                 if(anyFilter){
                     filter+=',';
                 }
-                filter+='{"match":{"metadata.IDstudio.values.CodiceProt":"'+$("#IDstudio_CodiceProt_like").val()+'"}}';
+                filter+='{"match":{"metadata.IDstudio.values.CodiceProt_NOTANALYZED":"'+$("#IDstudio_CodiceProt_eq").val().toLowerCase()+'"}}';
                 anyFilter=true;
             }
-            if($("#IDstudio_TitoloProt_like").val()!=""){
+            if($("#IDstudio_TitoloProt_eq").val()!=""){
                 if(anyFilter){
                     filter+=',';
                 }
-                filter+='{"match":{"metadata.IDstudio.values.TitoloProt":"'+$("#IDstudio_TitoloProt_like").val()+'"}}';
+                filter+='{"match":{"metadata.IDstudio.values.TitoloProt_NOTANALYZED":"'+$("#IDstudio_TitoloProt_eq").val().toLowerCase()+'"}}';
                 anyFilter=true;
             }
             if($("#datiPromotore_promotore_eq").val()!=""){
@@ -249,7 +249,7 @@ div#budget div{
                 if(anyFilter){
                     filter+=',';
                 }
-                filter+='{"match":{"metadata.datiStudio.values.tipoStudio_CODE":"'+$("#datiStudio_tipoStudio_eq").val()+'"}}';
+                filter+='{"match":{"metadata.datiStudio.values.tipoStudio_CODESTRING":"'+$("#datiStudio_tipoStudio_eq").val()+'.0"}}';
                 anyFilter=true;
             }
 
@@ -427,7 +427,8 @@ div#budget div{
             if(flagSP>=0 || flagDIR>=0){
                 filter=filter.replace(",","");
             }
-            var anyFilter=true;
+            // STSANSVIL-1657
+            var anyFilter=false;
             if($("#IdCentro_Struttura_eq").val()!=""){
                 if(anyFilter){
                 filter+=',';
@@ -449,11 +450,11 @@ div#budget div{
                 filter+='{"match":{"metadata.IdCentro.values.PINomeCognome_CODESTRING":"'+$("#IdCentro_PI_eq").val()+'"}}';
                 anyFilter=true;
             }
-            if($("#IstruttoriaCE_DelibNum").val()!=""){
+            if($("#IstruttoriaCE_DelibNum_eq").val()!=""){
                 if(anyFilter){
                     filter+=',';
                 }
-                filter+='{"match":{"metadata.statoValidazioneCentro.values.delibNumIstrCEPositiva":"'+$("#IstruttoriaCE_DelibNum").val()+'"}}';
+                filter+='{"match":{"metadata.statoValidazioneCentro.values.delibNumIstrCEPositiva_NOTANALYZED":"'+$("#IstruttoriaCE_DelibNum_eq").val()+'"}}';
                 anyFilter=true;
             }
             if($("#id-date-range-picker-5").val()!=""){

@@ -7,11 +7,16 @@
 <#assign listaCentriInseriti = el.getChildrenByType("Centro") />
 <#assign userHasSite = false />
 <#assign userHasPI = false />
+<#assign userHasUO = false />
 <#assign userCreatedCenter = false />
 <#list listaCentriInseriti as stCentro>
     <!-- CReATO DA ${stCentro.getCreateUser()} usrloggato ${userCF}-->
     <#assign piCF=(stCentro.getFieldDataCode("IdCentro","PINomeCognome"))!"" />
     <#assign strutturaCODE=(stCentro.getFieldDataCode("IdCentro","Struttura"))!"" />
+    <#assign UOCODE=[] />
+        <#list el.getChildrenByType("Centro") as centro>
+            <#assign UOCODE=[(centro.getFieldDataCode("IdCentro","UO"))!""] + UOCODE/>
+        </#list>
     <#if userSitesCodesList?size gt 0 >
         <#list userSitesCodesList as site>
             <#if site==strutturaCODE>
@@ -24,6 +29,17 @@
     <#if userCF==piCF || userDetails.username==piCF >
         <#assign userHasPI = true />
     </#if>
+    <#if userUOCodesList?size gt 0 >
+        <#list userUOCodesList as uo>
+            <#list UOCODE as code>
+                <#if uo==code>
+                    <#assign userHasUO = true />
+                </#if>
+            </#list>
+        </#list>
+    <#else>
+        <#assign userHasUO = true />
+    </#if>
     <#-- if stCentro.getCreateUser()==userCF > <#-- non lo uso più perchè togliamo vincolo visibilità su chi ha creato il centro
     (in caso poi si sposta su un'altra Azienda non può continuare a vedere questo centro) -->
         <#assign userCreatedCenter = true />
@@ -32,14 +48,15 @@
 <!-- userCreatedCenter ${userCreatedCenter?string} -->
 <#-- userDetails.hasRole("CTC") && true -->
 <#--if ( userDetails.hasRole("tech-admin") || (el.getCreateUser()==userDetails.username) || (userHasSite) || (userDetails.hasRole("PI") && userHasPI) )-->
-<#assign canAccess = true /> <#-- possono entrare tutti, tranne lo sponsor che può entrare solo su quelli che ha inserito lui -->
+<#assign canAccess = true /> <#-- possono entrare tutti-->
 <#assign canAccessTab = true /> <#-- STSANSVIL-712 Richiesta modifica permessi di visualizzazione profili utente -->
-<#if userDetails.hasRole("SP") && el.getCreateUser()!=userDetails.username  >
-    <#assign canAccess = false />
-</#if>
+<#--if userDetails.hasRole("SP") && el.getCreateUser()!=userDetails.username  >
+    <#assign canAccess = false /> <! -- commento perchè con la STSANSVIL-1258 anche lo sponsor può vedere gli studi per i quali ha i permessi dati tramite Datamamanagement -- >
+</#if-->
 <#if canAccess >
 <!-- HAS PI: ${userHasPI?string}-->
 <!-- HAS SITE: ${userHasSite?string}-->
+<!-- HAS UO: ${userHasUO?string} - IS UO: ${userDetails.hasRole("COORD")?string}-->
     <#assign forceRO = false />
     <#if (!userDetails.hasRole("tech-admin") && el.getCreateUser()!=userDetails.username ) >
         <#if ( (userDetails.hasRole("SEGRETERIA") && !userHasSite) ||  ( userDetails.hasRole("PI") &&  !userHasPI)  || (userDetails.hasRole("CTC") && !userHasSite)  )>
@@ -47,7 +64,7 @@
             <#assign forceRO = true />
         </#if>
     </#if>
-    <#if ( userDetails.hasRole("PI") &&  !userHasPI )  || (userDetails.hasRole("CTC") && !userHasSite) >
+    <#if ( userDetails.hasRole("PI") &&  !userHasPI && userDetails.hasRole("COORD") && !userHasUO)  || (userDetails.hasRole("CTC") && !userHasSite) >
         <#--
         STSANSVIL-712 Richiesta modifica permessi di visualizzazione profili utente -
         accesso alle sezioni CRO, FARMACI, Emendamenti, Documenti, Prodotti avviene solo quando
@@ -57,7 +74,7 @@
     </#if>
     <!-- EDITABLE: ${editable?string}-->
     <!-- FORCE RO: ${forceRO?string}-->
-    <!-- CANACCES: ${canAccess?string}-->
+    <!-- CANACCES: ${canAccess?string} - CANACCESTAB: ${canAccessTab?string}-->
     <script>
         bootbox.dialog({
             message: '<div class="text-center"><i class="fa fa-spin fa-spinner"></i> Caricamento in corso...</div>',

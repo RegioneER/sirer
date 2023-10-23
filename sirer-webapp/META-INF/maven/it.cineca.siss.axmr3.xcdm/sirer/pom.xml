@@ -14,6 +14,7 @@
     <properties>
         <configuration>std</configuration>
         <warName>xCDM</warName>
+        <sonar.skip>true</sonar.skip>
     </properties>
 
     <url>http://maven.apache.org</url>
@@ -269,6 +270,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>3.1.2.RELEASE</version>
         </dependency>
     </dependencies>
 
@@ -561,13 +567,28 @@
                 </dependency>
                 <dependency>
                     <groupId>it.cineca.siss.axmr3.document-management</groupId>
-                    <artifactId>elasticPluginMultiInstance</artifactId>
+                    <artifactId>externalIndexer</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>sirer-paas</id>
+            <dependencies>
+                <dependency>
+                    <groupId>it.cineca.siss.axmr3.document-management.custom</groupId>
+                    <artifactId>sequence-fixed-mode-multi</artifactId>
                     <version>1.0-SNAPSHOT</version>
                 </dependency>
                 <dependency>
-                    <groupId>org.elasticsearch</groupId>
-                    <artifactId>elasticsearch</artifactId>
-                    <version>2.1.1</version>
+                    <groupId>it.cineca.siss.axmr3.document-management</groupId>
+                    <artifactId>sirer</artifactId>
+                    <version>1.0-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+                    <groupId>it.cineca.siss.axmr3.document-management</groupId>
+                    <artifactId>externalIndexer</artifactId>
+                    <version>1.0-SNAPSHOT</version>
                 </dependency>
             </dependencies>
         </profile>

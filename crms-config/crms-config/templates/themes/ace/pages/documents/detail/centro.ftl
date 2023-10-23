@@ -209,9 +209,9 @@ div[id^=task-Actions-] .btn{
 </#if>
 <#assign userHasUO = false />
 <#list userUOCodesList as uo>
-<!--LIST uo: ${uo} -->
+<!--LIST uo: _${uo}_ == _${uoCODE}_ ?-->
 	<#if uo==uoCODE>
-
+<!--SI!-->
 		<#assign userHasUO = true />
 	</#if>
 </#list>
@@ -229,7 +229,7 @@ userDetails.hasRole("REGIONE") ${userDetails.hasRole("REGIONE")?c}
 el.getCreateUser() ${el.getCreateUser()}
 userHasSite ${userHasSite?c}
 userDetails.hasRole("PI") ${userDetails.hasRole("PI")?c}
-userHasSite ${userHasUO?c}
+userHasUO ${userHasUO?c}
 userDetails.hasRole("COORD") ${userDetails.hasRole("COORD")?c}
 userCF ${userCF}
 piCF ${piCF}-->
@@ -253,7 +253,150 @@ piCF ${piCF}-->
 		c,
 		'_blank'
 		)
+	};
+
+	// Per ora non spostare in html/sirer-static/js/common/elementDelete.js o default.js
+	// STSANSVIL-2857
+	function deleteServizio(servizio) {
+		var flagServizioBudget=false;
+		var clickedId=servizio.id;
+		//console.log("id elemento: "+clickedId);
+
+		if (confirm('Sei sicuro di voler eliminare il servizio coinvolto?')) {
+			// Prendo l'elemento cliccato in formato JSON e prendo l'ID del centro
+			$.ajax({
+    			url: baseUrl + '/app/rest/documents/getElementJSON/' + clickedId,
+    			async: false, 
+    			dataType: 'json',
+    			success: function (element) {
+					var idCentro = element.parentId;
+					
+					// Prendo il centro in formato JSON
+					$.ajax({
+    					url: baseUrl + '/app/rest/documents/getElementJSON/' + idCentro,
+    					async: false, 
+    					dataType: 'json',
+    					success: function (centro) {
+							var cercoBudget = centro.children;
+							
+							// Ciclo tra i figli di Centro
+							for (var i = 0; i < cercoBudget.length; i++) {
+								var tipoBudget = cercoBudget[i].type.typeId;
+
+								// Cerco quello di tipo Budget
+								if (tipoBudget=="Budget") {
+									//console.log(cercoBudget[i])
+									var idBudget=cercoBudget[i].id;
+
+									// Prendo il budget in formato JSON
+									$.ajax({
+										url: baseUrl + '/app/rest/documents/getElementJSON/' + idBudget,
+										async: false, 
+										dataType: 'json',
+										success: function (budget) {
+											var cercoFolder = budget.children;
+
+											// Ciclo tra i figli di Budget
+											for (var i = 0; i < cercoFolder.length; i++) {
+												var tipoFolder = cercoFolder[i].type.typeId;
+												
+												// Cerco quello di tipo FolderPXP
+												if (tipoFolder=="FolderPXP") {
+													//console.log(cercoFolder[i]);
+													var idFolder=cercoFolder[i].id;
+
+													// Prendo FolderPXP in formato JSON
+													$.ajax({
+														url: baseUrl + '/app/rest/documents/getElementJSON/' + idFolder,
+														async: false, 
+														dataType: 'json',
+														success: function (folder) {
+															var cercoPXP = folder.children;
+
+															// Ciclo tra i figli di FolderPXP
+															for (var i = 0; i < cercoPXP.length; i++) {
+																var tipoPXP = cercoPXP[i].type.typeId;
+
+																// Cerco quello di tipo PrestazioneXPaziente
+																if (tipoPXP=="PrestazioneXPaziente") {
+																	//console.log(cercoPXP[i]);
+																	var idPXP = cercoPXP[i].id;
+																	//console.log(idPXP);
+
+																	// Prendo PrestazioneXPaziente in formato JSON
+																	$.ajax({
+																		url: baseUrl + '/app/rest/documents/getElementJSON/' + idPXP,
+																		async: false, 
+																		dataType: 'json',
+																		success: function (pxp) {
+																			if (pxp.metadata['Prestazioni_CDC']!="") {
+																				var cercoPrestazioni = pxp.metadata['Prestazioni_CDC'];
+																				//console.log(pxp)
+																				//console.log(cercoPrestazioni);
+
+																				// Ciclo l'array di Prestazioni_CDC
+																				for (var i = 0; i < cercoPrestazioni.length && flagServizioBudget==false; i++) {
+																					var idPrestazione = cercoPrestazioni[i].id;
+																					//console.log("prestazione: "+idPrestazione);
+																					//console.log("clicked: "+clickedId);
+
+																					if (clickedId==idPrestazione) {
+																						flagServizioBudget = true;
+																						//console.log("id uguali");
+																					};
+																				};
+																			};
 	}
+																	}) // fine PrestazioneXPaziente
+																	
+																};
+															};
+														}
+													}); // fine FolderPXP
+												};
+											};
+										}
+									}); // fine Budget
+								};
+							}
+						}
+					}); // fine Centro
+				} // fine primo JSON
+  			});
+		
+			if (flagServizioBudget==true) {
+				alert("Impossibile eliminare, poiché il servizio è presente in Budget");
+			} else {
+				//console.log("si può eliminare");
+				//console.log(flagServizioBudget);
+				// Non funziona deleteElement(clickedId);
+				$.ajax({
+					url : '../../rest/dm/deleteElement/' + clickedId,
+				}).done(function() {
+					console.log('DELETED');
+					location.reload(true);
+				});
+			};
+															
+		}; return false;
+	};
+
+	// STSANSVIL-8453 TEMPLATE FINE CENTRO
+	$( document ).ready(function() {
+		$("[name=DatiChiusuraCentro_conclusioneAnticipataRadio]").on('change',function(){
+			if($('#DatiChiusuraCentro_conclusioneAnticipataRadio:checked').val()!==undefined && $('#DatiChiusuraCentro_conclusioneAnticipataRadio:checked').val().split("###")[0]==1){
+				$('#informations-DatiChiusuraCentro_conclusioneAnticipata').show();
+			}
+			else if($('#DatiChiusuraCentro_conclusioneAnticipataRadio:checked').val()!==undefined && $('#DatiChiusuraCentro_conclusioneAnticipataRadio:checked').val().split("###")[0]==2){
+				$('#informations-DatiChiusuraCentro_conclusioneAnticipata').hide();
+				$("#DatiChiusuraCentro_conclusioneAnticipata:checked").each(function(){
+					$(this).prop("checked",false)
+				});
+			}
+		});
+		$("[name=DatiChiusuraCentro_conclusioneAnticipataRadio]").trigger("change");
+	});
+
 </script>
 <script>
 bootbox.dialog({
@@ -764,19 +907,36 @@ bootbox.dialog({
 								<#assign feaServLink=centerChild.getChildren()[0].getId() />
 							</#if>
 							<tr>
-								<td><a class="center-link" href="${baseUrl}/app/documents/detail/${feaServLink}">${centerChildFeaRich.getFieldDataString("FeasibilitySUO","Servizio")} <br> ${centerChildFeaRich.getFieldDataDecode("FeasibilitySUO","Struttura")} - ${centerChildFeaRich.getFieldDataDecode("FeasibilitySUO","Dipartimento")} - ${centerChildFeaRich.getFieldDataString("FeasibilitySUO","UO")} <br> Figure Coinvolte:  ${centerChildFeaRich.getFieldDataString("FeasibilitySUO","FigureCoinvolte")}</a></td>
+								<td><a class="center-link" href="${baseUrl}/app/documents/detail/${feaServLink}">${centerChildFeaRich.getFieldDataString("FeasibilitySUO","Servizio")} <br> ${centerChildFeaRich.getFieldDataDecode("FeasibilitySUO","Struttura")} - ${centerChildFeaRich.getFieldDataDecode("FeasibilitySUO","Dipartimento")} - ${centerChildFeaRich.getFieldDataDecode("FeasibilitySUO","UO")} <br> Figure Coinvolte:  ${centerChildFeaRich.getFieldDataString("FeasibilitySUO","FigureCoinvolte")}</a></td>
 								<td class="center">${status}</td>
 								<td class="center">${noteFeasibility}</td>
 								<td class="center">${dataFeasibility}</td>
 								<td class="center">${utenteFeasibility}</td>
 								<td class="center">
-									<#if getUserGroups(userDetails)!='SP'>
 									<div class="visible-md visible-lg hidden-sm hidden-xs">
-										<button title="Visualizza dettaglio" style="margin-top:0px !important" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${centerChild.getId()}';">
+									<#if getUserGroups(userDetails)!='SP'>
+											<button title="Visualizza dettaglio" style="margin-top:0" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${centerChild.getId()}';">
 											<i class="icon-edit bigger-120"></i>
 										</button>
+										</#if>
+										<#-- [STSANSVIL-2857] Aggiunta eliminazione Servizi Coinvolti -->
+										<#if userDetails.hasRole("CTC") || userDetails.hasRole("PI") || userDetails.hasRole("COORD")>
+											<#assign budgetChiuso=false />
+											<#if el.getfieldData("statoValidazioneCentro","typeBudgetApproved")?? && el.getfieldData("statoValidazioneCentro","typeBudgetApproved")?size gt 0>
+												<#assign budgetChiuso=true />
+											</#if>
+											<#if feasibilityPIChiusa && budgetChiuso >
+												<button title="Elimina" style="margin-top:0" class="btn btn-xs btn-info" onclick="alert('Impossibile eliminare: Budget e/o Fattibilità chiusi')" href="#">
+													<i class="icon-trash bigger-120"></i>
+												</button>
+											<#else>
+												<button title="Elimina" style="margin-top:0" class="btn btn-xs btn-info" onclick="deleteServizio({ id:${centerChildFeaRich.getId()} })" href="#">
+													<i class="icon-trash bigger-120"></i>
+												</button>
+											</#if>
+										</#if>
 									</div>
-									</#if>
+									
 									<#-- assign childId=centerChild.getId() />
 
 									<@GetProcess childId centerChild userDetails / -->
@@ -1110,7 +1270,7 @@ bootbox.dialog({
 		-->
         <div id="dialog" style="display:none;" title="Documentazione Centrospecifica"></div>
         <br/><br/>
-
+		<h3>Documentazione centrospecifica</h3>
         <!--inizio tabella nuova-->
     	<div class="row">
 				<div class="col-xs-12">
@@ -1139,6 +1299,7 @@ bootbox.dialog({
            		</#assign>
 
     					<#list parentEl.getChildrenByType("AllegatoCentro") as subEl>
+							<#if subEl.getFieldDataCode("DocCentroSpec","TipoDocumento")?string != "18">
 	    						<#assign noDoc="" />
 								<#assign tipologia="" />
 								<#assign autore="" />
@@ -1147,6 +1308,8 @@ bootbox.dialog({
 								<#assign uploadUser="" />
 								<#assign uploadDt="" />
 								<#assign data="" />
+								<!-- QUI ELENCO TUTTI I DOCUMENTI TRANNE QUELLI CON CODICE 18, CIOE QUELLI PERVENUTI POST ISTRUTTORIA-->
+								<!-- I DOCUMENTI CON CODICE 18 SONO ELENCATI NELLA TABELLA DI SEGUITO-->
 								<#if subEl.getfieldData("DocCentroSpec","TipoDocumento")[0]??>
 									<#assign tipologia=subEl.getFieldDataDecode("DocCentroSpec","TipoDocumento") />
 									<#if subEl.file?? && subEl.file.autore??>
@@ -1177,6 +1340,7 @@ bootbox.dialog({
 								<tr>
 									<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}">${tipologia}</a></td>
 									<td class="hidden-480"><a class="center-link" href="${baseUrl}/app/documents/getAttach/${subEl.id}">${fileName}</a></td>
+								<#if subEl.getFieldDataCode("DocCentroSpec","TipoDocumento")!="777">
 									<td>${autore}</td>
 									<td>${version}</td>
 									<td>${data}</td>
@@ -1204,8 +1368,12 @@ bootbox.dialog({
 										</#if>
 										</div>
 									</td>
+								<#else>
+									<td colspan="7" style="text-align: center"> <b>Documentazione Zip generata il ${uploadDt}, per rigerenarla cliccare sul pulsante in alto "Genera Zip Documentazione"</b></td>
+								</#if>
 								</tr>
-							</#list>
+							</#if>
+						</#list>
 
 							${noDoc}
 
@@ -1215,12 +1383,121 @@ bootbox.dialog({
 				</div>
 			</div>
     	<!--fine tabella nuova-->
+		<!--inizio tabella per documenti pervenuti post istruttoria/parere condizionato-->
+		<h3>Documentazione post istruttoria/parere condizionato</h3>
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="table-responsive">
+					<table id="sample-table-1" class="table table-striped table-bordered table-hover">
+						<thead>
+						<tr>
+							<th class="hidden-480" style="width:1%">Tipologia</th>
+							<th class="hidden-480" >File</th>
+							<th class="hidden-480" >Autore</th>
+							<th class="hidden-480" >Versione</th>
+							<th class="hidden-480" >Data</th>
+							<th class="hidden-480" >Inserito da</th>
+							<th class="hidden-480" >Caricato il</th>
+							<th class="hidden-480">Num. Protocollo</th>
+							<th class="hidden-480" >Azioni</th>
+						</tr>
+						</thead>
 
+						<tbody>
 
+						<#assign noDoc>
+						<tr>
+							<td colspan=8><span class="help-button">?</span> Nessun documento inserito </td>
+						</tr>
+						</#assign>
 
+						<#list parentEl.getChildrenByType("AllegatoCentro") as subEl>
+						<#if subEl.getFieldDataCode("DocCentroSpec","TipoDocumento")?string == "18">
+						<#assign noDoc="" />
+						<#assign tipologia="" />
+						<#assign autore="" />
+						<#assign version="" />
+						<#assign fileName="" />
+						<#assign uploadUser="" />
+						<#assign uploadDt="" />
+						<#assign data="" />
+						<#if subEl.getfieldData("DocCentroSpec","TipoDocumento")[0]??>
+						<#assign tipologia=subEl.getFieldDataDecode("DocCentroSpec","TipoDocumento") />
+						<#if subEl.file?? && subEl.file.autore??>
+						<#assign autore=subEl.file.autore />
+					</#if>
+
+					<#if subEl.file?? && subEl.file.version??>
+					<#assign version=subEl.file.version />
+				</#if>
+
+				<#if subEl.file?? && subEl.file.fileName??>
+				<#assign fileName=subEl.file.fileName />
+			</#if>
+
+			<#if subEl.file?? && subEl.file.uploadUser??>
+			<#assign uploadUser=subEl.file.uploadUser />
+		</#if>
+
+		<#if subEl.file?? && subEl.file.uploadDt??>
+		<#assign uploadDt=subEl.file.uploadDt.time?date?string.short />
+		</#if>
+
+		<#if subEl.file?? && subEl.file.date??>
+		<#assign data=subEl.file.date.time?date?string.short />
+		</#if>
+		</#if>
+
+		<tr>
+			<td><a class="center-link" href="${baseUrl}/app/documents/detail/${subEl.id}">${tipologia}</a></td>
+			<td class="hidden-480"><a class="center-link" href="${baseUrl}/app/documents/getAttach/${subEl.id}">${fileName}</a></td>
+			<#if subEl.getFieldDataCode("DocCentroSpec","TipoDocumento")!="777">
+			<td>${autore}</td>
+			<td>${version}</td>
+			<td>${data}</td>
+			<td user-allegato="${uploadUser}">${uploadUser}</td>
+			<td>${uploadDt}</td>
+			<td>${subEl.getFieldDataString("DocCentroSpec","ProtocolloNumero")?string}</td>
+			<td>
+				<div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+					<button title="Visualizza dettaglio" class="btn btn-xs btn-info" onclick="location.href='${baseUrl}/app/documents/detail/${subEl.id}';">
+						<i class="icon-edit bigger-120"></i>
+					</button>
+					<#if subEl.getFieldDataString("DocCentroSpec","ProtocolloNumero")?string=="" >
+					<button title="Protocolla documento" class="btn btn-xs btn-info" onclick="if(confirm('Sei sicuro di voler protocollare il documento?')) {protocollaElement('${subEl.id}','${subEl.file.fileName}','${elStudio.getFieldDataString("UniqueIdStudio","id")}','${parentEl.getFieldDataString("IdCentro","ProtocolloFascicolo")?string}','DocCentroSpec',${parentEl.id},'${uploadUser}','${elStudio.getFieldDataString("IDstudio","CodiceProt")}','${parentEl.getFieldDataDecode("IdCentro","PINomeCognome")?string}','${tipologia}')};return false;" href="#">
+					<i class="fa fa-file-o bigger-120"></i>
+					</button>
+					<#else>
+					<button title="Vedi documento protocollato" class="btn btn-xs btn-info" onclick="vediProtocollo('${subEl.getFieldDataString("DocCentroSpec","ProtocolloNumero")?string}'); return false;" href="#">
+					<i class="fa fa-file bigger-120"></i>
+					</button>
+				</#if>
+				<#if userDetails.hasRole("CTC") || userDetails.hasRole("PI") || userDetails.hasRole("COORD")>
+				<button title="Elimina" class="btn btn-xs btn-info" onclick="if(confirm('Sei sicuro di voler eliminare il documento?')) {deleteElement({id:${subEl.id}})};return false;" href="#">
+					<i class="icon-trash bigger-120"></i>
+				</button>
+			</#if>
+			</div>
+			</td>
+			<#else>
+			<td colspan="7" style="text-align: center"> <b>Documentazione Zip generata il ${uploadDt}, per rigerenarla cliccare sul pulsante in alto "Genera Zip Documentazione"</b></td>
+		</#if>
+		</tr>
+		</#if>
+		</#list>
+
+		${noDoc}
+
+		</tbody>
+		</table>
+		</div>
+		</div>
+		</div>
+<!--fine tabella nuova-->
     	</fieldset>
 
-  </div>
+	  </div>
+
     </#assign>
 	 <#assign tabsContent=tabsContent+[{"content":currTabContent,"id":"AllegatoCentro-tab2" }] />
 
@@ -2608,7 +2885,7 @@ userDetails.hasRole("REGIONE") ${userDetails.hasRole("REGIONE")?c}
 el.getCreateUser() ${el.getCreateUser()}
 userHasSite ${userHasSite?c}
 userDetails.hasRole("PI") ${userDetails.hasRole("PI")?c}
-userHasSite ${userHasUO?c}
+userHasUO ${userHasUO?c}
 userDetails.hasRole("COORD") ${userDetails.hasRole("COORD")?c}
 userCF ${userCF}
 piCF ${piCF}

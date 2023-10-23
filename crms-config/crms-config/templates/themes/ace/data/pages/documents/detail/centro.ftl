@@ -5,7 +5,7 @@
 	"scripts" : ["xCDM-modal","jquery-ui-full","datepicker","bootbox", "common/elementEdit.js","token-input","jqgrid","pages/home.js"],
 	"inline_scripts":[],
 	"title" : "Dettaglio centro",
- 	"description" : "Dettaglio centro"
+ 	"description" : "Dettaglio centro" 
 } />
 <#assign elStudio=el.getParent() />
 
@@ -31,7 +31,7 @@ function executeFormTask(taskId,domElement){
                     dataType: "json",
                     url: "${baseUrl}/process-engine/runtime/tasks/"+taskId+"/variables",
                     success: function(variables){
-
+                    
                         $.ajax({
                             dataType: "json",
                             url: "${baseUrl}/process-engine/form/form-data?taskId="+taskId,
@@ -41,34 +41,34 @@ function executeFormTask(taskId,domElement){
                                 form.attr('id','taskForm_'+taskId);
                                 for (v=0;v<variables.length;v++){
                                     console.log(v+" - "+variables[v]);
-
+                                    
                                     //GC 20-12-13// Commento perche' printa il message nella task-form (chissa' qual'era la ratio...)
                                     //if (variables[v].name=='message' && variables[v].value!=null){
                                     //  form.append("<b>"+variables[v].value+"</b>");
                                     //}
-
+                                    
                                 }
                                 for (f=0;f<data.formProperties.length;f++){
-                                    value="";
+                                    value="";   
                                     required=data.formProperties[f].required;
                                     addClass="";
                                     if (required) addClass="required";
                                     if (data.formProperties[f].value!=null) value=data.formProperties[f].value
                                     if (data.formProperties[f].type=="string"){
-
+                                    
                                         if(data.formProperties[f].id.indexOf("note")==0){
                                             form.append(data.formProperties[f].name+": <br/><textarea class='taskForm_"+taskId+" "+addClass+"' label='"+data.formProperties[f].name+"' name='"+data.formProperties[f].id+"'>"+value+"</textarea><br/>");
                                         }
-
+                                        
                                         //GIULIO CE-VENETO
                                         else if(data.formProperties[f].id.indexOf("selectStudio")==0){
                                             form.append(data.formProperties[f].name+": <br/><select class='taskForm_"+taskId+" "+addClass+"' label='"+data.formProperties[f].name+"' name='"+data.formProperties[f].id+"'></select><br/>");
                                         }
-
+                                        
                                         else{
                                             form.append(data.formProperties[f].name+": <input type='text' class='taskForm_"+taskId+" "+addClass+"' label='"+data.formProperties[f].name+"' name='"+data.formProperties[f].id+"' value='"+value+"'/><br/>");
                                         }
-
+                                
                                     }
                                     if (data.formProperties[f].type=="enum"){
                                         options="";
@@ -80,16 +80,16 @@ function executeFormTask(taskId,domElement){
                                         form.append(data.formProperties[f].name+": <select class='taskForm_"+taskId+" "+addClass+"' name='"+data.formProperties[f].id+"'>"+options+"</select><br/>");
                                     }
                                     if (data.formProperties[f].type=="date"){
-                                            addClass+= " ";
+                                            addClass+= " ";                                 
                                           addClass+= "datePicker";
                                             form.append(data.formProperties[f].name+": <input type='text' class='taskForm_"+taskId+" "+addClass+"' label='"+data.formProperties[f].name+"' name='"+data.formProperties[f].id+"' value='"+value+"'/><br/>");
-
-
+                                        
+                                
                                     }
-
+                                    
                                     form.append('<br/>');
                                 }
-                                title=task.name;
+                                title=task.name; 
                                 width=800;
                                 height=500;
                                 form.dialog({
@@ -98,7 +98,7 @@ function executeFormTask(taskId,domElement){
                                      height: height,
                                      buttons: {
                                         "Invia": function() {
-
+                                            
                                             var goon=true;
                                             $('.required').each(function(){
                                                 if ($(this).val()=='') {
@@ -115,7 +115,7 @@ function executeFormTask(taskId,domElement){
                                                 prop['value']=$(this).val();
                                                 properties[idx]=prop;
                                                 idx++;
-
+                                                
                                             });
                                             taskForm=document.forms["taskForm_"+taskId];
                                             //console.log(form);
@@ -143,19 +143,19 @@ function executeFormTask(taskId,domElement){
                                                     }else {
                                                         alert("Errore");
                                                         form.dialog("close");
-
+                                                
                                                     }
                                                 }
                                             });
-
+                                            
                                         }
                                     },
                                     close: function( event, ui ) {
                                         $('#taskForm_'+taskId).remove();
-
+                                        
                                     },
                                      open:function(event,ui){
-
+                                     
                                         $(this).find('.datePicker').datepicker({autoclose:true, format: 'dd/mm/yyyy' });
                                         //$(this).find('.datePicker').datepicker('setDate',new Date());
                                         $(this).find('.datePicker:focus').click(function(){
@@ -164,11 +164,11 @@ function executeFormTask(taskId,domElement){
                                      }
                                     });
                                 form.dialog("open");
-
-
-
-
-
+                                
+                                
+                                
+                                
+                                
                                 //GC 30-06-2016 Collegamento con studio in CE
 
 								if(domElement.innerText=="Invia dati al CE"){ //TOSCANA-185
@@ -187,8 +187,8 @@ function executeFormTask(taskId,domElement){
                                   data: {"eudract":eudractNumber, "codice":codiceProt, "id":idStud,"id_str":id_str,"id_uo":id_uo,"id_pi":id_pi,"ajax_call":ajax_call},   //passo i parametri tramite oggetto json
                                     async:false,
                                     dataType: "json",
-
-                                  success: function(dato){
+                                    
+                                  success: function(dato){            
                                       //Ciclare l'array di oggetti con .each
 	                                  if(dato.sstatus===undefined){//HDCRPMS-630
                                       $.each( dato, function( key, value ) {
@@ -202,8 +202,8 @@ function executeFormTask(taskId,domElement){
                                   }
                                   }
                                 });
-
-
+                                
+                                
                                 /*
                                 url="/checkStudiCE.php?eudract="+eudractNumber;
                                 $.getJSON( url, function( data ) {
@@ -219,7 +219,7 @@ function executeFormTask(taskId,domElement){
                                             <#--if ('${value}'==data[i].auditFiles[a].fileContentId+'_'+data[i].id+'###'+data[i].titleString+' (ver: '+data[i].auditFiles[a].version+') - '+data[i].auditFiles[a].fileName)  selected=" selected";
                                             else selected="";-->
                                             selected="";
-                                            $("select[name$='selectStudio']").append('<option '+selected+'  value="'+data[i].auditFiles[a].fileContentId+'_'+data[i].id+'###'+data[i].titleString+' (ver: '+data[i].auditFiles[a].version+') - '+data[i].auditFiles[a].fileName+'">'+data[i].titleString+' (ver: '+data[i].auditFiles[a].version+') - '+data[i].auditFiles[a].fileName+'</option>');
+                                            $("select[name$='selectStudio']").append('<option '+selected+'  value="'+data[i].auditFiles[a].fileContentId+'_'+data[i].id+'###'+data[i].titleString+' (ver: '+data[i].auditFiles[a].version+') - '+data[i].auditFiles[a].fileName+'">'+data[i].titleString+' (ver: '+data[i].auditFiles[a].version+') - '+data[i].auditFiles[a].fileName+'</option>');        
                                         }
                                     }
                                 }
@@ -227,13 +227,13 @@ function executeFormTask(taskId,domElement){
                             });
                                 */
 								}
-
-
-
-
-
-
-
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 $('.datePicker').datepicker({autoclose:true,  format: 'dd/mm/yyyy' });
                                 return false;
                             }
@@ -241,8 +241,8 @@ function executeFormTask(taskId,domElement){
                     }
                 });
     }
-
-
+    
+    
     /*
      * TOSCANA-79 VMAZZEO 24.11.2016
      */
@@ -309,24 +309,24 @@ $( document ).ready(function() {
 	$("td[user-fattctc]").each(function(){
 		userFattCTC=$(this).html();
 		(function(userFattCTC){
-			$.ajax({
-				type: "GET",
-				cache: false,
-				url: baseUrl+"/uService/rest/user/searchUser?term="+userFattCTC,
-				success: function(data){
-					console.log("Chiamata per "+userFattCTC);
-					$(data).each(function(k,result){
-						if(result.username===userFattCTC){
-							$("td[user-fattctc='"+userFattCTC+"']").html(result.firstName+" "+result.lastName+" "+userFattCTC);
-						}
-					});
-				}
-			});
+		$.ajax({
+			type: "GET",
+			cache: false,
+			url: baseUrl+"/uService/rest/user/searchUser?term="+userFattCTC,
+			success: function(data){
+				console.log("Chiamata per "+userFattCTC);
+				$(data).each(function(k,result){
+					if(result.username===userFattCTC){
+						$("td[user-fattctc='"+userFattCTC+"']").html(result.firstName+" "+result.lastName+" "+userFattCTC);
+					}
+				});
+			}
+		});
 		})(userFattCTC);
 	});
 
 
-	$("td[user-budgetCreator]").each(function(){
+$("td[user-budgetCreator]").each(function(){
 		userBudget=$(this).html();
 		(function(userBudget){
 			$.ajax({
@@ -419,7 +419,7 @@ function getNomeCognome(user){
 	});
 	return nomeCognome;
 }
-</@script>
+</@script>  
 
 
 <@script>
@@ -478,7 +478,7 @@ empties[dummy.type.id]=dummy;
 	//TOSCANA-106 vmazzeo 05.05.2017
 	$('#informations-IdCentro_inviatoCE').hide();
 	$("#IdCentro-IdCentro_inviatoCE").hide();
-
+    
 	/*TOSCANA-63 vmazzeo 30.08.2016 - PUNTO 2 INIZIO*/
 	//VOLONTARI SANI
 	var myFeasibility_volSani;
@@ -491,7 +491,7 @@ empties[dummy.type.id]=dummy;
 		$('#informations-Feasibility_volSaniNr').show();
 		$('#informations-Feasibility_volSaniSpec').show();
 	}
-
+	
 	$("[name=Feasibility_volSani]").on('change',function(){
 		if($('#Feasibility_volSani:checked').val()!==undefined && $('#Feasibility_volSani:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_volSaniNr').show();
@@ -514,7 +514,7 @@ empties[dummy.type.id]=dummy;
 	if(($('#Feasibility_pediatrici:checked').val()!==undefined && $('#Feasibility_pediatrici:checked').val().split("###")[0]==1) || (myFeasibility_pediatrici!==undefined && myFeasibility_pediatrici==1)){
 		$('#informations-Feasibility_pediatriciNr').show();
 	}
-
+	
 	$("[name=Feasibility_pediatrici]").on('change',function(){
 		if($('#Feasibility_pediatrici:checked').val()!==undefined && $('#Feasibility_pediatrici:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_pediatriciNr').show();
@@ -533,7 +533,7 @@ empties[dummy.type.id]=dummy;
 	if(($('#Feasibility_adulti:checked').val()!==undefined && $('#Feasibility_adulti:checked').val().split("###")[0]==1) || (myFeasibility_adulti!==undefined&& myFeasibility_adulti==1)){
 		$('#informations-Feasibility_adultiNr').show();
 	}
-
+	
 	$("[name=Feasibility_adulti]").on('change',function(){
 		if($('#Feasibility_adulti:checked').val()!==undefined && $('#Feasibility_adulti:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_adultiNr').show();
@@ -560,7 +560,7 @@ empties[dummy.type.id]=dummy;
 		$('#informations-Feasibility_regimeDS').show();
 		$('#informations-Feasibility_regimeSpec').show();
 	}
-
+	
 	$("[name=Feasibility_regimeOsp]").on('change',function(){
 		if($('#Feasibility_regimeOsp:checked').val()!==undefined && $('#Feasibility_regimeOsp:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_regimeAmb').show();
@@ -583,7 +583,7 @@ empties[dummy.type.id]=dummy;
 		}
 	});
 	/*TOSCANA-63 vmazzeo 30.08.2016 - PUNTO 2 FINE*/
-
+	
 	/*TOSCANA-63 vmazzeo 30.08.2016 - PUNTO 3 INIZIO*/
 	$('#se_si_coinvolgimento').hide();
 	$('#tutte_le_attivita').hide();
@@ -645,13 +645,13 @@ empties[dummy.type.id]=dummy;
             $('#informations-Feasibility_FC8').hide();
             $('#informations-Feasibility_noteFC8').hide();
         }
-
+		
 		$('#informations-Feasibility_FC29').show();
 		$('#informations-Feasibility_FC29bis').show();
 		$('#informations-Feasibility_FC30').show();
 		$('#informations-Feasibility_FC9').show();
 		$('#informations-Feasibility_FC10').show();
-
+		
 		if($('#Feasibility_FC10:checked').val()!==undefined && $('#Feasibility_FC10:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_noteFC10').show();
 		}
@@ -659,7 +659,7 @@ empties[dummy.type.id]=dummy;
 			$('#informations-Feasibility_noteFC10').hide();
 			$('[name=Feasibility_noteFC10').val('');//se nascondo sbianco il valore!
 		}
-
+			
 	}
 	if(($('#Feasibility_FC27:checked').val()!==undefined && $('#Feasibility_FC27:checked').val().split("###")[0]==1) ){
 		$('#informations-Feasibility_FC27bis').show();
@@ -669,7 +669,7 @@ empties[dummy.type.id]=dummy;
 	if(($('#Feasibility_contributoEconomico:checked').val()!==undefined && $('#Feasibility_contributoEconomico:checked').val().split("###")[0]==1) ){
 		$('[id^=informations-Feasibility_FIN]').show();
 	}
-
+	
 	$("[name=Feasibility_FC3]").on('change',function(){
 		if($('#Feasibility_FC3:checked').val()!==undefined && $('#Feasibility_FC3:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_FC4').show();
@@ -706,7 +706,7 @@ empties[dummy.type.id]=dummy;
             $('[name=Feasibility_noteFC8').val('');//se nascondo sbianco il valore!
 		}
 	});
-
+	
 	$("[name=Feasibility_FC1]").on('change',function(){
 		if($('#Feasibility_FC1:checked').val()!==undefined && $('#Feasibility_FC1:checked').val().split("###")[0]==1){
 			$('#se_si_coinvolgimento').show();
@@ -767,7 +767,7 @@ empties[dummy.type.id]=dummy;
 			$('[name=Feasibility_noteFC10').val('');//se nascondo sbianco il valore!
 		}
 	});
-
+	
 	$("[name=Feasibility_FC10]").on('change',function(){
 		if($('#Feasibility_FC10:checked').val()!==undefined && $('#Feasibility_FC10:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_noteFC10').show();
@@ -778,7 +778,7 @@ empties[dummy.type.id]=dummy;
 		}
 	});
 	/*TOSCANA-63 vmazzeo 30.08.2016 - PUNTO 3 FINE*/
-
+	
 	/*TOSCANA-63 vmazzeo 30.08.2016 - PUNTO 5 INIZIO*/
 	//COPERTURA ASSICURATIVA
 	$('#copAssNoProfit').hide();
@@ -807,7 +807,7 @@ empties[dummy.type.id]=dummy;
         $('#informations-Feasibility_CopAssNrPolizza').show();
         $('#informations-Feasibility_CopAssRCT').show();
 	}
-
+	
 	$("[name=Feasibility_CopAss]").on('change',function(){
 		if($('#Feasibility_CopAss:checked').val()!==undefined && $('#Feasibility_CopAss:checked').val().split("###")[0]==1){
 			if(studioNoProfit){
@@ -822,7 +822,7 @@ empties[dummy.type.id]=dummy;
 		}
 		else{
 		    if(studioNoProfit){
-
+        
                 $('#copAssNoProfit').hide();
     			$('#informations-Feasibility_CopAssA').hide();
     			$('#informations-Feasibility_CopAssB').hide();
@@ -837,10 +837,10 @@ empties[dummy.type.id]=dummy;
             $('[name=Feasibility_CopAssNrPolizza').val('');//se nascondo sbianco il valore!
             $('#informations-Feasibility_CopAssRCT').hide();
             $('[name=Feasibility_CopAssRCT').prop('checked', false).trigger('change');//se nascondo sbianco il valore!
-
+            
 		}
 	});
-
+	
 	$("[name=Feasibility_FC27]").on('change',function(){
 		if($('#Feasibility_FC27:checked').val()!==undefined && $('#Feasibility_FC27:checked').val().split("###")[0]==1){
 			$('#informations-Feasibility_FC27bis').show();
@@ -855,8 +855,8 @@ empties[dummy.type.id]=dummy;
 			$('[id=Feasibility_FC27ter').prop('checked', false);//se nascondo sbianco il valore!
 		}
 	});
-
-
+	
+	
 	$("[name=Feasibility_contributoEconomico]").on('change',function(){
 		if($('#Feasibility_contributoEconomico:checked').val()!==undefined && $('#Feasibility_contributoEconomico:checked').val().split("###")[0]==1){
 			$('[id^=informations-Feasibility_FIN]').show();
@@ -866,17 +866,17 @@ empties[dummy.type.id]=dummy;
 			$('[id^=Feasibility_FIN]').val('');//se nascondo sbianco il valore!
 		}
 	});
-
+	
 	$("[id^=Feasibility_FIN]").on('blur',function(){
 		var totale = Number($('#Feasibility_FINEntita').val()) + Number($('#Feasibility_FINCoordinamento').val()) + Number($('#Feasibility_FINPersonale').val()) + Number($('#Feasibility_FINAttrezzature').val()) + Number($('#Feasibility_FINServizi').val()) + Number($('#Feasibility_FINMateriale').val()) + Number($('#Feasibility_FINMeeting').val()) + Number($('#Feasibility_FINGenerali').val());
-
+		
 		$('#Feasibility_FINTotale').val(totale);
 	});
-
-
-
+	
+	
+	
 	/*TOSCANA-63 vmazzeo 30.08.2016 - PUNTO 5 FINE*/
-
+	
 	/*TOSCANA-74 vmazzeo 20.10.2016 - PUNTO 4 INIZIO*/
     //PREVISIONE IMPIEGO FINANZIAMENTO
     $('#informations-Feasibility_valorePerc6').hide();
@@ -916,7 +916,7 @@ empties[dummy.type.id]=dummy;
 		$('#informations-Feasibility_valorePerc1Note').show();//TOSCANA-164
 
 	}
-
+    
     $("[name=Feasibility_impiegoApplicabile]").on('change',function(){
         if($('#Feasibility_impiegoApplicabile:checked').val()!==undefined && $('#Feasibility_impiegoApplicabile:checked').val().split("###")[0]==1){
             $('#informations-Feasibility_valorePerc6').show();
@@ -970,10 +970,10 @@ empties[dummy.type.id]=dummy;
         }
     });
     /*TOSCANA-74 vmazzeo 20.10.2016 - PUNTO 4 FINE*/
-
-
+    
+    
 	$('#document-form-submit').closest('.btn').click(function(){
-
+	     
 			        <#if type.associatedTemplates?? && type.associatedTemplates?size gt 0>
 				    <#list type.associatedTemplates as assocTemplate>
 					<#assign templatePolicy=assocTemplate.getUserPolicy(userDetails, type)/>
@@ -987,13 +987,13 @@ empties[dummy.type.id]=dummy;
 			                                    		bootbox.alert("Il campo ${label?html} deve essere compilato",function(){
 			                                    			setTimeout(function(){$('#${template.name}_${field.name}').focus();},0);
 			                                    		});
-
+														
 														return false;
 			                                    	}
 			                                    </#if>
 			                            </#list>
 			                         </#if>
-
+						
 				        </#if>
 				    </#list>
 				</#if>
@@ -1002,7 +1002,7 @@ empties[dummy.type.id]=dummy;
 			        	bootbox.alert("Bisogna allegare un file",function(){
 			        		setTimeout(function(){$('#file').focus();},0);
 			        	});
-
+			        	
 						return false;
 			        }
 			        <#if !model['docDefinition'].noFileinfo>
@@ -1010,14 +1010,14 @@ empties[dummy.type.id]=dummy;
 			        	bootbox.alert("Il campo versione deve essere compilato",function(){
 			        		$('#version').focus();
 			        	});
-
+						
 						return false;
 			        }
 			        if ($('#data').val()==""){
 			        	bootbox.alert("Il campo data deve essere compilato",function(){
 			        		$('#data').focus();
 			        	});
-
+						
 						return false;
 			        }
 			        </#if>
@@ -1044,13 +1044,58 @@ empties[dummy.type.id]=dummy;
             }).fail(function(){
             	bootbox.hideAll();
                 bootbox.alert('Errore salvataggio! <i class="icon-warning-sign red"></i>');
-
+           
             });
-
-
+            
+       
     });
 
-	});
+// STSANSVIL-4704
+//IdCentro_universitario* (RADIO)
+if ( loadedElement.metadata.IdCentro_universitario && loadedElement.metadata.IdCentro_universitario[0].split("###")[0] == 2 ) {
+$('[id=informations-IdCentro_convenzioni]').hide();
+$('[id=informations-IdCentro_convenzioniSpecifica]').hide();
+$('[id=informations-IdCentro_aziende]').hide();
+}
+
+//IdCentro_convenzioni (RADIO)
+if ( loadedElement.metadata.IdCentro_convenzioni && (loadedElement.metadata.IdCentro_convenzioni[0] == undefined || loadedElement.metadata.IdCentro_convenzioni[0].split("###")[0] == 2) ) {
+$('[id=informations-IdCentro_convenzioniSpecifica]').hide();
+}
+
+$('[id=IdCentro_universitario]').change(function(){gestUniversitario();});
+$('[id=IdCentro_convenzioni]').change(function(){gestConvenzioni();});
+
+function gestUniversitario() {
+value=$('#IdCentro_universitario[value="1###Si"]').is(':checked');
+
+if (value==true && $('#IdCentro_universitario').is(':visible')){
+$('[id=informations-IdCentro_convenzioni]').show();
+$('[id=informations-IdCentro_aziende]').show();
+}
+else {
+$('[id=informations-IdCentro_convenzioni]').hide();
+$('[id=IdCentro_convenzioni]').prop('checked', false);
+$('[id=informations-IdCentro_aziende]').hide();
+$('[id=IdCentro_aziende]').prop('checked', false);
+$('[id=informations-IdCentro_convenzioniSpecifica]').hide();
+$('[id=IdCentro_convenzioniSpecifica]').val('');
+}
+}
+
+function gestConvenzioni() {
+value=$('#IdCentro_convenzioni[value="1###Si"]').is(':checked');
+
+if (value==true && $('#IdCentro_convenzioni').is(':visible')){
+$('[id=informations-IdCentro_convenzioniSpecifica]').show();
+}
+else {
+$('[id=informations-IdCentro_convenzioniSpecifica]').hide();
+$('[id=IdCentro_convenzioniSpecifica]').val('');
+}
+}
+
+}); // FINE document ready
 
 </@script>
 
@@ -1063,14 +1108,14 @@ empties[dummy.type.id]=dummy;
 			height:auto;
 			margin-bottom:3px;
 		}
+	
+		
 
-
-
-
+		
 		tr.jqgrow{
 			cursor:pointer;
 		}
-
+		
 
 		.infobox {
 			cursor:pointer;
@@ -1081,7 +1126,7 @@ empties[dummy.type.id]=dummy;
 		    text-align: center;
 				//background-image: -moz-linear-gradient(bottom, #F2F2F2 0%, #FFFFFF 100%);
 		}
-
+		
 		.infobox > .infobox-data {
 		    text-align: center;
 		    padding-left: 0px;
@@ -1138,7 +1183,7 @@ empties[dummy.type.id]=dummy;
     	if(str && str!="") return str;
     	else return "Valore mancante";
     }
-
+    
     function statoVisite(metadata){
     	if(metadata && metadata.DatiCustomMonitoraggioAmministrativo_VisiteFatturate){
     		return metadata.DatiCustomMonitoraggioAmministrativo_VisiteFatturabili[0]+'/'+metadata.DatiCustomMonitoraggioAmministrativo_VisiteTot[0];
@@ -1146,7 +1191,7 @@ empties[dummy.type.id]=dummy;
     		return 'Informazione non disponibile';
     	}
     }
-
+    
     function TSToDate2(date){
 		if(!date)return "Valore mancante";
 		var fmt = new DateFmt("%d/%m/%y");
@@ -1157,11 +1202,11 @@ empties[dummy.type.id]=dummy;
 		var decode = select.split('###')[1];
 		return decode;
 	}
-
+	
 	function fileLink(file){
 		return "<a href='../getAttach/"+file+"'><i class='icon icon-download bigger-160'></i></a> ";
 	}
-
+	
 	function patList(){
 		var grid_selector = "#home-grid-table";
 		var pager_selector = "#home-grid-pager";
@@ -1201,7 +1246,7 @@ empties[dummy.type.id]=dummy;
 		var pager_selector = "#grid-safety-pager";
 		var url=baseUrl+"/app/rest/documents/jqgrid/advancedSearch/Safety?parent_obj_id_eq=${el.getId()}";
 		var colNames=['Codice evento','Paziente','Insorgenza', 'Gravit&agrave;','Categoria','Evento','Grado'];
-		var colModel=[
+		var colModel=[		
 		  			{name:'id',index:'id', formatter:stdString, width:30, sorttype:"string",jsonmap:"id"},
 		  			{name:'codice1',index:'Safety_Paziente', formatter:decode, width:30, sorttype:"string",jsonmap:"metadata.Safety_Paziente.0"},
 		  			{name:'codice2',index:'Safety_DataInsorgenza', formatter:TSToDate2, width:30, sorttype:"string",jsonmap:"metadata.Safety_DataInsorgenza.0"},
@@ -1209,8 +1254,8 @@ empties[dummy.type.id]=dummy;
 		  			{name:'codice2',index:'Safety_ClassificazioneCTCAECategoria', formatter:decode, width:30, sorttype:"string",jsonmap:"metadata.Safety_ClassificazioneCTCAECategoria.0"},
 		  			{name:'codice2',index:'Safety_ClassificazioneCTCAETerm', formatter:decode, width:30, sorttype:"string",jsonmap:"metadata.Safety_ClassificazioneCTCAETerm.0"},
 		  			{name:'codice2',index:'Safety_ClassificazioneCTCAEGrado', formatter:decode, width:30, sorttype:"string",jsonmap:"metadata.Safety_ClassificazioneCTCAEGrado.0"},
-
-
+		  		
+		  			
 				];
 		var caption = "Eventi avversi";
 		setupGrid(grid_selector, pager_selector, url, colModel,colNames, caption);
@@ -1222,20 +1267,20 @@ empties[dummy.type.id]=dummy;
 		var pager_selector = "#grid-dsury-pager";
 		var url=baseUrl+"/app/rest/documents/jqgrid/advancedSearch/DSUR?parent_obj_id_eq=${el.getId()}";
 		var colNames=['Titolo','Periodo di riferimento dal','al', 'Data relazione','Scarica'];
-		var colModel=[
+		var colModel=[		
 		  			{name:'codice',index:'DSUR_Titolo', formatter:stdString, width:30, sorttype:"string",jsonmap:"metadata.DSUR_Titolo.0"},
 		  			{name:'codice1',index:'DSUR_PeriodoDal', formatter:TSToDate2, width:30, sorttype:"string",jsonmap:"metadata.DSUR_PeriodoDal.0"},
 		  			{name:'codice2',index:'DSUR_PeriodoAl', formatter:TSToDate2, width:30, sorttype:"string",jsonmap:"metadata.DSUR_PeriodoAl.0"},
 		  			{name:'codice2',index:'DSUR_DataRelazione', formatter:TSToDate2, width:30, sorttype:"string",jsonmap:"file.date"},
 		  			{name:'id',index:'id', formatter:fileLink, width:30, jsonmap:"id"},
-
+		  			
 				];
 		var caption = "DSUR";
 		setupGrid(grid_selector, pager_selector, url, colModel,colNames, caption);
 		var DataGrid = $(grid_selector);
  		DataGrid.jqGrid('setGridWidth', '1100');
 	}
-
+	
 	$(window).bind('hashchange', function(e) {
 		if(window.location.hash=='#MonitoraggioAmministrativo-tab2'){
 			patList();
@@ -1257,14 +1302,15 @@ empties[dummy.type.id]=dummy;
 		else if(window.location.hash=='#MonitoraggioClinico-tab2'){
 			monClinList();
 		}
-
+		
 	});
-
+	
 	setTimeout(patList,100);
 	setTimeout(monClinList,100);
 
 
 	function processTask(){
+
 		if (!document.getElementById('task-Actions')) return;
 		$('#task-Actions').html("");
 		gtasks=new Object();
@@ -1294,20 +1340,20 @@ empties[dummy.type.id]=dummy;
 					if (task.type=="Confirm"){
 						gtasks[task.id]=task;
 						console.log(task);
-
-						if(task.taskKey=="InvioFeasibilityServizi"){ //GC 12/11/2015 - Aggiungo confirm all'invio ai servizi
-							$('#task-Actions').append(' <button class="btn btn-primary btn-sm btn-spaced"  onclick="if(confirm(\'Attenzione! Inviando la richiesta la scheda dei servizi coinvolti non sara\\\' piu\\\' modificabile.\')){executeConfirmTask('+task.id+',this)}"> '+task.name+'</button> ');
+						
+						if(task.taskKey=="InvioFeasibilityServizi"){ //GC 12/11/2015 - Aggiungo confirm all'invio ai servizi 
+							$('#task-Actions').append(' <button class="btn btn-primary btn-sm btn-spaced"  onclick="if(confirm(\'Attenzione! Inviando la richiesta la scheda dei servizi coinvolti non sara\\\' piu\\\' modificabile.\')){executeConfirmTask('+task.id+',this)}"> '+task.name+'</button> ');						
 						}/*
-						  * TOSCANA-76 abilito visualizzazione task InvioDatiCE
+						  * TOSCANA-76 abilito visualizzazione task InvioDatiCE 
 						  else if(task.taskKey!="InvioDatiCE"){ //GC 30/01/2015 - Per evitare di dover attaccare il processo al pregresso, per il momento oscuro il processo di Invio dati al CE
 						  */
 						else if(task.name=="Chiudi feasibility PI"){ //GC 12/11/2015 - Aggiungo confirm all'invio ai servizi
 						$('#task-Actions').append(' <button class="btn btn-primary btn-sm btn-spaced"  onclick="if(confirm(\'Attenzione l\\\'operazione comporterà la chiusura delle schede dati dello studio, centro e fattibilità che non saranno pertanto più modificabili\')){executeConfirmTask('+task.id+',this)}"> '+task.name+'</button> ');
 						}
 						else {
-							$('#task-Actions').append(' <button class="btn btn-primary btn-sm btn-spaced"  onclick="executeConfirmTask('+task.id+',this);"> '+task.name+'</button> ');
+							$('#task-Actions').append(' <button class="btn btn-primary btn-sm btn-spaced"  onclick="executeConfirmTask('+task.id+',this);"> '+task.name+'</button> ');						
 						}
-
+						
 					}
 					if (task.type=="Form"){
 						gtasks[task.id]=task;
@@ -1320,14 +1366,14 @@ empties[dummy.type.id]=dummy;
 						if(task.taskKey=="ValutazioneRI" && OkPerValutRI==0){}
 						else
 						*/
-
-						$('#task-Actions').append(' <button class="btn btn-primary btn-sm btn-spaced"  onclick="executeFormTask('+task.id+',this);"> '+task.name+'</button> ');
+						
+						$('#task-Actions').append(' <button class="btn btn-primary btn-sm btn-spaced"  onclick="executeFormTask('+task.id+',this);"> '+task.name+'</button> ');						
 					}
 				}
 			}
 		}
 	}
-
+	
 
 function deleteElement(element) {
 	if(!((typeof element)=='object') && !$.isArray(element)){
@@ -1343,7 +1389,7 @@ function deleteElement(element) {
 			window.location.reload();
 		});
 	}
-
+		
 	}else if (!element || !element.id){
 		bootbox.alert("Attenzione impossibile riconoscere l'elemento da eliminare");
 		return;
@@ -1358,7 +1404,7 @@ function deleteElement(element) {
 		});
 	}
 }
-
+	
 </@script>
 
 
@@ -1370,14 +1416,14 @@ function deleteElement(element) {
 			$("input[id^='ServiziCoinvolti_SERV']").prop('checked',false);
 		}
 	});
-
+	
 	/*Se seleziono un servizio -> sbianco NESSUN SERVIZIO*/
 	if($("input[id^='ServiziCoinvolti_SERV']")){
 		$("input[id^='ServiziCoinvolti_SERV']").click(function(){
 			$('#ServiziCoinvolti_NessunServizio').prop('checked',false)
 		});
 	}
-
+	
 </@script>
 
 <@script>
@@ -1426,9 +1472,9 @@ $( document ).ready(function() {
 		}
 	});
 	$("[name=DatiAvvioCentro_arrPrimoPaz]").trigger("change");
-
-
-
+	
+	
+	
 	$('#salvaForm-DatiAvvioCentro').off('click').on('click',function(){
 		var $form=$($(this).data('rel'));
     if($(this).attr('id')){
@@ -1437,7 +1483,7 @@ $( document ).ready(function() {
     else{
     formName="formNonEsistente"
     }
-
+	
 	//LUIGI controllo ad-hoc sulla sequenzialità date
 	date_split1=$('#DatiAvvioCentro_dataAperturaCentro').val().split("/");
 	date1= new Date(date_split1[2], date_split1[1]-1, date_split1[0], 0, 0, 0, 0);
@@ -1447,7 +1493,7 @@ $( document ).ready(function() {
 		alert ('la data di arurolamento primo soggetto non può essere precedente alla data di apertura centro');
 		return false;
     }
-
+	
     var goon=true;
     if (eval("typeof "+formName+"Checks == 'function'")){
     eval("goon="+formName+"Checks()");
@@ -1498,10 +1544,10 @@ $( document ).ready(function() {
     }
 	});
 
-
-
-
-
+	
+	
+	
+	
 //TEMPLATE FINE CENTRO
 	$("#DatiChiusuraCentro-DatiChiusuraCentro_dataConclusioneCentro div.col-sm-3").removeClass("col-sm-3").addClass("col-sm-9");
 	$("#DatiChiusuraCentro-DatiChiusuraCentro_dataConclusioneArr div.col-sm-3").removeClass("col-sm-3").addClass("col-sm-9");
@@ -1584,7 +1630,6 @@ function protocollaElement(elementId, docFileName, studioId, fascicoloStudio,tem
 	<#assign userAZI_DESCR = userDetails.getSiteDataValue('DESCR') />
 	</#if>
 	var userAZI_DESCR = '${userAZI_DESCR}';
-
 
 
 
@@ -1745,7 +1790,7 @@ function vediProtocollo(codiceProtocollo) {
 <#assign userCF = userDetails.getAnaDataValue('CODICE_FISCALE') />
 </#if>
 
-var userCF = '${userCF}';//MSRRNT64S69A944K
+var userCF = '${userCF}';
 
 <#assign userPROTOCOLLO = "" />
 <#if userDetails.getSiteDataValue('INTEGRAZIONE_PROTOCOLLO')?? >

@@ -7,7 +7,7 @@
         <div class="col-xs-12 status-bar">
             <h2>Informazioni</h2>
             <div>
-            <#if userDetails.hasRole("CTC") || userDetails.hasRole("PI")>
+            <#if userDetails.hasRole("CTC") || userDetails.hasRole("PI")  || userDetails.hasRole("COORD")>
                 <a style="text-decoration:none;" href="${baseUrl}/app/documents/pdf/Fattibilita_Locale/${el.getId()}"><img style="float:left;" width="40" height="40" src="/pdf.jpg"><span style="float:left;" >&nbsp;Genera documentazione<br/>&nbsp;centro-specifica</span></a>
                 <!--a style="text-decoration:none;" href="${baseUrl}/../ModCE.pdf"><img style="float:left;" width="40" height="40" src="/pdf.jpg"><span style="float:left;" >&nbsp;Genera documentazione<br/>&nbsp;centro-specifica pdf sample</span></a-->
             </#if>
@@ -321,19 +321,23 @@ function buildAvanzamento(elJsonElk){
 
     var dataRitiro='';
     var noteRitiro='';
-    if (elJsonElk.metadata.RitiroCentroWF && elJsonElk.metadata.RitiroCentroWF.values.dataRitiro){
+    if (elJsonElk.metadata.RitiroCentroWF && elJsonElk.metadata.RitiroCentroWF.values.dataRitiro && elJsonElk.metadata.RitiroCentroWF.values.dataRitiro.length>0){
             dt=new Date(elJsonElk.metadata.RitiroCentroWF.values.dataRitiro_TS[0]);
             dt=formatDate(dt);
             dataRitiro='<br/><h2>Centro Ritirato</h2><span style="color:red; font-weight: bold;">Data ritiro:</span>&nbsp;<span style="font-weight: bold;">'+dt+'</span>';
-    }
 
-    if (elJsonElk.metadata.RitiroCentroWF && elJsonElk.metadata.RitiroCentroWF.values.noteRitiro){
-            nt=elJsonElk.metadata.RitiroCentroWF.values.noteRitiro;
-            noteRitiro='<span style="color:red; font-weight: bold;">Note ritiro:</span>&nbsp;<span style="font-weight: bold;">'+nt+'</span>';
-    }
 
-    $('#ritiro p[data-id="dataRitiro"]').html(dataRitiro);
-    $('#ritiro p[data-id="noteRitiro"]').html(noteRitiro);
+            if (elJsonElk.metadata.RitiroCentroWF && elJsonElk.metadata.RitiroCentroWF.values.noteRitiro){
+                    nt=elJsonElk.metadata.RitiroCentroWF.values.noteRitiro;
+                    noteRitiro='<span style="color:red; font-weight: bold;">Note ritiro:</span>&nbsp;<span style="font-weight: bold;">'+nt+'</span>';
+            }
+
+            $('#ritiro p[data-id="dataRitiro"]').html(dataRitiro);
+            $('#ritiro p[data-id="noteRitiro"]').html(noteRitiro);
+    }
+    else{
+        $('#ritiro').hide();
+    }
 
     percentuale=percentuale*100/totSteps;
     $('#avanzamentoCentro .progress').attr('data-percent', percentuale.toFixed(2)+'%');

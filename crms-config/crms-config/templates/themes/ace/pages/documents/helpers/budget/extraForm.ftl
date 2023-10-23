@@ -41,6 +41,7 @@
 			        <option value="2###B">B</option>
 			        <option value="3###C">C</option>
 			        <option value="4###D">D</option>
+				<option value="5###E">E</option>
 			</select>
                 </span>
                 <input type="hidden" name="Costo_Personale" id="Costo_Personale2" value="" class="text ui-widget-content ui-corner-all" />

@@ -44,15 +44,15 @@
                 </div>
               </div>
               <div class="form-group">
-              <label class="col-sm-2 control-label no-padding-right" for="IDstudio_CodiceProt_like">Codice protocollo<sup>*</sup>:</label>
+              <label class="col-sm-2 control-label no-padding-right" for="IDstudio_CodiceProt_eq">Codice protocollo<sup>*</sup>:</label>
                 <div class="col-sm-8">
-                        <input type="text" name="IDstudio_CodiceProt_like" id="IDstudio_CodiceProt_like"/>
+                        <input type="text" name="IDstudio_CodiceProt_eq" id="IDstudio_CodiceProt_eq"/>
                 </div>
               </div>
               <div class="form-group">
-              <label class="col-sm-2 control-label no-padding-right" for="IDstudio_TitoloProt_like">Titolo studio<sup>*</sup>:</label>
+              <label class="col-sm-2 control-label no-padding-right" for="IDstudio_TitoloProt_eq">Titolo studio<sup>*</sup>:</label>
                 <div class="col-sm-8">
-                        <input type="text" name="IDstudio_TitoloProt_like" id="IDstudio_TitoloProt_like"/>
+                        <input type="text" name="IDstudio_TitoloProt_eq" id="IDstudio_TitoloProt_eq"/>
                 </div>
               </div>
               <div class="form-group">
@@ -167,13 +167,12 @@
                 <div class="col-sm-8">
                 <select id="datiStudio_tipoStudio_eq" name="datiStudio_tipoStudio_eq">
                     <option></option>
-                    <option value="1">Interventistico con farmaco</option>
-                    <option value="2">Interventistico senza farmaco e dispositivo</option>
-                    <option value="3">Interventistico con dispositivo medico</option>
-                    <option value="5">Osservazionale con farmaco</option>
-                    <option value="6">Osservazionale senza farmaco e dispositivo</option>
-                    <option value="7">Osservazionale con dispositivo medico</option>
-                    <option value="10">Studi con impiego di tessuti umani</option>
+                    <option value="1">Sperimentale con farmaco</option>
+                    <option value="2">Indagine clinica con Dispositivo pre-marketing</option>
+                    <option value="3">Indagine clinica con Dispositivo post-marketing</option>
+                    <option value="4">Studio interventistico (senza dispositivi e senza farmaci)</option>
+                    <option value="5">Osservazionale</option>
+                    <option value="6">Studio esclusivamente su materiali biologici</option>
                 </select>
                 <@script>
                     $("#datiStudio_tipoStudio_eq").select2({containerCssClass:'select2-ace',allowClear: true})
@@ -254,9 +253,9 @@
     <div id="metadataTemplate-cercaCentro" class="tab-pane">
             <form id="advancedSearchFormCentro" name="advancedSearchFormCentro" class="form-horizontal" action="${baseUrl}/app/rest/documents/advancedSearch/Centro">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label no-padding-right" for="IstruttoriaCE_DelibNum">Codice studio/protocollo assegnato dal CE:<sup>*</sup>:</label>
+                    <label class="col-sm-3 control-label no-padding-right" for="IstruttoriaCE_DelibNum_eq">Codice studio/protocollo assegnato dal CE:<sup>*</sup>:</label>
                     <div class="col-sm-7">
-                        <input type="text" name="IstruttoriaCE_DelibNum_like" id="IstruttoriaCE_DelibNum"/>
+                        <input type="text" name="IstruttoriaCE_DelibNum_eq" id="IstruttoriaCE_DelibNum_eq"/>
                     </div>
                 </div>
 
@@ -553,13 +552,13 @@
                                 }
                         });
                        if (IdCentro_PI_addFilters && IdCentro_PI_addFilters!=""){
-                            console.log(IdCentro_PI_addFilters);
+                            <#-- console.log(IdCentro_PI_addFilters); -->
                             filters=IdCentro_PI_addFilters.split(",");
-                            console.log(filters);
+                            <#-- console.log(filters); -->
                             var addedParam="";
                             for (l=0;l<filters.length;l++){
                                 secondSplit=filters[l].split("=");
-                                console.log(secondSplit);
+                                <#-- console.log(secondSplit); -->
                                 var re = new RegExp("^\\[(.*)\\]$");
                                 if (secondSplit[1].match(re)) {
                                     idField=secondSplit[1].replace("\[","");
@@ -613,7 +612,7 @@
                                 addedParam+="&";
                             }
                             }
-                            console.log("QUI buildScriptUrl_IdCentro_PI "+addedParam);
+                            <#-- console.log("QUI buildScriptUrl_IdCentro_PI "+addedParam); -->
                             return '/sfoglia_PI.php?'+addedParam;
                         }
                         

@@ -15,6 +15,38 @@ async: false
 
 //PROVA CARLO!!!!
 
+//[STSANSVIL-4405] fix eliminazione container generali
+$(document).ready(function() {
+
+    $("[class^=removeContainerACL]").on("click", function() {
+        myId = ($(this).attr('class').split('-')[1]);
+        tACLs = ($(this).attr('class').split('-')[2]);
+        container = ($(this).attr('class').split('-')[3]);
+        loadingScreen("Eliminazione container in corso...", "loading");
+        $.post('${baseUrl}/app/rest/dm/'+myId+'/templateAcl/'+tACLs+'/removeContainer/'+container, { value: true } ).done(function( data ) {
+            location.reload();
+            bootbox.hideAll();
+        });
+        return false;
+    });
+
+    $("[id^=removeContainerBtn]").on("click", function() {
+        jsonRow = $(this).closest('tr').find('a')[0].getAttribute("addpolicy-aclid");
+        if(!jsonRow) {
+            jsonRow = $(this).closest('tr').find('a')[0].getAttribute("update-aclid");
+        }
+        item = ($(this).attr('id').split('-')[1]);
+        console.log('jsonRow: ' + jsonRow);
+        console.log('item: ' + item);
+        loadingScreen("Eliminazione container in corso...", "loading");
+        $.post('${baseUrl}/app/rest/dm/'+${model["element"].id}+'/acl/edit/'+jsonRow+'/removeContainer/'+item, { value: true } ).done(function( data ) {
+            refreshPolicies();
+            bootbox.hideAll();
+            window.location.reload();
+        });
+        return false;
+    });
+});
 var myFields={};
 //array supporto per ELEMENT_LINK
 var elementLinks={};
@@ -402,12 +434,16 @@ var myChilds=data.children;
 
     $.each(myChilds,function(key,myChild){
         if(jQuery.inArray(myChild.type.typeId, allowedChildNotShow) === -1){
-            addChildItem=$("<li>"+myChild.type.typeId+" "+myChild.titleString+" </li>");
+            title=myChild.type.typeId+" "+myChild.titleString;
+            if(myChild.file!==null){
+                title=myChild.type.typeId+" "+myChild.titleString+" "+myChild.file.fileName;
+            }
+
             addChildLinkView=$('<a>');
     addChildLinkView.attr('child-id', myChild.id);
     addChildLinkView.attr('href', '${baseUrl}/app/documents/detail/'+myChild.id);
     addChildLinkView.html("<i class='fa fa-eye'></i> Visualizza");
-    addChildItem=$("<li>"+myChild.type.typeId+" "+myChild.titleString+" </li>");
+            addChildItem=$("<li>"+title+" </li>");
 
     addChildItem.append(addChildLinkView);
     addChildItem.append('&nbsp;');
@@ -692,17 +728,9 @@ var myChilds=data.children;
                                 ContainersTD.html(ContainersTD.html()+"u:");
                                 }
                                 ContainersTD.html(ContainersTD.html()+container.container);
-                                updateLink=$('<a style="float:right;" title="Rimuovi Container">');
+                                    updateLink=$('<a style="float:right;" class=removeContainerACL-'+myId+'-'+tACLs.id+'-'+container.id+' title="Rimuovi Container">');
                                     updateLink.html("<i class='fa fa-remove'></i>&nbsp;");
                                     updateLink.attr('href','#');
-                                    updateLink.click(function (){
-                                    loadingScreen("Eliminazione container in corso...", "loading");
-                                    $.post('${baseUrl}/app/rest/dm/'+myId+'/templateAcl/'+tACLs.id+'/removeContainer/'+container.id, { value: true } ).done(function( data ) {
-                                    getTemplates(myType,myId);
-                                    bootbox.hideAll();
-                                    });
-                                    return false;
-                                    });
                                     ContainersTD.append(updateLink);
                                     ContainersTD.append($("<br/>"));
                                     myTr.append(ContainersTD);
@@ -861,7 +889,7 @@ var myChilds=data.children;
                                     deleteLink.attr('remove-aclId', tACLs.id);
                                     deleteLink.attr('remove-templateId', myAllowedTemplate.id);
                                     deleteLink.attr('remove-myElementId', myId);
-                                    deleteLink.html("<i class='fa fa-trash'></i> Elimina");
+                                    deleteLink.html("<i class='icon-trash bigger-120'></i> Elimina");
                                     deleteLink.click(function (){
                                     loadingScreen("Eliminazione policy in corso...", "loading");
                                     aclId=$(this).attr('remove-aclId');
@@ -1091,7 +1119,7 @@ var myChilds=data.children;
                                                 stopLink.attr('data-process-id', activeProcesses[i].id);
                                                 stopLink.attr('data-process-key', activeProcesses[i].definition.key);
                                                 stopLink.attr('data-element-id', '${model["element"].id}');
-                                                stopLink.html("<i class='fa fa-trash'></i> Termina");
+                                                stopLink.html("<i class='icon-trash bigger-120'></i> Termina");
                                                 stopLink.click(function(){
                                                 loadingScreen("Terminazione processo in corso...", "loading");
                                                 elId=$(this).attr('data-element-id');
@@ -1110,7 +1138,7 @@ var myChilds=data.children;
                                                 if(activeProcesses.length>0){
                                                 stopLink=$('<a>');
                                                     stopLink.attr('data-element-id', '${model["element"].id}');
-                                                    stopLink.html("<i class='fa fa-trash'></i> Termina");
+                                                    stopLink.html("<i class='icon-trash bigger-120'></i> Termina");
                                                     stopLink.click(function(){
                                                     loadingScreen("Terminazione processo in corso...", "loading");
                                                     elId=$(this).attr('data-element-id');
@@ -1119,7 +1147,7 @@ var myChilds=data.children;
                                                     bootbox.hideAll();
                                                     });
                                                     });
-                                                    processItem=$("<li><b>Termina tutti i processi attivi</b></li>");
+                                                    processItem=$("<li><b>Termina tutti i processi attivi </b></li>");
                                                     processItem.append(stopLink);
                                                     container_active.append(processItem);
                                                     }
@@ -1319,30 +1347,25 @@ var myChilds=data.children;
                                     policyName.append(updateLink);
                                     ret.append(policyName);
                                     }
-                                    //SECONDA COLONNA: CONTAINER
-                                    var ContainersTD=$("<td>");
+                                //SECONDA COLONNA: CONTAINER
+                                var ContainersTD=$("<td>");
+
+                                //[STSANSVIL-4405] fix eliminazione container policies
                                 $(jsonRow.containers).each(function(k,itm){
-                                if(itm.authority){
-                                ContainersTD.html(ContainersTD.html()+"g:");
-                                }
-                                else{
-                                ContainersTD.html(ContainersTD.html()+"u:");
-                                }
-                                ContainersTD.html(ContainersTD.html()+itm.container);
-                                updateLink=$('<a style="float:right;" title="Rimuovi Container">');
+                                    if(itm.authority){
+                                        ContainersTD.html(ContainersTD.html()+"g:");
+                                    }
+                                    else{
+                                        ContainersTD.html(ContainersTD.html()+"u:");
+                                    }
+                                    ContainersTD.html(ContainersTD.html()+itm.container);
+                                    updateLink=$('<a style="float:right;" id=removeContainerBtn-'+itm.id+' title="Rimuovi Container">');
                                     updateLink.html("<i class='fa fa-remove'></i>&nbsp;");
                                     updateLink.attr('href','#');
-                                    updateLink.click(function (){
-                                    loadingScreen("Eliminazione container in corso...", "loading");
-                                    $.post('${baseUrl}/app/rest/dm/'+${model["element"].id}+'/acl/edit/'+jsonRow.id+'/removeContainer/'+itm.id, { value: true } ).done(function( data ) {
-                                    refreshPolicies();
-                                    bootbox.hideAll();
-                                    });
-                                    return false;
-                                    });
                                     ContainersTD.append(updateLink);
                                     ContainersTD.append("<br/>");
                                     });
+
                                     //ContainersTD+="</td>";
                             updateLink=$('<a style="float:right;" title="Aggiungi Container">');
                                 updateLink.html("<i class='fa fa-plus'></i>&nbsp;");
@@ -1853,7 +1876,7 @@ var myChilds=data.children;
                                         actionTD=$('<td>');
                                     var deleteLink=$('<a>');
                                         deleteLink.attr('remove-aclId', jsonRow.id);
-                                        deleteLink.html("<i class='fa fa-trash'></i> Elimina");
+                                        deleteLink.html("<i class='icon-trash bigger-120'></i> Elimina");
                                         deleteLink.click(function (){
                                         loadingScreen("Eliminazione policy in corso...", "loading");
                                         aclId=$(this).attr('remove-aclId');
@@ -1872,7 +1895,7 @@ var myChilds=data.children;
                                         return ret;
                                         }
 
-
+                                        
                                     </@script>
                                     <@breadcrumbsData model['element'] page.description />
 

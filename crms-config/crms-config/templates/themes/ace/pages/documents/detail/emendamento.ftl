@@ -566,15 +566,16 @@ bootbox.dialog({
 		<fieldset>
 			<!--legend>File allegati</legend-->
     	<#assign parentEl=el/>
-		
-		<#if el.getFieldDataString("DatiEmendamento","inviatoEme")?? &&  el.getFieldDataString("DatiEmendamento","inviatoEme")=="1" >
-			<#if model['getCreatableElementTypes']??>
+		<!-- SONO SEGRETERIA? ${userDetails.hasRole("SEGRETERIA")?c} -->
+		<#if userDetails.hasRole("SEGRETERIA") && el.getFieldDataString("DatiEmendamento","inviatoEme")?? &&  el.getFieldDataString("DatiEmendamento","inviatoEme")=="1" >
+			<input type="button" class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/7715196655';" value="Aggiungi istruttoria">
+			<#-- if model['getCreatableElementTypes']??>
 				<#list model['getCreatableElementTypes'] as docType>
 					<#if docType.typeId="IstruttoriaEme">
 					<input type="button" class="submitButton round-button blue templateForm btn btn-info" onclick="window.location.href='${baseUrl}/app/documents/addChild/${el.id}/${docType.id}';" value="Aggiungi istruttoria">
 				</#if>
 				</#list>
-			</#if>
+			< / #if -->
 		</#if>
 		
     	<br/><br/>

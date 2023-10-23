@@ -23,7 +23,7 @@
         //TENGO GLI STUDI STANDARD IN RELAZIONE ALL'AZIENDA //prependStudio='   {"match": {"children.Centro.metadata.IdCentro.values.PINomeCognome_CODESTRING": "RSLMFR61C41H769S"}},';
     }
     else if (flagSP>=0){ //STSANSVIL-742
-        prependSite='{"match": {"createdBy": "${userDetails.username}"}},';
+        prependSite='{"or":[{"match": {"createdBy": "${userDetails.username}"}},{"match": {"viewableByUsers": "${userDetails.username}"}}]},';
     }
     else{
 	<#if userSitesCodesList?? && userSitesCodesList?size gt 0>
@@ -36,7 +36,7 @@
 	</#if>
     }
     if(flagSP>=0){
-        prependStudio='{"match": {"createdBy": "${userDetails.username}"}},';
+        prependStudio='{"or":[{"match": {"createdBy": "${userDetails.username}"}},{"match": {"viewableByUsers": "${userDetails.username}"}}]},';
     }
     else{
     <#if userSitesCodesList?? && userSitesCodesList?size gt 0>
@@ -467,6 +467,8 @@
 		<@script>
 			var $path_base = "${path.base}";//this will be used in gritter alerts containing images
 		</@script>
+
+
 	<div class="col-sm-12 infobox-container">
 		<@infobox "studi_ins" "icon icon-folder-open" "blue" "Studi in BD Regionale"  "Lista di tutti gli studi inseriti a livello regionale" />
 		<@infobox "studi_ins_reg" "icon icon-folder-open" "blue" "Studi in BD Aziendale"  "Lista di tutti gli studi inseriti a livello aziendale" />
@@ -485,12 +487,26 @@
 		<@infobox "centri_chiusi" "icon icon-ban-circle" "grey" "Chiusi" "Centri con chiusura amministrativa"/>
 		<@infobox "centri_ritirati" "icon icon-lock" "black" "Ritirati" "Centri ritirati"/>
 		<@infobox "progetti_totali" "icon icon-lock" "red" "Progetti" "Progetti totali"/>
-	</div>
+	</div> 
+    <!--div class="col-sm-12">
+        <div class="alert alert-block alert-danger" style="">
+            <i class="fa fa-exclamation-circle red"></i> Attenzione: A causa di manutenzioni straordinarie alcune funzionalità del sistema potrebbero non essere raggiungibili nel giorno 23/06/2023 dalle ore 9 alle ore 11.<br/>
+            Ci scusiamo del disagio arrecato.
+        </div>
+    </div-->
 	<div class="col-sm-12">
         <div id="quarantena" class="alert alert-block alert-danger" style="display: none">
             <i class="fa fa-exclamation-circle red"></i> Sono presenti centri in quarantena!
         </div>	
     </div>
+
+    <!-- STSANSVIL-8178 -->
+    <div class="col-sm-12">
+        <div class="alert alert-block alert-danger" style="margin: 2rem auto 1rem auto; display: none;">
+            <i class="fa fa-exclamation-circle red"></i> Attenzione: avviso di fermo del sistema nella giornata di venerdì 13/10/2023 dalle ore 9 alle ore 11.
+        </div>
+    </div>
+
 		
 		
 		<span class="home-table" >
